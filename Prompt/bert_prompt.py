@@ -15,6 +15,8 @@ class BERT():
         # Masked LM
         self.MLM = BertForMaskedLM.from_pretrained(
             self.bert_version, return_dict=True)
+        # QA
+        self.QA = BertForQuestionAnswering.from_pretrained(self.bert_version)
 
     def transform(self, input):
         return self.bert_tokenizer.encode_plus(input, return_tensors='pt')
@@ -44,6 +46,19 @@ class BERT():
             ic(predicted_text)
         return predicted_text
 
+    def predict_qa(self, question, context):
+        # TODO: (Xiaoyang) Increase generalizability later
+        inputs = self.bert_tokenizer.encode_plus(
+            question, context, return_tensors='pt')
+        # ic(inputs)
+        output = self.QA(**inputs)
+        start_max = output.start_logits.argmax()
+        end_max = output.end_logits.argmax() + 1
+        answer = self.bert_tokenizer.decode(
+            inputs["input_ids"][0][start_max: end_max], skip_special_tokens=True)
+        ic(answer)
+        return answer
+
 
 if __name__ == '__main__':
     ic("BERT Prompting Code...")
@@ -51,5 +66,21 @@ if __name__ == '__main__':
     bert.predict_mlm("Paris is the [MASK] of France.")
     bert.predict_mlm("Paris is [MASK] capital of France.")
     # Something more interesting
-    bert.predict_mlm("Who is Lebron James? An [MASK] player.")
-    bert.predict_mlm("Who is [MASK] James? An NBA player.", top_k=10)
+    # bert.predict_mlm("Who is Lebron James? An [MASK] player.")
+    # bert.predict_mlm("Who is [MASK] James? An NBA player.", top_k=10)
+    bert.predict_mlm("Columbia University is at [MASK] city.")
+    bert.predict_mlm("[MASK] University is at New York city.")
+    # QA
+    # Trying out different pretrained LM
+    bert = BERT("deepset/bert-base-cased-squad2")
+    question, context = "Who was Jim Henson?", "Jim Henson was a nice puppet"
+    bert.predict_qa(question, context)
+
+    question, context = "What is the capital of France?", "The capital of France is Paris."
+    bert.predict_qa(question, context)
+
+    question, context = "What is my name?", "Xiaoyang is my name."
+    bert.predict_qa(question, context)
+
+    question, context = "What is my name?", "My name is Xiaoyang."
+    bert.predict_qa(question, context)
