@@ -2,7 +2,7 @@ import numpy as np
 from icecream import ic
 # HuggingFace & Torch
 from transformers import BertModel, BertTokenizer, BertForMaskedLM, \
-    BertForNextSentencePrediction, BertForQuestionAnswering
+    BertForNextSentencePrediction, BertForQuestionAnswering, pipeline, BertForMultipleChoice
 from torch.nn import functional as F
 import torch
 
@@ -15,8 +15,11 @@ class BERT():
         # Masked LM
         self.MLM = BertForMaskedLM.from_pretrained(
             self.bert_version, return_dict=True)
+        # MCQA
+        self.mcqa = BertForMultipleChoice.from_pretrained(self.bert_version)
         # QA
         self.QA = BertForQuestionAnswering.from_pretrained(self.bert_version)
+        # TODO: (Xiaoyang) add more task-specific BERT variants here...
 
     def transform(self, input):
         return self.bert_tokenizer.encode_plus(input, return_tensors='pt')
@@ -24,7 +27,7 @@ class BERT():
     def formatting_text(self, text):
         return text.replace('[MASK]', self.bert_tokenizer.mask_token)
 
-    # TODO: (Xiaoyang) Enable multiple [MASK] prompting
+    # TODO: (Xiaoyang) Enable MULTIPLE [MASK] prompting
     def predict_mlm(self, text, top_k=None):
         text = self.formatting_text(text)
         input = self.transform(text)
@@ -61,26 +64,31 @@ class BERT():
 
 
 if __name__ == '__main__':
-    ic("BERT Prompting Code...")
-    bert = BERT()
-    bert.predict_mlm("Paris is the [MASK] of France.")
-    bert.predict_mlm("Paris is [MASK] capital of France.")
+    ic("BERT Prompting Experiments...")
+    # bert = BERT()
+    # bert.predict_mlm("Paris is the [MASK] of France.")
+    # bert.predict_mlm("Paris is [MASK] capital of France.")
     # Something more interesting
     # bert.predict_mlm("Who is Lebron James? An [MASK] player.")
     # bert.predict_mlm("Who is [MASK] James? An NBA player.", top_k=10)
-    bert.predict_mlm("Columbia University is at [MASK] city.")
-    bert.predict_mlm("[MASK] University is at New York city.")
+    # bert.predict_mlm("Columbia University is at [MASK] city.")
+    # bert.predict_mlm("[MASK] University is at New York city.")
     # QA
     # Trying out different pretrained LM
-    bert = BERT("deepset/bert-base-cased-squad2")
-    question, context = "Who was Jim Henson?", "Jim Henson was a nice puppet"
-    bert.predict_qa(question, context)
+    # bert = BERT("deepset/bert-base-cased-squad2")
+    # question, context = "Who was Jim Henson?", "Jim Henson was a nice puppet"
+    # bert.predict_qa(question, context)
 
-    question, context = "What is the capital of France?", "The capital of France is Paris."
-    bert.predict_qa(question, context)
+    # question, context = "What is the capital of France?", "The capital of France is Paris."
+    # bert.predict_qa(question, context)
 
-    question, context = "What is my name?", "Xiaoyang is my name."
-    bert.predict_qa(question, context)
+    # question, context = "What is my name?", "Xiaoyang is my name."
+    # bert.predict_qa(question, context)
 
-    question, context = "What is my name?", "My name is Xiaoyang."
-    bert.predict_qa(question, context)
+    # question, context = "What is my name?", "My name is Xiaoyang."
+    # bert.predict_qa(question, context)
+    # bert.predict_qa(mpi_template+choice, "ABCDE")
+
+    # TODO: (Xiaoyang) Check out source code
+    # unmasker = pipeline('fill-mask', model='xlm-roberta-large')
+    # print(unmasker(mpi_template+choice))

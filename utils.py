@@ -9,3 +9,7 @@ def MPI_IDX_TO_SCORE(idx): return idx+1
 
 
 # TODO: MBTI? or other personality test
+# -------------------------------- #
+# MBTI IDX-ANSWER-SCORE CONVERSION #
+# -------------------------------- #
+# ...
