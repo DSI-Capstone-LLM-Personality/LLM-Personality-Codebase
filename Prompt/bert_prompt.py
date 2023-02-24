@@ -4,7 +4,7 @@ import numpy as np
 from icecream import ic
 # HuggingFace & Torch
 from transformers import AutoTokenizer, BertModel, BertTokenizer, BertForMaskedLM, AutoTokenizer,\
-    BertForNextSentencePrediction, BertForQuestionAnswering, pipeline, BertForMultipleChoice
+    BertForNextSentencePrediction, BertForQuestionAnswering, pipeline, BertForMultipleChoice, BertLMHeadModel
 
 
 class BERT():

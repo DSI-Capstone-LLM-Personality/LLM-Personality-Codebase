@@ -54,7 +54,7 @@ class MPI():
         # OCEAN score dict
         self.OCEAN = defaultdict(list)
         # Metadata
-        self.logits, self.probs = [], []
+        self.likelihood = []
         self.preds_key, self.preds, self.scores = [], [], []
 
         # Sanity check code (optional)
@@ -63,31 +63,37 @@ class MPI():
 
     def reset(self):
         self.OCEAN = defaultdict(list)
-        self.probs, self.logits = [], []
+        self.probs, self.likelihood = [], []
         self.preds_key, self.preds = [], []
         # TODO: (Xiaoyang) more functionality here...
 
     def run(self, tokenizer, model):
         for prompt in tqdm(self.questions):
-            # tokens = tokenizer([prompt] * len(self.mpi_choice_lst), self.mpi_choice_lst,
-            #                    return_tensors="pt", padding=True)
-            tokens = tokenizer(list(zip([prompt] * len(self.mpi_choice), self.mpi_choice)),
-                               return_tensors="pt", padding=True)
-            out = model(**{k: v.unsqueeze(0) for k, v in tokens.items()})
-            logit = out.logits
-            pred = torch.argmax(logit)
-            # ic(logit)
+            ll_lst = []
+            for choice in self.mpi_choice:
+                tokens = tokenizer(
+                    prompt + choice, return_tensors="pt", padding=True)
+                out = model(**tokens)
+                logit = out.logits
+                # Calculate Likelihood
+                prob = torch.softmax(logit.squeeze(), dim=-1)
+                prob = torch.max(prob, dim=-1)[0]
+                # ll = torch.sum(torch.log(prob))
+                ll = torch.log(prob)[-1]
+                ll_lst.append(ll.item())
+            # Do Prediction
+            pred = torch.argmax(ll)
             ic(MPI_IDX_TO_KEY[pred.item()])
-            # Store results
-            self.logits.append(logit)
-            self.probs.append(torch.softmax(logit, -1))
+            print(list(np.array(ll_lst)))
+            # Store LM likelihoods
+            self.likelihood.append(ll_lst)
+            # Store prediction results
             self.preds_key.append(MPI_IDX_TO_KEY[pred])
             self.preds.append(pred)
             self.scores.append(MPI_IDX_TO_SCORE[pred])
         # Calculating scores
         self.scores = torch.tensor(self.scores) * self.key
-        # ic(self.scores)
-        # Store scores into OCEAN
+        # Store scores into OCEAN Dictionary
         for idx, score in enumerate(self.scores):
             self.OCEAN[self.label[idx]].append(score)
 
