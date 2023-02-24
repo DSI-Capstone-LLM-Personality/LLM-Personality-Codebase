@@ -17,9 +17,9 @@ def read_mpi(path, show=False, n=None):
 
 def prepare_mpi_questions(statement):
     questions = f"Given a statement of you: 'You {statement}'. Please choose from the following options to identify how accurately this statement describes you."
-    # options = "\nOptions: (A). Very Accurate (B). Moderately Accurate (C). Neither Accurate Nor Inaccurate (D). Moderately Inaccurate (E). Very Inaccurate \nAnswers: "
-    # return questions + options
-    return questions
+    options = "\nOptions: (A). Very Accurate (B). Moderately Accurate (C). Neither Accurate Nor Inaccurate (D). Moderately Inaccurate (E). Very Inaccurate \nAnswers: "
+    return questions + options
+    # return questions
 
 
 def check_column_cleanness(df, col_name):
