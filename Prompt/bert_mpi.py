@@ -1,3 +1,4 @@
+from email.policy import default
 from bert_prompt import *
 import pandas as pd
 from collections import Counter, defaultdict
@@ -33,10 +34,10 @@ def check_column_cleanness(df, col_name):
 
 
 class MPI():
-    def __init__(self, path_to_file):
+    def __init__(self, path_to_file, start, end):
         self.mpi_df = read_mpi(path_to_file)
         # (Optional): only testing the first few examples
-        self.mpi_df = self.mpi_df.head(120)
+        self.mpi_df = self.mpi_df[start: end]
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
         # QUESTIONS
@@ -76,7 +77,7 @@ class MPI():
             logit = out.logits
             pred = torch.argmax(logit)
             # ic(logit)
-            ic(pred)
+            ic(MPI_IDX_TO_KEY[pred.item()])
             # Store results
             self.logits.append(logit)
             self.probs.append(torch.softmax(logit, -1))
@@ -92,12 +93,16 @@ class MPI():
 
     def display_score(self):
         # ic(self.OCEAN)
+        self.stats = {}
         for item in self.OCEAN:
             vals = torch.tensor(self.OCEAN[item], dtype=torch.float32)
+            mean, std = torch.mean(vals).item(), torch.std(vals).item()
+            self.stats[item] = [mean, std]
             print(
-                f"{item} | MEAN: {torch.mean(vals).item()} | STD: {torch.std(vals).item()}")
+                f"{item} | MEAN: {mean} | STD: {std}")
         # TODO: (Xiaoyang) add more functionality here
         # self.reset()
+        return np.array(self.stats)
 
 
 if __name__ == '__main__':
