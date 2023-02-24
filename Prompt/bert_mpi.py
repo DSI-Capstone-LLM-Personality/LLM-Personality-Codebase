@@ -16,8 +16,9 @@ def read_mpi(path, show=False, n=None):
 
 def prepare_mpi_questions(statement):
     questions = f"Given a statement of you: 'You {statement}'. Please choose from the following options to identify how accurately this statement describes you."
-    options = " Options: (A). Very Accurate (B). Moderately Accurate (C). Neither Accurate Nor Inaccurate (D). Moderately Inaccurate (E). Very Inaccurate Answers: "
-    return questions + options
+    # options = "\nOptions: (A). Very Accurate (B). Moderately Accurate (C). Neither Accurate Nor Inaccurate (D). Moderately Inaccurate (E). Very Inaccurate \nAnswers: "
+    # return questions + options
+    return questions
 
 
 def check_column_cleanness(df, col_name):
@@ -34,12 +35,17 @@ def check_column_cleanness(df, col_name):
 class MPI():
     def __init__(self, path_to_file):
         self.mpi_df = read_mpi(path_to_file)
+        # (Optional): only testing the first few examples
+        self.mpi_df = self.mpi_df.head(120)
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
         # QUESTIONS
         self.questions = np.array([prepare_mpi_questions(x)
                                   for x in self.text])
-        self.mpi_choice_lst = ['A', 'B', 'C', 'D', 'E']
+        ic(self.questions.shape)
+        self.mpi_choice_lst = ["(A). Very Accurate", "(B). Moderately Accurate",
+                               "(C). Neither Accurate Nor Inaccurate", "(D). Moderately Inaccurate", "(E). Very Inaccurate"]
+        self.mpi_choice = ['A', 'B', 'C', 'D', 'E']
         # LABEL
         self.label = np.array(self.mpi_df['label_ocean'])
         # KEY
@@ -62,11 +68,15 @@ class MPI():
 
     def run(self, tokenizer, model):
         for prompt in tqdm(self.questions):
-            tokens = tokenizer([prompt] * len(self.mpi_choice_lst), self.mpi_choice_lst,
+            # tokens = tokenizer([prompt] * len(self.mpi_choice_lst), self.mpi_choice_lst,
+            #                    return_tensors="pt", padding=True)
+            tokens = tokenizer(list(zip([prompt] * len(self.mpi_choice), self.mpi_choice)),
                                return_tensors="pt", padding=True)
             out = model(**{k: v.unsqueeze(0) for k, v in tokens.items()})
             logit = out.logits
             pred = torch.argmax(logit)
+            # ic(logit)
+            ic(pred)
             # Store results
             self.logits.append(logit)
             self.probs.append(torch.softmax(logit, -1))
@@ -75,10 +85,19 @@ class MPI():
             self.scores.append(MPI_IDX_TO_SCORE[pred])
         # Calculating scores
         self.scores = torch.tensor(self.scores) * self.key
-        ic(self.scores)
+        # ic(self.scores)
         # Store scores into OCEAN
         for idx, score in enumerate(self.scores):
             self.OCEAN[self.label[idx]].append(score)
+
+    def display_score(self):
+        # ic(self.OCEAN)
+        for item in self.OCEAN:
+            vals = torch.tensor(self.OCEAN[item], dtype=torch.float32)
+            print(
+                f"{item} | MEAN: {torch.mean(vals).item()} | STD: {torch.std(vals).item()}")
+        # TODO: (Xiaoyang) add more functionality here
+        # self.reset()
 
 
 if __name__ == '__main__':
@@ -90,6 +109,10 @@ if __name__ == '__main__':
 
     # Declare MPI instance
     mpi = MPI(local_path)
-    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-    model = BertForMultipleChoice.from_pretrained("bert-base-uncased")
+    tokenizer = AutoTokenizer.from_pretrained("bert-large-cased")
+    # model = BertForMultipleChoice.from_pretrained("bert-base-uncased")
+    model = BertForMultipleChoice.from_pretrained("bert-large-cased")
+    # tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+    # model = BertForMultipleChoice.from_pretrained("bert-base-uncased")
     mpi.run(tokenizer, model)
+    mpi.display_score()

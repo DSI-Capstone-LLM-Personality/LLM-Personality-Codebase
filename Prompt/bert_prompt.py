@@ -1,10 +1,10 @@
+import torch
+from torch.nn import functional as F
 import numpy as np
 from icecream import ic
 # HuggingFace & Torch
-from transformers import BertModel, BertTokenizer, BertForMaskedLM, \
+from transformers import AutoTokenizer, BertModel, BertTokenizer, BertForMaskedLM, AutoTokenizer,\
     BertForNextSentencePrediction, BertForQuestionAnswering, pipeline, BertForMultipleChoice
-from torch.nn import functional as F
-import torch
 
 
 class BERT():
