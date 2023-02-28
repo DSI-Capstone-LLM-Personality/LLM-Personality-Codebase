@@ -61,10 +61,28 @@ def logit_to_prob(logit):
 def prob_to_ll(prob, ll_type, choice_len):
     if ll_type == 'mean-a':
         return torch.mean(torch.log(prob)[-choice_len:])
-    elif ll_type == 'mean_s':
+    elif ll_type == 'mean-s':
         return torch.mean(torch.log(prob))
     else:
         assert False, 'Unrecognized input argument.'
+
+
+def run_mpi(path_to_dset, start, end,
+            model, tokenizer, version,
+            mpi_choice, ll_type,
+            filename):
+    original_stdout = sys.stdout
+    with open(filename, 'w') as f:
+        sys.stdout = f
+        print(f'MODEL: BERT | Version: {version}')
+        mpi = MPI(path_to_dset, start, end, mpi_choice)
+        mpi.reset()
+        mpi.run(tokenizer, model, ll_type=ll_type)
+        mpi.display_ocean_stats()
+        mpi.display_aux_stats()
+        f.close()
+        sys.stdout = original_stdout
+        return mpi
 
 
 class MPI():
@@ -134,7 +152,7 @@ class MPI():
             pred = torch.argmax(ll_lst).item()
             # ic(pred)
             print(
-                f"Question{idx:<4} | Trait: {self.label[idx]} | Key: {self.plus_minus[idx]} | ANSWER: {MPI_IDX_TO_KEY[pred]}")
+                f"Question #{idx:<4} | Trait: {self.label[idx]} | Key: {self.plus_minus[idx]} | ANSWER: {self.mpi_choice_lst[pred]}")
             # print(f"-- ANSWER: {MPI_IDX_TO_KEY[pred]}")
             print(f"-- Likelihood: {list(np.round(np.array(ll_lst), 4))}")
             # SAVE STATISTICS
