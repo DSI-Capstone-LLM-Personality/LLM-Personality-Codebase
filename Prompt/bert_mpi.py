@@ -5,8 +5,10 @@ import pandas as pd
 from collections import Counter, defaultdict
 from utils import *
 from tqdm import tqdm
+import sys
 
 
+OCEAN = ['O', 'C', 'E', 'A', 'N']
 MPI_CHOICES = ['(A)', '(B)', '(C)', '(D)', '(E)']
 MPI_CHOICES_DESC = [
     "Very Accurate",
@@ -23,6 +25,7 @@ def read_mpi(path, show=False, n=None):
     if show:
         assert n is not None, 'Please specify how many rows you want to view.'
         ic(df.head(n))
+    print(f"Personality Test on MPI dataset...")
     print(f"There are {len(df)} multiple choice questions in total.")
     return df
 
@@ -48,8 +51,24 @@ def check_column_cleanness(df, col_name):
     # TODO: (Xiaoyang) add more cleanness check later...
 
 
+# TODO:(Xiaoyang) two functions that calculate likelihood...
+def logit_to_prob(logit):
+    # logits: L x Vocab_Size
+    prob = torch.softmax(logit, dim=-1)
+    return torch.max(prob, dim=-1)[0]
+
+
+def prob_to_ll(prob, ll_type, choice_len):
+    if ll_type == 'mean-a':
+        return torch.mean(torch.log(prob)[-choice_len:])
+    elif ll_type == 'mean_s':
+        return torch.mean(torch.log(prob))
+    else:
+        assert False, 'Unrecognized input argument.'
+
+
 class MPI():
-    def __init__(self, path_to_file, start, end):
+    def __init__(self, path_to_file, start, end, mpi_choice=MPI_CHOICE_ALL):
         self.mpi_df = read_mpi(path_to_file)
         # (Optional): only testing the first few examples
         self.mpi_df = self.mpi_df[start: end]
@@ -60,73 +79,86 @@ class MPI():
                                   for x in self.text])
         # ic(self.questions.shape)
         # TODO:(Xiaoyang) Enable argument passing later...
-        self.mpi_choice_lst = MPI_CHOICE_ALL
+        self.mpi_choice_lst = mpi_choice
+        # self.mpi_choice_lst = MPI_CHOICES
         # LABEL
         self.label = np.array(self.mpi_df['label_ocean'])
         # KEY
         self.key = torch.tensor(self.mpi_df['key'], dtype=torch.long)
-        # OCEAN score dict
+        self.plus_minus = ["+" if k == 1 else "-" for k in self.key]
+        # OCEAN SCORE
         self.OCEAN = defaultdict(list)
-        # Metadata
+        self.raw_scores,  self.scores = [], []
+        # META-DATA
         self.likelihood, self.probs = [], []
-        self.preds_key, self.preds, self.scores = [], [], []
+        self.preds_key, self.preds = [], []
+        # DEAL WITH FILE WRITE
 
-        # Sanity check code (optional)
+        # SANITY CHECK CODE (Optional)
         # check_column_cleanness(self.mpi_df, 'label_ocean')
         # check_column_cleanness(self.mpi_df, 'key')
 
     def reset(self):
         self.OCEAN = defaultdict(list)
+        self.raw_scores, self.scores = [], []
         self.probs, self.likelihood = [], []
         self.preds_key, self.preds = [], []
         # TODO: (Xiaoyang) more functionality here...
 
-    def run(self, tokenizer, model):
+    def run(self, tokenizer, model, ll_type="mean-a"):
+
         print("--------------------------------------")
         print(f"Sample questions look like this:")
         print(f"{self.questions[0]}")
         print("--------------------------------------")
         print("MCQA task starts...")
-        for prompt in tqdm(self.questions):
+        print("--------------------------------------")
+        for idx, prompt in enumerate(tqdm(self.questions)):
             ll_lst, prob_lst = [], []
+            # NOTE: currently unequal sequence length forbids us doing batch-level operation
+            # TODO: (Xiaoyang) Find a way to do batch-level processing later...
             for choice in self.mpi_choice_lst:
-                # print(prompt + choice)
                 # print((prompt + choice)[-len(choice):])
                 tokens = tokenizer(
                     prompt + choice, return_tensors="pt", padding=True)
                 out = model(**tokens)
                 logit = out.logits
-                # Calculate Likelihood
-                prob = torch.softmax(logit.squeeze(), dim=-1)
-                prob = torch.max(prob, dim=-1)[0]
-                # ll = torch.sum(torch.log(prob))
-                ll = torch.mean(torch.log(prob)[-len(choice):])
-                # print(f"{choice}: {ll.item()}")
-                # ic(f"{choice}: {torch.sum(torch.log(prob)) - ll} | {ll}")
+                # LOG-LIKELIHOOD CALCULATION
+                prob = logit_to_prob(logit.squeeze())
+                ll = prob_to_ll(prob, ll_type, len(choice))
                 ll_lst.append(ll.item())
-                # Probability for each word in the sentence
+                # PROBABILITY FOR EACH WORD IN THE SENTENCE
                 prob_lst.append(prob)
-            # Do Prediction
-            pred = torch.argmax(ll)
-            ic(f"ANSWER: {MPI_IDX_TO_KEY[pred.item()]}")
-            # print(list(np.array(ll_lst)))
-            # Store LM likelihoods
+            # MCQA BASED ON LIKELIHOOD
+            ll_lst = torch.tensor(ll_lst)
+            pred = torch.argmax(ll_lst).item()
+            # ic(pred)
+            print(
+                f"Question{idx:<4} | Trait: {self.label[idx]} | Key: {self.plus_minus[idx]} | ANSWER: {MPI_IDX_TO_KEY[pred]}")
+            # print(f"-- ANSWER: {MPI_IDX_TO_KEY[pred]}")
+            print(f"-- Likelihood: {list(np.round(np.array(ll_lst), 4))}")
+            # SAVE STATISTICS
             self.likelihood.append(ll_lst)
             self.probs.append(prob_lst)
-            # Store prediction results
-            self.preds_key.append(MPI_IDX_TO_KEY[pred])
+            # SAVE MCQA-ANSWERS
+            self.preds_key.append(self.mpi_choice_lst[pred])
             self.preds.append(pred)
-            self.scores.append(MPI_IDX_TO_SCORE[pred])
-        # Calculating scores
-        self.scores = torch.tensor(self.scores) * self.key
-        # Store scores into OCEAN Dictionary
+            self.raw_scores.append(MPI_IDX_TO_SCORE[pred])
+        # SCORE CALCULATION
+        self.calculate_score()
+
+    def calculate_score(self):
+        self.scores = torch.tensor(self.raw_scores) * \
+            self.key[0:len(self.raw_scores)]
         for idx, score in enumerate(self.scores):
             self.OCEAN[self.label[idx]].append(score)
 
-    def display_score(self):
+    def display_ocean_stats(self):
         # ic(self.OCEAN)
+        print("--------------------------------------")
+        print("OCEAN SCORES STATS")
         self.stats = {}
-        for item in self.OCEAN:
+        for item in OCEAN:
             vals = torch.tensor(self.OCEAN[item], dtype=torch.float32)
             mean, std = torch.mean(vals).item(), torch.std(vals).item()
             self.stats[item] = [mean, std]
@@ -134,7 +166,17 @@ class MPI():
                 f"{item} | MEAN: {mean} | STD: {std}")
         # TODO: (Xiaoyang) add more functionality here
         # self.reset()
-        return np.array(self.stats)
+        # return np.array(self.stats)
+
+    def display_aux_stats(self):
+        print("--------------------------------------")
+        print("OTHER INTERESTING STATS")
+        # Format length
+        l = max(7, max([len(x) for x in self.mpi_choice_lst]))
+        stat = Counter(self.preds_key)
+        print(f"{'ANSWERS':<{l}} | Count")
+        for item in self.mpi_choice_lst:
+            print(f"{item:<{l}} |   {stat[item]}")
 
 
 if __name__ == '__main__':
