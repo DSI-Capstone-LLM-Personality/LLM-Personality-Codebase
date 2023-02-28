@@ -1,9 +1,21 @@
 from email.policy import default
+from functools import reduce
 from bert_prompt import *
 import pandas as pd
 from collections import Counter, defaultdict
 from utils import *
 from tqdm import tqdm
+
+
+MPI_CHOICES = ['(A)', '(B)', '(C)', '(D)', '(E)']
+MPI_CHOICES_DESC = [
+    "Very Accurate",
+    "Moderately Accurate",
+    "Neither Accurate Nor Inaccurate",
+    "Moderately Inaccurate",
+    "Very Inaccurate"]
+MPI_CHOICE_ALL = reduce(
+    lambda lst, z: lst + [z[0] + " " + z[1]], zip(MPI_CHOICES, MPI_CHOICES_DESC), [])
 
 
 def read_mpi(path, show=False, n=None):
@@ -16,7 +28,8 @@ def read_mpi(path, show=False, n=None):
 
 
 def prepare_mpi_questions(statement):
-    questions = f"Given a statement of you: You {statement}. "
+    # TODO:(Xiaoyang) change this template if necessary
+    questions = f"Given a statement of you: \"You {statement}.\""
     prompt = "Please choose from the following options to identify how accurately this statement describes you."
     options = "\nOptions: \n(A). Very Accurate \n(B). Moderately Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \nAnswers: "
     return questions + prompt + options
@@ -45,9 +58,8 @@ class MPI():
         self.questions = np.array([prepare_mpi_questions(x)
                                   for x in self.text])
         ic(self.questions.shape)
-        self.mpi_choice_lst = ["(A). Very Accurate", "(B). Moderately Accurate",
-                               "(C). Neither Accurate Nor Inaccurate", "(D). Moderately Inaccurate", "(E). Very Inaccurate"]
-        self.mpi_choice = ['A', 'B', 'C', 'D', 'E']
+        # TODO:(Xiaoyang) Enable argument passing later...
+        self.mpi_choice_lst = MPI_CHOICE_ALL
         # LABEL
         self.label = np.array(self.mpi_df['label_ocean'])
         # KEY
@@ -55,7 +67,7 @@ class MPI():
         # OCEAN score dict
         self.OCEAN = defaultdict(list)
         # Metadata
-        self.likelihood = []
+        self.likelihood, self.probs = [], []
         self.preds_key, self.preds, self.scores = [], [], []
 
         # Sanity check code (optional)
@@ -70,9 +82,10 @@ class MPI():
 
     def run(self, tokenizer, model):
         for prompt in tqdm(self.questions):
-            ll_lst = []
-            for choice in self.mpi_choice:
-                print(prompt + choice)
+            ll_lst, prob_lst = [], []
+            for choice in self.mpi_choice_lst:
+                # print(prompt + choice)
+                # print((prompt + choice)[-len(choice):])
                 tokens = tokenizer(
                     prompt + choice, return_tensors="pt", padding=True)
                 out = model(**tokens)
@@ -81,16 +94,19 @@ class MPI():
                 prob = torch.softmax(logit.squeeze(), dim=-1)
                 prob = torch.max(prob, dim=-1)[0]
                 # ll = torch.sum(torch.log(prob))
-                ll = torch.log(prob)[-1]
-                # ic(f"{choice}: {ll.item()}")
-                ic(f"{choice}: {torch.sum(torch.log(prob)) - ll}|{ll}")
+                ll = torch.mean(torch.log(prob)[-len(choice):])
+                print(f"{choice}: {ll.item()}")
+                # ic(f"{choice}: {torch.sum(torch.log(prob)) - ll} | {ll}")
                 ll_lst.append(ll.item())
+                # Probability for each word in the sentence
+                prob_lst.append(prob)
             # Do Prediction
             pred = torch.argmax(ll)
-            ic(MPI_IDX_TO_KEY[pred.item()])
-            print(list(np.array(ll_lst)))
+            ic(f"ANSWER: {MPI_IDX_TO_KEY[pred.item()]}")
+            # print(list(np.array(ll_lst)))
             # Store LM likelihoods
             self.likelihood.append(ll_lst)
+            self.probs.append(prob_lst)
             # Store prediction results
             self.preds_key.append(MPI_IDX_TO_KEY[pred])
             self.preds.append(pred)
