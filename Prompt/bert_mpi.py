@@ -16,9 +16,10 @@ def read_mpi(path, show=False, n=None):
 
 
 def prepare_mpi_questions(statement):
-    questions = f"Given a statement of you: 'You {statement}'. Please choose from the following options to identify how accurately this statement describes you."
-    options = "\nOptions: (A). Very Accurate (B). Moderately Accurate (C). Neither Accurate Nor Inaccurate (D). Moderately Inaccurate (E). Very Inaccurate \nAnswers: "
-    return questions + options
+    questions = f"Given a statement of you: You {statement}. "
+    prompt = "Please choose from the following options to identify how accurately this statement describes you."
+    options = "\nOptions: \n(A). Very Accurate \n(B). Moderately Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \nAnswers: "
+    return questions + prompt + options
     # return questions
 
 
@@ -71,6 +72,7 @@ class MPI():
         for prompt in tqdm(self.questions):
             ll_lst = []
             for choice in self.mpi_choice:
+                print(prompt + choice)
                 tokens = tokenizer(
                     prompt + choice, return_tensors="pt", padding=True)
                 out = model(**tokens)
@@ -80,6 +82,8 @@ class MPI():
                 prob = torch.max(prob, dim=-1)[0]
                 # ll = torch.sum(torch.log(prob))
                 ll = torch.log(prob)[-1]
+                # ic(f"{choice}: {ll.item()}")
+                ic(f"{choice}: {torch.sum(torch.log(prob)) - ll}|{ll}")
                 ll_lst.append(ll.item())
             # Do Prediction
             pred = torch.argmax(ll)
