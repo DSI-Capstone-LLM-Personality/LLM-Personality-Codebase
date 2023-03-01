@@ -224,11 +224,11 @@ if __name__ == '__main__':
     read_mpi(local_path, True, 5)
 
     # Declare MPI instance
-    mpi = MPI(local_path)
-    tokenizer = AutoTokenizer.from_pretrained("bert-large-cased")
+    # mpi = MPI(local_path)
+    # tokenizer = AutoTokenizer.from_pretrained("bert-large-cased")
     # model = BertForMultipleChoice.from_pretrained("bert-base-uncased")
-    model = BertForMultipleChoice.from_pretrained("bert-large-cased")
+    # model = BertForMultipleChoice.from_pretrained("bert-large-cased")
     # tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
     # model = BertForMultipleChoice.from_pretrained("bert-base-uncased")
-    mpi.run(tokenizer, model)
-    mpi.display_score()
+    # mpi.run(tokenizer, model)
+    # mpi.display_score()
