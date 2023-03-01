@@ -38,8 +38,8 @@ def prepare_mpi_questions(statement):
     # TODO:(Xiaoyang) change this template if necessary...
     questions = f"Given a statement of you: \"You {statement}.\" "
     prompt = "Please choose from the following options to identify how accurately this statement describes you."
-    # options = "\nOptions: \n(B). Moderately Accurate \n(A). Very Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \nAnswers: "
-    options = "\nOptions: \n(A). Very Accurate \n(B). Moderately Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \nAnswers: "
+    options = "\nOptions: \n(A). Very Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \n(B). Moderately Accurate \nAnswers: "
+    # options = "\nOptions: \n(A). Very Accurate \n(B). Moderately Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \nAnswers: "
     return questions + prompt + options
     # return questions
 
