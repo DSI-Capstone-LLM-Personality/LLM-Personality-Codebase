@@ -6,6 +6,7 @@ from collections import Counter, defaultdict
 from utils import *
 from tqdm import tqdm
 import sys
+from tabulate import tabulate
 
 
 OCEAN = ['O', 'C', 'E', 'A', 'N']
@@ -195,6 +196,20 @@ class MPI():
         print(f"{'ANSWERS':<{l}} | Count")
         for item in self.mpi_choice_lst:
             print(f"{item:<{l}} |   {stat[item]}")
+
+    def display_trait_stats(self):
+        print("--------------------------------------")
+        print("TRAITS-LEVEL STATS")
+        score = list(np.arange(-5, 0, 1)) + list(np.arange(1, 6, 1))
+        for item in OCEAN:
+            print(f"Trait: {item}")
+            count = dict(Counter(np.array(self.OCEAN[item])))
+            df = pd.DataFrame()
+            df[score] = None
+            # TODO:(Xiaoyang) revision later...
+            df.loc[len(df.index)] = [
+                count[x] if x in count else x for x in score]
+            print(tabulate(df, headers='keys', tablefmt='psql', showindex=False))
 
 
 if __name__ == '__main__':
