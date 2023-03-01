@@ -35,7 +35,7 @@ def read_mpi(path, show=False, n=None):
 
 
 def prepare_mpi_questions(statement):
-    # TODO:(Xiaoyang) change this template if necessary
+    # TODO:(Xiaoyang) change this template if necessary...
     questions = f"Given a statement of you: \"You {statement}.\" "
     prompt = "Please choose from the following options to identify how accurately this statement describes you."
     # options = "\nOptions: \n(B). Moderately Accurate \n(A). Very Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \nAnswers: "
@@ -97,13 +97,10 @@ class MPI():
         self.mpi_df = self.mpi_df[start: end]
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
-        # QUESTIONS
+        # QUESTIONS & ANSWERS
         self.questions = np.array([prepare_mpi_questions(x)
                                   for x in self.text])
-        # ic(self.questions.shape)
-        # TODO:(Xiaoyang) Enable argument passing later...
         self.mpi_choice_lst = mpi_choice
-        # self.mpi_choice_lst = MPI_CHOICES
         # LABEL
         self.label = np.array(self.mpi_df['label_ocean'])
         # KEY
@@ -115,7 +112,6 @@ class MPI():
         # META-DATA
         self.likelihood, self.probs = [], []
         self.preds_key, self.preds = [], []
-        # DEAL WITH FILE WRITE
 
         # SANITY CHECK CODE (Optional)
         # check_column_cleanness(self.mpi_df, 'label_ocean')
@@ -165,7 +161,6 @@ class MPI():
             self.scores.append(score)
             print(
                 f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[pred]}")
-            # print(f"-- ANSWER: {MPI_IDX_TO_KEY[pred]}")
             print(f"-- Likelihood: {list(np.round(np.array(ll_lst), 4))}")
         # SCORE CALCULATION
         self.preds_key = np.array(self.preds_key)
@@ -239,6 +234,7 @@ if __name__ == '__main__':
     local_path = "Dataset/" + f"{filename}.csv"
     read_mpi(local_path, True, 5)
 
+    # TODO: code cleaning...
     # Declare MPI instance
     # mpi = MPI(local_path)
     # tokenizer = AutoTokenizer.from_pretrained("bert-large-cased")
