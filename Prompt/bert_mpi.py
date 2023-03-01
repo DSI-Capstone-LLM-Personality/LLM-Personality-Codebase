@@ -81,6 +81,7 @@ def run_mpi(path_to_dset, start, end,
         mpi.run(tokenizer, model, ll_type=ll_type)
         mpi.display_ocean_stats()
         mpi.display_aux_stats()
+        mpi.display_trait_stats()
         f.close()
         sys.stdout = original_stdout
         return mpi
@@ -199,17 +200,20 @@ class MPI():
 
     def display_trait_stats(self):
         print("--------------------------------------")
-        print("TRAITS-LEVEL STATS")
+        print("TRAITS-LEVEL STATS: SCORE DISTRIBUTION")
         score = list(np.arange(-5, 0, 1)) + list(np.arange(1, 6, 1))
+        self.traits = {}
         for item in OCEAN:
-            print(f"Trait: {item}")
             count = dict(Counter(np.array(self.OCEAN[item])))
             df = pd.DataFrame()
             df[score] = None
-            # TODO:(Xiaoyang) revision later...
-            df.loc[len(df.index)] = [
-                count[x] if x in count else x for x in score]
+            # TODO:(Xiaoyang) revision later..
+            count_arr = [count[x] if x in count else 0 for x in score]
+            df.loc[len(df.index)] = count_arr
+            self.traits[item] = count_arr
+            print(f"Trait: {item} | # Questions: {np.sum(count_arr)}")
             print(tabulate(df, headers='keys', tablefmt='psql', showindex=False))
+        # return traits
 
 
 if __name__ == '__main__':
