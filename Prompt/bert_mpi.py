@@ -1,4 +1,7 @@
-from email.policy import default
+# ------------------------- #
+# SCRIPT FOR MPI EXPERIMENT #
+# AUTHOR: XIAOYANG SONG     #
+# ------------------------- #
 from functools import reduce
 from bert_prompt import *
 import pandas as pd
@@ -105,10 +108,10 @@ class MPI():
         self.label = np.array(self.mpi_df['label_ocean'])
         # KEY
         self.key = torch.tensor(self.mpi_df['key'], dtype=torch.long)
-        self.plus_minus = ["+" if k == 1 else "-" for k in self.key]
+        self.plus_minus = np.array(["+" if k == 1 else "-" for k in self.key])
         # OCEAN SCORE
         self.OCEAN = defaultdict(list)
-        self.raw_scores,  self.scores = [], []
+        self.scores = []
         # META-DATA
         self.likelihood, self.probs = [], []
         self.preds_key, self.preds = [], []
@@ -152,24 +155,23 @@ class MPI():
             # MCQA BASED ON LIKELIHOOD
             ll_lst = torch.tensor(ll_lst)
             pred = torch.argmax(ll_lst).item()
-            # ic(pred)
-            print(
-                f"Question #{idx:<4} | Trait: {self.label[idx]} | Key: {self.plus_minus[idx]} | ANSWER: {self.mpi_choice_lst[pred]}")
-            # print(f"-- ANSWER: {MPI_IDX_TO_KEY[pred]}")
-            print(f"-- Likelihood: {list(np.round(np.array(ll_lst), 4))}")
             # SAVE STATISTICS
             self.likelihood.append(ll_lst)
             self.probs.append(prob_lst)
             # SAVE MCQA-ANSWERS
             self.preds_key.append(self.mpi_choice_lst[pred])
             self.preds.append(pred)
-            self.raw_scores.append(MPI_IDX_TO_SCORE[pred])
+            score = MPI_SCORE[self.plus_minus[idx]][pred]
+            self.scores.append(score)
+            print(
+                f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[pred]}")
+            # print(f"-- ANSWER: {MPI_IDX_TO_KEY[pred]}")
+            print(f"-- Likelihood: {list(np.round(np.array(ll_lst), 4))}")
         # SCORE CALCULATION
+        self.preds_key = np.array(self.preds_key)
         self.calculate_score()
 
     def calculate_score(self):
-        self.scores = torch.tensor(self.raw_scores) * \
-            self.key[0:len(self.raw_scores)]
         for idx, score in enumerate(self.scores):
             self.OCEAN[self.label[idx]].append(score)
 
@@ -183,7 +185,7 @@ class MPI():
             mean, std = torch.mean(vals).item(), torch.std(vals).item()
             self.stats[item] = [mean, std]
             print(
-                f"{item} | MEAN: {mean} | STD: {std}")
+                f"{item} | MEAN: {np.round(mean, 5)} | STD: {np.round(std, 5)}")
         # TODO: (Xiaoyang) add more functionality here
         # self.reset()
         # return np.array(self.stats)
@@ -200,8 +202,8 @@ class MPI():
 
     def display_trait_stats(self):
         print("--------------------------------------")
-        print("TRAITS-LEVEL STATS: SCORE DISTRIBUTION")
-        score = list(np.arange(-5, 0, 1)) + list(np.arange(1, 6, 1))
+        print("TRAITS-LEVEL STATS: ")
+        score = list(np.arange(1, 6, 1))
         self.traits = {}
         for item in OCEAN:
             count = dict(Counter(np.array(self.OCEAN[item])))
@@ -212,7 +214,21 @@ class MPI():
             df.loc[len(df.index)] = count_arr
             self.traits[item] = count_arr
             print(f"Trait: {item} | # Questions: {np.sum(count_arr)}")
+            # CHOICE DISTRIBUTION: + and -
+            l = max(7, max([len(x) for x in self.mpi_choice_lst]))
+            for sign in ["+", "-"]:
+                print(f"> CHOICES DISTRIBUTION [{sign}]")
+                mask = np.logical_and(self.label == item,
+                                      self.plus_minus == sign)
+                stat = Counter(self.preds_key[mask])
+                print(f"{'ANSWERS':<{l}} | Count")
+                for choice in self.mpi_choice_lst:
+                    print(f"{choice:<{l}} |   {stat[choice]}")
+                print("")
+            # SCORE DISTRIBUTION
+            print("> SCORE DISTRIBUTION")
             print(tabulate(df, headers='keys', tablefmt='psql', showindex=False))
+            print("\n")
         # return traits
 
 
