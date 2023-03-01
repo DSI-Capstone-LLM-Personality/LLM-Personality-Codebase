@@ -185,7 +185,7 @@ class MPI():
             mean, std = torch.mean(vals).item(), torch.std(vals).item()
             self.stats[item] = [mean, std]
             print(
-                f"{item} | MEAN: {np.round(mean, 5)} | STD: {np.round(std, 5)}")
+                f"{item} | MEAN: {np.round(mean, 5):<8} | STD: {np.round(std, 5)}")
         # TODO: (Xiaoyang) add more functionality here
         # self.reset()
         # return np.array(self.stats)
