@@ -91,6 +91,8 @@ def run_mpi(path_to_dset, start, end,
 
 
 class MPI():
+    # TODO: (Xiaoyang) [TOP PRIORITY] Re-structure this class
+    # (this should also work for non-mpi templates)
     def __init__(self, path_to_file, start, end, mpi_choice=MPI_CHOICE_ALL):
         self.mpi_df = read_mpi(path_to_file)
         # (Optional): only testing the first few examples

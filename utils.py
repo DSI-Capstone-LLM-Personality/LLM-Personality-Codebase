@@ -51,6 +51,15 @@ def ordered_lst_to_str(ordered_lst, style='mpi'):
         assert False, 'Unrecognized option style.'
 
 
+# TODO: (Xiaoyang) Finish this wrapper class
+class QuestionFormatter():
+    def __init__(self, prompt, options):
+        pass
+
+    def __call__(self, statement):
+        pass
+
+
 # Simple testing code
 choice_lst = np.array(MPI_IDX_TO_KEY)
 ordered_lst = shuffle_choice(choice_lst)
