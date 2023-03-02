@@ -12,18 +12,6 @@ import sys
 from tabulate import tabulate
 
 
-OCEAN = ['O', 'C', 'E', 'A', 'N']
-MPI_CHOICES = ['(A)', '(B)', '(C)', '(D)', '(E)']
-MPI_CHOICES_DESC = [
-    "Very Accurate",
-    "Moderately Accurate",
-    "Neither Accurate Nor Inaccurate",
-    "Moderately Inaccurate",
-    "Very Inaccurate"]
-MPI_CHOICE_ALL = reduce(
-    lambda lst, z: lst + [z[0] + " " + z[1]], zip(MPI_CHOICES, MPI_CHOICES_DESC), [])
-
-
 def read_mpi(path, show=False, n=None):
     df = pd.read_csv(path)
     if show:
@@ -35,7 +23,7 @@ def read_mpi(path, show=False, n=None):
 
 
 def prepare_mpi_questions(statement):
-    # TODO:(Xiaoyang) change this template if necessary...
+    # TODO:(Xiaoyang) DEPRECATED FUNCTION: remove later...
     questions = f"Given a statement of you: \"You {statement}.\" "
     prompt = "Please choose from the following options to identify how accurately this statement describes you."
     options = "\nOptions: \n(A). Very Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \n(B). Moderately Accurate \nAnswers: "
