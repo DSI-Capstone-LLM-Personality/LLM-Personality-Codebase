@@ -85,11 +85,11 @@ class QuestionFormatter():
 
 
 # Simple testing code
-choice_lst = np.array(MPI_CHOICES_DESC)
-ordered_lst = shuffle_choice(choice_lst)
-option = ordered_lst_to_str(ordered_lst)
-print(ordered_lst)
-print(option)
+# choice_lst = np.array(MPI_CHOICES_DESC)
+# ordered_lst = shuffle_choice(choice_lst)
+# option = ordered_lst_to_str(ordered_lst)
+# print(ordered_lst)
+# print(option)
 
-QF = QuestionFormatter(MPI_PROMPT, option)
-print(QF("You worry about things"))
+# QF = QuestionFormatter(MPI_PROMPT, option)
+# print(QF("You worry about things"))

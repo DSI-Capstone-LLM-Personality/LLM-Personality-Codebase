@@ -122,39 +122,40 @@ class MPI():
         print("--------------------------------------")
         print("MCQA task starts...")
         print("--------------------------------------")
-        for idx, prompt in enumerate(tqdm(self.questions)):
-            ll_lst, prob_lst = [], []
-            # NOTE: currently unequal sequence length forbids us doing batch-level operation
-            # TODO: (Xiaoyang) Find a way to do batch-level processing later...
-            for choice in self.mpi_choice_lst:
-                # print((prompt + choice)[-len(choice):])
-                tokens = tokenizer(
-                    prompt + choice, return_tensors="pt", padding=True)
-                out = model(**tokens)
-                logit = out.logits
-                # LOG-LIKELIHOOD CALCULATION
-                prob = logit_to_prob(logit.squeeze())
-                ll = prob_to_ll(prob, ll_type, len(choice))
-                ll_lst.append(ll.item())
-                # PROBABILITY FOR EACH WORD IN THE SENTENCE
-                prob_lst.append(prob)
-            # MCQA BASED ON LIKELIHOOD
-            ll_lst = torch.tensor(ll_lst)
-            pred = torch.argmax(ll_lst).item()
-            # SAVE STATISTICS
-            self.likelihood.append(ll_lst)
-            self.probs.append(prob_lst)
-            # SAVE MCQA-ANSWERS
-            self.preds_key.append(self.mpi_choice_lst[pred])
-            self.preds.append(pred)
-            score = MPI_SCORE[self.plus_minus[idx]][pred]
-            self.scores.append(score)
-            print(
-                f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[pred]}")
-            print(f"-- Likelihood: {list(np.round(np.array(ll_lst), 4))}")
-        # SCORE CALCULATION
-        self.preds_key = np.array(self.preds_key)
-        self.calculate_score()
+        with torch.no_grad():
+            for idx, prompt in enumerate(tqdm(self.questions)):
+                ll_lst, prob_lst = [], []
+                # NOTE: currently unequal sequence length forbids us doing batch-level operation
+                # TODO: (Xiaoyang) Find a way to do batch-level processing later...
+                for choice in self.mpi_choice_lst:
+                    # print((prompt + choice)[-len(choice):])
+                    tokens = tokenizer(
+                        prompt + choice, return_tensors="pt", padding=True)
+                    out = model(**tokens)
+                    logit = out.logits
+                    # LOG-LIKELIHOOD CALCULATION
+                    prob = logit_to_prob(logit.squeeze())
+                    ll = prob_to_ll(prob, ll_type, len(choice))
+                    ll_lst.append(ll.item())
+                    # PROBABILITY FOR EACH WORD IN THE SENTENCE
+                    prob_lst.append(prob)
+                # MCQA BASED ON LIKELIHOOD
+                ll_lst = torch.tensor(ll_lst)
+                pred = torch.argmax(ll_lst).item()
+                # SAVE STATISTICS
+                self.likelihood.append(ll_lst)
+                self.probs.append(prob_lst)
+                # SAVE MCQA-ANSWERS
+                self.preds_key.append(self.mpi_choice_lst[pred])
+                self.preds.append(pred)
+                score = MPI_SCORE[self.plus_minus[idx]][pred]
+                self.scores.append(score)
+                print(
+                    f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[pred]}")
+                print(f"-- Likelihood: {list(np.round(np.array(ll_lst), 4))}")
+            # SCORE CALCULATION
+            self.preds_key = np.array(self.preds_key)
+            self.calculate_score()
 
     def calculate_score(self):
         for idx, score in enumerate(self.scores):
