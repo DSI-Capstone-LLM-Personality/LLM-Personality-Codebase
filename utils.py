@@ -13,15 +13,21 @@ OCEAN = ['O', 'C', 'E', 'A', 'N']
 # TODO: (Xiaoyang) Wrap all of these into a .yml file later.
 MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
 MPI_NUM_CHOICES = 5
-MPI_CHOICES = ['(A).', '(B).', '(C).', '(D).', '(E).']
+MPI_CHOICES_NAIVE = ['(A).', '(B).', '(C).', '(D).', '(E).']
 MPI_CHOICES_DESC = [
     "Very Accurate",
     "Moderately Accurate",
     "Neither Accurate Nor Inaccurate",
     "Moderately Inaccurate",
     "Very Inaccurate"]
-MPI_CHOICE_ALL = reduce(
-    lambda lst, z: lst + [z[0] + " " + z[1]], zip(MPI_CHOICES, MPI_CHOICES_DESC), [])
+MPI_CHOICES_ALL = reduce(
+    lambda lst, z: lst + [z[0] + " " + z[1]], zip(MPI_CHOICES_NAIVE, MPI_CHOICES_DESC), [])
+# CHOICE DICTIONARY
+CHOICE = {
+    'choice-only': MPI_CHOICES_NAIVE,
+    'desc-only': MPI_CHOICES_DESC,
+    'choice-desc': MPI_CHOICES_ALL
+}
 MPI_IDX_TO_KEY = ['A', 'B', 'C', 'D', 'E']  # DEPRECATED
 # SCORE DICTIONARY
 MPI_IDX_TO_SCORE_NEG = np.arange(1, 6, 1)
@@ -45,6 +51,15 @@ MPI_SCORE = {
 # ----------------- #
 # UTILITY FUNCTIONS #
 # ----------------- #
+
+
+# CHECKPOINT FILENAME FORMAT
+# [dset]_[model=version]_[choice_type]_[ll_type]
+
+def log_fname(dset, model_desc, choice_type, ll_type):
+    family, version = model_desc['family'], model_desc['version']
+    return f"[{dset}]_[{family}|{version}]_[{choice_type}]_[{ll_type}]"
+
 
 def shuffle_choice(choice_lst):
     assert type(

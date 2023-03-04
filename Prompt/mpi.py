@@ -14,6 +14,10 @@ from tqdm import tqdm
 import sys
 from tabulate import tabulate
 
+# Some Abbreviations:
+# ans -> "answer", inv -> "inverse", perp -> "perplexity"
+
+
 
 def read_mpi(path, show=False, n=None, verbose=False):
     df = pd.read_csv(path)
@@ -55,9 +59,9 @@ def logit_to_prob(logit):
 
 
 def prob_to_ll(prob, ll_type, choice_len):
-    if ll_type == 'mean-a':
+    if ll_type == 'ans_inv_perp':
         return torch.mean(torch.log(prob)[-choice_len:])
-    elif ll_type == 'mean-s':
+    elif ll_type == 'sent_inv_perp':
         return torch.mean(torch.log(prob))
     else:
         assert False, 'Unrecognized input argument.'
@@ -132,7 +136,7 @@ class MPI():
         self.model_desc = None
         # TODO: (Xiaoyang) more functionality here...
 
-    def answer(self, tokenizer, model, model_desc: dict, ll_type="mean-a", verbose=False):
+    def answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
         # Argument check
         assert "version" in model_desc
         assert "family" in model_desc
