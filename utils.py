@@ -84,6 +84,8 @@ class QuestionFormatter():
             assert False, 'Unrecognized formatting style.'
 
 
+def line(n=40): print("-"*n)
+
 # Simple testing code
 # choice_lst = np.array(MPI_CHOICES_DESC)
 # ordered_lst = shuffle_choice(choice_lst)
@@ -91,5 +93,7 @@ class QuestionFormatter():
 # print(ordered_lst)
 # print(option)
 
+
 # QF = QuestionFormatter(MPI_PROMPT, option)
 # print(QF("You worry about things"))
+line()

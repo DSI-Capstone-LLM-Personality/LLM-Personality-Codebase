@@ -3,6 +3,9 @@
 # AUTHOR: XIAOYANG SONG     #
 # ------------------------- #
 from functools import reduce
+from re import template
+
+from regex import E
 from bert_prompt import *
 import pandas as pd
 from collections import Counter, defaultdict
@@ -12,13 +15,14 @@ import sys
 from tabulate import tabulate
 
 
-def read_mpi(path, show=False, n=None):
+def read_mpi(path, show=False, n=None, verbose=False):
     df = pd.read_csv(path)
     if show:
         assert n is not None, 'Please specify how many rows you want to view.'
         ic(df.head(n))
-    print(f"Personality Test on MPI dataset...")
-    print(f"There are {len(df)} multiple choice questions in total.")
+    if verbose:
+        print(f"Personality Test on MPI dataset...")
+        print(f"There are {len(df)} multiple choice questions in total.")
     return df
 
 
@@ -59,49 +63,56 @@ def prob_to_ll(prob, ll_type, choice_len):
         assert False, 'Unrecognized input argument.'
 
 
-def run_mpi(path_to_dset, start, end,
-            model, tokenizer, version,
-            mpi_choice, ll_type,
-            filename):
-    original_stdout = sys.stdout
-    with open(filename, 'w') as f:
-        sys.stdout = f
-        print(f'MODEL: BERT | Version: {version}')
-        mpi = MPI(path_to_dset, start, end, mpi_choice)
-        mpi.reset()
-        mpi.run(tokenizer, model, ll_type=ll_type)
-        mpi.display_ocean_stats()
-        mpi.display_aux_stats()
-        mpi.display_trait_stats()
-        f.close()
-        sys.stdout = original_stdout
-        return mpi
+def run_mpi(dset_params: dict,
+            model_config: dict,
+            algo_config: dict,
+            template_config: dict,
+            verbose=False):
+    # PARSE MPI Dataset information
+    path_to_dset = dset_params['path_to_dset']
+    start, end = dset_params['start_idx'], dset_params['end_idx']
+    # PARSE targeting model information
+    model = model_config['model']
+    tokenizer = model_config['tokenizer']
+    model_desc = model_config['desc']
+    # PARSE algorithm-level config
+    ll_type = algo_config['ll_type']
+    # PARSE template
+    prompt, mpi_choice = template_config['prompt'], template_config['choice']
+    # RUN
+    mpi = MPI(path_to_dset, start, end, prompt, mpi_choice)
+    mpi.reset()
+    mpi.answer(tokenizer, model, model_desc, ll_type=ll_type, verbose=verbose)
+    return mpi
 
 
 class MPI():
     # TODO: (Xiaoyang) [TOP PRIORITY] Re-structure this class
     # (this should also work for non-mpi templates)
-    def __init__(self, path_to_file, start, end, mpi_choice=MPI_CHOICE_ALL):
+    def __init__(self, path_to_file, start, end,
+                 prompt, choice):
         self.mpi_df = read_mpi(path_to_file)
         # (Optional): only testing the first few examples
-        self.mpi_df = self.mpi_df[start: end]
+        if start is not None and end is not None:
+            self.mpi_df = self.mpi_df[start: end]
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
+        # TEMPLATE
+        self.prompt, self.mpi_choice_lst = prompt, choice
         # QUESTIONS & ANSWERS
-        self.questions = np.array([prepare_mpi_questions(x)
-                                  for x in self.text])
-        self.mpi_choice_lst = mpi_choice
-        # LABEL
+        self.formatter = QuestionFormatter(
+            prompt, ordered_lst_to_str(choice), 'mpi')
+        self.questions = np.array([self.formatter(x) for x in self.text])
+        # LABEL, KEY & + -
         self.label = np.array(self.mpi_df['label_ocean'])
-        # KEY
         self.key = torch.tensor(self.mpi_df['key'], dtype=torch.long)
         self.plus_minus = np.array(["+" if k == 1 else "-" for k in self.key])
         # OCEAN SCORE
-        self.OCEAN = defaultdict(list)
-        self.scores = []
-        # META-DATA
+        self.OCEAN, self.scores = defaultdict(list), []
+        # META-DATA: probability, likelihood, etc...
         self.likelihood, self.probs = [], []
         self.preds_key, self.preds = [], []
+        self.answered, self.model_desc = False, None
 
         # SANITY CHECK CODE (Optional)
         # check_column_cleanness(self.mpi_df, 'label_ocean')
@@ -109,26 +120,30 @@ class MPI():
 
     def reset(self):
         self.OCEAN = defaultdict(list)
-        self.raw_scores, self.scores = [], []
+        self.scores = []
         self.probs, self.likelihood = [], []
         self.preds_key, self.preds = [], []
+        self.answered = False
+        self.model_desc = None
         # TODO: (Xiaoyang) more functionality here...
 
-    def run(self, tokenizer, model, ll_type="mean-a"):
+    def answer(self, tokenizer, model, model_desc: dict, ll_type="mean-a", verbose=False):
+        # Argument check
+        assert "version" in model_desc
+        assert "family" in model_desc
 
-        print("--------------------------------------")
-        print(f"Sample questions look like this:")
-        print(f"{self.questions[0]}")
-        print("--------------------------------------")
-        print("MCQA task starts...")
-        print("--------------------------------------")
+        if verbose:
+            line()
+            print(f"Sample questions look like this:\n{self.questions[0]}")
+            line()
+            print("MCQA task starts...")
+            line()
         with torch.no_grad():
             for idx, prompt in enumerate(tqdm(self.questions)):
                 ll_lst, prob_lst = [], []
                 # NOTE: currently unequal sequence length forbids us doing batch-level operation
                 # TODO: (Xiaoyang) Find a way to do batch-level processing later...
                 for choice in self.mpi_choice_lst:
-                    # print((prompt + choice)[-len(choice):])
                     tokens = tokenizer(
                         prompt + choice, return_tensors="pt", padding=True)
                     out = model(**tokens)
@@ -150,12 +165,21 @@ class MPI():
                 self.preds.append(pred)
                 score = MPI_SCORE[self.plus_minus[idx]][pred]
                 self.scores.append(score)
-                print(
-                    f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[pred]}")
-                print(f"-- Likelihood: {list(np.round(np.array(ll_lst), 4))}")
+                if verbose:
+                    print(
+                        f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[pred]}")
+                    print(
+                        f"-- Inverse Log-Perplexity: {list(np.round(np.array(ll_lst), 4))}")
             # SCORE CALCULATION
             self.preds_key = np.array(self.preds_key)
             self.calculate_score()
+            # SET MPI status
+            self.answered = True
+            self.model_desc = model_desc
+            if verbose:
+                self.display_ocean_stats()
+                self.display_aux_stats()
+                self.display_trait_stats()
 
     def calculate_score(self):
         for idx, score in enumerate(self.scores):
@@ -163,7 +187,7 @@ class MPI():
 
     def display_ocean_stats(self):
         # ic(self.OCEAN)
-        print("--------------------------------------")
+        line()
         print("OCEAN SCORES STATS")
         self.stats = {}
         for item in OCEAN:
@@ -177,7 +201,7 @@ class MPI():
         # return np.array(self.stats)
 
     def display_aux_stats(self):
-        print("--------------------------------------")
+        line()
         print("OTHER INTERESTING STATS")
         # Format length
         l = max(7, max([len(x) for x in self.mpi_choice_lst]))
@@ -187,7 +211,7 @@ class MPI():
             print(f"{item:<{l}} |   {stat[item]}")
 
     def display_trait_stats(self):
-        print("--------------------------------------")
+        line()
         print("TRAITS-LEVEL STATS: ")
         score = list(np.arange(1, 6, 1))
         self.traits = {}
@@ -216,6 +240,41 @@ class MPI():
             print(tabulate(df, headers='keys', tablefmt='psql', showindex=False))
             print("\n")
         # return traits
+
+    def write_statistic(self, filename):
+        assert self.answered, 'Can not write statistics to files. Questions are not answered yet.'
+        original_stdout = sys.stdout
+        with open(filename, 'w') as f:
+            sys.stdout = f
+            # Write model information
+            print(
+                f'MODEL: {self.model_desc["family"]} | Version: {self.model_desc["version"]}')
+            line()
+            # Write sample question
+            print(f"There are {len(self.mpi_df)} MC questions in total.")
+            line()
+            print(
+                f"The question template look like this:\n{self.questions[0]}")
+            line()
+            print(
+                f"The choice template looks like this:\n{ordered_lst_to_str(self.mpi_choice_lst)}")
+            line()
+            print("ANSWER STATISTICS")
+            self.display_ocean_stats()
+            self.display_aux_stats()
+            self.display_trait_stats()
+            line()
+            print("APPENDIX: ANSWERS")
+            line()
+            for idx, statement in enumerate(self.text):
+                print(
+                    f"QUESTION #{idx+1:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {self.scores[idx]} | ANSWER: {self.preds_key[idx]}")
+                print(f"> Statement: {statement}")
+                print(
+                    f"> Inverse Log-Perplexity: {list(np.round(np.array(self.likelihood[idx]), 4))}")
+            line()
+            f.close()
+            sys.stdout = original_stdout
 
 
 if __name__ == '__main__':
