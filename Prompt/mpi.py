@@ -63,15 +63,15 @@ def prob_to_ll(prob, ll_type, choice_len):
         assert False, 'Unrecognized input argument.'
 
 
-def run_mpi(dset_params: dict,
+def run_mpi(dset_config: dict,
             model_config: dict,
             algo_config: dict,
             template_config: dict,
             filename=None,
             verbose=False):
     # PARSE MPI Dataset information
-    path_to_dset = dset_params['path_to_dset']
-    start, end = dset_params['start_idx'], dset_params['end_idx']
+    path_to_dset = dset_config['path_to_dset']
+    start, end = dset_config['start_idx'], dset_config['end_idx']
     # PARSE targeting model information
     model = model_config['model']
     tokenizer = model_config['tokenizer']
@@ -79,9 +79,11 @@ def run_mpi(dset_params: dict,
     # PARSE algorithm-level config
     ll_type = algo_config['ll_type']
     # PARSE template
-    prompt, mpi_choice = template_config['prompt'], template_config['choice']
+    prompt = template_config['prompt']
+    mpi_option = template_config['option']
+    mpi_choice = template_config['choice']
     # RUN
-    mpi = MPI(path_to_dset, start, end, prompt, mpi_choice)
+    mpi = MPI(path_to_dset, start, end, prompt, mpi_option, mpi_choice)
     mpi.reset()
     mpi.answer(tokenizer, model, model_desc, ll_type=ll_type, verbose=verbose)
     if filename is not None:
@@ -93,7 +95,7 @@ class MPI():
     # TODO: (Xiaoyang) [TOP PRIORITY] Re-structure this class
     # (this should also work for non-mpi templates)
     def __init__(self, path_to_file, start, end,
-                 prompt, choice):
+                 prompt, option, choice):
         self.mpi_df = read_mpi(path_to_file)
         # (Optional): only testing the first few examples
         if start is not None and end is not None:
@@ -101,10 +103,10 @@ class MPI():
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
         # TEMPLATE
-        self.prompt, self.mpi_choice_lst = prompt, MPI_CHOICES_DESC
+        self.prompt, self.option, self.mpi_choice_lst = prompt, option, choice
         # QUESTIONS & ANSWERS
         self.formatter = QuestionFormatter(
-            prompt, ordered_lst_to_str(choice), 'mpi')
+            prompt, ordered_lst_to_str(option), 'mpi')
         self.questions = np.array([self.formatter(x) for x in self.text])
         # LABEL, KEY & + -
         self.label = np.array(self.mpi_df['label_ocean'])
