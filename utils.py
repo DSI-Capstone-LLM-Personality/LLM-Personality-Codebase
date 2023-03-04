@@ -13,7 +13,7 @@ OCEAN = ['O', 'C', 'E', 'A', 'N']
 # TODO: (Xiaoyang) Wrap all of these into a .yml file later.
 MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
 MPI_NUM_CHOICES = 5
-MPI_CHOICES = ['(A)', '(B)', '(C)', '(D)', '(E)']
+MPI_CHOICES = ['(A).', '(B).', '(C).', '(D).', '(E).']
 MPI_CHOICES_DESC = [
     "Very Accurate",
     "Moderately Accurate",
@@ -60,8 +60,8 @@ def ordered_lst_to_str(ordered_lst, style='mpi'):
     if style == 'mpi':
         option = "\nOptions: "
         for choice in ordered_lst:
-            option += f"\n{choice}"  # Prepend \n as designed choice
-        return option + "\nAnswer: "
+            option += f"\n{choice} "  # Prepend \n as designed choice
+        return option + "\nAnswers: "
     else:
         assert False, 'Unrecognized option style.'
 

@@ -67,6 +67,7 @@ def run_mpi(dset_params: dict,
             model_config: dict,
             algo_config: dict,
             template_config: dict,
+            filename=None,
             verbose=False):
     # PARSE MPI Dataset information
     path_to_dset = dset_params['path_to_dset']
@@ -83,6 +84,8 @@ def run_mpi(dset_params: dict,
     mpi = MPI(path_to_dset, start, end, prompt, mpi_choice)
     mpi.reset()
     mpi.answer(tokenizer, model, model_desc, ll_type=ll_type, verbose=verbose)
+    if filename is not None:
+        mpi.write_statistic(filename)
     return mpi
 
 
@@ -98,7 +101,7 @@ class MPI():
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
         # TEMPLATE
-        self.prompt, self.mpi_choice_lst = prompt, choice
+        self.prompt, self.mpi_choice_lst = prompt, MPI_CHOICES_DESC
         # QUESTIONS & ANSWERS
         self.formatter = QuestionFormatter(
             prompt, ordered_lst_to_str(choice), 'mpi')
@@ -254,7 +257,7 @@ class MPI():
             print(f"There are {len(self.mpi_df)} MC questions in total.")
             line()
             print(
-                f"The question template look like this:\n{self.questions[0]}")
+                f"The question template look like this:\n\n{self.questions[0]}")
             line()
             print(
                 f"The choice template looks like this:\n{ordered_lst_to_str(self.mpi_choice_lst)}")
