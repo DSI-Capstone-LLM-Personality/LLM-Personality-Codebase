@@ -22,13 +22,12 @@ MPI_CHOICES_DESC = [
     "Very Inaccurate"]
 MPI_CHOICES_ALL = reduce(
     lambda lst, z: lst + [z[0] + " " + z[1]], zip(MPI_CHOICES_NAIVE, MPI_CHOICES_DESC), [])
-# CHOICE DICTIONARY
+# CHOICE DICTIONARY (optional)
 CHOICE = {
     'choice-only': MPI_CHOICES_NAIVE,
     'desc-only': MPI_CHOICES_DESC,
     'choice-desc': MPI_CHOICES_ALL
 }
-MPI_IDX_TO_KEY = ['A', 'B', 'C', 'D', 'E']  # DEPRECATED
 # SCORE DICTIONARY
 MPI_IDX_TO_SCORE_NEG = np.arange(1, 6, 1)
 MPI_IDX_TO_SCORE_POS = np.arange(5, 0, -1)
