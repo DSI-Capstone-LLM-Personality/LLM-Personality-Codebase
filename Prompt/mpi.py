@@ -269,15 +269,16 @@ class MPI():
             # Write sample question
             print(f"There are {len(self.mpi_df)} MC questions in total.")
             line()
-            # print(f"SHUFFLED? | {self.shuffle}")
-            # if self.shuffle:
-            #     print(f"Random Index: {self.rand_idx}")
+            print(f"SHUFFLED? | {self.shuffle}")
+            if self.shuffle:
+                print(f"> Random Index: {self.rand_idx}")
             print(
                 f"The question template look like this:\n\n{self.questions[0]}")
             line()
-            print(
-                f"The choice template looks like this:\n{ordered_lst_to_str(self.mpi_choice_lst['+'])}")
-            line()
+            for sign in ['+', '-']:
+                print(
+                    f"The choice available for \"{sign}\" questions looks like this:\n> {list(self.mpi_choice_lst[sign])}")
+                line()
             print("ANSWER STATISTICS")
             self.display_ocean_stats()
             self.display_aux_stats()

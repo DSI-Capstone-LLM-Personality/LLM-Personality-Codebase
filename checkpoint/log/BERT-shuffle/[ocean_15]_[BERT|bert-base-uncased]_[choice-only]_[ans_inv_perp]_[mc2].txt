@@ -2,26 +2,24 @@ MODEL: BERT | Version: bert-base-uncased
 ----------------------------------------
 There are 15 MC questions in total.
 ----------------------------------------
+SHUFFLED? | True
+> Random Index: [4 3 2 1 0]
 The question template look like this:
 
 Given a statement of you: "You worry a lot." Please choose from the following options to identify how accurately this statement describes you.
 Options: 
-(C). 
 (E). 
-(A). 
-(B). 
 (D). 
+(C). 
+(B). 
+(A). 
 Answers: 
 ----------------------------------------
-The choice template looks like this:
-
-Options: 
-(A). 
-(B). 
-(C). 
-(D). 
-(E). 
-Answers: 
+The choice available for "+" questions looks like this:
+> ['(A).', '(B).', '(C).', '(D).', '(E).']
+----------------------------------------
+The choice available for "-" questions looks like this:
+> ['(A).', '(B).', '(C).', '(D).', '(E).']
 ----------------------------------------
 ANSWER STATISTICS
 ----------------------------------------
@@ -33,8 +31,16 @@ A | MEAN: 3.66667  | STD: 2.3094
 N | MEAN: 3.66667  | STD: 2.3094
 ----------------------------------------
 OTHER INTERESTING STATS
++ Questions: 
 ANSWERS | Count
-(A).    |   15
+(A).    |   11
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   0
+- Questions: 
+ANSWERS | Count
+(A).    |   4
 (B).    |   0
 (C).    |   0
 (D).    |   0
@@ -171,47 +177,47 @@ APPENDIX: ANSWERS
 ----------------------------------------
 QUESTION #1    | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: worry a lot
-> Inverse Log-Perplexity: [-0.0032, -0.0263, -0.2337, -0.1829, -0.0067]
+> Inverse Log-Perplexity: [-0.0033, -0.0668, -0.3144, -0.1089, -0.0277]
 QUESTION #2    | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: get nervous easily
-> Inverse Log-Perplexity: [-0.0055, -0.0263, -0.2052, -0.166, -0.0089]
+> Inverse Log-Perplexity: [-0.0054, -0.0611, -0.2854, -0.1133, -0.0292]
 QUESTION #3    | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: (A).
 > Statement: remain calm in tense situations
-> Inverse Log-Perplexity: [-0.0012, -0.028, -0.247, -0.1394, -0.0032]
+> Inverse Log-Perplexity: [-0.0013, -0.0779, -0.3514, -0.1296, -0.0256]
 QUESTION #4    | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: are talkative
-> Inverse Log-Perplexity: [-0.0023, -0.0286, -0.3086, -0.2545, -0.0087]
+> Inverse Log-Perplexity: [-0.0024, -0.0808, -0.1495, -0.1578, -0.0474]
 QUESTION #5    | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: are outgoing, sociable
-> Inverse Log-Perplexity: [-0.0019, -0.0292, -0.2591, -0.1671, -0.0073]
+> Inverse Log-Perplexity: [-0.002, -0.097, -0.1937, -0.1435, -0.0393]
 QUESTION #6    | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: (A).
 > Statement: are reserved
-> Inverse Log-Perplexity: [-0.0019, -0.0302, -0.3483, -0.2349, -0.0076]
+> Inverse Log-Perplexity: [-0.002, -0.0763, -0.1472, -0.2367, -0.0674]
 QUESTION #7    | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: are original, come up with new ideas
-> Inverse Log-Perplexity: [-0.0029, -0.0243, -0.1434, -0.0756, -0.0035]
+> Inverse Log-Perplexity: [-0.0031, -0.0681, -0.2809, -0.0395, -0.0077]
 QUESTION #8    | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: value artistic, aesthetic experiences
-> Inverse Log-Perplexity: [-0.0042, -0.0386, -0.329, -0.1916, -0.0221]
+> Inverse Log-Perplexity: [-0.0043, -0.1, -0.2553, -0.1551, -0.0613]
 QUESTION #9    | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: have an active imagination
-> Inverse Log-Perplexity: [-0.003, -0.0566, -0.3342, -0.2199, -0.0171]
+> Inverse Log-Perplexity: [-0.0028, -0.143, -0.2176, -0.1673, -0.0641]
 QUESTION #10   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: (A).
 > Statement: are sometimes rude to others
-> Inverse Log-Perplexity: [-0.002, -0.0313, -0.3568, -0.2383, -0.0138]
+> Inverse Log-Perplexity: [-0.0023, -0.1025, -0.1809, -0.199, -0.0621]
 QUESTION #11   | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: have a forgiving nature
-> Inverse Log-Perplexity: [-0.0032, -0.027, -0.2056, -0.0942, -0.0045]
+> Inverse Log-Perplexity: [-0.0031, -0.0506, -0.3328, -0.0648, -0.0067]
 QUESTION #12   | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: are considerate and kind to almost everyone
-> Inverse Log-Perplexity: [-0.0046, -0.0268, -0.1861, -0.1079, -0.0055]
+> Inverse Log-Perplexity: [-0.0049, -0.0765, -0.3054, -0.0682, -0.0124]
 QUESTION #13   | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: do a thorough job
-> Inverse Log-Perplexity: [-0.0028, -0.0825, -0.3257, -0.2302, -0.0308]
+> Inverse Log-Perplexity: [-0.0027, -0.1988, -0.2038, -0.2341, -0.0992]
 QUESTION #14   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: (A).
 > Statement: tend to be lazy
-> Inverse Log-Perplexity: [-0.0015, -0.0938, -0.2742, -0.2125, -0.051]
+> Inverse Log-Perplexity: [-0.0027, -0.2399, -0.1068, -0.2401, -0.1939]
 QUESTION #15   | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: (A).
 > Statement: do things efficiently
-> Inverse Log-Perplexity: [-0.0018, -0.0343, -0.3244, -0.2454, -0.0101]
+> Inverse Log-Perplexity: [-0.002, -0.1062, -0.1638, -0.208, -0.0662]
 ----------------------------------------
