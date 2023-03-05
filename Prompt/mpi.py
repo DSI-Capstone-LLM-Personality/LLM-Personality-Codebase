@@ -73,22 +73,16 @@ def run_mpi(dset_config: dict,
             filename=None,
             verbose=False):
     # PARSE MPI Dataset information
-    path_to_dset = dset_config['path_to_dset']
-    start, end = dset_config['start_idx'], dset_config['end_idx']
+    path_to_dset, start, end = dset_config.values()
     # PARSE targeting model information
-    model = model_config['model']
-    tokenizer = model_config['tokenizer']
-    model_desc = model_config['desc']
+    model, tokenizer, model_desc = model_config.values()
     # PARSE algorithm-level config
     ll_type = algo_config['ll_type']
     # PARSE template
-    prompt = template_config['prompt']
-    mpi_option = template_config['option']
-    mpi_choice = template_config['choice']
-    shuffle = template_config['shuffle']
+    prompt, mpi_option, mpi_choice, shuffle = template_config.values()
     # RUN
-    mpi = MPI(path_to_dset, start, end, prompt,
-              mpi_option, mpi_choice, shuffle)
+    mpi = MPI(path_to_dset, start, end,
+              prompt, mpi_option, mpi_choice, shuffle)
     mpi.reset()
     mpi.answer(tokenizer, model, model_desc, ll_type=ll_type, verbose=verbose)
     if filename is not None:
@@ -105,21 +99,26 @@ class MPI():
         # (Optional): only testing the first few examples
         if start is not None and end is not None:
             self.mpi_df = self.mpi_df[start: end]
-        # STATEMENT
-        self.text = np.array(self.mpi_df['text'])
-        # TEMPLATE
-        self.prompt, self.mpi_choice_lst = prompt, choice
-        self.option = np.array(option)
-        if shuffle:
-            self.option = shuffle_choice(self.option)[0]
-        # QUESTIONS & ANSWERS
-        self.formatter = QuestionFormatter(
-            prompt, ordered_lst_to_str(self.option), 'mpi')
-        self.questions = np.array([self.formatter(x) for x in self.text])
         # LABEL, KEY & + -
         self.label = np.array(self.mpi_df['label_ocean'])
         self.key = torch.tensor(self.mpi_df['key'], dtype=torch.long)
         self.plus_minus = np.array(["+" if k == 1 else "-" for k in self.key])
+        # STATEMENT
+        self.text = np.array(self.mpi_df['text'])
+        # TEMPLATE
+        assert '+' in choice and '-' in choice
+        assert '+' in option and '-' in option
+        self.prompt, self.mpi_choice_lst, self.option = prompt, choice, option
+        self.shuffle = shuffle
+        if shuffle:
+            n = len(self.option['+'])
+            self.rand_idx = np.random.choice(n, n, replace=False)
+            for item in self.option:
+                self.option[item] = self.option[item][self.rand_idx]
+        # QUESTIONS & ANSWERS
+        self.formatter = MPIQuestionFormatter(prompt, self.option)
+        self.questions = np.array([self.formatter(x, k)
+                                  for x, k in zip(self.text, self.plus_minus)])
         # OCEAN SCORE
         self.OCEAN, self.scores = defaultdict(list), []
         # META-DATA: probability, likelihood, etc...
@@ -156,7 +155,8 @@ class MPI():
                 ll_lst, prob_lst = [], []
                 # NOTE: currently unequal sequence length forbids us doing batch-level operation
                 # TODO: (Xiaoyang) Find a way to do batch-level processing later...
-                for choice in self.mpi_choice_lst:
+                key = self.plus_minus[idx]
+                for choice in self.mpi_choice_lst[key]:
                     tokens = tokenizer(
                         prompt + choice, return_tensors="pt", padding=True)
                     out = model(**tokens)
@@ -174,14 +174,14 @@ class MPI():
                 self.likelihood.append(ll_lst)
                 self.probs.append(prob_lst)
                 # SAVE MCQA-ANSWERS
-                self.preds_key.append(self.mpi_choice_lst[pred])
+                self.preds_key.append(self.mpi_choice_lst[key][pred])
                 self.preds.append(pred)
                 # TODO: (Xiaoyang) THERE IS A BUG when shuffling orderes. Fix this bug later...
-                score = MPI_SCORE[self.plus_minus[idx]][pred]
+                score = MPI_SCORE[key][pred]
                 self.scores.append(score)
                 if verbose:
                     print(
-                        f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[pred]}")
+                        f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[key][pred]}")
                     print(
                         f"-- Inverse Log-Perplexity: {list(np.round(np.array(ll_lst), 4))}")
             # SCORE CALCULATION
@@ -218,11 +218,13 @@ class MPI():
         line()
         print("OTHER INTERESTING STATS")
         # Format length
-        l = max(7, max([len(x) for x in self.mpi_choice_lst]))
-        stat = Counter(self.preds_key)
-        print(f"{'ANSWERS':<{l}} | Count")
-        for item in self.mpi_choice_lst:
-            print(f"{item:<{l}} |   {stat[item]}")
+        l = max(7, max([len(x) for x in self.mpi_choice_lst['+']]))
+        for sign in ['+', '-']:
+            stat = Counter(self.preds_key[self.plus_minus == sign])
+            print(f"{sign} Questions: ")
+            print(f"{'ANSWERS':<{l}} | Count")
+            for item in self.mpi_choice_lst[sign]:
+                print(f"{item:<{l}} |   {stat[item]}")
 
     def display_trait_stats(self):
         line()
@@ -239,14 +241,14 @@ class MPI():
             self.traits[item] = count_arr
             print(f"Trait: {item} | # Questions: {np.sum(count_arr)}")
             # CHOICE DISTRIBUTION: + and -
-            l = max(7, max([len(x) for x in self.mpi_choice_lst]))
+            l = max(7, max([len(x) for x in self.mpi_choice_lst['+']]))
             for sign in ["+", "-"]:
                 print(f"> CHOICES DISTRIBUTION [{sign}]")
                 mask = np.logical_and(self.label == item,
                                       self.plus_minus == sign)
                 stat = Counter(self.preds_key[mask])
                 print(f"{'ANSWERS':<{l}} | Count")
-                for choice in self.mpi_choice_lst:
+                for choice in self.mpi_choice_lst[sign]:
                     print(f"{choice:<{l}} |   {stat[choice]}")
                 print("")
             # SCORE DISTRIBUTION
@@ -267,11 +269,14 @@ class MPI():
             # Write sample question
             print(f"There are {len(self.mpi_df)} MC questions in total.")
             line()
+            # print(f"SHUFFLED? | {self.shuffle}")
+            # if self.shuffle:
+            #     print(f"Random Index: {self.rand_idx}")
             print(
                 f"The question template look like this:\n\n{self.questions[0]}")
             line()
             print(
-                f"The choice template looks like this:\n{ordered_lst_to_str(self.mpi_choice_lst)}")
+                f"The choice template looks like this:\n{ordered_lst_to_str(self.mpi_choice_lst['+'])}")
             line()
             print("ANSWER STATISTICS")
             self.display_ocean_stats()
@@ -300,8 +305,8 @@ if __name__ == '__main__':
 
     # TODO: code cleaning...
     # Declare MPI instance
-    mpi = MPI(local_path, 0, 120, MPI_PROMPT,
-              MPI_CHOICES_ALL, MPI_CHOICES_ALL, True)
-    ic(mpi.questions[0])
-    ic(mpi.questions[1])
-    ic(mpi.mpi_choice_lst)
+    # mpi = MPI(local_path, 0, 120, MPI_PROMPT,
+    #           MPI_CHOICES_ALL, MPI_CHOICES_ALL, True)
+    # ic(mpi.questions[0])
+    # ic(mpi.questions[1])
+    # ic(mpi.mpi_choice_lst)

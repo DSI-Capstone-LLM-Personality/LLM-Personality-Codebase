@@ -13,15 +13,15 @@ OCEAN = ['O', 'C', 'E', 'A', 'N']
 # TODO: (Xiaoyang) Wrap all of these into a .yml file later.
 MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
 MPI_NUM_CHOICES = 5
-MPI_CHOICES_NAIVE = ['(A).', '(B).', '(C).', '(D).', '(E).']
-MPI_CHOICES_DESC = [
+MPI_CHOICES_NAIVE = np.array(['(A).', '(B).', '(C).', '(D).', '(E).'])
+MPI_CHOICES_DESC = np.array([
     "Very Accurate",
     "Moderately Accurate",
     "Neither Accurate Nor Inaccurate",
     "Moderately Inaccurate",
-    "Very Inaccurate"]
-MPI_CHOICES_ALL = reduce(
-    lambda lst, z: lst + [z[0] + " " + z[1]], zip(MPI_CHOICES_NAIVE, MPI_CHOICES_DESC), [])
+    "Very Inaccurate"])
+MPI_CHOICES_ALL = np.array(reduce(
+    lambda lst, z: lst + [z[0] + " " + z[1]], zip(MPI_CHOICES_NAIVE, MPI_CHOICES_DESC), []))
 # CHOICE DICTIONARY (optional)
 CHOICE = {
     'choice-only': MPI_CHOICES_NAIVE,
@@ -81,29 +81,14 @@ def ordered_lst_to_str(ordered_lst, style='mpi'):
 
 
 # TODO: (Xiaoyang) Finish this wrapper class
-class QuestionFormatter():
-    def __init__(self, prompt: str, options: str, style='mpi'):
-        # TODO: (Xiaoyang) this might not work for questionaire with different structures...
-        # assert len(prompt) == 2, \
-        #     'The template must contain prompts for both \"BEFORE\" and \"AFTER\" the \"STATEMENT\".'
+class MPIQuestionFormatter():
+    def __init__(self, prompt: str, options: dict):
         self.prompt = prompt
         self.option = options
-        self.style = style
 
-    def __call__(self, statement):
-        if self.style == 'mpi':
-            question = f"Given a statement of you: \"You {statement}.\" "
-            return question + self.prompt + self.option
-        else:
-            assert False, 'Unrecognized formatting style.'
-
-
-class MPI_SCORER():
-    def __init__(self):
-        pass
-
-    def __call__(self):
-        pass
+    def __call__(self, statement, key):
+        question = f"Given a statement of you: \"You {statement}.\" "
+        return question + self.prompt + ordered_lst_to_str(self.option[key])
 
 
 def line(n=40): print("-"*n)
