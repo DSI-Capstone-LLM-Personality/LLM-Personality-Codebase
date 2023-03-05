@@ -18,7 +18,6 @@ from tabulate import tabulate
 # ans -> "answer", inv -> "inverse", perp -> "perplexity"
 
 
-
 def read_mpi(path, show=False, n=None, verbose=False):
     df = pd.read_csv(path)
     if show:
@@ -86,8 +85,10 @@ def run_mpi(dset_config: dict,
     prompt = template_config['prompt']
     mpi_option = template_config['option']
     mpi_choice = template_config['choice']
+    shuffle = template_config['shuffle']
     # RUN
-    mpi = MPI(path_to_dset, start, end, prompt, mpi_option, mpi_choice)
+    mpi = MPI(path_to_dset, start, end, prompt,
+              mpi_option, mpi_choice, shuffle)
     mpi.reset()
     mpi.answer(tokenizer, model, model_desc, ll_type=ll_type, verbose=verbose)
     if filename is not None:
@@ -99,7 +100,7 @@ class MPI():
     # TODO: (Xiaoyang) [TOP PRIORITY] Re-structure this class
     # (this should also work for non-mpi templates)
     def __init__(self, path_to_file, start, end,
-                 prompt, option, choice):
+                 prompt, option, choice, shuffle=False):
         self.mpi_df = read_mpi(path_to_file)
         # (Optional): only testing the first few examples
         if start is not None and end is not None:
@@ -107,10 +108,13 @@ class MPI():
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
         # TEMPLATE
-        self.prompt, self.option, self.mpi_choice_lst = prompt, option, choice
+        self.prompt, self.mpi_choice_lst = prompt, choice
+        self.option = np.array(option)
+        if shuffle:
+            self.option = shuffle_choice(self.option)[0]
         # QUESTIONS & ANSWERS
         self.formatter = QuestionFormatter(
-            prompt, ordered_lst_to_str(option), 'mpi')
+            prompt, ordered_lst_to_str(self.option), 'mpi')
         self.questions = np.array([self.formatter(x) for x in self.text])
         # LABEL, KEY & + -
         self.label = np.array(self.mpi_df['label_ocean'])
@@ -172,6 +176,7 @@ class MPI():
                 # SAVE MCQA-ANSWERS
                 self.preds_key.append(self.mpi_choice_lst[pred])
                 self.preds.append(pred)
+                # TODO: (Xiaoyang) THERE IS A BUG when shuffling orderes. Fix this bug later...
                 score = MPI_SCORE[self.plus_minus[idx]][pred]
                 self.scores.append(score)
                 if verbose:
@@ -295,11 +300,8 @@ if __name__ == '__main__':
 
     # TODO: code cleaning...
     # Declare MPI instance
-    # mpi = MPI(local_path)
-    # tokenizer = AutoTokenizer.from_pretrained("bert-large-cased")
-    # model = BertForMultipleChoice.from_pretrained("bert-base-uncased")
-    # model = BertForMultipleChoice.from_pretrained("bert-large-cased")
-    # tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-    # model = BertForMultipleChoice.from_pretrained("bert-base-uncased")
-    # mpi.run(tokenizer, model)
-    # mpi.display_score()
+    mpi = MPI(local_path, 0, 120, MPI_PROMPT,
+              MPI_CHOICES_ALL, MPI_CHOICES_ALL, True)
+    ic(mpi.questions[0])
+    ic(mpi.questions[1])
+    ic(mpi.mpi_choice_lst)

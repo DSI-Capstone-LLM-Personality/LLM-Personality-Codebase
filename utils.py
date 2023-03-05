@@ -67,7 +67,7 @@ def shuffle_choice(choice_lst):
     assert len(choice_lst) > 1
     n = len(choice_lst)
     rand_idx = np.random.choice(n, n, replace=False)
-    return choice_lst[rand_idx]
+    return choice_lst[rand_idx], rand_idx
 
 
 def ordered_lst_to_str(ordered_lst, style='mpi'):
@@ -96,6 +96,14 @@ class QuestionFormatter():
             return question + self.prompt + self.option
         else:
             assert False, 'Unrecognized formatting style.'
+
+
+class MPI_SCORER():
+    def __init__(self):
+        pass
+
+    def __call__(self):
+        pass
 
 
 def line(n=40): print("-"*n)
