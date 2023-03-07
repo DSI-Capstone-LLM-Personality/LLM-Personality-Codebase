@@ -13,7 +13,7 @@ from transformers import AutoTokenizer, BertModel, BertTokenizer, \
     BertForQuestionAnswering, pipeline, BertForMultipleChoice, \
     BertLMHeadModel, RobertaForCausalLM, AutoConfig
 
-
+# https://huggingface.co/transformers/v2.4.0/pretrained_models.html
 BERT_MODEL = {
     'BERT': BertLMHeadModel,
     'RoBERTa': RobertaForCausalLM,

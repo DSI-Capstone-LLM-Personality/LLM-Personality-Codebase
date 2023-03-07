@@ -106,8 +106,9 @@ class MPI():
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
         # TEMPLATE
-        assert '+' in choice and '-' in choice
-        assert '+' in option and '-' in option
+        for key in ['+', '-']:
+            assert key in choice and key in option, 'Please specify options and choices'
+            assert choice[key] == option[key]
         self.prompt, self.mpi_choice_lst, self.option = prompt, choice, option
         self.shuffle = shuffle
         if shuffle:
