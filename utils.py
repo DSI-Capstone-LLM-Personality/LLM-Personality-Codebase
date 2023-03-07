@@ -2,16 +2,13 @@ import torch
 import numpy as np
 from functools import reduce
 
-
 # OCEAN BASICS
 OCEAN = ['O', 'C', 'E', 'A', 'N']
 # ------------------------------- #
 # MPI IDX-ANSWER-SCORE CONVERSION #
 # ------------------------------- #
 # TODO: (Xiaoyang) Wrap all of these into a .yml file later.
-
 MPI_NUM_CHOICES = 5
-
 # PROMPT TEMPLATE
 MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
 PROMPT_TEMPLATE = {'mpi-style': MPI_PROMPT}

@@ -1,4 +1,4 @@
-from Prompt.mpi import *
+from MPI.mpi import *
 from Model.lm import *
 import yaml
 import random
@@ -18,7 +18,7 @@ config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
 # PARSE YAML FILE
 if args.seed:
     seed = args.seed
-    print(seed)
+    # print(seed)
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
