@@ -6,7 +6,7 @@ from functools import reduce
 from re import template
 
 from regex import E
-from bert_prompt import *
+from Prompt.bert_prompt import *
 import pandas as pd
 from collections import Counter, defaultdict
 from utils import *

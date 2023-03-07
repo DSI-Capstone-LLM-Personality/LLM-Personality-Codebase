@@ -24,9 +24,9 @@ MPI_CHOICES_ALL = np.array(reduce(
     lambda lst, z: lst + [z[0] + " " + z[1]], zip(MPI_CHOICES_NAIVE, MPI_CHOICES_DESC), []))
 # CHOICE DICTIONARY (optional)
 CHOICE = {
-    'choice-only': MPI_CHOICES_NAIVE,
+    'letter-only': MPI_CHOICES_NAIVE,
     'desc-only': MPI_CHOICES_DESC,
-    'choice-desc': MPI_CHOICES_ALL
+    'letter-desc': MPI_CHOICES_ALL
 }
 # SCORE DICTIONARY
 MPI_IDX_TO_SCORE_NEG = np.arange(1, 6, 1)
