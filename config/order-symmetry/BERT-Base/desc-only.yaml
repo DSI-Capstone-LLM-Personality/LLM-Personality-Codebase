@@ -1,7 +1,7 @@
 path:
   dset_dir: Dataset/
-  mpi_log_dir: checkpoint/log/
-  mpi_ckpt_dir: checkpoint/mpis/
+  mpi_log_dir: checkpoint/log/BERT-Base/
+  mpi_ckpt_dir: checkpoint/mpis/BERT-Base/
 
 dataset: 
   dset: mpi_small
@@ -12,8 +12,8 @@ template:
   prompt: mpi-style
   description: desc-only
   option: 
-    '+': desc-only
-    '-': desc-only
+    '+': letter-desc
+    '-': letter-desc
   answer: 
     '+': desc-only
     '-': desc-only

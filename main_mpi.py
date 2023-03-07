@@ -36,8 +36,6 @@ tmp = config['template']
 prompt = PROMPT_TEMPLATE[tmp['prompt']]
 option = {k: ANSWER_TEMPLATE[v] for k, v in tmp['option'].items()}
 answer = {k: ANSWER_TEMPLATE[v] for k, v in tmp['answer'].items()}
-ic(option)
-ic(answer)
 # Shuffle
 shuffle = config['shuffle']['status']
 identifier = config['shuffle']['identifier']

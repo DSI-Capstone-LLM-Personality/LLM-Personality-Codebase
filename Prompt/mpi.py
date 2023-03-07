@@ -107,7 +107,7 @@ class MPI():
         # TEMPLATE
         for key in ['+', '-']:
             assert key in choice and key in option, 'Please specify options and choices'
-            assert (choice[key] != option[key]).sum() == 0
+            # assert (choice[key] != option[key]).sum() == 0
         self.prompt, self.mpi_choice_lst, self.option = prompt, choice, option
         self.shuffle = shuffle
         if shuffle:
