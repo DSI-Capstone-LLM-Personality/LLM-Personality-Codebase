@@ -14,7 +14,8 @@ from transformers import AutoTokenizer, BertModel, BertTokenizer, \
     BertLMHeadModel, RobertaForCausalLM, AutoConfig
 
 # https://huggingface.co/transformers/v2.4.0/pretrained_models.html
-BERT_MODEL = {
+MODEL = {
     'BERT': BertLMHeadModel,
     'RoBERTa': RobertaForCausalLM,
     'SpanBERT': None}
+TOKENIZER = {'BERT': AutoTokenizer}

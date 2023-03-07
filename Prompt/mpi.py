@@ -3,7 +3,6 @@
 # AUTHOR: XIAOYANG SONG     #
 # ------------------------- #
 from functools import reduce
-from re import template
 
 from regex import E
 from Prompt.bert_prompt import *
@@ -108,14 +107,14 @@ class MPI():
         # TEMPLATE
         for key in ['+', '-']:
             assert key in choice and key in option, 'Please specify options and choices'
-            assert choice[key] == option[key]
+            assert (choice[key] != option[key]).sum() == 0
         self.prompt, self.mpi_choice_lst, self.option = prompt, choice, option
         self.shuffle = shuffle
         if shuffle:
             n = len(self.option['+'])
             self.rand_idx = np.random.choice(n, n, replace=False)
-            for item in self.option:
-                self.option[item] = self.option[item][self.rand_idx]
+            for key in self.option:
+                self.option[key] = self.option[key][self.rand_idx]
         # QUESTIONS & ANSWERS
         self.formatter = MPIQuestionFormatter(prompt, self.option)
         self.questions = np.array([self.formatter(x, k)
@@ -296,6 +295,9 @@ class MPI():
             line()
             f.close()
             sys.stdout = original_stdout
+
+    def save_checkpoint(self, filename):
+        torch.save(self, filename)
 
 
 if __name__ == '__main__':

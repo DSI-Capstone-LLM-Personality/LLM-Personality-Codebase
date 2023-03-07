@@ -1,5 +1,3 @@
-from secrets import choice
-from sklearn.utils import shuffle
 import torch
 import numpy as np
 from functools import reduce
@@ -11,22 +9,27 @@ OCEAN = ['O', 'C', 'E', 'A', 'N']
 # MPI IDX-ANSWER-SCORE CONVERSION #
 # ------------------------------- #
 # TODO: (Xiaoyang) Wrap all of these into a .yml file later.
-MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
+
 MPI_NUM_CHOICES = 5
-MPI_CHOICES_NAIVE = np.array(['(A).', '(B).', '(C).', '(D).', '(E).'])
-MPI_CHOICES_DESC = np.array([
+
+# PROMPT TEMPLATE
+MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
+PROMPT_TEMPLATE = {'mpi-style': MPI_PROMPT}
+# Letter Answer Template
+LETTER_ONLY = np.array(['(A).', '(B).', '(C).', '(D).', '(E).'])
+DESC_ONLY = np.array([
     "Very Accurate",
     "Moderately Accurate",
     "Neither Accurate Nor Inaccurate",
     "Moderately Inaccurate",
     "Very Inaccurate"])
-MPI_CHOICES_ALL = np.array(reduce(
-    lambda lst, z: lst + [z[0] + " " + z[1]], zip(MPI_CHOICES_NAIVE, MPI_CHOICES_DESC), []))
-# CHOICE DICTIONARY (optional)
-CHOICE = {
-    'letter-only': MPI_CHOICES_NAIVE,
-    'desc-only': MPI_CHOICES_DESC,
-    'letter-desc': MPI_CHOICES_ALL
+LETTER_DESC = np.array(reduce(
+    lambda lst, z: lst + [z[0] + " " + z[1]], zip(LETTER_ONLY, DESC_ONLY), []))
+# ANSWER TEMPLATE
+ANSWER_TEMPLATE = {
+    'letter-only': LETTER_ONLY,
+    'desc-only': DESC_ONLY,
+    'letter-desc': LETTER_DESC
 }
 # SCORE DICTIONARY
 MPI_IDX_TO_SCORE_NEG = np.arange(1, 6, 1)
@@ -53,11 +56,12 @@ MPI_SCORE = {
 
 
 # CHECKPOINT FILENAME FORMAT
-# [dset]_[model=version]_[choice_type]_[ll_type]
-
-def log_fname(dset, model_desc, choice_type, ll_type):
+# [dset]_[model | version]_[choice_type]_[ll_type]
+def log_fname(dset, model_desc, answer_type, ll_type=None):
     family, version = model_desc['family'], model_desc['version']
-    return f"[{dset}]_[{family}|{version}]_[{choice_type}]_[{ll_type}]"
+    if ll_type is None:
+        return f"[{dset}]_[{family}|{version}]_[{answer_type}]"
+    return f"[{dset}]_[{family} | {version}]_[{answer_type}]_[{ll_type}]"
 
 
 def shuffle_choice(choice_lst):
@@ -94,7 +98,7 @@ class MPIQuestionFormatter():
 def line(n=40): print("-"*n)
 
 # Simple testing code
-# choice_lst = np.array(MPI_CHOICES_DESC)
+# choice_lst = np.array(DESC_ONLY)
 # ordered_lst = shuffle_choice(choice_lst)
 # option = ordered_lst_to_str(ordered_lst)
 # print(ordered_lst)
