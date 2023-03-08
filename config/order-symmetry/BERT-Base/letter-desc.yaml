@@ -1,7 +1,7 @@
 path:
   dset_dir: Dataset/
-  mpi_log_dir: checkpoint/log/BERT-Base/
-  mpi_ckpt_dir: checkpoint/mpis/BERT-Base/
+  mpi_log_dir: checkpoint/log/BERT-Base/order/
+  mpi_ckpt_dir: checkpoint/mpis/BERT-Base/order/
 
 dataset: 
   dset: ocean_988
@@ -19,8 +19,9 @@ template:
     '-': letter-desc
 
 shuffle: 
-  status: False
-  identifier: null # Usually Monte Carlo number
+  status: True
+  identifier: 0 # Usually Monte Carlo ID
+  seed: 10000
 
 model:
   family: BERT

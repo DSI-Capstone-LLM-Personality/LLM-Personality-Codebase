@@ -1,6 +1,7 @@
 import torch
 import numpy as np
 from functools import reduce
+import random
 # TODO: (Xiaoyang) Wrap all of these into a .yaml file later.
 #####  OCEAN BASICS  #####
 OCEAN = ['O', 'C', 'E', 'A', 'N']
@@ -102,3 +103,9 @@ class MPIQuestionFormatter():
 
 
 def line(n=40): print("-"*n)
+
+
+def set_seed(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)

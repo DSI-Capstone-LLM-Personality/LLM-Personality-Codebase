@@ -14,7 +14,7 @@ The results and analysis in this work is 100% reproducible. To run the code, sel
 python main_mpi.py --config=config/order-symmetry/BERT-Base/letter-desc.yaml
 ```
 
-Use `-seed` to set the seed for reproducibility. The default value is `2023`. Note that all experimental results are obtained under the default seed.
+Use `-seed` to set the seed for reproducibility. The default value is `2023`. Note that all experimental results (except for the one with order shuffling) are obtained under the default seed. For order-symmetry-related experiments, please specify the seed in the configuration file.
 
 ```
 python main_mpi.py --config=config/order-symmetry/BERT-Base/letter-desc.yaml --seed=<your seed here>

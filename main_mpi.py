@@ -16,12 +16,8 @@ args = parser.parse_args()
 assert args.config is not None, 'Please specify the config .yml file to proceed.'
 config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
 # PARSE YAML FILE
-if args.seed:
-    seed = args.seed
-    # print(seed)
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
+# Set Seed if necessary
+set_seed(args.seed)
 #####  File Path  #####
 path = config['path']
 dset_dir = path['dset_dir']
@@ -39,6 +35,7 @@ answer = {k: ANSWER_TEMPLATE[v] for k, v in tmp['answer'].items()}
 # Shuffle
 shuffle = config['shuffle']['status']
 identifier = config['shuffle']['identifier']
+seed = config['shuffle']['seed']
 #####  Model & Tokenizer  #####
 model_config = config['model']
 family, version = model_config['family'], model_config['version']
@@ -48,9 +45,13 @@ tokenizer = TOKENIZER[family].from_pretrained(version)
 ll_type = config['algorithm']['ll_type']
 #####  logging filename  #####
 filename = log_fname(dset, model_config, tmp['description'])
+
 if shuffle:
     assert identifier is not None, 'Please specify a file identifier'
-    filename += f'_[{identifier}]'
+    assert seed is not None, 'Please specify a seed'
+    filename += f'_[mc_id={identifier}][seed={seed}]'
+    set_seed(seed)
+
 if args.tag:
     tag = args.tag
     filename += f'_[{tag}]'
