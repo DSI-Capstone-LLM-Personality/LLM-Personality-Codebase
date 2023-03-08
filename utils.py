@@ -1,18 +1,20 @@
 import torch
 import numpy as np
 from functools import reduce
-
-# OCEAN BASICS
+# TODO: (Xiaoyang) Wrap all of these into a .yaml file later.
+#####  OCEAN BASICS  #####
 OCEAN = ['O', 'C', 'E', 'A', 'N']
 # ------------------------------- #
 # MPI IDX-ANSWER-SCORE CONVERSION #
 # ------------------------------- #
-# TODO: (Xiaoyang) Wrap all of these into a .yml file later.
+#####  METADATA  #####
 MPI_NUM_CHOICES = 5
-# PROMPT TEMPLATE
+
+#####  PROMPT TEMPLATE  #####
 MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
 PROMPT_TEMPLATE = {'mpi-style': MPI_PROMPT}
-# Letter Answer Template
+
+######  LETTER ANSWER TEMPLATE  #####
 LETTER_ONLY = np.array(['(A).', '(B).', '(C).', '(D).', '(E).'])
 DESC_ONLY = np.array([
     "Very Accurate",
@@ -22,36 +24,44 @@ DESC_ONLY = np.array([
     "Very Inaccurate"])
 LETTER_DESC = np.array(reduce(
     lambda lst, z: lst + [z[0] + " " + z[1]], zip(LETTER_ONLY, DESC_ONLY), []))
-# ANSWER TEMPLATE
+
+#####  WEIGHTED ANSWER TEMPLATE  #####
+SCORE_ONLY_POS = np.array([5, 4, 3, 2, 1], dtype=str)
+SCORE_ONLY_NEG = np.array([1, 2, 3, 4, 5], dtype=str)
+SCORE_DESC_POS = np.array(reduce(
+    lambda lst, z: lst + [z[0] + " " + z[1]], zip(SCORE_ONLY_POS, DESC_ONLY), []))
+SCORE_DESC_NEG = np.array(reduce(
+    lambda lst, z: lst + [z[0] + " " + z[1]], zip(SCORE_ONLY_NEG, DESC_ONLY), []))
+
+#####  ANSWER TEMPLATE #####
 ANSWER_TEMPLATE = {
     'letter-only': LETTER_ONLY,
     'desc-only': DESC_ONLY,
-    'letter-desc': LETTER_DESC
+    'letter-desc': LETTER_DESC,
+    'score-only-pos': SCORE_ONLY_POS,
+    'score-only-neg': SCORE_ONLY_NEG,
+    'score-desc-pos': SCORE_DESC_POS,
+    'score-desc-neg': SCORE_DESC_NEG
 }
-# SCORE DICTIONARY
+#####  SCORE DICTIONARY  #####
 MPI_IDX_TO_SCORE_NEG = np.arange(1, 6, 1)
 MPI_IDX_TO_SCORE_POS = np.arange(5, 0, -1)
 MPI_SCORE = {
     "+": MPI_IDX_TO_SCORE_POS,
     "-": MPI_IDX_TO_SCORE_NEG
 }
-# print(MPI_IDX_TO_KEY)
-# print(MPI_IDX_TO_SCORE_POS)
-# print(MPI_IDX_TO_SCORE_NEG)
 
 
 # TODO: MBTI? or other personality test
 # -------------------------------- #
 # MBTI IDX-ANSWER-SCORE CONVERSION #
 # -------------------------------- #
-# ...
+# ......
 
 
 # ----------------- #
 # UTILITY FUNCTIONS #
 # ----------------- #
-
-
 # CHECKPOINT FILENAME FORMAT
 # [dset]_[model | version]_[choice_type]_[ll_type]
 def log_fname(dset, model_desc, answer_type, ll_type=None):
@@ -81,7 +91,6 @@ def ordered_lst_to_str(ordered_lst, style='mpi'):
         assert False, 'Unrecognized option style.'
 
 
-# TODO: (Xiaoyang) Finish this wrapper class
 class MPIQuestionFormatter():
     def __init__(self, prompt: str, options: dict):
         self.prompt = prompt
@@ -93,15 +102,3 @@ class MPIQuestionFormatter():
 
 
 def line(n=40): print("-"*n)
-
-# Simple testing code
-# choice_lst = np.array(DESC_ONLY)
-# ordered_lst = shuffle_choice(choice_lst)
-# option = ordered_lst_to_str(ordered_lst)
-# print(ordered_lst)
-# print(option)
-
-
-# QF = QuestionFormatter(MPI_PROMPT, option)
-# print(QF("You worry about things"))
-# line()

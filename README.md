@@ -8,13 +8,13 @@ Mentor: [Akshat Gupta](https://scholar.google.com/citations?user=v80j6o0AAAAJ&hl
 
 ## Reproducibility
 
-The results and analysis in this work is $100\%$ reproducible. To run the code, select one configuration file from the `config` folder (or you can always create your own by simply following the YAML file format). Below is an example running MPI experiments on BERT-Base to examine order symmetry.
+The results and analysis in this work is 100% reproducible. To run the code, select one configuration file from the `config` folder (or you can always create your own by simply following the YAML file format). Below is an example running MPI experiments on BERT-Base to examine order symmetry.
 
 ```
 python main_mpi.py --config=config/order-symmetry/BERT-Base/letter-desc.yaml
 ```
 
-Use `-seed` to set the seed for reproducibility. Default is `2023`. Note that all experimental results are run under the default seed.
+Use `-seed` to set the seed for reproducibility. The default value is `2023`. Note that all experimental results are obtained under the default seed.
 
 ```
 python main_mpi.py --config=config/order-symmetry/BERT-Base/letter-desc.yaml --seed=<your seed here>
@@ -30,4 +30,10 @@ Use `-verbose` to specify whether you want to see the detailed output. Default i
 
 ```
 python main_mpi.py --config=config/order-symmetry/BERT-Base/letter-desc.yaml --verbose=<your input here>
+```
+
+Note that if in any case you meet problems like `FileNotFoundError`, be sure to double check that you follow the structure of this repository and the current working directory is correct. The following command maybe helpful.
+
+```
+export PYTHONPATH=$PATHONPATH:`pwd`
 ```
