@@ -1,7 +1,11 @@
+from email.policy import default
 import torch
 import numpy as np
 from functools import reduce
 import random
+from icecream import ic
+from itertools import permutations
+from collections import defaultdict
 # TODO: (Xiaoyang) Wrap all of these into a .yaml file later.
 #####  OCEAN BASICS  #####
 OCEAN = ['O', 'C', 'E', 'A', 'N']
@@ -72,6 +76,7 @@ def log_fname(dset, model_desc, answer_type, ll_type=None):
     return f"[{dset}]_[{family} | {version}]_[{answer_type}]_[{ll_type}]"
 
 
+##### Deal with choice order selection #####
 def shuffle_choice(choice_lst):
     assert type(
         choice_lst) == np.ndarray, 'Please format your choice list as numpy array.'
@@ -80,6 +85,29 @@ def shuffle_choice(choice_lst):
     n = len(choice_lst)
     rand_idx = np.random.choice(n, n, replace=False)
     return choice_lst[rand_idx], rand_idx
+
+
+def order_distance(idx):
+    lst1 = np.array([idx[0]] + list(idx))
+    lst2 = np.array(list(idx) + [idx[-1]])
+    return np.sum(np.abs(lst1 - lst2))
+
+
+def permute_orders(n):
+    return np.array(list(permutations(np.arange(n))))
+
+
+def order_ranking_dict(permutation, verbose=False):
+    orders = defaultdict(list)
+    for order in permutation:
+        orders[order_distance(order)].append(order)
+    if verbose:
+        for key in orders:
+            print(f"{key:<2} | {len(orders[key])}")
+    return orders
+
+
+MPI_IDX_ORDERS = order_ranking_dict(permute_orders(MPI_NUM_CHOICES))
 
 
 def ordered_lst_to_str(ordered_lst, style='mpi'):
@@ -109,3 +137,11 @@ def set_seed(seed):
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
+
+
+# Test case:
+# ic(order_distance([5, 4, 3, 2, 1]))
+# ic(order_distance([1, 2, 3, 4, 5]))
+# ic(order_distance([1, 2, 5, 3, 4]))
+# ic(permute_orders(5).shape)
+order_ranking_dict(permute_orders(5), True)
