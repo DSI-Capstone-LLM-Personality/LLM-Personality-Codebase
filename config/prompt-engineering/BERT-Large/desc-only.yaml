@@ -1,16 +1,16 @@
 path:
   dset_dir: Dataset/
-  mpi_log_dir: checkpoint/log/BERT-Large/
-  mpi_ckpt_dir: checkpoint/mpis/BERT-Large/
+  mpi_log_dir: checkpoint/log/BERT-Large/prompt/
+  mpi_ckpt_dir: checkpoint/mpis/BERT-Large/prompt/
 
 dataset: 
-  dset: ocean_120
+  dset: ocean_988
   start: null
   end: null
 
 template:
   prompt: mpi-style
-  description: desc-only
+  description: letter-indexed | desc-only
   option: 
     '+': letter-desc
     '-': letter-desc
@@ -21,6 +21,7 @@ template:
 shuffle: 
   status: False
   identifier: null # Usually Monte Carlo number
+  seed: null
 
 model:
   family: BERT

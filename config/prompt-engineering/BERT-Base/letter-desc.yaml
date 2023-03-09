@@ -1,0 +1,32 @@
+path:
+  dset_dir: Dataset/
+  mpi_log_dir: checkpoint/log/BERT-Base/prompt/
+  mpi_ckpt_dir: checkpoint/mpis/BERT-Base/prompt/
+
+dataset: 
+  dset: ocean_988
+  start: null
+  end: null
+
+template:
+  prompt: mpi-style
+  description: letter-indexed | letter-desc
+  option: 
+    '+': letter-desc
+    '-': letter-desc
+  answer: 
+    '+': letter-desc
+    '-': letter-desc
+
+shuffle: 
+  status: False
+  identifier: null # Usually Monte Carlo number
+  seed: null
+
+model:
+  family: BERT
+  version: bert-base-uncased
+
+algorithm:
+  ll_type: ans_inv_perp
+
