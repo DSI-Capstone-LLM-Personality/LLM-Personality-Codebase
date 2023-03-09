@@ -31,8 +31,10 @@ LETTER_DESC = np.array(reduce(
     lambda lst, z: lst + [z[0] + " " + z[1]], zip(LETTER_ONLY, DESC_ONLY), []))
 
 #####  WEIGHTED ANSWER TEMPLATE  #####
-SCORE_ONLY_POS = np.array([5, 4, 3, 2, 1], dtype=str)
-SCORE_ONLY_NEG = np.array([1, 2, 3, 4, 5], dtype=str)
+# SCORE_ONLY_POS = np.array([5, 4, 3, 2, 1], dtype=str)
+# SCORE_ONLY_NEG = np.array([1, 2, 3, 4, 5], dtype=str)
+SCORE_ONLY_POS = np.array(['(5).', '(4).', '(3).', '(2).', '(1).'], dtype=str)
+SCORE_ONLY_NEG = np.array(['(1).', '(2).', '(3).', '(3).', '(4).'], dtype=str)
 SCORE_DESC_POS = np.array(reduce(
     lambda lst, z: lst + [z[0] + " " + z[1]], zip(SCORE_ONLY_POS, DESC_ONLY), []))
 SCORE_DESC_NEG = np.array(reduce(
