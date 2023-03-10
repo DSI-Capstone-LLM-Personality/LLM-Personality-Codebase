@@ -161,6 +161,7 @@ class MPI():
                         prompt + choice, return_tensors="pt", padding=True)
                     out = model(**tokens)
                     logit = out.logits
+                    # ic(logit.shape)
                     # LOG-LIKELIHOOD CALCULATION
                     prob = logit_to_prob(logit.squeeze())
                     ll = prob_to_ll(prob, ll_type, len(choice))
