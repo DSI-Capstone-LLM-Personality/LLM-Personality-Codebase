@@ -146,4 +146,15 @@ def set_seed(seed):
 # ic(order_distance([1, 2, 3, 4, 5]))
 # ic(order_distance([1, 2, 5, 3, 4]))
 # ic(permute_orders(5).shape)
-order_ranking_dict(permute_orders(5), True)
+orders = order_ranking_dict(permute_orders(5), True)
+ic(np.array(orders[11])[np.random.choice(8, 1)])
+
+
+# 4  | 2 (all)
+# 5  | 4
+# 6  | 14
+# 7  | 32 # [1, 0, 4, 3, 2]
+# 8  | 18
+# 9  | 28 # [4, 0, 2, 3, 1]
+# 10 | 14
+# 11 | 8  # [3, 1, 4, 0, 2]
