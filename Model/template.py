@@ -1,5 +1,3 @@
-from aiohttp import AsyncIterablePayload
-from sympy import Order
 import torch
 import numpy as np
 from functools import reduce
@@ -14,24 +12,23 @@ def concat(index: np.ndarray, desc: np.ndarray):
         lambda lst, z: lst + [z[0] + " " + z[1]], zip(index, desc), []))
 
 
-##### MPI constants #####
+######  MPI CONSTANTS  ######
 MPI_NUM_CHOICES = 5
-#####  PROMPT TEMPLATE  #####
+######  PROMPTS  ######
 MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
 PROMPT_TEMPLATE = {'mpi-style': MPI_PROMPT}
 
-#####  LETTER ANSWER TEMPLATE  #####
+######  INDEXES  ######
 LETTER_INDEX = np.array(['(A).', '(B).', '(C).', '(D).', '(E).'])
-NUMBER_INDEX = np.array(['(5).', '(4).', '(3).', '(2).', '(1).'])
-# Reverse
-NUMBER_INDEX_REV = np.array(['(1).', '(2).', '(3).', '(4).', '(5).'])
+NUMBER_INDEX_SEM = np.array(['(5).', '(4).', '(3).', '(2).', '(1).'])
+NUMBER_INDEX_SYN = np.array(['(1).', '(2).', '(3).', '(4).', '(5).'])
 
 INDEX = {
     'letter': LETTER_INDEX,
-    'number': NUMBER_INDEX,
-    'number-rev': NUMBER_INDEX_REV  # deprecated!
+    'number-sem': NUMBER_INDEX_SEM,
+    'number-syn': NUMBER_INDEX_SYN
 }
-#####  DESC TEMPLATE #####
+######  DESCRIPTIONS  ######
 MPI_DESC = np.array([
     "Very Accurate",
     "Moderately Accurate",
@@ -43,7 +40,9 @@ DESC = {
     'mpi': MPI_DESC,
     'other': OTHER_DESC
 }
-#####  SCORE DICTIONARY  #####
+# ------------------------------- #
+# MPI IDX-ANSWER-SCORE CONVERSION #
+# ------------------------------- #
 MPI_IDX_TO_SCORE_NEG = np.arange(1, 6, 1)
 MPI_IDX_TO_SCORE_POS = np.arange(5, 0, -1)
 MPI_SCORE = {
@@ -52,7 +51,7 @@ MPI_SCORE = {
 }
 
 
-#####  SYMMETRY EXPERIMENT ORDER  #####
+######  SYMMETRY EXPERIMENT ORDER  ######
 ORIGINAL_ORDER = [0, 1, 2, 3, 4]
 REVERSE_ORDER = [4, 3, 2, 1, 0]
 ORDER_I = [1, 0, 4, 3, 2]

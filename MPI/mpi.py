@@ -68,8 +68,6 @@ def prob_to_ll(prob, ll_type, ans_length):
     else:
         assert False, 'Unrecognized input argument.'
 
-# deprecated function: remove later
-
 
 def run_mpi(dset_config: dict,
             model_config: dict,
@@ -77,6 +75,7 @@ def run_mpi(dset_config: dict,
             template_config: dict,
             filename=None,
             verbose=False):
+    # TODO: (Xiaoyang) deprecated function, remove later...
     # PARSE MPI Dataset information
     path_to_dset, start, end = dset_config.values()
     # PARSE targeting model information
@@ -320,11 +319,3 @@ if __name__ == '__main__':
     filename = "mpi_small"
     local_path = "Dataset/" + f"{filename}.csv"
     read_mpi(local_path, True, 5)
-
-    # TODO: code cleaning...
-    # Declare MPI instance
-    # mpi = MPI(local_path, 0, 120, MPI_PROMPT,
-    #           MPI_CHOICES_ALL, MPI_CHOICES_ALL, True)
-    # ic(mpi.questions[0])
-    # ic(mpi.questions[1])
-    # ic(mpi.mpi_choice_lst)
