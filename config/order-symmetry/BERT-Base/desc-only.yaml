@@ -11,14 +11,16 @@ dataset:
 template:
   prompt: mpi-style
   description: non-idx
-  index: null
+  index:
+    "+": letter
+    "-": letter
   desc:
     "+": mpi
     "-": mpi
-  ans_type: desc
+  ans_type: index-desc
 
 shuffle:
-  order: original
+  order: reverse
   shuffle_both: False
 
 model:

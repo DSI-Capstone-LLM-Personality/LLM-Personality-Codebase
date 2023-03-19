@@ -109,7 +109,7 @@ class MPI():
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
         # PROMPT
-        self.prompt = prompt
+        self.prompt, self.order, self.shuffle_both = prompt, order, shuffle_both
         self.index, self.desc = index, desc
         # OPTIONS
         self.option_formatter = MPIOptionFormatter(self.index, self.desc)
@@ -280,9 +280,10 @@ class MPI():
             # Write sample question
             print(f"There are {len(self.mpi_df)} MC questions in total.")
             line()
-            print(f"SHUFFLED? | {self.shuffle}")
-            if self.shuffle:
-                print(f"> Random Index: {self.rand_idx}")
+            print(f"SHUFFLED? | {self.order}")
+            if self.order is not None:
+                print(
+                    f"> Shuffle both indexes and descriptions?: {self.shuffle_both}")
             print(
                 f"The question template look like this:\n\n{self.questions[0]}")
             line()
