@@ -3,24 +3,23 @@ path:
   mpi_log_dir: checkpoint/log/BERT-Base/
   mpi_ckpt_dir: checkpoint/mpis/BERT-Base/
 
-dataset: 
-  dset: ocean_988
+dataset:
+  dset: ocean_120
   start: null
   end: null
 
 template:
   prompt: mpi-style
-  description: desc-only
-  option: 
-    '+': letter-desc
-    '-': letter-desc
-  answer: 
-    '+': desc-only
-    '-': desc-only
+  description: non-idx
+  index: null
+  desc:
+    "+": mpi
+    "-": mpi
+  ans_type: desc
 
-shuffle: 
-  status: False
-  identifier: null # Usually Monte Carlo number
+shuffle:
+  order: original
+  shuffle_both: False
 
 model:
   family: BERT
@@ -28,4 +27,3 @@ model:
 
 algorithm:
   ll_type: ans_inv_perp
-

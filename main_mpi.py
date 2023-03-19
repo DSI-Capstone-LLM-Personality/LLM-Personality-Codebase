@@ -1,5 +1,6 @@
 from MPI.mpi import *
 from Model.lm import *
+from Model.template import *
 import yaml
 import random
 import argparse
@@ -30,12 +31,18 @@ path_to_dset = dset_dir + f"{dset}.csv"
 #####  Prompt & Answer Template  #####
 tmp = config['template']
 prompt = PROMPT_TEMPLATE[tmp['prompt']]
-option = {k: ANSWER_TEMPLATE[v] for k, v in tmp['option'].items()}
-answer = {k: ANSWER_TEMPLATE[v] for k, v in tmp['answer'].items()}
+# Prepare Index
+index = tmp['index']
+if index is not None:
+    index = {k: INDEX[v] for k, v in index.items()}
+# Prepare Desc
+assert tmp['desc'] is not None
+desc = {k: DESC[v] for k, v in tmp['desc'].items()}
+# Prepare Answer
+ans_type = tmp['ans_type']
 # Shuffle
-shuffle = config['shuffle']['status']
-identifier = config['shuffle']['identifier']
-seed = config['shuffle']['seed']
+order = ORDERS[config['shuffle']['order']]
+shuffle_both = config['shuffle']['shuffle_both']
 #####  Model & Tokenizer  #####
 model_config = config['model']
 family, version = model_config['family'], model_config['version']
@@ -45,13 +52,6 @@ tokenizer = TOKENIZER[family].from_pretrained(version)
 ll_type = config['algorithm']['ll_type']
 #####  logging filename  #####
 filename = log_fname(dset, model_config, tmp['description'])
-
-if shuffle:
-    assert identifier is not None, 'Please specify a file identifier'
-    assert seed is not None, 'Please specify a seed'
-    filename += f'_[mc_id={identifier}][seed={seed}]'
-    set_seed(seed)
-
 if args.tag:
     tag = args.tag
     filename += f'_[{tag}]'
@@ -60,7 +60,7 @@ verbose = args.verbose
 # ----------------------------------- #
 # ---------------- RUN -------------- #
 mpi = MPI(path_to_dset, start, end,
-          prompt, option, answer, shuffle)
+          prompt, index, desc, ans_type, order, shuffle_both)
 mpi.reset()
 mpi.answer(tokenizer, model, model_config, ll_type, verbose)
 mpi.write_statistic(log_dir + filename + '.txt')
