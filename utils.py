@@ -89,10 +89,10 @@ class MPIOptionFormatter():
             assert shuffle_both is not None
             if shuffle_both and self.index is not None:
                 self.index = {k: v[order] for k, v in self.index.items()}
-            ic(self.desc)
+            # ic(self.desc)
             self.desc = {k: v[order] for k, v in self.desc.items()}
         if self.index is not None:
-            return {k: concat(self.desc[k], self.index[k]) for k in ['+', '-']}
+            return {k: concat(self.index[k], self.desc[k]) for k in ['+', '-']}
         else:
             return self.desc
 
