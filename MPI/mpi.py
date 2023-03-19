@@ -68,6 +68,8 @@ def prob_to_ll(prob, ll_type, ans_length):
     else:
         assert False, 'Unrecognized input argument.'
 
+# deprecated function: remove later
+
 
 def run_mpi(dset_config: dict,
             model_config: dict,
