@@ -39,7 +39,7 @@ seed = config['shuffle']['seed']
 #####  Model & Tokenizer  #####
 model_config = config['model']
 family, version = model_config['family'], model_config['version']
-model = MODEL[family].from_pretrained(version, is_decoder=True)
+model = MODEL[family].from_pretrained(version, is_decoder=False)
 tokenizer = TOKENIZER[family].from_pretrained(version)
 #####  Likelihood calculation algorithm  #####
 ll_type = config['algorithm']['ll_type']

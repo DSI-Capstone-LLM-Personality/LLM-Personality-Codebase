@@ -12,6 +12,7 @@ from utils import *
 from tqdm import tqdm
 import sys
 from tabulate import tabulate
+from Model.template import *
 
 # Some Abbreviations:
 # ans -> "answer", inv -> "inverse", perp -> "perplexity"
@@ -93,7 +94,7 @@ class MPI():
     # TODO: (Xiaoyang) [TOP PRIORITY] Re-structure this class
     # (this should also work for non-mpi templates)
     def __init__(self, path_to_file, start, end,
-                 prompt, option, choice, shuffle=False):
+                 prompt, index, desc, choice, order=None, shuffle_both=None):
         self.mpi_df = read_mpi(path_to_file)
         # (Optional): only testing the first few examples
         if start is not None and end is not None:
@@ -105,16 +106,13 @@ class MPI():
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
         # TEMPLATE
-        for key in ['+', '-']:
-            assert key in choice and key in option, 'Please specify options and choices'
-            # assert (choice[key] != option[key]).sum() == 0
-        self.prompt, self.mpi_choice_lst, self.option = prompt, choice, option
-        self.shuffle = shuffle
-        if shuffle:
-            n = len(self.option['+'])
-            self.rand_idx = np.random.choice(n, n, replace=False)
-            for key in self.option:
-                self.option[key] = self.option[key][self.rand_idx]
+        # for key in ['+', '-']:
+        #     assert key in choice and key in index and key in desc, 'Please specify options and choices'
+        self.prompt, self.mpi_choice_lst = prompt, choice
+        self.index, self.desc = index, desc
+        # OPTIONS
+        self.option_formatter = MPIOptionFormatter(self.index, self.desc)
+        self.option = self.option_formatter(order, shuffle_both)
         # QUESTIONS & ANSWERS
         self.formatter = MPIQuestionFormatter(prompt, self.option)
         self.questions = np.array([self.formatter(x, k)
