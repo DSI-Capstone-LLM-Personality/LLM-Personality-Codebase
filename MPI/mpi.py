@@ -157,6 +157,7 @@ class MPI():
                 for choice in self.mpi_choice_lst[key]:
                     tokens = tokenizer(
                         prompt + choice, return_tensors="pt", padding=True)
+                    # input_ids = tokens.input_ids
                     out = model(**tokens)
                     logit = out.logits
                     # ic(logit.shape)
