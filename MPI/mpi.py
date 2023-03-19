@@ -53,6 +53,8 @@ def check_column_cleanness(df, col_name):
 # TODO:(Xiaoyang) two functions that calculate likelihood...
 def logit_to_prob(logit, ids):
     # logits: L x Vocab_Size
+    # ic(logit.shape)
+    # ic(ids.shape)
     assert logit.shape[0] == ids.shape[0]
     prob = torch.softmax(logit, dim=-1)
     return prob[np.arange(ids.shape[0]), ids]
@@ -112,9 +114,11 @@ class MPI():
         # OPTIONS
         self.option_formatter = MPIOptionFormatter(self.index, self.desc)
         self.option = self.option_formatter(order, shuffle_both)
+        ic(self.option)
         # ANSWERS
         self.mpi_choice_lst = MPI_options_to_answers(
             self.index, self.desc, self.option, ans_type, order)
+        ic(self.mpi_choice_lst)
         # QUESTIONS
         self.formatter = MPIQuestionFormatter(prompt, self.option)
         self.questions = np.array([self.formatter(x, k)
@@ -164,7 +168,7 @@ class MPI():
                     # FOR BERT: trim [CLS] & [SEP]
                     answer_input_ids = ans_token.input_ids[0][1:-1]
                     length_ans = len(answer_input_ids)
-                    sent_input_ids = tokens.input_ids
+                    sent_input_ids = tokens.input_ids[0]
                     out = model(**tokens)
                     logit = out.logits
                     # ic(logit.shape)
