@@ -1,26 +1,24 @@
 path:
   dset_dir: Dataset/
-  mpi_log_dir: checkpoint/log/BERT-Base/
-  mpi_ckpt_dir: checkpoint/mpis/BERT-Base/
+  mpi_log_dir: checkpoint/log/BERT-Base/order/
+  mpi_ckpt_dir: checkpoint/mpis/BERT-Base/order/
 
 dataset:
-  dset: ocean_120
+  dset: ocean_988
   start: null
   end: null
 
 template:
   prompt: mpi-style
-  description: non-idx
-  index:
-    "+": letter
-    "-": letter
+  description: non-index
+  index: null
   desc:
     "+": mpi
     "-": mpi
   ans_type: index-desc
 
 shuffle:
-  order: reverse
+  order: order-II
   shuffle_both: False
 
 model:

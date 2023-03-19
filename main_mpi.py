@@ -41,8 +41,12 @@ desc = {k: DESC[v] for k, v in tmp['desc'].items()}
 # Prepare Answer
 ans_type = tmp['ans_type']
 # Shuffle
-order = ORDERS[config['shuffle']['order']]
-shuffle_both = config['shuffle']['shuffle_both']
+order_name = config['shuffle']['order']
+if order_name is not None:
+    order = ORDERS[order_name]
+    shuffle_both = config['shuffle']['shuffle_both']
+else:
+    order, shuffle_both = None, None
 #####  Model & Tokenizer  #####
 model_config = config['model']
 family, version = model_config['family'], model_config['version']
@@ -56,9 +60,10 @@ if args.tag:
     tag = args.tag
     filename += f'_[{tag}]'
 verbose = args.verbose
-
-# ----------------------------------- #
-# ---------------- RUN -------------- #
+if order_name is not None:
+    filename += f'_[{order_name}]'
+    # ----------------------------------- #
+    # ---------------- RUN -------------- #
 mpi = MPI(path_to_dset, start, end,
           prompt, index, desc, ans_type, order, shuffle_both)
 mpi.reset()
