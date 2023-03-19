@@ -51,15 +51,16 @@ def check_column_cleanness(df, col_name):
 
 
 # TODO:(Xiaoyang) two functions that calculate likelihood...
-def logit_to_prob(logit):
+def logit_to_prob(logit, ids):
     # logits: L x Vocab_Size
+    assert logit.shape[0] == ids.shape[0]
     prob = torch.softmax(logit, dim=-1)
-    return torch.max(prob, dim=-1)[0]
+    return prob[np.arange(ids.shape[0]), ids]
 
 
-def prob_to_ll(prob, ll_type, choice_len):
+def prob_to_ll(prob, ll_type, ans_length):
     if ll_type == 'ans_inv_perp':
-        return torch.mean(torch.log(prob)[-choice_len:])
+        return torch.mean(torch.log(prob)[-ans_length-1:-1])
     elif ll_type == 'sent_inv_perp':
         return torch.mean(torch.log(prob))
     else:
@@ -94,7 +95,7 @@ class MPI():
     # TODO: (Xiaoyang) [TOP PRIORITY] Re-structure this class
     # (this should also work for non-mpi templates)
     def __init__(self, path_to_file, start, end,
-                 prompt, index, desc, choice, order=None, shuffle_both=None):
+                 prompt, index, desc, ans_type, order=None, shuffle_both=None):
         self.mpi_df = read_mpi(path_to_file)
         # (Optional): only testing the first few examples
         if start is not None and end is not None:
@@ -105,15 +106,16 @@ class MPI():
         self.plus_minus = np.array(["+" if k == 1 else "-" for k in self.key])
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
-        # TEMPLATE
-        # for key in ['+', '-']:
-        #     assert key in choice and key in index and key in desc, 'Please specify options and choices'
-        self.prompt, self.mpi_choice_lst = prompt, choice
+        # PROMPT
+        self.prompt = prompt
         self.index, self.desc = index, desc
         # OPTIONS
         self.option_formatter = MPIOptionFormatter(self.index, self.desc)
         self.option = self.option_formatter(order, shuffle_both)
-        # QUESTIONS & ANSWERS
+        # ANSWERS
+        self.mpi_choice_lst = MPI_options_to_answers(
+            self.index, self.desc, self.option, ans_type, order)
+        # QUESTIONS
         self.formatter = MPIQuestionFormatter(prompt, self.option)
         self.questions = np.array([self.formatter(x, k)
                                   for x, k in zip(self.text, self.plus_minus)])
@@ -141,6 +143,7 @@ class MPI():
         # Argument check
         assert "version" in model_desc
         assert "family" in model_desc
+        family = model_desc['family']  # TODO: add cases
 
         if verbose:
             line()
@@ -155,15 +158,19 @@ class MPI():
                 # TODO: (Xiaoyang) Find a way to do batch-level processing later...
                 key = self.plus_minus[idx]
                 for choice in self.mpi_choice_lst[key]:
-                    tokens = tokenizer(
-                        prompt + choice, return_tensors="pt", padding=True)
-                    # input_ids = tokens.input_ids
+                    tokens = tokenizer(prompt + choice, return_tensors="pt")
+                    # Answer tokens
+                    ans_token = tokenizer(choice, return_tensors="pt")
+                    # FOR BERT: trim [CLS] & [SEP]
+                    answer_input_ids = ans_token.input_ids[0][1:-1]
+                    length_ans = len(answer_input_ids)
+                    sent_input_ids = tokens.input_ids
                     out = model(**tokens)
                     logit = out.logits
                     # ic(logit.shape)
                     # LOG-LIKELIHOOD CALCULATION
-                    prob = logit_to_prob(logit.squeeze())
-                    ll = prob_to_ll(prob, ll_type, len(choice))
+                    prob = logit_to_prob(logit.squeeze(), sent_input_ids)
+                    ll = prob_to_ll(prob, ll_type, length_ans)
                     ll_lst.append(ll.item())
                     # PROBABILITY FOR EACH WORD IN THE SENTENCE
                     prob_lst.append(prob)

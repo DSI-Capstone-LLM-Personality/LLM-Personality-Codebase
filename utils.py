@@ -96,6 +96,18 @@ class MPIOptionFormatter():
             return self.desc
 
 
+def MPI_options_to_answers(index, desc, option, ans_type, order=None):
+    if ans_type == 'desc':
+        return desc
+    elif ans_type == 'index':
+        return index
+    elif ans_type == 'index-desc':
+        assert order is not None
+        return {k: option[k][order] for k in ['+', '-']}
+    else:
+        assert False, 'Unrecognized answer template type.'
+
+
 class MPIQuestionFormatter():
     def __init__(self, prompt: str, options: dict):
         self.prompt = prompt
