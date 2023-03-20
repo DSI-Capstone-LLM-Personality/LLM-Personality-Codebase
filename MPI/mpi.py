@@ -127,7 +127,7 @@ class MPI():
         # OCEAN SCORE
         self.OCEAN, self.scores = defaultdict(list), []
         # META-DATA: probability, likelihood, etc...
-        self.likelihood, self.probs = [], []
+        self.likelihood, self.probs, self.token_of_interest = [], [], []
         self.preds_key, self.preds = [], []
         self.answered, self.model_desc = False, None
 
@@ -138,7 +138,7 @@ class MPI():
     def reset(self):
         self.OCEAN = defaultdict(list)
         self.scores = []
-        self.probs, self.likelihood = [], []
+        self.likelihood, self.probs, self.token_of_interest = [], [], []
         self.preds_key, self.preds = [], []
         self.answered = False
         self.model_desc = None
@@ -158,7 +158,7 @@ class MPI():
             line()
         with torch.no_grad():
             for idx, prompt in enumerate(tqdm(self.questions)):
-                ll_lst, prob_lst = [], []
+                ll_lst, prob_lst, toi_lst = [], [], []
                 # NOTE: currently unequal sequence length forbids us doing batch-level operation
                 # TODO: (Xiaoyang) Find a way to do batch-level processing later...
                 key = self.plus_minus[idx]
@@ -179,10 +179,14 @@ class MPI():
                     ll_lst.append(ll.item())
                     # PROBABILITY FOR EACH WORD IN THE SENTENCE
                     prob_lst.append(prob)
+                    # TOKEN OF INTERESTS
+                    toi_lst.append(tokenizer.decode(
+                        sent_input_ids[-length_ans-1:-1]))
                 # MCQA BASED ON LIKELIHOOD
                 ll_lst = torch.tensor(ll_lst)
                 pred = torch.argmax(ll_lst).item()
                 # SAVE STATISTICS
+                self.token_of_interest.append(toi_lst)
                 self.likelihood.append(ll_lst)
                 self.probs.append(prob_lst)
                 # SAVE MCQA-ANSWERS
@@ -196,6 +200,7 @@ class MPI():
                         f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[key][pred]}")
                     print(
                         f"-- Inverse Log-Perplexity: {list(np.round(np.array(ll_lst), 4))}")
+                    print(f"-- Tokens of Interests: {toi_lst}")
             # SCORE CALCULATION
             self.preds_key = np.array(self.preds_key)
             self.calculate_score()
