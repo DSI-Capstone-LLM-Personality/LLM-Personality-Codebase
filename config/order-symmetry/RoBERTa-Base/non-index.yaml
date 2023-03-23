@@ -1,0 +1,29 @@
+path:
+  dset_dir: Dataset/
+  mpi_log_dir: checkpoint/log/RoBERTa-Base/order/
+  mpi_ckpt_dir: checkpoint/mpis/RoBERTa-Base/order/
+
+dataset:
+  dset: ocean_988
+  start: null
+  end: null
+
+template:
+  prompt: mpi-style
+  description: non-index
+  index: null
+  desc:
+    "+": mpi
+    "-": mpi
+  ans_type: desc
+
+shuffle:
+  order: original
+  shuffle_both: False
+
+model:
+  family: RoBERTa
+  version: roberta-base
+
+algorithm:
+  ll_type: ans_inv_perp

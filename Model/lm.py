@@ -10,12 +10,15 @@ from icecream import ic
 # HuggingFace & Torch
 from transformers import AutoTokenizer, BertModel, BertTokenizer, \
     BertForMaskedLM, AutoTokenizer, BertForNextSentencePrediction, \
-    BertForQuestionAnswering, pipeline, BertForMultipleChoice, \
+    BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, pipeline, BertForMultipleChoice, \
     BertLMHeadModel, RobertaForCausalLM, AutoConfig
 
 # https://huggingface.co/transformers/v2.4.0/pretrained_models.html
 MODEL = {
     'BERT': BertLMHeadModel,
     'RoBERTa': RobertaForCausalLM,
-    'SpanBERT': None}
-TOKENIZER = {'BERT': AutoTokenizer}
+    'SpanBERT': None,
+    'GPT2': GPT2LMHeadModel}
+TOKENIZER = {'BERT': AutoTokenizer,
+             'RoBERTa': AutoTokenizer,
+             'GPT2': GPT2Tokenizer}
