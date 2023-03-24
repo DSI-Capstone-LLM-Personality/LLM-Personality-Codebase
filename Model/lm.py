@@ -8,7 +8,7 @@ from torch.nn import functional as F
 import numpy as np
 from icecream import ic
 # HuggingFace & Torch
-from transformers import AutoTokenizer, BertModel, BertTokenizer, \
+from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTokenizer, \
     BertForMaskedLM, AutoTokenizer, BertForNextSentencePrediction, \
     BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTLMHeadModel, pipeline, BertForMultipleChoice, \
     BertLMHeadModel, RobertaForCausalLM, AutoConfig
@@ -17,10 +17,12 @@ from transformers import AutoTokenizer, BertModel, BertTokenizer, \
 MODEL = {
     'BERT': BertLMHeadModel,
     'RoBERTa': RobertaForCausalLM,
+    'ALBERT': AlbertForPreTraining,
     'SpanBERT': None,
     'GPT': OpenAIGPTLMHeadModel,
     'GPT2': GPT2LMHeadModel}
 TOKENIZER = {'BERT': AutoTokenizer,
+             'ALBERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
              'GPT2': GPT2Tokenizer}
 
@@ -52,12 +54,13 @@ class PROBS():
     def __call__(self, prompt, choice):
         tokens = self.tokenizer(prompt + choice, return_tensors="pt")
         ans_token = self.tokenizer(choice, return_tensors="pt")
-        if self.family in ['BERT', 'RoBERTa']:
+        if self.family in ['BERT', 'RoBERTa', 'ALBERT']:
             # FOR BERT family model: trim [CLS] & [SEP] tokens
             answer_input_ids = ans_token.input_ids[0][1:-1]
             length_ans = len(answer_input_ids)
             sent_input_ids = tokens.input_ids[0]
-            logit = self.model(**tokens).logits
+            out = self.model(**tokens)
+            logit = out.prediction_logits if self.family == 'ALBERT' else out.logits
             prob = logit_to_prob(
                 logit.squeeze(), sent_input_ids)[-length_ans-1:-1]
             ll = prob_to_ll(prob, self.ll_type)

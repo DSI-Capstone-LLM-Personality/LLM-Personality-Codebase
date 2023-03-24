@@ -1,0 +1,29 @@
+path:
+  dset_dir: Dataset/
+  mpi_log_dir: checkpoint/log/ALBERT/order/
+  mpi_ckpt_dir: checkpoint/mpis/ALBERT/order/
+
+dataset:
+  dset: ocean_988
+  start: null
+  end: null
+
+template:
+  prompt: mpi-style
+  description: non-index
+  index: null
+  desc:
+    "+": mpi
+    "-": mpi
+  ans_type: desc
+
+shuffle:
+  order: reverse
+  shuffle_both: False
+
+model:
+  family: ALBERT
+  version: albert-base-v2
+
+algorithm:
+  ll_type: ans_inv_perp
