@@ -1,7 +1,7 @@
 path:
   dset_dir: Dataset/
-  mpi_log_dir: checkpoint/log/RoBERTa-Large/order/
-  mpi_ckpt_dir: checkpoint/mpis/RoBERTa-Large/order/
+  mpi_log_dir: checkpoint/log/ALBERT-Large/order/
+  mpi_ckpt_dir: checkpoint/mpis/ALBERT-Large/order/
 
 dataset:
   dset: ocean_988
@@ -18,12 +18,12 @@ template:
   ans_type: desc
 
 shuffle:
-  order: order-II
+  order: original
   shuffle_both: False
 
 model:
-  family: RoBERTa
-  version: roberta-large
+  family: ALBERT
+  version: albert-large-v2
 
 algorithm:
   ll_type: ans_inv_perp
