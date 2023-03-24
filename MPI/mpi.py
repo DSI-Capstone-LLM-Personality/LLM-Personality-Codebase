@@ -13,6 +13,7 @@ from tqdm import tqdm
 import sys
 from tabulate import tabulate
 from Model.template import *
+from Model.lm import *
 
 # Some Abbreviations:
 # ans -> "answer", inv -> "inverse", perp -> "perplexity"
@@ -51,22 +52,6 @@ def check_column_cleanness(df, col_name):
 
 
 # TODO:(Xiaoyang) two functions that calculate likelihood...
-def logit_to_prob(logit, ids):
-    # logits: L x Vocab_Size
-    # ic(logit.shape)
-    # ic(ids.shape)
-    assert logit.shape[0] == ids.shape[0]
-    prob = torch.softmax(logit, dim=-1)
-    return prob[np.arange(ids.shape[0]), ids]
-
-
-def prob_to_ll(prob, ll_type, ans_length):
-    if ll_type == 'ans_inv_perp':
-        return torch.mean(torch.log(prob)[-ans_length-1:-1])
-    elif ll_type == 'sent_inv_perp':
-        return torch.mean(torch.log(prob))
-    else:
-        assert False, 'Unrecognized input argument.'
 
 
 def run_mpi(dset_config: dict,
@@ -149,7 +134,7 @@ class MPI():
         assert "version" in model_desc
         assert "family" in model_desc
         family = model_desc['family']  # TODO: add cases
-
+        prober = PROBS(family, model, tokenizer, ll_type)
         if verbose:
             line()
             print(f"Sample questions look like this:\n{self.questions[0]}")
@@ -163,25 +148,12 @@ class MPI():
                 # TODO: (Xiaoyang) Find a way to do batch-level processing later...
                 key = self.plus_minus[idx]
                 for choice in self.mpi_choice_lst[key]:
-                    tokens = tokenizer(prompt + choice, return_tensors="pt")
-                    # Answer tokens
-                    ans_token = tokenizer(choice, return_tensors="pt")
-                    # FOR BERT: trim [CLS] & [SEP]
-                    answer_input_ids = ans_token.input_ids[0][1:-1]
-                    length_ans = len(answer_input_ids)
-                    sent_input_ids = tokens.input_ids[0]
-                    out = model(**tokens)
-                    logit = out.logits
-                    # ic(logit.shape)
-                    # LOG-LIKELIHOOD CALCULATION
-                    prob = logit_to_prob(logit.squeeze(), sent_input_ids)
-                    ll = prob_to_ll(prob, ll_type, length_ans)
+                    prob, ll, toi = prober(prompt, choice)
                     ll_lst.append(ll.item())
                     # PROBABILITY FOR EACH WORD IN THE SENTENCE
                     prob_lst.append(prob)
                     # TOKEN OF INTERESTS
-                    toi_lst.append(tokenizer.decode(
-                        sent_input_ids[-length_ans-1:-1]))
+                    toi_lst.append(tokenizer.decode(toi))
                 # MCQA BASED ON LIKELIHOOD
                 ll_lst = torch.tensor(ll_lst)
                 pred = torch.argmax(ll_lst).item()
