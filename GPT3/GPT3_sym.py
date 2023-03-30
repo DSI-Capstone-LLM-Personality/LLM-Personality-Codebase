@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = open('api_key.txt').read()
+openai.api_key = 'api_key'
 
 def gpt3(prompt):
     response = openai.Completion.create(
@@ -14,5 +14,5 @@ def gpt3(prompt):
     )
     res = response['choices'][0]['text'].strip()
     return res
-
+print(gpt3('what is 10+10'))
 
