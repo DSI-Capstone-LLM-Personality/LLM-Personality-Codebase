@@ -68,7 +68,7 @@ def ordered_lst_to_str(ordered_lst, style='mpi'):
         option = "\nOptions: "
         for choice in ordered_lst:
             option += f"\n{choice} "  # Prepend \n as designed choice
-        return option + "\nAnswers: "
+        return option + "\n\nAnswers: "
     else:
         assert False, 'Unrecognized option style.'
 

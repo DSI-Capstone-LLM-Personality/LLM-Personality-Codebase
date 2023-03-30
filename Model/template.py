@@ -17,6 +17,8 @@ MPI_NUM_CHOICES = 5
 ######  PROMPTS  ######
 MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
 PROMPT_TEMPLATE = {'mpi-style': MPI_PROMPT}
+MPI_TEMPLATE = '''Given a statement of you: "You {item}."
+Please choose from the following options to identify how accurately this statement describes you.'''
 
 ######  INDEXES  ######
 LETTER_INDEX = np.array(['(A).', '(B).', '(C).', '(D).', '(E).'])

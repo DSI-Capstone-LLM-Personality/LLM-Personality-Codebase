@@ -13,8 +13,9 @@ from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTok
     BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTLMHeadModel, pipeline, BertForMultipleChoice, \
     BertLMHeadModel, RobertaForCausalLM, AutoConfig
 
-# https://huggingface.co/transformers/v2.4.0/pretrained_models.html
-
+# Link to available models: https://huggingface.co/transformers/v2.4.0/pretrained_models.html
+# Link to generate(): https://huggingface.co/docs/transformers/v4.27.2/en/main_classes/text_generation#transformers.GenerationMixin.generate
+# Link to GPT generation: https://www.kaggle.com/code/tuckerarrants/text-generation-with-huggingface-gpt2
 ########## CONSTRAINT MCQA UTILITIES  ##########
 #---------- Language Models ----------#
 MODEL = {
