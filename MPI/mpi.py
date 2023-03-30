@@ -13,7 +13,7 @@ from tqdm import tqdm
 import sys
 from tabulate import tabulate
 from Model.template import *
-from Model.lm import *
+from Model.language_model import *
 
 # Some Abbreviations:
 # ans -> "answer", inv -> "inverse", perp -> "perplexity"
@@ -129,17 +129,20 @@ class MPI():
         self.model_desc = None
         # TODO: (Xiaoyang) more functionality here...
 
-    def answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
+    def open_vocab_answer(self, tokenizer, model, model_desc: dict, verbose=False):
+        pass
+
+    def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
         # Argument check
         assert "version" in model_desc
         assert "family" in model_desc
         family = model_desc['family']  # TODO: add cases
-        prober = PROBS(family, model, tokenizer, ll_type)
+        prober = LMPROB(family, model, tokenizer, ll_type)
         if verbose:
             line()
             print(f"Sample questions look like this:\n{self.questions[0]}")
             line()
-            print("MCQA task starts...")
+            print("Constraint MCQA task starts...")
             line()
         with torch.no_grad():
             for idx, prompt in enumerate(tqdm(self.questions)):

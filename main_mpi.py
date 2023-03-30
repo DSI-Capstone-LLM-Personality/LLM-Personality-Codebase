@@ -1,5 +1,5 @@
 from MPI.mpi import *
-from Model.lm import *
+from Model.language_model import *
 from Model.template import *
 import yaml
 import argparse
@@ -79,6 +79,6 @@ if order_name is not None:
 mpi = MPI(path_to_dset, start, end,
           prompt, index, desc, ans_type, order, shuffle_both)
 mpi.reset()
-mpi.answer(tokenizer, model, model_config, ll_type, verbose)
+mpi.constraint_answer(tokenizer, model, model_config, ll_type, verbose)
 mpi.write_statistic(log_dir + filename + '.txt')
 mpi.save_checkpoint(ckpt_dir + filename + '.pt')

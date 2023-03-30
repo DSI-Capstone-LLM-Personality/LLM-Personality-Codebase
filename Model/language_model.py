@@ -14,6 +14,9 @@ from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTok
     BertLMHeadModel, RobertaForCausalLM, AutoConfig
 
 # https://huggingface.co/transformers/v2.4.0/pretrained_models.html
+
+########## CONSTRAINT MCQA UTILITIES  ##########
+#---------- Language Models ----------#
 MODEL = {
     'BERT': BertLMHeadModel,
     'RoBERTa': RobertaForCausalLM,
@@ -25,6 +28,8 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'ALBERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
              'GPT2': GPT2Tokenizer}
+
+#---------- Language Model Perplexity  ----------#
 
 
 def logit_to_prob(logit, ids):
@@ -45,7 +50,7 @@ def prob_to_ll(prob, ll_type):
         assert False, 'Unrecognized input argument.'
 
 
-class PROBS():
+class LMPROB():
     def __init__(self, family, model, tokenizer, ll_type):
         self.family = family
         self.model, self.tokenizer = model, tokenizer
@@ -79,3 +84,6 @@ class PROBS():
             return prob, ll, toi
         else:
             assert False, 'Unrecognized model family'
+
+########## OPEN VOCAB MCQA UTILITIES  ##########
+#---------- Language Models  ----------#
