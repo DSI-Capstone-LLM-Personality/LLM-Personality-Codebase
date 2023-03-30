@@ -8,7 +8,7 @@ from regex import E
 from Prompt.bert_prompt import *
 import pandas as pd
 from collections import Counter, defaultdict
-from utils import *
+from util.utils import *
 from tqdm import tqdm
 import sys
 from tabulate import tabulate

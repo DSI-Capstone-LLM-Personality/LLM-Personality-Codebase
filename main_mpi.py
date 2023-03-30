@@ -1,6 +1,7 @@
 from MPI.mpi import *
 from Model.language_model import *
 from Model.template import *
+from util.utils import *
 import yaml
 import argparse
 import os

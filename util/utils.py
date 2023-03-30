@@ -2,10 +2,12 @@ import torch
 import numpy as np
 from functools import reduce
 import random
+import json
 from icecream import ic
 from itertools import permutations
 from collections import defaultdict
 from Model.template import *
+import os
 
 ######  OCEAN BASICS  ######
 OCEAN = ['O', 'C', 'E', 'A', 'N']
@@ -142,5 +144,12 @@ def set_seed(seed):
 
 
 ######  READ OPENAI API KEY ######
-def read_api_key(account="xysong"):
-    keys = 
+def read_api_key(path="", identifier="xysong"):
+    import os
+    print('Get current working directory : ', os.getcwd())
+    with open(path + "keys.json", 'r') as f:
+        keys = json.load(f)
+        openai_api_keys = keys["openai-api-key"]
+        assert identifier in openai_api_keys
+        return openai_api_keys[identifier]
+# read_api_key()
