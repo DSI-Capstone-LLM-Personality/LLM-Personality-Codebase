@@ -20,19 +20,21 @@ config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
 # PARSE YAML FILE
 # Set Seed if necessary
 set_seed(args.seed)
+#####  Experiment Type  #####
+regime, category = config['experiment'].values()
+assert regime in ['Constraint', 'Open-Vocab']
+assert category in ['order-symmetry', 'prompt-engineering']
+
 #####  File Path  #####
 path = config['path']
 dset_dir = path['dset_dir']
 ckpt_dir = path['mpi_ckpt_dir']
 log_dir = path['mpi_log_dir']
-os.makedirs(log_dir, exist_ok=True)
-os.makedirs(ckpt_dir, exist_ok=True)
 
 #####  Dataset  #####
 dataset = config['dataset']
 dset, start, end = dataset['dset'], dataset['start'], dataset['end']
 path_to_dset = dset_dir + f"{dset}.csv"
-
 
 #####  Prompt & Answer Template  #####
 tmp = config['template']
@@ -65,7 +67,11 @@ tokenizer = TOKENIZER[family].from_pretrained(version)
 #####  Likelihood calculation algorithm  #####
 ll_type = config['algorithm']['ll_type']
 
-
+#####  Process directory  #####
+log_dir += f"{regime}/{category}/{version}/"
+ckpt_dir += f"{regime}/{category}/{version}/"
+os.makedirs(log_dir, exist_ok=True)
+os.makedirs(ckpt_dir, exist_ok=True)
 #####  logging filename  #####
 filename = log_fname(dset, model_config, tmp['description'])
 if args.tag:
