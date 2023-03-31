@@ -94,21 +94,24 @@ class LMPROB():
 
 
 class PROMPTER():
-    def __init__(self, family, model, tokenizer, version=None):
+    def __init__(self, family, model, tokenizer, g_config, version=None):
         self.family, self.version = family, version
         self.model, self.tokenizer = model, tokenizer
-
+        self.g_config = g_config
+        assert 'top_p' in self.g_config
+        assert 'temperature' in self.g_config
+        assert 'max_toknes' in self.g_config
+        
     def __call__(self, prompt):
         if self.family == 'GPT3':
             assert self.version is not None
             response = openai.Completion.create(
                 model=self.version,
                 prompt=prompt,
-                temperature=0.1,
-                max_tokens=64,
-                top_p=0.95
+                temperature=self.g_config['temperature'],
+                max_tokens=self.g_config['max_tokens'],
+                top_p=self.g_config['top_p']
             )
-            res = response['choices'][0]['text'].strip()
-            return res
+            return response['choices'][0]['text'].strip()
         else:
             assert False, 'Unrecognized Model Type.'
