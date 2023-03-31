@@ -146,7 +146,7 @@ def set_seed(seed):
 ######  READ OPENAI API KEY ######
 def read_api_key(path="", identifier="xysong"):
     import os
-    print('Get current working directory : ', os.getcwd())
+    # print('Get current working directory : ', os.getcwd())
     with open(path + "keys.json", 'r') as f:
         keys = json.load(f)
         openai_api_keys = keys["openai-api-key"]
