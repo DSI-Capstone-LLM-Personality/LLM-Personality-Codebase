@@ -153,3 +153,16 @@ def read_api_key(path="", identifier="xysong"):
         assert identifier in openai_api_keys
         return openai_api_keys[identifier]
 # read_api_key()
+
+######  RESPONSE PROCESSER  ######
+
+
+class PROCESSER():
+    def __init__(self, dummy=None):
+        self.dummy = dummy
+        # TODO: revise later...
+
+    def __call__(self, response):
+        # TODO:...
+        idx = None
+        return idx

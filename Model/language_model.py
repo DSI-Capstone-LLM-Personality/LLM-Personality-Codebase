@@ -4,14 +4,18 @@
 # AUTHOR: XIAOYANG SONG         #
 # ----------------------------- #
 import torch
+import openai
 from torch.nn import functional as F
 import numpy as np
+from util.utils import *
 from icecream import ic
 # HuggingFace & Torch
 from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTokenizer, \
     BertForMaskedLM, AutoTokenizer, BertForNextSentencePrediction, \
     BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTLMHeadModel, pipeline, BertForMultipleChoice, \
     BertLMHeadModel, RobertaForCausalLM, AutoConfig
+
+openai.api_key = read_api_key("../../", 'xysong')
 
 # Link to available models: https://huggingface.co/transformers/v2.4.0/pretrained_models.html
 # Link to generate(): https://huggingface.co/docs/transformers/v4.27.2/en/main_classes/text_generation#transformers.GenerationMixin.generate
@@ -88,3 +92,24 @@ class LMPROB():
 
 ########## OPEN VOCAB MCQA UTILITIES  ##########
 #---------- Language Models  ----------#
+
+
+class PROMPTER():
+    def __init__(self, family, model, tokenizer, version=None):
+        self.family, self.version = family, version
+        self.model, self.tokenizer = model, tokenizer
+
+    def __call__(self, prompt):
+        if self.family == 'GPT3':
+            assert self.version is not None
+            response = openai.Completion.create(
+                model=self.version,
+                prompt=prompt,
+                temperature=0.1,
+                max_tokens=64,
+                top_p=0.95
+            )
+            res = response['choices'][0]['text'].strip()
+            return res
+        else:
+            assert False, 'Unrecognized Model Type.'

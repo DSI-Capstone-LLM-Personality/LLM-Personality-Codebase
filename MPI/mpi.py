@@ -131,6 +131,7 @@ class MPI():
 
     def open_vocab_answer(self, tokenizer, model, model_desc: dict, verbose=False):
         pass
+        # TODO: use the parser class here
 
     def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
         # Argument check
