@@ -12,7 +12,7 @@ from icecream import ic
 # HuggingFace & Torch
 from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTokenizer, \
     BertForMaskedLM, AutoTokenizer, BertForNextSentencePrediction, \
-    BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTLMHeadModel, pipeline, BertForMultipleChoice, \
+    BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer, pipeline, BertForMultipleChoice, \
     BertLMHeadModel, RobertaForCausalLM, AutoConfig
 
 openai.api_key = read_api_key("", 'xysong')
@@ -32,6 +32,7 @@ MODEL = {
 TOKENIZER = {'BERT': AutoTokenizer,
              'ALBERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
+             'GPT': OpenAIGPTTokenizer,
              'GPT2': GPT2Tokenizer}
 #---------- Language Model Perplexity  ----------#
 
