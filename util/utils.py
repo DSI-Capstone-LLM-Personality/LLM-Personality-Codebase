@@ -6,6 +6,7 @@ import json
 from icecream import ic
 from itertools import permutations
 from collections import defaultdict
+import difflib as dl
 from Model.template import *
 import os
 
@@ -163,6 +164,6 @@ class PROCESSER():
         # TODO: revise later...
 
     def __call__(self, response):
-        # TODO:...
-        idx = None
+        match = dl.get_close_matches(response, MPI_DESC, n=1, cutoff=0)
+        idx = MPI_DESC.index(match[0])
         return idx
