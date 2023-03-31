@@ -68,8 +68,8 @@ tokenizer = TOKENIZER[family].from_pretrained(version)
 ll_type = config['algorithm']['ll_type']
 
 #####  Process directory  #####
-log_dir += f"{regime}/{category}/{version}/"
-ckpt_dir += f"{regime}/{category}/{version}/"
+log_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
+ckpt_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
 os.makedirs(log_dir, exist_ok=True)
 os.makedirs(ckpt_dir, exist_ok=True)
 #####  logging filename  #####
@@ -80,6 +80,8 @@ if args.tag:
 verbose = args.verbose
 if order_name is not None:
     filename += f'_[{order_name}]'
+if ans_type is not None:
+    filename += f"_[{ans_type}]"
 
 # ----------------------------------- #
 # ---------------- RUN -------------- #
