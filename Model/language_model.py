@@ -33,7 +33,6 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'ALBERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
              'GPT2': GPT2Tokenizer}
-
 #---------- Language Model Perplexity  ----------#
 
 
