@@ -15,7 +15,7 @@ from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTok
     BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer, pipeline, BertForMultipleChoice, \
     BertLMHeadModel, RobertaForCausalLM, AutoConfig
 
-openai.api_key = read_api_key("", 'xysong')
+# openai.api_key = read_api_key("", 'xysong')
 
 # Link to available models: https://huggingface.co/transformers/v2.4.0/pretrained_models.html
 # Link to generate(): https://huggingface.co/docs/transformers/v4.27.2/en/main_classes/text_generation#transformers.GenerationMixin.generate
@@ -102,7 +102,7 @@ class PROMPTER():
         assert 'top_p' in self.g_config
         assert 'temperature' in self.g_config
         assert 'max_toknes' in self.g_config
-        
+
     def __call__(self, prompt):
         if self.family == 'GPT3':
             assert self.version is not None
