@@ -164,6 +164,18 @@ class PROCESSER():
         # TODO: revise later...
 
     def __call__(self, response):
-        match = dl.get_close_matches(response, MPI_DESC, n=1, cutoff=0)
-        idx = MPI_DESC.index(match[0])
+        output_words = ['very', 'neither', 'nor', 'moderately', 'accurate', 'inaccurate']
+        response = response.lower()
+        response_1 = response.split(" ")
+        output = []
+        for word in response_1:
+            if word in output_words:
+                output.append(word)
+        output = ' '.join(output)
+        if output == "":
+            #what should it be labeled if the string is empty
+            continue
+        choices = [x.lower() for x in MPI_DESC] # can be optimized outside of for loop
+        match = dl.get_close_matches(output, choices, n=1, cutoff=0)
+        idx = choices.index(match[0])
         return idx
