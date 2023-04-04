@@ -160,11 +160,11 @@ def read_api_key(path="", identifier="xysong"):
 
 
 class PROCESSER():
-    def __init__(self, method='closest-match', verbose=False):
+    def __init__(self, choice, method='closest-match', verbose=False):
         # TODO: (Xiaoyang): make this more generic later...
         self.keywords = ['very', 'neither', 'nor',
                          'moderately', 'accurate', 'inaccurate']
-        self.choices = [x.lower() for x in MPI_DESC]
+        self.choices = [x.lower() for x in choice]
         self.method = method
         self.verbose = verbose
         self.reset()
@@ -189,9 +189,9 @@ class PROCESSER():
         self.raw_responses.append(response)
         self.woi_lst.append(woi)
         # TODO: (Team): probably one word is also probelmatic? discuss later...
-        if len(woi) <= 1:
+        if len(woi) <= 1 or response not in self.choices:
             self.invalid_idx.append(self.n)
-            return -1  # -1 indicates that this response is not valid
+            return None, -1  # -1 indicates that this response is not valid
         self.n += 1
         if self.method == 'closest-match':
             match = dl.get_close_matches(

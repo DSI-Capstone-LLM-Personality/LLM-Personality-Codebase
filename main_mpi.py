@@ -97,6 +97,9 @@ if order_name is not None:
     filename += f'_[{order_name}]'
 if ans_type is not None and regime == "Constraint":
     filename += f"_[{ans_type}]"
+# TODO: change this later...
+if tmp['prompt'] != "mpi-style":
+    filename += f"_[{tmp['prompt']}]"
 
 # ----------------------------------- #
 # ---------------- RUN -------------- #

@@ -119,7 +119,8 @@ class MPI():
         if self.regime == "Constraint":
             self.likelihood, self.probs, self.token_of_interest = [], [], []
         else:
-            self.prompter, self.processor = None, PROCESSER()
+            self.prompter, self.processor = None, PROCESSER(
+                self.mpi_choice_lst['+'])
             self.raw_response, self.processed_response, self.mpi_response = [], [], []
         # Results
         self.preds_key, self.preds = [], []
@@ -132,7 +133,12 @@ class MPI():
     def reset(self):
         self.OCEAN = defaultdict(list)
         self.scores = []
-        self.likelihood, self.probs, self.token_of_interest = [], [], []
+        if self.regime == "Constraint":
+            self.likelihood, self.probs, self.token_of_interest = [], [], []
+        else:
+            self.prompter, self.processor = None, PROCESSER(
+                self.mpi_choice_lst['+'])
+            self.raw_response, self.processed_response, self.mpi_response = [], [], []
         self.preds_key, self.preds = [], []
         self.answered = False
         self.model_desc = None
@@ -152,6 +158,8 @@ class MPI():
                 response = self.prompter(prompt)
                 # Process generated responses
                 processed_response, pred = self.processor(response)
+                if pred == -1:
+                    continue
                 mpi_response = re.search(
                     r'[abcdeABCDE][^a-zA-Z]', response + ')', flags=0).group()[0].upper()
                 # STORE STATISTICS
@@ -173,6 +181,13 @@ class MPI():
 
             # SCORE CALCULATION
             self.preds_key = np.array(self.preds_key)
+            self.answered = True
+            self.model_desc = model_desc
+            self.calculate_score()
+            if verbose:
+                self.display_ocean_stats()
+                self.display_aux_stats()
+                self.display_trait_stats()
 
     def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
         # Argument check
@@ -237,6 +252,7 @@ class MPI():
     def display_ocean_stats(self):
         # ic(self.OCEAN)
         line()
+        print(f"There are {len(self.scores)} questions in total.")
         print("OCEAN SCORES STATS")
         self.stats = {}
         for item in OCEAN:
@@ -254,12 +270,15 @@ class MPI():
         print("OTHER INTERESTING STATS")
         # Format length
         l = max(7, max([len(x) for x in self.mpi_choice_lst['+']]))
-        for sign in ['+', '-']:
-            stat = Counter(self.preds_key[self.plus_minus == sign])
-            print(f"{sign} Questions: ")
-            print(f"{'ANSWERS':<{l}} | Count")
-            for item in self.mpi_choice_lst[sign]:
-                print(f"{item:<{l}} |   {stat[item]}")
+        if self.regimee == "Constraint":
+            for sign in ['+', '-']:
+                stat = Counter(self.preds_key[self.plus_minus == sign])
+                print(f"{sign} Questions: ")
+                print(f"{'ANSWERS':<{l}} | Count")
+                for item in self.mpi_choice_lst[sign]:
+                    print(f"{item:<{l}} |   {stat[item]}")
+        else:
+            pass
 
     def display_trait_stats(self):
         line()
