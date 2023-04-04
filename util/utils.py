@@ -197,7 +197,7 @@ class PROCESSER():
             match = dl.get_close_matches(
                 processed_response, self.choices, n=1, cutoff=0)
             idx = self.choices.index(match[0])
-            return response, processed_response, idx
+            return processed_response, idx
         else:
             assert False, 'Unrecognized Processing Method.'
 
@@ -208,7 +208,7 @@ class PROCESSER():
         print(f"Total number of invalid responses: {len(self.invalid_idx)}")
         line()
         print(f"Response distributions & details.")
-        #TODO: (Xiaoyang) Finish statistic logging
+        # TODO: (Xiaoyang) Finish statistic logging
         responses = Counter(self.processed_response)
 
 

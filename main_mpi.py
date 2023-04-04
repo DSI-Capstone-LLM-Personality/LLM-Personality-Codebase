@@ -57,11 +57,14 @@ else:
     order, shuffle_both = None, None
 
 
-#####  Model & Tokenizer  #####
+#####  Model & Tokenizer Initialization  #####
 model_config = config['model']
-family, version = model_config['family'], model_config['version']
-model = MODEL[family].from_pretrained(version, is_decoder=False)
-tokenizer = TOKENIZER[family].from_pretrained(version)
+family, version, access_method = model_config.values()
+if access_method == "api":
+    model, tokenizer = None, None
+elif access_method == "hf":
+    model = MODEL[family].from_pretrained(version, is_decoder=False)
+    tokenizer = TOKENIZER[family].from_pretrained(version)
 
 
 #####  Likelihood calculation algorithm  #####
@@ -88,6 +91,9 @@ if ans_type is not None:
 mpi = MPI(path_to_dset, start, end,
           prompt, index, desc, ans_type, order, shuffle_both)
 mpi.reset()
-mpi.constraint_answer(tokenizer, model, model_config, ll_type, verbose)
+if regime == "Constraint":
+    mpi.constraint_answer(tokenizer, model, model_config, ll_type, verbose)
+elif regime == "Open-Vocab":
+    mpi.open_vocab_answer(tokenizer, model, model_config, None, verbose)
 mpi.write_statistic(log_dir + filename + '.txt')
 mpi.save_checkpoint(ckpt_dir + filename + '.pt')

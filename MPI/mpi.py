@@ -118,7 +118,7 @@ class MPI():
         if self.regime == "constraint":
             self.likelihood, self.probs, self.token_of_interest = [], [], []
         else:
-            self.prompter, self.processor = PROMPTER(), PROCESSER()
+            self.prompter, self.processor = None, PROCESSER()
         self.preds_key, self.preds = [], []
         self.answered, self.model_desc = False, None
 
@@ -137,10 +137,18 @@ class MPI():
 
     def open_vocab_answer(self, tokenizer, model, model_desc: dict, param_dict: dict, verbose=False):
         assert not self.answered
+        assert "version" in model_desc
+        assert "family" in model_desc
+        # TODO: add cases
+        family, version = model_desc['family'], model_desc['version']
+        self.prompter = PROMPTER(family, model, tokenizer, param_dict, version)
         # TODO: use the parser class here
         with torch.no_grad():
             for idx, prompt in enumerate(tqdm(self.questions)):
-                pass
+                response = self.prompter(prompt)
+                processed_response, pred = self.processor(response)
+                print(processed_response)
+                print(pred)
 
     def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
         # Argument check
