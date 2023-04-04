@@ -120,6 +120,8 @@ class MPI():
             self.likelihood, self.probs, self.token_of_interest = [], [], []
         else:
             self.prompter, self.processor = None, PROCESSER()
+            self.raw_response, self.processed_response, self.mpi_response = [], [], []
+        # Results
         self.preds_key, self.preds = [], []
         self.answered, self.model_desc = False, None
 
@@ -146,13 +148,31 @@ class MPI():
         # TODO: use the parser class here
         with torch.no_grad():
             for idx, prompt in enumerate(tqdm(self.questions)):
+                key = self.plus_minus[idx]
                 response = self.prompter(prompt)
-                print(f"Ours: {response}")
-                print(
-                    f"MPI paper: {re.search(r'[abcdeABCDE][^a-zA-Z]', response+')',flags=0).group()[0].upper()}")
+                # Process generated responses
                 processed_response, pred = self.processor(response)
-                # print(processed_response)
-                # print(pred)
+                mpi_response = re.search(
+                    r'[abcdeABCDE][^a-zA-Z]', response + ')', flags=0).group()[0].upper()
+                # STORE STATISTICS
+                self.raw_response.append(response)
+                self.processed_response.append(processed_response)
+                self.mpi_response.append(mpi_response)
+                self.preds_key.append(self.mpi_choice_lst[key][pred])
+                self.preds.append(pred)
+                score = MPI_SCORE[key][pred]
+                self.scores.append(score)
+                if verbose:
+                    print(
+                        f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key} | SCORE: {score}")
+                    print(f">> Generated Response: {response}")
+                    print(
+                        f"-- Processed Response (OURS): {processed_response}")
+                    print(f"-- OUR ANSWER: {self.mpi_choice_lst[key][pred]}")
+                    print(f"-- MPI ANSWER: {mpi_response}")
+
+            # SCORE CALCULATION
+            self.preds_key = np.array(self.preds_key)
 
     def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
         # Argument check

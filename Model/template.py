@@ -16,9 +16,11 @@ def concat(index: np.ndarray, desc: np.ndarray):
 MPI_NUM_CHOICES = 5
 ######  PROMPTS  ######
 MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
-PROMPT_TEMPLATE = {'mpi-style': MPI_PROMPT}
+MPI_PROMPT_EXACT = "Please choose exactly one from the following options to identify how accurately this statement describes you."
+PROMPT_TEMPLATE = {'mpi-style': MPI_PROMPT,
+                   'mpi-style-revised': MPI_PROMPT_EXACT}
 MPI_TEMPLATE = '''Given a statement of you: "You {item}."
-Please choose from the following options to identify how accurately this statement describes you.'''
+{template}'''
 
 ######  INDEXES  ######
 LETTER_INDEX = np.array(['(A).', '(B).', '(C).', '(D).', '(E).'])
