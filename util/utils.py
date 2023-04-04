@@ -1,3 +1,4 @@
+import openai
 import torch
 import numpy as np
 from functools import reduce
@@ -5,7 +6,7 @@ import random
 import json
 from icecream import ic
 from itertools import permutations
-from collections import defaultdict
+from collections import defaultdict, Counter
 import difflib as dl
 from Model.template import *
 import os
@@ -159,23 +160,65 @@ def read_api_key(path="", identifier="xysong"):
 
 
 class PROCESSER():
-    def __init__(self, dummy=None):
-        self.dummy = dummy
-        # TODO: revise later...
+    def __init__(self, method='closest-match', verbose=False):
+        # TODO: (Xiaoyang): make this more generic later...
+        self.keywords = ['very', 'neither', 'nor',
+                         'moderately', 'accurate', 'inaccurate']
+        self.choices = [x.lower() for x in MPI_DESC]
+        self.method = method
+        self.verbose = verbose
+        self.reset()
+
+    def reset(self):
+        self.raw_responses, self.woi_lst = [], []
+        self.processed_response, self.invalid_idx = [], []
+        self.invalid_idx, self.n = [], 0
 
     def __call__(self, response):
-        output_words = ['very', 'neither', 'nor', 'moderately', 'accurate', 'inaccurate']
-        response = response.lower()
-        response_1 = response.split(" ")
-        output = []
-        for word in response_1:
-            if word in output_words:
-                output.append(word)
-        output = ' '.join(output)
-        if output == "":
-            #what should it be labeled if the string is empty
-            continue
-        choices = [x.lower() for x in MPI_DESC] # can be optimized outside of for loop
-        match = dl.get_close_matches(output, choices, n=1, cutoff=0)
-        idx = choices.index(match[0])
-        return idx
+        response = response.strip().lower()
+        words = response.split(" ")
+        woi = []  # woi stands for "words of interests"
+        for word in words:
+            if word in self.keywords:
+                woi.append(word)
+        processed_response = ' '.join(woi)
+        if self.verbose:
+            print(f"PROCESSOR: {response} --> {processed_response}")
+        # Store statistics
+        self.processed_response.append(processed_response)
+        self.raw_responses.append(response)
+        self.woi_lst.append(woi)
+        # TODO: (Team): probably one word is also probelmatic? discuss later...
+        if len(woi) <= 1:
+            self.invalid_idx.append(self.n)
+            return -1  # -1 indicates that this response is not valid
+        self.n += 1
+        if self.method == 'closest-match':
+            match = dl.get_close_matches(
+                processed_response, self.choices, n=1, cutoff=0)
+            idx = self.choices.index(match[0])
+            return response, processed_response, idx
+        else:
+            assert False, 'Unrecognized Processing Method.'
+
+    def display_stats(self):
+        print(f"Details about generated responses and PROCESSOR results.")
+        line()
+        print(f"Total number of responses given: {self.n}")
+        print(f"Total number of invalid responses: {len(self.invalid_idx)}")
+        line()
+        print(f"Response distributions & details.")
+        #TODO: (Xiaoyang) Finish statistic logging
+        responses = Counter(self.processed_response)
+
+
+# Test processor code
+openai.api_key = read_api_key("", 'kiyan')
+processor = PROCESSER(verbose=True)
+# item = "worry about things"
+item = "have difficulty imagining things"
+eg_q = MPI_TEMPLATE.format(item=item) + ordered_lst_to_str(MPI_DESC)
+response = openai.Completion.create(
+    engine="text-davinci-002", prompt=eg_q, temperature=0.1, max_tokens=10, top_p=0.95, logprobs=1)
+ic(response['choices'][0]['text'].strip())
+ic(processor(response['choices'][0]['text']))

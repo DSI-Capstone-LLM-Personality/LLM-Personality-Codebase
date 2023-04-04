@@ -83,7 +83,8 @@ class MPI():
     # TODO: (Xiaoyang) [TOP PRIORITY] Re-structure this class
     # (this should also work for non-mpi templates)
     def __init__(self, path_to_file, start, end,
-                 prompt, index, desc, ans_type, order=None, shuffle_both=None):
+                 prompt, index, desc, ans_type,
+                 regime="constraint", order=None, shuffle_both=None):
         self.mpi_df = read_mpi(path_to_file)
         # (Optional): only testing the first few examples
         if start is not None and end is not None:
@@ -111,8 +112,13 @@ class MPI():
                                   for x, k in zip(self.text, self.plus_minus)])
         # OCEAN SCORE
         self.OCEAN, self.scores = defaultdict(list), []
+        # EXPERIMENT TYPE
+        self.regime = regime
         # META-DATA: probability, likelihood, etc...
-        self.likelihood, self.probs, self.token_of_interest = [], [], []
+        if self.regime == "constraint":
+            self.likelihood, self.probs, self.token_of_interest = [], [], []
+        else:
+            self.prompter, self.processor = PROMPTER(), PROCESSER()
         self.preds_key, self.preds = [], []
         self.answered, self.model_desc = False, None
 
@@ -129,12 +135,16 @@ class MPI():
         self.model_desc = None
         # TODO: (Xiaoyang) more functionality here...
 
-    def open_vocab_answer(self, tokenizer, model, model_desc: dict, verbose=False):
-        pass
+    def open_vocab_answer(self, tokenizer, model, model_desc: dict, param_dict: dict, verbose=False):
+        assert not self.answered
         # TODO: use the parser class here
+        with torch.no_grad():
+            for idx, prompt in enumerate(tqdm(self.questions)):
+                pass
 
     def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
         # Argument check
+        assert not self.answered
         assert "version" in model_desc
         assert "family" in model_desc
         family = model_desc['family']  # TODO: add cases
@@ -295,7 +305,7 @@ class MPI():
 
 
 if __name__ == '__main__':
-    ic("BERT prompting experiments on MPI dataset...")
+    ic("Prompting experiments on MPI dataset...")
     # Filename (may vary on your local computer)
     filename = "mpi_small"
     local_path = "Dataset/" + f"{filename}.csv"
