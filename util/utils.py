@@ -214,11 +214,11 @@ class PROCESSER():
 
 # Test processor code
 openai.api_key = read_api_key("", 'kiyan')
-processor = PROCESSER(verbose=True)
-# item = "worry about things"
-item = "have difficulty imagining things"
-eg_q = MPI_TEMPLATE.format(item=item) + ordered_lst_to_str(MPI_DESC)
-response = openai.Completion.create(
-    engine="text-davinci-002", prompt=eg_q, temperature=0.1, max_tokens=10, top_p=0.95, logprobs=1)
-ic(response['choices'][0]['text'].strip())
-ic(processor(response['choices'][0]['text']))
+# processor = PROCESSER(verbose=True)
+# # item = "worry about things"
+# item = "have difficulty imagining things"
+# eg_q = MPI_TEMPLATE.format(item=item) + ordered_lst_to_str(MPI_DESC)
+# response = openai.Completion.create(
+#     engine="text-davinci-002", prompt=eg_q, temperature=0.1, max_tokens=10, top_p=0.95, logprobs=1)
+# ic(response['choices'][0]['text'].strip())
+# ic(processor(response['choices'][0]['text']))

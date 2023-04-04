@@ -5,6 +5,7 @@
 from functools import reduce
 
 from regex import E
+import re
 from Prompt.bert_prompt import *
 import pandas as pd
 from collections import Counter, defaultdict
@@ -115,7 +116,7 @@ class MPI():
         # EXPERIMENT TYPE
         self.regime = regime
         # META-DATA: probability, likelihood, etc...
-        if self.regime == "constraint":
+        if self.regime == "Constraint":
             self.likelihood, self.probs, self.token_of_interest = [], [], []
         else:
             self.prompter, self.processor = None, PROCESSER()
@@ -146,9 +147,12 @@ class MPI():
         with torch.no_grad():
             for idx, prompt in enumerate(tqdm(self.questions)):
                 response = self.prompter(prompt)
+                print(f"Ours: {response}")
+                print(
+                    f"MPI paper: {re.search(r'[abcdeABCDE][^a-zA-Z]', response+')',flags=0).group()[0].upper()}")
                 processed_response, pred = self.processor(response)
-                print(processed_response)
-                print(pred)
+                # print(processed_response)
+                # print(pred)
 
     def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
         # Argument check
