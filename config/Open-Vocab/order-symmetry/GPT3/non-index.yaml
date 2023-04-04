@@ -19,7 +19,7 @@ template:
   desc:
     "+": mpi
     "-": mpi
-  ans_type: desc
+  ans_type: desc # For open-vocab regime, this should always agree with {index}
 
 shuffle:
   order: original
@@ -30,5 +30,7 @@ model:
   version: text-davinci-002
   access_method: api
 
-algorithm:
-  ll_type: ans_inv_perp
+params:
+  max_tokens: 100
+  top_p: 0.95
+  temperature: 0.10

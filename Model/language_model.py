@@ -101,7 +101,7 @@ class PROMPTER():
         self.g_config = g_config
         assert 'top_p' in self.g_config
         assert 'temperature' in self.g_config
-        assert 'max_toknes' in self.g_config
+        assert 'max_tokens' in self.g_config
 
     def __call__(self, prompt):
         if self.family == 'GPT3':

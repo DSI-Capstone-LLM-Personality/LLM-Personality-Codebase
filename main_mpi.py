@@ -47,6 +47,8 @@ if index is not None:
 assert tmp['desc'] is not None
 desc = {k: DESC[v] for k, v in tmp['desc'].items()}
 # Prepare Answer
+# Note that for "Constraint Regime" this is used for QA
+# But for "Open-Vocab Regime", this only dictates how answers are presented
 ans_type = tmp['ans_type']
 # Shuffle
 order_name = config['shuffle']['order']
@@ -65,16 +67,26 @@ if access_method == "api":
 elif access_method == "hf":
     model = MODEL[family].from_pretrained(version, is_decoder=False)
     tokenizer = TOKENIZER[family].from_pretrained(version)
+else:
+    assert 'Unrecognized Access Method.'
 
 
-#####  Likelihood calculation algorithm  #####
-ll_type = config['algorithm']['ll_type']
+#####  Process Regime-Specific Arguments #####
+if regime == "Constraint":
+    #####  Likelihood calculation algorithm  #####
+    ll_type = config['algorithm']['ll_type']
+elif regime == "Open-Vocab":
+    generation_config = config['params']
+else:
+    assert False, 'Unrecognized Regime.'
 
 #####  Process directory  #####
 log_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
 ckpt_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
 os.makedirs(log_dir, exist_ok=True)
 os.makedirs(ckpt_dir, exist_ok=True)
+
+
 #####  logging filename  #####
 filename = log_fname(dset, model_config, tmp['description'])
 if args.tag:
@@ -83,17 +95,24 @@ if args.tag:
 verbose = args.verbose
 if order_name is not None:
     filename += f'_[{order_name}]'
-if ans_type is not None:
+if ans_type is not None and regime == "Constraint":
     filename += f"_[{ans_type}]"
 
 # ----------------------------------- #
 # ---------------- RUN -------------- #
 mpi = MPI(path_to_dset, start, end,
-          prompt, index, desc, ans_type, order, shuffle_both)
+          prompt, index, desc, ans_type,
+          regime, order, shuffle_both)
 mpi.reset()
+
 if regime == "Constraint":
     mpi.constraint_answer(tokenizer, model, model_config, ll_type, verbose)
 elif regime == "Open-Vocab":
-    mpi.open_vocab_answer(tokenizer, model, model_config, None, verbose)
+    assert generation_config is not None
+    mpi.open_vocab_answer(tokenizer, model, model_config,
+                          generation_config, verbose)
+else:
+    assert False, 'Unrecognized Regime.'
+
 mpi.write_statistic(log_dir + filename + '.txt')
 mpi.save_checkpoint(ckpt_dir + filename + '.pt')
