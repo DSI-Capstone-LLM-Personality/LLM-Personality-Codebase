@@ -8,7 +8,8 @@ import os
 
 # DEVICE Configuration
 if torch.backends.mps.is_available():
-    print(torch.backends.mps.is_built())
+    print("mps is built: ", torch.backends.mps.is_built())
+    print("Let's use GPUs!")
 elif torch.cuda.is_available():
     print(f"Current Device: {torch.cuda.get_device_name(0)}")
     print(f"{torch.cuda.get_device_properties(0).total_memory / 1024}GB")
