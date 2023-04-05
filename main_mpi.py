@@ -20,7 +20,7 @@ else:
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', help='configuration file')
 parser.add_argument('--seed', help='python seed', type=int, default=2023)
-parser.add_argument('--verbose', help='verbose mode', type=bool, default=False)
+parser.add_argument('--verbose', help='verbose mode', action='store_true')
 parser.add_argument('--tag', help='tags', type=str, default='')
 args = parser.parse_args()
 

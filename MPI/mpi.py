@@ -183,7 +183,7 @@ class MPI():
                     self.scores.append(score)
                 if verbose:
                     print(
-                        f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key} | SCORE: {score}")
+                        f"\nQUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key} | SCORE: {score}")
                     print(f">> Generated Response: {response}")
                     print(
                         f"-- Processed Response (OURS): {processed_response}")
