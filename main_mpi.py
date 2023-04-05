@@ -6,6 +6,8 @@ import yaml
 import argparse
 import os
 
+print(torch.backends.mps.is_available())
+print(torch.backends.mps.is_built())
 
 # DEVICE Configuration
 if torch.cuda.is_available():
