@@ -12,12 +12,12 @@ from Model.template import *
 import os
 
 #####  DEVICE CONFIGURATION  #####
-APPLE_CHIPS = True
-if APPLE_CHIPS:
-    DEVICE = torch.device(
-        "mps" if torch.backends.mps.is_available() else "cpu")
+if torch.backends.mps.is_available():
+    DEVICE = torch.device("mps")
+elif torch.cuda.is_available():
+    DEVICE = torch.device("cuda")
 else:
-    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    DEVICE = torch.device("cpu")
 
 
 ######  OCEAN BASICS  ######
