@@ -14,10 +14,10 @@ import os
 #####  DEVICE CONFIGURATION  #####
 APPLE_CHIPS = True
 if APPLE_CHIPS:
-    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-else:
     DEVICE = torch.device(
         'mps' if torch.backends.mps.is_available() else "cpu")
+else:
+    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 ######  OCEAN BASICS  ######

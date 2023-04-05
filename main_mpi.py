@@ -19,7 +19,7 @@ else:
         print("Let's use", torch.cuda.device_count(), "GPUs!")
     else:
         print("We are using CPUs.")
-
+print(DEVICE)
 # DEVICE Configuration
 
 
