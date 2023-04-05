@@ -12,7 +12,12 @@ from Model.template import *
 import os
 
 #####  DEVICE CONFIGURATION  #####
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+APPLE_CHIPS = True
+if APPLE_CHIPS:
+    DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+else:
+    DEVICE = torch.device(
+        'mps' if torch.backends.mps.is_available() else "cpu")
 
 
 ######  OCEAN BASICS  ######
@@ -227,7 +232,7 @@ class PROCESSER():
 
 
 # Test processor code
-openai.api_key = read_api_key("", 'kiyan')
+# openai.api_key = read_api_key("", 'kiyan')
 # processor = PROCESSER(verbose=True)
 # # item = "worry about things"
 # item = "have difficulty imagining things"

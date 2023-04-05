@@ -6,16 +6,21 @@ import yaml
 import argparse
 import os
 
-print(torch.backends.mps.is_available())
-print(torch.backends.mps.is_built())
+
+if APPLE_CHIPS:
+    if torch.backends.mps.is_available():
+        print(torch.backends.mps.is_built())
+    else:
+        print("We are using CPUs.")
+else:
+    if torch.cuda.is_available():
+        print(f"Current Device: {torch.cuda.get_device_name(0)}")
+        print(f"{torch.cuda.get_device_properties(0).total_memory / 1024}GB")
+        print("Let's use", torch.cuda.device_count(), "GPUs!")
+    else:
+        print("We are using CPUs.")
 
 # DEVICE Configuration
-if torch.cuda.is_available():
-    print(f"Current Device: {torch.cuda.get_device_name(0)}")
-    print(f"{torch.cuda.get_device_properties(0).total_memory / 1024}GB")
-    print("Let's use", torch.cuda.device_count(), "GPUs!")
-else:
-    print("We are using CPUs.")
 
 
 # Parse Input Arguments
