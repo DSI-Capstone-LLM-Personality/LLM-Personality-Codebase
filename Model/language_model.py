@@ -69,7 +69,7 @@ class LMPROB():
 
     def __call__(self, prompt, choice):
         tokens = self.tokenizer(prompt + choice, return_tensors="pt")
-        for item, val in tokens.items():
+        for item, _ in tokens.items():
             tokens[item] = tokens[item].to(DEVICE)
         ans_token = self.tokenizer(choice, return_tensors="pt")
         if self.family in ['BERT', 'RoBERTa', 'ALBERT']:
@@ -85,11 +85,9 @@ class LMPROB():
             toi = sent_input_ids[-length_ans-1:-1]
             return prob, ll, toi
         elif self.family in ['GPT', 'GPT2']:
-            answer_input_ids = ans_token.input_ids[0]
-            answer_input_ids.to(DEVICE)
+            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
             length_ans = len(answer_input_ids)
-            sent_input_ids = tokens.input_ids[0]
-            sent_input_ids.to(DEVICE)
+            sent_input_ids = tokens.input_ids[0].to(DEVICE)
             logit = self.model(**tokens).logits
             prob = logit_to_prob(
                 logit.squeeze(), sent_input_ids)[-length_ans+1:]
@@ -97,6 +95,8 @@ class LMPROB():
             ll = prob_to_ll(prob, self.ll_type)
             toi = sent_input_ids[-length_ans+1:]
             return prob, ll, toi
+        elif self.family in ['T5']:
+            pass
         else:
             assert False, 'Unrecognized model family'
 
@@ -124,6 +124,7 @@ class PROMPTER():
                 top_p=self.g_config['top_p']
             )
             return response['choices'][0]['text'].strip()
+
         elif self.family == "GPT2":
             # TODO: (Xiaoyang) Add paddings
             inputs = self.tokenizer(prompt, return_tensors='pt')
@@ -136,5 +137,6 @@ class PROMPTER():
                                            max_new_tokens=self.g_config['max_tokens'])
             output = self.tokenizer.decode(response[0])
             return output
+
         else:
             assert False, 'Unrecognized Model Type.'

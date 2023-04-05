@@ -275,8 +275,9 @@ class MPI():
     def display_ocean_stats(self):
         # ic(self.OCEAN)
         line()
-        print(
-            f"There are {len(self.scores[self.valid_mask])} questions with valid response in total.")
+        if self.regime == "Open-Vocab":
+            print(
+                f"There are {len(self.scores[self.valid_mask])} questions with valid response in total.")
         print("OCEAN SCORES STATS")
         self.stats = {}
         for item in OCEAN:
