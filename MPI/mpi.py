@@ -122,6 +122,7 @@ class MPI():
             self.prompter, self.processor = None, PROCESSER(
                 self.mpi_choice_lst['+'])
             self.raw_response, self.processed_response, self.mpi_response = [], [], []
+            self.valid_mask = None
         # Results
         self.preds_key, self.preds = [], []
         self.answered, self.model_desc = False, None
@@ -139,6 +140,7 @@ class MPI():
             self.prompter, self.processor = None, PROCESSER(
                 self.mpi_choice_lst['+'])
             self.raw_response, self.processed_response, self.mpi_response = [], [], []
+            self.valid_mask = None
         self.preds_key, self.preds = [], []
         self.answered = False
         self.model_desc = None
@@ -158,18 +160,27 @@ class MPI():
                 response = self.prompter(prompt)
                 # Process generated responses
                 processed_response, pred = self.processor(response)
-                if pred == -1:
-                    continue
                 mpi_response = re.search(
                     r'[abcdeABCDE][^a-zA-Z]', response + ')', flags=0).group()[0].upper()
                 # STORE STATISTICS
+                self.preds.append(pred)
                 self.raw_response.append(response)
                 self.processed_response.append(processed_response)
                 self.mpi_response.append(mpi_response)
-                self.preds_key.append(self.mpi_choice_lst[key][pred])
-                self.preds.append(pred)
-                score = MPI_SCORE[key][pred]
-                self.scores.append(score)
+                if pred == -1:
+                    if verbose:
+                        print(
+                            f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key}")
+                        print(f">> Generated Response: {response}")
+                        print(
+                            f"THIS QUESTION IS DISCARDED! GENERATED RESPONSE IS NOT VALID.")
+                    self.preds_key.append("Not Valid")
+                    self.scores.append(-1)
+                    continue
+                else:
+                    self.preds_key.append(self.mpi_choice_lst[key][pred])
+                    score = MPI_SCORE[key][pred]
+                    self.scores.append(score)
                 if verbose:
                     print(
                         f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key} | SCORE: {score}")
@@ -180,9 +191,12 @@ class MPI():
                     print(f"-- MPI ANSWER: {mpi_response}")
 
             # SCORE CALCULATION
+            # Valid mask: filter out invalid response
+            self.valid_mask = self.processor.valid_idx
             self.preds_key = np.array(self.preds_key)
             self.answered = True
             self.model_desc = model_desc
+            self.scores = np.array(self.scores)
             self.calculate_score()
             if verbose:
                 self.display_ocean_stats()
@@ -246,13 +260,23 @@ class MPI():
                 self.display_trait_stats()
 
     def calculate_score(self):
-        for idx, score in enumerate(self.scores):
-            self.OCEAN[self.label[idx]].append(score)
+        if self.regime == "Open-Vocab":
+            assert self.valid_mask is not None
+            scores = self.scores[self.valid_mask]
+            labels = self.label[self.valid_mask]
+            assert len(scores) == len(labels)
+            assert -1 not in scores
+        else:
+            labels, scores = self.label, self.scores
+        # Calculating scores
+        for idx, score in enumerate(scores):
+            self.OCEAN[labels[idx]].append(score)
 
     def display_ocean_stats(self):
         # ic(self.OCEAN)
         line()
-        print(f"There are {len(self.scores)} questions in total.")
+        print(
+            f"There are {len(self.scores[self.valid_mask])} questions with valid response in total.")
         print("OCEAN SCORES STATS")
         self.stats = {}
         for item in OCEAN:
@@ -270,7 +294,7 @@ class MPI():
         print("OTHER INTERESTING STATS")
         # Format length
         l = max(7, max([len(x) for x in self.mpi_choice_lst['+']]))
-        if self.regimee == "Constraint":
+        if self.regime == "Constraint":
             for sign in ['+', '-']:
                 stat = Counter(self.preds_key[self.plus_minus == sign])
                 print(f"{sign} Questions: ")
@@ -278,7 +302,7 @@ class MPI():
                 for item in self.mpi_choice_lst[sign]:
                     print(f"{item:<{l}} |   {stat[item]}")
         else:
-            pass
+            self.processor.display_stats()
 
     def display_trait_stats(self):
         line()
@@ -296,10 +320,17 @@ class MPI():
             print(f"Trait: {item} | # Questions: {np.sum(count_arr)}")
             # CHOICE DISTRIBUTION: + and -
             l = max(7, max([len(x) for x in self.mpi_choice_lst['+']]))
+
+            # Depending on regimes: masked invalid questions
+
             for sign in ["+", "-"]:
                 print(f"> CHOICES DISTRIBUTION [{sign}]")
-                mask = np.logical_and(self.label == item,
-                                      self.plus_minus == sign)
+                condition_mask = np.logical_and(self.label == item,
+                                                self.plus_minus == sign)
+                if self.regime == "Open-Vocab":
+                    mask = np.logical_and(condition_mask, self.valid_mask)
+                else:
+                    mask = condition_mask
                 stat = Counter(self.preds_key[mask])
                 print(f"{'ANSWERS':<{l}} | Count")
                 for choice in self.mpi_choice_lst[sign]:
@@ -330,10 +361,11 @@ class MPI():
             print(
                 f"The question template look like this:\n\n{self.questions[0]}")
             line()
-            for sign in ['+', '-']:
-                print(
-                    f"The choice available for \"{sign}\" questions looks like this:\n> {list(self.mpi_choice_lst[sign])}")
-                line()
+            if self.regime == "Constraint":
+                for sign in ['+', '-']:
+                    print(
+                        f"The choice available for \"{sign}\" questions looks like this:\n> {list(self.mpi_choice_lst[sign])}")
+                    line()
             print("ANSWER STATISTICS")
             self.display_ocean_stats()
             self.display_aux_stats()
@@ -342,11 +374,26 @@ class MPI():
             print("APPENDIX: ANSWERS")
             line()
             for idx, statement in enumerate(self.text):
-                print(
-                    f"QUESTION #{idx+1:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {self.scores[idx]} | ANSWER: {self.preds_key[idx]}")
-                print(f"> Statement: {statement}")
-                print(
-                    f"> Inverse Log-Perplexity: {list(np.round(np.array(self.likelihood[idx]), 4))}")
+                if self.regime == "Constraint":
+                    print(
+                        f"QUESTION #{idx+1:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {self.scores[idx]} | ANSWER: {self.preds_key[idx]}")
+                    print(f"> Statement: {statement}")
+                    print(
+                        f"> Inverse Log-Perplexity: {list(np.round(np.array(self.likelihood[idx]), 4))}")
+                else:
+                    print(
+                        f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {self.plus_minus[idx]} | SCORE: {self.scores[idx]}")
+                    print(f"> Statement: {statement}")
+                    print(f">> Generated Response: {self.raw_response[idx]}")
+                    print(
+                        f"-- Processed Response (OURS): {self.processed_response[idx]}")
+                    print(
+                        f"-- OUR ANSWER: {self.preds_key[idx]}")
+                    print(f"-- MPI ANSWER: {self.mpi_response[idx]}")
+                    if not self.valid_mask[idx]:
+                        print(
+                            f"THIS QUESTION IS DISCARDED! GENERATED RESPONSE IS NOT VALID!")
+                    print("\n")
             line()
             f.close()
             sys.stdout = original_stdout

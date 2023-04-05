@@ -136,7 +136,7 @@ class MPIQuestionFormatter():
 
 
 ######  UTILITY FUNCTIONS  ######
-def line(n=40): print("-"*n)
+def line(n=80): print("-"*n)
 
 
 def set_seed(seed):
@@ -172,10 +172,12 @@ class PROCESSER():
     def reset(self):
         self.raw_responses, self.woi_lst = [], []
         self.processed_response, self.invalid_idx = [], []
-        self.invalid_idx, self.n = [], 0
+        self.valid_idx, self.n = [], 0
 
     def __call__(self, response):
-        response = response.strip().lower()
+        response = response.strip()
+        self.raw_responses.append(response)
+        response = response.lower()
         words = response.split(" ")
         woi = []  # woi stands for "words of interests"
         for word in words:
@@ -186,13 +188,15 @@ class PROCESSER():
             print(f"PROCESSOR: {response} --> {processed_response}")
         # Store statistics
         self.processed_response.append(processed_response)
-        self.raw_responses.append(response)
         self.woi_lst.append(woi)
+        self.n += 1
         # TODO: (Team): probably one word is also probelmatic? discuss later...
         if len(woi) <= 1 or response not in self.choices:
-            self.invalid_idx.append(self.n)
+            self.valid_idx.append(False)
             return None, -1  # -1 indicates that this response is not valid
-        self.n += 1
+        # Update valid mask: this is used for statistic display later...
+        self.valid_idx.append(True)
+        # Compute matched output
         if self.method == 'closest-match':
             match = dl.get_close_matches(
                 processed_response, self.choices, n=1, cutoff=0)
@@ -205,11 +209,17 @@ class PROCESSER():
         print(f"Details about generated responses and PROCESSOR results.")
         line()
         print(f"Total number of responses given: {self.n}")
-        print(f"Total number of invalid responses: {len(self.invalid_idx)}")
-        line()
-        print(f"Response distributions & details.")
+        self.valid_idx = np.array(self.valid_idx)
+        print(
+            f"Total number of invalid responses: {(~self.valid_idx).sum()}")
         # TODO: (Xiaoyang) Finish statistic logging
-        responses = Counter(self.processed_response)
+        responses = dict(Counter(self.raw_responses))
+        # print(responses)
+        print(f"There are {len(responses)} different answers generated!")
+        for item, val in responses.items():
+            print(f">> {item}\n>> Count: {val}")
+            line(60)
+        line()
 
 
 # Test processor code

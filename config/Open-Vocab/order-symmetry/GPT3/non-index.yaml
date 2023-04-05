@@ -13,18 +13,16 @@ dataset:
   end: null
 
 template:
-  prompt: mpi-style-revised
+  prompt: mpi-style
   description: non-index
-  index:
-    "+": letter
-    "-": letter
+  index: null
   desc:
     "+": mpi
     "-": mpi
-  ans_type: index-desc # For open-vocab regime, this should always agree with {index}
+  ans_type: desc # For open-vocab regime, this should always agree with {index}
 
 shuffle:
-  order: reverse
+  order: original
   shuffle_both: False
 
 model:

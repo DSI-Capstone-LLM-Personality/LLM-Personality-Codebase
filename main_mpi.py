@@ -89,6 +89,7 @@ os.makedirs(ckpt_dir, exist_ok=True)
 
 #####  logging filename  #####
 filename = log_fname(dset, model_config, tmp['description'])
+filename += f"_[{tmp['prompt']}]"
 if args.tag:
     tag = args.tag
     filename += f'_[{tag}]'
@@ -97,9 +98,6 @@ if order_name is not None:
     filename += f'_[{order_name}]'
 if ans_type is not None and regime == "Constraint":
     filename += f"_[{ans_type}]"
-# TODO: change this later...
-if tmp['prompt'] != "mpi-style":
-    filename += f"_[{tmp['prompt']}]"
 
 # ----------------------------------- #
 # ---------------- RUN -------------- #
