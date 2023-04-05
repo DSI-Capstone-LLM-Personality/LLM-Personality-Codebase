@@ -69,7 +69,7 @@ if order_name is not None:
     shuffle_both = config['shuffle']['shuffle_both']
 else:
     order, shuffle_both = None, None
-
+ic(order_name)
 
 #####  Model & Tokenizer Initialization  #####
 model_config = config['model']
