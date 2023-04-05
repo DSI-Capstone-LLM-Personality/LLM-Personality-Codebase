@@ -6,7 +6,16 @@ import yaml
 import argparse
 import os
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# DEVICE Configuration
+if torch.cuda.is_available():
+    print(f"Current Device: {torch.cuda.get_device_name(0)}")
+    print(f"{torch.cuda.get_device_properties(0).total_memory / 1024}GB")
+    print("Let's use", torch.cuda.device_count(), "GPUs!")
+else:
+    print("We are using CPUs.")
+
+
 # Parse Input Arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', help='configuration file')
@@ -65,7 +74,7 @@ family, version, access_method = model_config.values()
 if access_method == "api":
     model, tokenizer = None, None
 elif access_method == "hf":
-    model = MODEL[family].from_pretrained(version, is_decoder=False)
+    model = MODEL[family].from_pretrained(version, is_decoder=False).to(DEVICE)
     tokenizer = TOKENIZER[family].from_pretrained(version)
 else:
     assert 'Unrecognized Access Method.'

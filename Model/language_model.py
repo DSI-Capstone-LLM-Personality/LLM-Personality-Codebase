@@ -66,9 +66,9 @@ class LMPROB():
         ans_token = self.tokenizer(choice, return_tensors="pt")
         if self.family in ['BERT', 'RoBERTa', 'ALBERT']:
             # FOR BERT family model: trim [CLS] & [SEP] tokens
-            answer_input_ids = ans_token.input_ids[0][1:-1]
+            answer_input_ids = ans_token.input_ids[0][1:-1].to(DEVICE)
             length_ans = len(answer_input_ids)
-            sent_input_ids = tokens.input_ids[0]
+            sent_input_ids = tokens.input_ids[0].to(DEVICE)
             out = self.model(**tokens)
             logit = out.prediction_logits if self.family == 'ALBERT' else out.logits
             prob = logit_to_prob(
@@ -77,9 +77,9 @@ class LMPROB():
             toi = sent_input_ids[-length_ans-1:-1]
             return prob, ll, toi
         elif self.family in ['GPT', 'GPT2']:
-            answer_input_ids = ans_token.input_ids[0]
+            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
             length_ans = len(answer_input_ids)
-            sent_input_ids = tokens.input_ids[0]
+            sent_input_ids = tokens.input_ids[0].to(DEVICE)
             logit = self.model(**tokens).logits
             prob = logit_to_prob(
                 logit.squeeze(), sent_input_ids)[-length_ans+1:]

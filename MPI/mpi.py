@@ -110,7 +110,7 @@ class MPI():
         # QUESTIONS
         self.formatter = MPIQuestionFormatter(prompt, self.option)
         self.questions = np.array([self.formatter(x, k)
-                                  for x, k in zip(self.text, self.plus_minus)])
+                                   for x, k in zip(self.text, self.plus_minus)])
         # OCEAN SCORE
         self.OCEAN, self.scores = defaultdict(list), []
         # EXPERIMENT TYPE

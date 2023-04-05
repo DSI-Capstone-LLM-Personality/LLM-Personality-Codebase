@@ -11,6 +11,10 @@ import difflib as dl
 from Model.template import *
 import os
 
+#####  DEVICE CONFIGURATION  #####
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
 ######  OCEAN BASICS  ######
 OCEAN = ['O', 'C', 'E', 'A', 'N']
 # TODO: MBTI? or other personality test
