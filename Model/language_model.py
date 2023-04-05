@@ -137,6 +137,5 @@ class PROMPTER():
                                            max_new_tokens=self.g_config['max_tokens'])
             output = self.tokenizer.decode(response[0])
             return output
-
         else:
             assert False, 'Unrecognized Model Type.'
