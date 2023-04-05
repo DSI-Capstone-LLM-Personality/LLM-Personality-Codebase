@@ -23,12 +23,18 @@ from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTok
 ########## CONSTRAINT MCQA UTILITIES  ##########
 #---------- Language Models ----------#
 MODEL = {
-    'BERT': BertLMHeadModel,
-    'RoBERTa': RobertaForCausalLM,
-    'ALBERT': AlbertForPreTraining,
-    'SpanBERT': None,
-    'GPT': OpenAIGPTLMHeadModel,
-    'GPT2': GPT2LMHeadModel}
+    'Constraint': {
+        'BERT': BertLMHeadModel,
+        'RoBERTa': RobertaForCausalLM,
+        'ALBERT': AlbertForPreTraining,
+        'SpanBERT': None,
+        'GPT': OpenAIGPTLMHeadModel,
+        'GPT2': GPT2LMHeadModel
+    },
+    'Open-Vocab': {
+        'GPT2': GPT2LMHeadModel
+    }
+}
 TOKENIZER = {'BERT': AutoTokenizer,
              'ALBERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
@@ -114,5 +120,17 @@ class PROMPTER():
                 top_p=self.g_config['top_p']
             )
             return response['choices'][0]['text'].strip()
+        elif self.family == "GPT2":
+            # TODO: (Xiaoyang) Add paddings
+            inputs = self.tokenizer(prompt, return_tensors='pt')
+            input_ids = inputs.input_ids.to(DEVICE)
+            response = self.model.generate(input_ids, do_sample=True,
+                                           top_p=self.g_config['top_p'],
+                                           temperature=self.g_config['temperature'],
+                                           num_return_sequences=1,
+                                           early_stopping=True,
+                                           max_new_tokens=self.g_config['max_tokens'])
+            output = self.tokenizer.decode(response[0])
+            return output
         else:
             assert False, 'Unrecognized Model Type.'

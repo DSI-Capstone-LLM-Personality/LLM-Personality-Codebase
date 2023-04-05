@@ -74,7 +74,12 @@ family, version, access_method = model_config.values()
 if access_method == "api":
     model, tokenizer = None, None
 elif access_method == "hf":
-    model = MODEL[family].from_pretrained(version, is_decoder=False).to(DEVICE)
+    # TODO: Revise this structure
+    # if family == "GPT2" and regime == "Open-Vocab":
+    #     model = MODEL[regime][family].from_pretrained(
+    #         version, is_decoder=False).to(DEVICE)
+    model = MODEL[regime][family].from_pretrained(
+        version, is_decoder=False).to(DEVICE)
     tokenizer = TOKENIZER[family].from_pretrained(version)
 else:
     assert 'Unrecognized Access Method.'
