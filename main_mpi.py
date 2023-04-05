@@ -19,7 +19,7 @@ else:
         print("Let's use", torch.cuda.device_count(), "GPUs!")
     else:
         print("We are using CPUs.")
-print(DEVICE)
+print("Device:", DEVICE)
 # DEVICE Configuration
 
 
@@ -87,6 +87,7 @@ elif access_method == "hf":
     #         version, is_decoder=False).to(DEVICE)
     model = MODEL[regime][family].from_pretrained(
         version, is_decoder=False).to(DEVICE)
+    model.to(DEVICE)
     tokenizer = TOKENIZER[family].from_pretrained(version)
 else:
     assert 'Unrecognized Access Method.'
