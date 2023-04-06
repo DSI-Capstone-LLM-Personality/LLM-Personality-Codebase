@@ -274,7 +274,8 @@ class PROCESSER():
 
 
 # Test processor code
-openai.api_key = read_api_key("", 'kiyan')
+# openai.api_key = read_api_key("", 'kiyan')
+openai.api_key = read_api_key("", 'xysong')
 # processor = PROCESSER(verbose=True)
 # # item = "worry about things"
 # item = "have difficulty imagining things"
