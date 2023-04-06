@@ -168,6 +168,8 @@ def format_ans_distribution_latex_table(mpi):
     out = ""
     for vals in ans_dist_table:
         out += f"& ${vals}$ "
+    if mpi.regime == "Open-Vocab":
+        out += f"& ${(100 * mpi.processor.valid_idx.sum() / mpi.processor.n):.2f}\%$ "
     out += "\\\\"
     return out
 
@@ -263,6 +265,8 @@ class PROCESSER():
         self.valid_idx = np.array(self.valid_idx)
         print(
             f"Total number of invalid responses: {(~self.valid_idx).sum()}")
+        n_correct = self.valid_idx.sum()
+        print(f"Valid Percentage: {np.round(100 * (n_correct / self.n), 2)}%")
         # TODO: (Xiaoyang) Finish statistic logging
         responses = dict(Counter(self.raw_responses))
         # print(responses)
@@ -290,8 +294,12 @@ if __name__ == '__main__':
     # Formatting latex (remove this later)
     mpi_dir = "checkpoint/mpis/"
     # TO USE: change folder name and filename
+    # FOR OPEN VOCAB
+    # folder = "Open-Vocab/order-symmetry/text-davinci-002/non-index/desc/"
+    # file = "[ocean_988]_[GPT3|text-davinci-002]_[non-index]_[mpi-style-revised]_[order-II].pt"
+    # FOR CONSTRAINT
     folder = "Constraint/order-symmetry/gpt2-xl/non-index/desc/"
-    file = "[ocean_988]_[GPT2|gpt2-xl]_[non-index]_[mpi-style]_[order-II]_[desc].pt"
+    file = "[ocean_988]_[GPT2|gpt2-xl]_[non-index]_[mpi-style]_[order-I]_[desc].pt"
     mpi = load_mpi_instance(mpi_dir + folder + file)
     ocean_row = format_ocean_latex_table(mpi)
     print(ocean_row)
