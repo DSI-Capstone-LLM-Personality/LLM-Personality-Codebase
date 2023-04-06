@@ -13,7 +13,7 @@ from icecream import ic
 from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTokenizer, \
     BertForMaskedLM, AutoTokenizer, BertForNextSentencePrediction, \
     BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer, pipeline, BertForMultipleChoice, \
-    BertLMHeadModel, RobertaForCausalLM, AutoConfig, BartForConditionalGeneration, BartTokenizer
+    BertLMHeadModel, RobertaForCausalLM, AutoConfig
 
 # openai.api_key = read_api_key("", 'xysong')
 
@@ -29,8 +29,7 @@ MODEL = {
         'ALBERT': AlbertForPreTraining,
         'SpanBERT': None,
         'GPT': OpenAIGPTLMHeadModel,
-        'GPT2': GPT2LMHeadModel,
-        'BART': BartForConditionalGeneration,
+        'GPT2': GPT2LMHeadModel
     },
     'Open-Vocab': {
         'GPT2': GPT2LMHeadModel
@@ -40,8 +39,7 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'ALBERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
              'GPT': OpenAIGPTTokenizer,
-             'GPT2': GPT2Tokenizer,
-             'BART': BartTokenizer,}
+             'GPT2': GPT2Tokenizer}
 #---------- Language Model Perplexity  ----------#
 
 
