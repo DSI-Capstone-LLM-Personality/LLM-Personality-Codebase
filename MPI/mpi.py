@@ -396,6 +396,9 @@ class MPI():
                             f"THIS QUESTION IS DISCARDED! GENERATED RESPONSE IS NOT VALID!")
                     print("\n")
             line()
+            # If necessary write statistics in latex format
+            print(format_ocean_latex_table(self))
+            print(format_ans_distribution_latex_table(self))
             f.close()
             sys.stdout = original_stdout
 

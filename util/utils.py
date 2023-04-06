@@ -148,7 +148,49 @@ class MPIQuestionFormatter():
 def line(n=80): print("-"*n)
 
 
+def load_mpi_instance(filename):
+    return torch.load(filename, map_location=torch.device('cpu'))
+
+
+def format_ans_distribution_latex_table(mpi):
+    assert mpi.answered
+    ans_dist_table = []
+    for sign in ['+', '-']:
+        stat = Counter(mpi.preds_key[mpi.plus_minus == sign])
+        for item in mpi.mpi_choice_lst[sign]:
+            ans_dist_table.append(stat[item])
+    # Change order if necessary
+    order = np.array([[a, b] for a, b, in zip(
+        np.arange(5), np.arange(5, 10, 1))]).flatten()
+    # print(order)
+    ans_dist_table = np.array(ans_dist_table)[order]
+    # Formatting
+    out = ""
+    for vals in ans_dist_table:
+        out += f"& ${vals}$ "
+    out += "\\\\"
+    return out
+
+
+def format_ocean_latex_table(mpi):
+    # Note that the output is a single row of table
+    ocean_scores = mpi.OCEAN
+    ocean_table = []
+    for item in OCEAN:
+        vals = torch.tensor(ocean_scores[item], dtype=torch.float32)
+        mean, std = torch.mean(vals).item(), torch.std(vals).item()
+        ocean_table.append(mean)
+        ocean_table.append(std)
+    # Formatting
+    out = ""
+    for vals in ocean_table:
+        out += f"& ${vals:.2f}$ "
+    out += "\\\\"
+    return out
+
+
 def set_seed(seed):
+    # TODO: (Xiaoyang) change this function later
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -232,7 +274,7 @@ class PROCESSER():
 
 
 # Test processor code
-# openai.api_key = read_api_key("", 'kiyan')
+openai.api_key = read_api_key("", 'kiyan')
 # processor = PROCESSER(verbose=True)
 # # item = "worry about things"
 # item = "have difficulty imagining things"
@@ -241,3 +283,16 @@ class PROCESSER():
 #     engine="text-davinci-002", prompt=eg_q, temperature=0.1, max_tokens=10, top_p=0.95, logprobs=1)
 # ic(response['choices'][0]['text'].strip())
 # ic(processor(response['choices'][0]['text']))
+
+
+if __name__ == '__main__':
+    # Formatting latex (remove this later)
+    mpi_dir = "checkpoint/mpis/"
+    # TO USE: change folder name and filename
+    folder = "Constraint/order-symmetry/gpt2-xl/non-index/desc/"
+    file = "[ocean_988]_[GPT2|gpt2-xl]_[non-index]_[mpi-style]_[order-II]_[desc].pt"
+    mpi = load_mpi_instance(mpi_dir + folder + file)
+    ocean_row = format_ocean_latex_table(mpi)
+    print(ocean_row)
+    ans_dist_row = format_ans_distribution_latex_table(mpi)
+    print(ans_dist_row)
