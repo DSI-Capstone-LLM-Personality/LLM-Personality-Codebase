@@ -295,14 +295,18 @@ class MPI():
         print("OTHER INTERESTING STATS")
         # Format length
         l = max(7, max([len(x) for x in self.mpi_choice_lst['+']]))
-        if self.regime == "Constraint":
-            for sign in ['+', '-']:
-                stat = Counter(self.preds_key[self.plus_minus == sign])
-                print(f"{sign} Questions: ")
-                print(f"{'ANSWERS':<{l}} | Count")
-                for item in self.mpi_choice_lst[sign]:
-                    print(f"{item:<{l}} |   {stat[item]}")
-        else:
+        for sign in ['+', '-']:
+            condition_mask = self.plus_minus == sign
+            if self.regime == "Constraint":
+                mask = condition_mask
+            else:
+                mask = np.logical_and(condition_mask, self.valid_mask)
+            stat = Counter(self.preds_key[mask])
+            print(f"{sign} Questions: ")
+            print(f"{'ANSWERS':<{l}} | Count")
+            for item in self.mpi_choice_lst[sign]:
+                print(f"{item:<{l}} |   {stat[item]}")
+        if self.regime != 'Constraint':
             self.processor.display_stats()
 
     def display_trait_stats(self):
