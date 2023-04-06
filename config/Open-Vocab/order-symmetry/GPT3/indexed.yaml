@@ -14,15 +14,17 @@ dataset:
 
 template:
   prompt: mpi-style-revised
-  description: non-index
-  index: null
+  description: syntactically-index
+  index:
+    "+": letter
+    "-": letter
   desc:
     "+": mpi
     "-": mpi
-  ans_type: desc # For open-vocab regime, this should always agree with {index}
+  ans_type: index-desc # For open-vocab regime, this should always agree with {index}
 
 shuffle:
-  order: order-III
+  order: reverse
   shuffle_both: False
 
 model:
