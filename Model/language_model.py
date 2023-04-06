@@ -95,6 +95,17 @@ class LMPROB():
             ll = prob_to_ll(prob, self.ll_type)
             toi = sent_input_ids[-length_ans+1:]
             return prob, ll, toi
+        elif self.family in ['BART']:
+            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
+            length_ans = len(answer_input_ids)
+            sent_input_ids = tokens.input_ids[0].to(DEVICE)
+            out = self.model(**tokens)
+            logit = self.model(**tokens).logits
+            prob = logit_to_prob(
+                logit.squeeze(), sent_input_ids)[-length_ans+2:-1]
+            ll = prob_to_ll(prob, self.ll_type)
+            toi = sent_input_ids[-length_ans+2:-1]
+            return prob, ll, toi
         elif self.family in ['T5']:
             pass
         else:
