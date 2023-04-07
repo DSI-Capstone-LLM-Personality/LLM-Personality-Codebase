@@ -13,7 +13,7 @@ from icecream import ic
 from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTokenizer, \
     BertForMaskedLM, AutoTokenizer, BertForNextSentencePrediction, \
     BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer, pipeline, BertForMultipleChoice, \
-    BertLMHeadModel, RobertaForCausalLM, AutoConfig
+    BertLMHeadModel, RobertaForCausalLM, AutoConfig, BartForConditionalGeneration, BartTokenizer, T5ForConditionalGeneration
 
 # openai.api_key = read_api_key("", 'xysong')
 
@@ -29,7 +29,9 @@ MODEL = {
         'ALBERT': AlbertForPreTraining,
         'SpanBERT': None,
         'GPT': OpenAIGPTLMHeadModel,
-        'GPT2': GPT2LMHeadModel
+        'GPT2': GPT2LMHeadModel,
+        'BART': BartForConditionalGeneration,
+        't5': T5ForConditionalGeneration,
     },
     'Open-Vocab': {
         'GPT2': GPT2LMHeadModel
@@ -39,7 +41,9 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'ALBERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
              'GPT': OpenAIGPTTokenizer,
-             'GPT2': GPT2Tokenizer}
+             'GPT2': GPT2Tokenizer,
+             'BART': BartTokenizer,
+             't5': AutoTokenizer}
 #---------- Language Model Perplexity  ----------#
 
 
@@ -95,8 +99,26 @@ class LMPROB():
             ll = prob_to_ll(prob, self.ll_type)
             toi = sent_input_ids[-length_ans+1:]
             return prob, ll, toi
-        elif self.family in ['T5']:
-            pass
+        elif self.family in ['BART']:
+            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
+            length_ans = len(answer_input_ids)
+            sent_input_ids = tokens.input_ids[0].to(DEVICE)
+            logit = self.model(**tokens).logits
+            prob = logit_to_prob(
+                logit.squeeze(), sent_input_ids)[-length_ans+2:-1]
+            ll = prob_to_ll(prob, self.ll_type)
+            toi = sent_input_ids[-length_ans+2:-1]
+            return prob, ll, toi
+        elif self.family in ['t5']:
+            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
+            length_ans = len(answer_input_ids)
+            sent_input_ids = tokens.input_ids[0].to(DEVICE)
+            logit = self.model(**tokens, decoder_input_ids=tokens.input_ids).logits
+            prob = logit_to_prob(
+                logit.squeeze(), sent_input_ids)[-length_ans:-1]
+            ll = prob_to_ll(prob, self.ll_type)
+            toi = sent_input_ids[-length_ans:-1]
+            return prob, ll, toi
         else:
             assert False, 'Unrecognized model family'
 
