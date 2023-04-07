@@ -10,10 +10,10 @@ import numpy as np
 from util.utils import *
 from icecream import ic
 # HuggingFace & Torch
-from transformers import AlbertForPreTraining, AutoTokenizer, BertModel, BertTokenizer, \
-    BertForMaskedLM, AutoTokenizer, BertForNextSentencePrediction, \
-    BertForQuestionAnswering, GPT2LMHeadModel, GPT2Tokenizer, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer, pipeline, BertForMultipleChoice, \
-    BertLMHeadModel, RobertaForCausalLM, AutoConfig
+from transformers import AlbertForPreTraining, AutoTokenizer, GPT2LMHeadModel, \
+    GPT2Tokenizer, OpenAIGPTLMHeadModel,\
+    OpenAIGPTTokenizer, pipeline, BertLMHeadModel, RobertaForCausalLM, \
+    BartForConditionalGeneration
 
 # openai.api_key = read_api_key("", 'xysong')
 
@@ -32,14 +32,16 @@ MODEL = {
         'GPT2': GPT2LMHeadModel
     },
     'Open-Vocab': {
-        'GPT2': GPT2LMHeadModel
+        'GPT2': GPT2LMHeadModel,
+        'BART': BartForConditionalGeneration
     }
 }
 TOKENIZER = {'BERT': AutoTokenizer,
              'ALBERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
              'GPT': OpenAIGPTTokenizer,
-             'GPT2': GPT2Tokenizer}
+             'GPT2': GPT2Tokenizer,
+             'BART': AutoTokenizer}
 #---------- Language Model Perplexity  ----------#
 
 
@@ -125,7 +127,7 @@ class PROMPTER():
             )
             return response['choices'][0]['text'].strip()
 
-        elif self.family == "GPT2":
+        elif self.family in ["GPT2", "BART"]:
             # TODO: (Xiaoyang) Add paddings
             inputs = self.tokenizer(prompt, return_tensors='pt')
             input_ids = inputs.input_ids.to(DEVICE)
