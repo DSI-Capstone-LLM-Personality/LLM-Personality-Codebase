@@ -11,8 +11,8 @@ from util.utils import *
 from icecream import ic
 # HuggingFace & Torch
 from transformers import AlbertForPreTraining, AutoTokenizer, GPT2LMHeadModel, \
-    GPT2Tokenizer, OpenAIGPTLMHeadModel,\
-    OpenAIGPTTokenizer, pipeline, BertLMHeadModel, RobertaForCausalLM, \
+    GPT2Tokenizer, GPTNeoForCausalLM, GPTNeoXForCausalLM, GPTNeoXTokenizerFast,\
+    OpenAIGPTLMHeadModel, OpenAIGPTTokenizer, pipeline, BertLMHeadModel, RobertaForCausalLM, \
     BartForConditionalGeneration
 
 # openai.api_key = read_api_key("", 'xysong')
@@ -29,7 +29,9 @@ MODEL = {
         'ALBERT': AlbertForPreTraining,
         'SpanBERT': None,
         'GPT': OpenAIGPTLMHeadModel,
-        'GPT2': GPT2LMHeadModel
+        'GPT2': GPT2LMHeadModel,
+        'GPTNEO': GPTNeoForCausalLM,
+        'GPTNEOX':GPTNeoXForCausalLM
     },
     'Open-Vocab': {
         'GPT2': GPT2LMHeadModel,
@@ -41,6 +43,8 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
              'GPT': OpenAIGPTTokenizer,
              'GPT2': GPT2Tokenizer,
+             'GPTNEO':GPT2Tokenizer,
+             'GPTNEOX':GPTNeoXTokenizerFast,
              'BART': AutoTokenizer}
 #---------- Language Model Perplexity  ----------#
 
@@ -86,7 +90,7 @@ class LMPROB():
             ll = prob_to_ll(prob, self.ll_type)
             toi = sent_input_ids[-length_ans-1:-1]
             return prob, ll, toi
-        elif self.family in ['GPT', 'GPT2']:
+        elif self.family in ['GPT', 'GPT2', 'GPTNEO', 'GPTNEOX']:
             answer_input_ids = ans_token.input_ids[0].to(DEVICE)
             length_ans = len(answer_input_ids)
             sent_input_ids = tokens.input_ids[0].to(DEVICE)
