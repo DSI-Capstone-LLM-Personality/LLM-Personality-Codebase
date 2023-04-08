@@ -9,10 +9,10 @@ echo -e $(printf "${COLOR}JOB STARTED!!!${ENDCOLOR}")
 # DO NOT MODIFY ABOVE
 
 # TO RUN: change the following as needed:
-REGIME="Constraint"
-# REGIME="Open-Vocab" # uncomment this if necessary
+# REGIME="Constraint"
+REGIME="Open-Vocab" # uncomment this if necessary
 TYPE="order-symmetry"
-MODEL="GPT2-Large" #
+MODEL="GPT2" #
 driver="non-index.yaml"
 
 # Declare file path & Driver files
@@ -25,7 +25,7 @@ for ((i=0; i<${#ORDERS[@]}; i++)); do
     echo -e $(printf "${COLOR}CURRENT RUNNING ORDER: ${ORDERS[i]}${ENDCOLOR}")
     echo -e $(printf "${COLOR}${LINE// /=}${ENDCOLOR}")
     yaml-set $FILE --change='/shuffle/order' --value=${ORDERS[i]}
-    python3 $script --config=$FILE
+    python3 $script --config=$FILE --verbose
 done
 
 echo -e $(printf "${COLOR}${LINE// /=}${ENDCOLOR}")
