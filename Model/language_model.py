@@ -31,7 +31,7 @@ MODEL = {
         'GPT': OpenAIGPTLMHeadModel,
         'GPT2': GPT2LMHeadModel,
         'GPTNEO': GPTNeoForCausalLM,
-        'GPTNEOX':GPTNeoXForCausalLM
+        'GPTNEOX': GPTNeoXForCausalLM
     },
     'Open-Vocab': {
         'GPT2': GPT2LMHeadModel,
@@ -43,8 +43,8 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'RoBERTa': AutoTokenizer,
              'GPT': OpenAIGPTTokenizer,
              'GPT2': GPT2Tokenizer,
-             'GPTNEO':GPT2Tokenizer,
-             'GPTNEOX':GPTNeoXTokenizerFast,
+             'GPTNEO': GPT2Tokenizer,
+             'GPTNEOX': GPTNeoXTokenizerFast,
              'BART': AutoTokenizer}
 #---------- Language Model Perplexity  ----------#
 
@@ -135,11 +135,9 @@ class PROMPTER():
             # TODO: (Xiaoyang) Add paddings
             inputs = self.tokenizer(prompt, return_tensors='pt')
             input_ids = inputs.input_ids.to(DEVICE)
-            response = self.model.generate(input_ids, do_sample=True,
+            response = self.model.generate(input_ids,
                                            top_p=self.g_config['top_p'],
                                            temperature=self.g_config['temperature'],
-                                           num_return_sequences=1,
-                                           early_stopping=True,
                                            max_new_tokens=self.g_config['max_tokens'])
             output = self.tokenizer.decode(response[0])
             return output
