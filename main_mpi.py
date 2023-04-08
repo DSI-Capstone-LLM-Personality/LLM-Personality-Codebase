@@ -100,7 +100,7 @@ else:
 
 #####  Additional directory parsing (For necessary model family only)  #####
 if family in ['GPTNEO', 'GPTNEOX', 'BART']:
-    version = version.split('/')[1]
+    model_config['version'] = version = version.split('/')[1]
 
 log_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
 ckpt_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
