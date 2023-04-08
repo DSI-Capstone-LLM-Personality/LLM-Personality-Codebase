@@ -33,6 +33,8 @@ OCEAN = ['O', 'C', 'E', 'A', 'N']
 
 def log_fname(dset, model_desc, answer_type, ll_type=None):
     family, version = model_desc['family'], model_desc['version']
+    if family in ['GPTNEO', 'GPTNEOX']:
+        version = version.split('/')[1]
     if ll_type is None:
         return f"[{dset}]_[{family}|{version}]_[{answer_type}]"
     return f"[{dset}]_[{family} | {version}]_[{answer_type}]_[{ll_type}]"

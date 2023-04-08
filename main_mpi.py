@@ -99,6 +99,9 @@ else:
     assert False, 'Unrecognized Regime.'
 
 #####  Process directory  #####
+if family in ['GPTNEO','GPTNEOX']:
+    version = version.split('/')[1]
+
 log_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
 ckpt_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
 os.makedirs(log_dir, exist_ok=True)
@@ -132,6 +135,7 @@ elif regime == "Open-Vocab":
                           generation_config, verbose)
 else:
     assert False, 'Unrecognized Regime.'
+
 
 mpi.write_statistic(log_dir + filename + '.txt')
 mpi.save_checkpoint(ckpt_dir + filename + '.pt')
