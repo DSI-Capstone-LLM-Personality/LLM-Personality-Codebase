@@ -12,7 +12,7 @@ echo -e $(printf "${COLOR}JOB STARTED!!!${ENDCOLOR}")
 # REGIME="Constraint"
 REGIME="Open-Vocab" # uncomment this if necessary
 TYPE="order-symmetry"
-MODEL="GPT2" #
+MODEL="BART" #
 driver="non-index.yaml"
 
 # Declare file path & Driver files
