@@ -39,12 +39,17 @@ export PYTHONPATH=$PATHONPATH:`pwd`
 ```
 
 ### Running Order-Symmetry Experiment
+
 To run order-symmetry experiment quickly, simple type in your terminal the following commands:
+
 ```
 bash run.sh -r <regime> -t <type> -m <model> -d <*.yaml config file>
 ```
+
 For example, to run the _Constraint_ search _order-symmetry_ experiment on _BERT-Base_ model with _non-indexed_ template, simply type in:
+
 ```
 bash run.sh -r 'Constraint' -t 'order-symmetry' -m 'BERT-Base' -d 'non-index.yaml'
 ```
-Note that you can also directly run `bash run.sh` without providing those command line arguments. Then you will follow the instructions to enter everything needed.
+
+For more details of file structures, please check the `config` folder for details. Note that You can also directly run `bash run.sh` without providing those command line arguments. Then you will follow the instructions to enter everything needed. In addition, the default verbosity is `False`. To change this, please modify `run.sh` according to instructions at line `75`.
