@@ -3,7 +3,7 @@
 # date
 COLOR="\e[1;31m"
 # Color themes: Yellow, Green, Cyan Blue
-declare -a PROMPTCOLOR=("\e[33m" "\e[34m" "\e[32m" "\e[36m")
+declare -a PROMPTCOLOR=("\e[1;33m" "\e[1;34m" "\e[1;32m" "\e[1;36m")
 ENDCOLOR="\e[0m"
 LINE=$(printf "%80s")
 echo -e $(printf "${COLOR}${LINE// /=}${ENDCOLOR}")

@@ -40,7 +40,7 @@ export PYTHONPATH=$PATHONPATH:`pwd`
 
 ### Running Order-Symmetry Experiment
 
-To run order-symmetry experiment quickly, simple type in your terminal the following commands:
+To run order-symmetry experiment efficiently, simple type in your terminal the following commands:
 
 ```
 time bash run.sh -r <regime> -t <type> -m <model> -d <*.yaml config file>
