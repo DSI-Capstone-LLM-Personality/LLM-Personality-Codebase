@@ -31,7 +31,7 @@ MODEL = {
         'GPT': OpenAIGPTLMHeadModel,
         'GPT2': GPT2LMHeadModel,
         'BART': BartForConditionalGeneration,
-        't5': T5ForConditionalGeneration,
+        'T5': T5ForConditionalGeneration,
     },
     'Open-Vocab': {
         'GPT2': GPT2LMHeadModel
@@ -43,7 +43,7 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'GPT': OpenAIGPTTokenizer,
              'GPT2': GPT2Tokenizer,
              'BART': BartTokenizer,
-             't5': AutoTokenizer}
+             'T5': AutoTokenizer}
 #---------- Language Model Perplexity  ----------#
 
 
@@ -109,7 +109,7 @@ class LMPROB():
             ll = prob_to_ll(prob, self.ll_type)
             toi = sent_input_ids[-length_ans+2:-1]
             return prob, ll, toi
-        elif self.family in ['t5']:
+        elif self.family in ['T5']:
             answer_input_ids = ans_token.input_ids[0].to(DEVICE)
             length_ans = len(answer_input_ids)
             sent_input_ids = tokens.input_ids[0].to(DEVICE)
