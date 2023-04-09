@@ -3,7 +3,7 @@
 # date
 COLOR="\e[1;31m"
 # Color themes: Yellow, Green, Cyan Blue
-declare -a PROMPTCOLOR=("\e[33m" "\e[32m" "\e[36m" "\e[34m")
+declare -a PROMPTCOLOR=("\e[33m" "\e[34m" "\e[32m" "\e[36m")
 ENDCOLOR="\e[0m"
 LINE=$(printf "%80s")
 echo -e $(printf "${COLOR}${LINE// /=}${ENDCOLOR}")
@@ -30,10 +30,11 @@ do
     esac
 done
 # If no command line argument is provided, prompt as needed
-if [[ $# -eq 0 ]] || [[ $# -ne 8 ]]
+if [[ $# -eq 0 ]] || [[ $# -ne 8 ]] # TODO: change this later to handle more arguments
 then
     echo -e $(printf "${COLOR}NO cmd line arguments given or the arguments are not valid.${ENDCOLOR}")
     echo -e $(printf "${COLOR}Please enter it manually below OR [Ctrl+C] to exit and re-enter cmd arguments.${ENDCOLOR}")
+    echo -e $(printf "${COLOR}This is NOT an error. You may proceed now.${ENDCOLOR}")
     echo -e $(printf "${COLOR}${LINE// /=}${ENDCOLOR}")
     # Read-in inputs version
     echo -e $(printf "${PROMPTCOLOR[0]}${LINE// /#}${ENDCOLOR}")
