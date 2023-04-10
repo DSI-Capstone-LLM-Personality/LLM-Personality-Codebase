@@ -109,6 +109,9 @@ class LMPROB():
             sent_input_ids = tokens.input_ids[0]
             logit = self.model(
                 **tokens, decoder_input_ids=tokens.input_ids).logits
+            ic(logit)
+            logit = logit.cpu()
+            ic(logit)
             prob = logit_to_prob(
                 logit.squeeze(), sent_input_ids)[-length_ans:-1]
             ll = prob_to_ll(prob, self.ll_type)
