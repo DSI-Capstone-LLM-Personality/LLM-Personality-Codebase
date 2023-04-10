@@ -87,7 +87,7 @@ elif access_method == "hf":
     #         version, is_decoder=False).to(DEVICE)
     model = MODEL[regime][family].from_pretrained(
         version, is_decoder=False).to(DEVICE)
-    model.to(DEVICE)
+    model = torch.nn.DataParallel(model)  # Default argument is fine
     tokenizer = TOKENIZER[family].from_pretrained(version)
 else:
     assert 'Unrecognized Access Method.'
