@@ -309,6 +309,7 @@ class MPI():
         # TODO: (Xiaoyang) add more functionality here
         # self.reset()
         # return np.array(self.stats)
+        return self.stats
 
     def display_aux_stats(self):
         line()
@@ -433,6 +434,11 @@ class MPI():
 if __name__ == '__main__':
     ic("Prompting experiments on MPI dataset...")
     # Filename (may vary on your local computer)
-    filename = "mpi_small"
-    local_path = "Dataset/" + f"{filename}.csv"
-    read_mpi(local_path, True, 5)
+    # filename = "mpi_small"
+    # local_path = "Dataset/" + f"{filename}.csv"
+    # read_mpi(local_path, True, 5)
+
+    # mpi_dir = "checkpoint/mpis/"
+    # folder = "Constraint/order-symmetry/gpt2-xl/non-index/desc/"
+    # file = "[ocean_988]_[GPT2|gpt2-xl]_[non-index]_[mpi-style]_[order-I]_[desc].pt"
+    # mpi = load_mpi_instance(mpi_dir + folder + file)
