@@ -106,7 +106,7 @@ class LMPROB():
         elif self.family in ['T5']:
             answer_input_ids = ans_token.input_ids[0].to(DEVICE)
             length_ans = len(answer_input_ids)
-            sent_input_ids = tokens.input_ids[0].to(DEVICE)
+            sent_input_ids = tokens.input_ids[0]
             logit = self.model(
                 **tokens, decoder_input_ids=tokens.input_ids).logits
             prob = logit_to_prob(
