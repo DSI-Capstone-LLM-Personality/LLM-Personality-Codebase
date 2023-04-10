@@ -1,24 +1,28 @@
+import os
+import argparse
+import yaml
 from MPI.mpi import *
 from Model.language_model import *
 from Model.template import *
 from util.utils import *
-import yaml
-import argparse
-import os
-
+import colored
+import colorama
+from colorama import Fore, Back, Style
+# colorama.init(autoreset=True)
 # DEVICE Configuration
+print(colored.fg("#ffbf00") + Style.BRIGHT + line(n=120, is_print=False))
 if torch.backends.mps.is_available():
-    print("mps is built: ", torch.backends.mps.is_built())
-    print("Let's use GPUs!")
+    print("-- MPS is built: ", torch.backends.mps.is_built())
+    print("-- Let's use GPUs!")
 elif torch.cuda.is_available():
-    print(f"Current Device: {torch.cuda.get_device_name(0)}")
-    print(f"{torch.cuda.get_device_properties(0).total_memory / 1024}GB")
-    print("Let's use", torch.cuda.device_count(), "GPUs!")
+    print(f"-- Current Device: {torch.cuda.get_device_name(0)}")
+    print(
+        f"-- Device Total Memory: {torch.cuda.get_device_properties(0).total_memory / (1024**3):.2f} GB")
+    print("-- Let's use", torch.cuda.device_count(), "GPUs!")
 else:
-    print("We are using CPUs.")
-print("Device:", DEVICE)
-
-
+    print("-- Unfortunately, we are only using CPUs now.")
+line(n=120)
+print(colored.fg("#d33682") + Style.NORMAL + line(n=120, is_print=False))
 # Parse Input Arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', help='configuration file')
@@ -69,7 +73,7 @@ if order_name is not None:
     shuffle_both = config['shuffle']['shuffle_both']
 else:
     order, shuffle_both = None, None
-ic(order_name)
+# ic(order_name)
 
 #####  Model & Tokenizer Initialization  #####
 model_config = config['model']

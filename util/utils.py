@@ -147,7 +147,11 @@ class MPIQuestionFormatter():
 
 
 ######  UTILITY FUNCTIONS  ######
-def line(n=80): print("-"*n)
+def line(n=80, is_print=True):
+    if is_print:
+        print("-"*n)
+    else:
+        return "-"*n
 
 
 def load_mpi_instance(filename):

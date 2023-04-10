@@ -12,6 +12,8 @@ from collections import Counter, defaultdict
 from util.utils import *
 from tqdm import tqdm
 import sys
+from colorama import Fore, Back, Style
+import colored
 from tabulate import tabulate
 from Model.template import *
 from Model.language_model import *
@@ -102,11 +104,20 @@ class MPI():
         # OPTIONS
         self.option_formatter = MPIOptionFormatter(self.index, self.desc)
         self.option = self.option_formatter(order, shuffle_both)
-        ic(self.option)
+        # Print out options for checking purpose
+        line(120)
+        print(colored.fg("#00b384") + Style.BRIGHT + line(n=120, is_print=False))
+        for key, vals in self.option.items():
+            print(colored.fg('#ffbf00') + f"OPTIONS for {key} QUESTIONS: ")
+            print(colored.fg("#00b384") + f">> {vals}")
         # ANSWERS
         self.mpi_choice_lst = MPI_options_to_answers(
             self.index, self.desc, self.option, ans_type, order)
-        ic(self.mpi_choice_lst)
+        line(120)
+        for key, vals in self.mpi_choice_lst.items():
+            print(colored.fg('#ffbf00') + f"ANSWERS for {key} QUESTIONS: ")
+            print(colored.fg("#00b384") + f">> {vals}")
+        line(120)
         # QUESTIONS
         self.formatter = MPIQuestionFormatter(prompt, self.option)
         self.questions = np.array([self.formatter(x, k)
@@ -147,6 +158,9 @@ class MPI():
         # TODO: (Xiaoyang) more functionality here...
 
     def open_vocab_answer(self, tokenizer, model, model_desc: dict, param_dict: dict, verbose=False):
+        print(colored.fg("blue")+line(120, False))
+        print(colored.fg("blue")+"Open Vocabulary Search Experiment Running......")
+        print(colored.fg("blue")+line(120, False))
         assert not self.answered
         assert "version" in model_desc
         assert "family" in model_desc
@@ -155,7 +169,7 @@ class MPI():
         self.prompter = PROMPTER(family, model, tokenizer, param_dict, version)
         # TODO: use the parser class here
         with torch.no_grad():
-            for idx, prompt in enumerate(tqdm(self.questions)):
+            for idx, prompt in enumerate(tqdm(self.questions, colour="#b58900")):
                 key = self.plus_minus[idx]
                 response = self.prompter(prompt)
                 # Process generated responses
@@ -169,6 +183,7 @@ class MPI():
                 self.mpi_response.append(mpi_response)
                 if pred == -1:
                     if verbose:
+                        print(colored.fg('#d33682') + line(120, False))
                         print(
                             f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key}")
                         print(f">> Generated Response: {response}")
@@ -204,6 +219,9 @@ class MPI():
                 self.display_trait_stats()
 
     def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
+        print(colored.fg("blue")+line(120, False))
+        print(colored.fg("blue")+"Constraint Search Experiment Running......")
+        print(colored.fg("blue")+line(120, False))
         # Argument check
         assert not self.answered
         assert "version" in model_desc
@@ -216,8 +234,9 @@ class MPI():
             line()
             print("Constraint MCQA task starts...")
             line()
+            # print(colored.fg('#b58900') + line(120, False))
         with torch.no_grad():
-            for idx, prompt in enumerate(tqdm(self.questions)):
+            for idx, prompt in enumerate(tqdm(self.questions, colour='#b58900')):
                 ll_lst, prob_lst, toi_lst = [], [], []
                 # NOTE: currently unequal sequence length forbids us doing batch-level operation
                 # TODO: (Xiaoyang) Find a way to do batch-level processing later...
@@ -243,6 +262,7 @@ class MPI():
                 score = MPI_SCORE[key][pred]
                 self.scores.append(score)
                 if verbose:
+                    print(colored.fg('#d33682') + line(120, False))
                     print(
                         f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key} | SCORE: {score} | ANSWER: {self.mpi_choice_lst[key][pred]}")
                     print(
