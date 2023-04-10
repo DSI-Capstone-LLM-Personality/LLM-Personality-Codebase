@@ -309,7 +309,7 @@ class MPI():
         # TODO: (Xiaoyang) add more functionality here
         # self.reset()
         # return np.array(self.stats)
-        return self.stats
+        # return self.stats
 
     def display_aux_stats(self):
         line()
