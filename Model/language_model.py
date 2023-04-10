@@ -13,7 +13,7 @@ from icecream import ic
 from transformers import AlbertForPreTraining, AutoTokenizer, GPT2LMHeadModel, \
     GPT2Tokenizer, GPTNeoForCausalLM, GPTNeoXForCausalLM, GPTNeoXTokenizerFast,\
     OpenAIGPTLMHeadModel, OpenAIGPTTokenizer, pipeline, BertLMHeadModel, RobertaForCausalLM, \
-    BartForConditionalGeneration
+    BartForConditionalGeneration, T5ForConditionalGeneration
 
 # openai.api_key = read_api_key("", 'xysong')
 
@@ -31,7 +31,8 @@ MODEL = {
         'GPT': OpenAIGPTLMHeadModel,
         'GPT2': GPT2LMHeadModel,
         'GPTNEO': GPTNeoForCausalLM,
-        'GPTNEOX': GPTNeoXForCausalLM
+        'GPTNEOX': GPTNeoXForCausalLM,
+        'T5': T5ForConditionalGeneration
     },
     'Open-Vocab': {
         'GPT2': GPT2LMHeadModel,
@@ -45,7 +46,8 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'GPT2': GPT2Tokenizer,
              'GPTNEO': GPT2Tokenizer,
              'GPTNEOX': GPTNeoXTokenizerFast,
-             'BART': AutoTokenizer}
+             'BART': AutoTokenizer,
+             'T5': AutoTokenizer}
 #---------- Language Model Perplexity  ----------#
 
 
@@ -102,7 +104,16 @@ class LMPROB():
             toi = sent_input_ids[-length_ans+1:]
             return prob, ll, toi
         elif self.family in ['T5']:
-            pass
+            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
+            length_ans = len(answer_input_ids)
+            sent_input_ids = tokens.input_ids[0].to(DEVICE)
+            logit = self.model(
+                **tokens, decoder_input_ids=tokens.input_ids).logits
+            prob = logit_to_prob(
+                logit.squeeze(), sent_input_ids)[-length_ans:-1]
+            ll = prob_to_ll(prob, self.ll_type)
+            toi = sent_input_ids[-length_ans:-1]
+            return prob, ll, toi
         else:
             assert False, 'Unrecognized model family'
 
