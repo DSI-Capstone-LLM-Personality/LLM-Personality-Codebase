@@ -32,11 +32,15 @@ MODEL = {
         'GPT2': GPT2LMHeadModel,
         'GPTNEO': GPTNeoForCausalLM,
         'GPTNEOX': GPTNeoXForCausalLM,
-        'T5': T5ForConditionalGeneration
+        'BART': BartForConditionalGeneration,
+        'T5': T5ForConditionalGeneration,
+        'FLAN-T5': T5ForConditionalGeneration,
     },
     'Open-Vocab': {
         'GPT2': GPT2LMHeadModel,
-        'BART': BartForConditionalGeneration
+        'BART': BartForConditionalGeneration,
+        'T5': T5ForConditionalGeneration,
+        'FLAN-T5': T5ForConditionalGeneration,
     }
 }
 TOKENIZER = {'BERT': AutoTokenizer,
@@ -47,7 +51,8 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'GPTNEO': GPT2Tokenizer,
              'GPTNEOX': GPTNeoXTokenizerFast,
              'BART': AutoTokenizer,
-             'T5': AutoTokenizer}
+             'T5': AutoTokenizer,
+             'FLAN-T5': AutoTokenizer}
 #---------- Language Model Perplexity  ----------#
 
 
@@ -103,6 +108,16 @@ class LMPROB():
             ll = prob_to_ll(prob, self.ll_type)
             toi = sent_input_ids[-length_ans+1:]
             return prob, ll, toi
+        elif self.family in ['BART']:
+            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
+            length_ans = len(answer_input_ids)
+            sent_input_ids = tokens.input_ids[0].to(DEVICE)
+            logit = self.model(**tokens).logits
+            prob = logit_to_prob(
+                logit.squeeze(), sent_input_ids)[-length_ans+2:-1]
+            ll = prob_to_ll(prob, self.ll_type)
+            toi = sent_input_ids[-length_ans+2:-1]
+            return prob, ll, toi
         elif self.family in ['T5']:
             answer_input_ids = ans_token.input_ids[0].to(DEVICE)
             length_ans = len(answer_input_ids)
@@ -144,6 +159,25 @@ class PROMPTER():
 
         elif self.family in ["GPT2", "BART"]:
             # TODO: (Xiaoyang) Add paddings
+            inputs = self.tokenizer(prompt, return_tensors='pt')
+            input_ids = inputs.input_ids.to(DEVICE)
+            response = self.model.generate(input_ids,
+                                           top_p=self.g_config['top_p'],
+                                           temperature=self.g_config['temperature'],
+                                           max_new_tokens=self.g_config['max_tokens'])
+            output = self.tokenizer.decode(response[0])
+            return output
+        elif self.family in ["FLAN-T5"]:
+            inputs = self.tokenizer(prompt, return_tensors='pt')
+            input_ids = inputs.input_ids.to(DEVICE)
+            response = self.model.generate(input_ids,
+                                           top_p=self.g_config['top_p'],
+                                           temperature=self.g_config['temperature'],
+                                           max_new_tokens=self.g_config['max_tokens'])
+            output = self.tokenizer.decode(response[0][1:-1]) # remove <pad> and <\s>
+            return output
+        elif self.family in ["T5"]:
+            ## TODO: (Morris) Find reasonable reponse
             inputs = self.tokenizer(prompt, return_tensors='pt')
             input_ids = inputs.input_ids.to(DEVICE)
             response = self.model.generate(input_ids,
