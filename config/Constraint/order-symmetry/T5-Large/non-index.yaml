@@ -1,0 +1,34 @@
+---
+experiment:
+  regime: Constraint
+  category: order-symmetry
+
+path:
+  dset_dir: Dataset/
+  mpi_log_dir: checkpoint/log/
+  mpi_ckpt_dir: checkpoint/mpis/
+
+dataset:
+  dset: ocean_988
+  start:
+  end:
+template:
+  prompt: mpi-style
+  description: non-index
+  index:
+  desc:
+    "+": mpi
+    "-": mpi
+  ans_type: desc
+
+shuffle:
+  order: order-III
+  shuffle_both: false
+
+model:
+  family: T5
+  version: t5-large
+  access_method: hf
+
+algorithm:
+  ll_type: ans_inv_perp
