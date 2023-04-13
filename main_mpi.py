@@ -13,6 +13,8 @@ from colorama import Fore, Back, Style
 print(colored.fg("#ffbf00") + Style.BRIGHT + line(n=120, is_print=False))
 if torch.backends.mps.is_available():
     print("-- MPS is built: ", torch.backends.mps.is_built())
+    print(
+        f"-- Device Total Memory: {torch.mps.driver_allocated_memory() / (1024**2)}")
     print("-- Let's use GPUs!")
 elif torch.cuda.is_available():
     print(f"-- Current Device: {torch.cuda.get_device_name(0)}")
