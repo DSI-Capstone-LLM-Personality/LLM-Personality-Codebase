@@ -143,8 +143,8 @@ class MPIQuestionFormatter():
 
     def __call__(self, statement, key):
         # question = f"Given a statement of you: \"You {statement}.\" "
-        return MPI_TEMPLATE.format(item=statement, template=self.prompt) + ordered_lst_to_str(self.option[key])
-        return question + self.prompt + ordered_lst_to_str(self.option[key])
+        # return MPI_TEMPLATE.format(item=statement, template=self.prompt) + ordered_lst_to_str(self.option[key])
+        return MPI_GPTNEO_TEMPLATE.format(item=statement, template=self.prompt) + ordered_lst_to_str(self.option[key])
 
 
 ######  UTILITY FUNCTIONS  ######
