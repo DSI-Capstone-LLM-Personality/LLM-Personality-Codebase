@@ -88,10 +88,10 @@ elif access_method == "hf":
     # if family == "GPT2" and regime == "Open-Vocab":
     #     model = MODEL[regime][family].from_pretrained(
     #         version, is_decoder=False).to(DEVICE)
-    model = MODEL[regime][family].from_pretrained(
-        version, is_decoder=False).to(DEVICE)
-    # model = torch.nn.DataParallel(model)  # Default argument is fine
     tokenizer = TOKENIZER[family].from_pretrained(version)
+    model = MODEL[regime][family].from_pretrained(
+        version, pad_token_id=tokenizer.eos_token).to(DEVICE)
+    # model = torch.nn.DataParallel(model)  # Default argument is fine
 else:
     assert 'Unrecognized Access Method.'
 
