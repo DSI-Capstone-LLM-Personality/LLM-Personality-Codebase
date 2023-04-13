@@ -17,10 +17,16 @@ MPI_NUM_CHOICES = 5
 ######  PROMPTS  ######
 MPI_PROMPT = "Please choose from the following options to identify how accurately this statement describes you."
 MPI_PROMPT_EXACT = "Please choose exactly one from the following options to identify how accurately this statement describes you."
+
+MPI_GPTNEO_PROMPT = "What do you think?\n\nYou can choose from the following options:"
 PROMPT_TEMPLATE = {'mpi-style': MPI_PROMPT,
-                   'mpi-style-revised': MPI_PROMPT_EXACT}
+                   'mpi-style-revised': MPI_PROMPT_EXACT,
+                   'mpi-gptneo-style': MPI_GPTNEO_PROMPT}
 MPI_TEMPLATE = '''Given a statement of you: "You {item}."
 {template}'''
+
+MPI_GPTNEO_TEMPLATE = '''Given a description of you: "You {item}." {template}\n'''
+
 
 ######  INDEXES  ######
 LETTER_INDEX = np.array(['(A).', '(B).', '(C).', '(D).', '(E).'])
