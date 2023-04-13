@@ -33,16 +33,6 @@ def read_mpi(path, show=False, n=None, verbose=False):
     return df
 
 
-def prepare_mpi_questions(statement):
-    # TODO:(Xiaoyang) DEPRECATED FUNCTION: remove later...
-    questions = f"Given a statement of you: \"You {statement}.\" "
-    prompt = "Please choose from the following options to identify how accurately this statement describes you."
-    options = "\nOptions: \n(A). Very Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \n(B). Moderately Accurate \nAnswers: "
-    # options = "\nOptions: \n(A). Very Accurate \n(B). Moderately Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \nAnswers: "
-    return questions + prompt + options
-    # return questions
-
-
 def check_column_cleanness(df, col_name):
     col = df[col_name]
     ic(Counter(col))
@@ -52,34 +42,6 @@ def check_column_cleanness(df, col_name):
     elif col_name == 'key':
         assert len(Counter(col)) == 2
     # TODO: (Xiaoyang) add more cleanness check later...
-
-
-# TODO:(Xiaoyang) two functions that calculate likelihood...
-
-
-def run_mpi(dset_config: dict,
-            model_config: dict,
-            algo_config: dict,
-            template_config: dict,
-            filename=None,
-            verbose=False):
-    # TODO: (Xiaoyang) deprecated function, remove later...
-    # PARSE MPI Dataset information
-    path_to_dset, start, end = dset_config.values()
-    # PARSE targeting model information
-    model, tokenizer, model_desc = model_config.values()
-    # PARSE algorithm-level config
-    ll_type = algo_config['ll_type']
-    # PARSE template
-    prompt, mpi_option, mpi_choice, shuffle = template_config.values()
-    # RUN
-    mpi = MPI(path_to_dset, start, end,
-              prompt, mpi_option, mpi_choice, shuffle)
-    mpi.reset()
-    mpi.answer(tokenizer, model, model_desc, ll_type=ll_type, verbose=verbose)
-    if filename is not None:
-        mpi.write_statistic(filename)
-    return mpi
 
 
 class MPI():
