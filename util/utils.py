@@ -8,7 +8,7 @@ from icecream import ic
 from itertools import permutations
 from collections import defaultdict, Counter
 import difflib as dl
-from Model.template import *
+from template.template import *
 import os
 
 #####  DEVICE CONFIGURATION  #####
@@ -76,14 +76,11 @@ def order_ranking_dict(permutation, verbose=False):
 # MPI_IDX_ORDERS = order_ranking_dict(permute_orders(MPI_NUM_CHOICES))
 
 
-def ordered_lst_to_str(ordered_lst, style='mpi'):
-    if style == 'mpi':
-        option = "\nOptions: "
-        for choice in ordered_lst:
-            option += f"\n{choice} "  # Prepend \n as designed choice
-        return option + "\n\nAnswers: I think the best description of myself is option "
-    else:
-        assert False, 'Unrecognized option style.'
+def ordered_lst_to_str(ordered_lst):
+    option = ""
+    for choice in ordered_lst:
+        option += f"{choice}\n"  # Append \n as designed choice
+    return option
 
 # Simple test cases:
 # ic(order_distance([5, 4, 3, 2, 1]))
@@ -142,9 +139,7 @@ class MPIQuestionFormatter():
         self.option = options
 
     def __call__(self, statement, key):
-        # question = f"Given a statement of you: \"You {statement}.\" "
-        # return MPI_TEMPLATE.format(item=statement, template=self.prompt) + ordered_lst_to_str(self.option[key])
-        return MPI_GPTNEO_TEMPLATE.format(item=statement, template=self.prompt) + ordered_lst_to_str(self.option[key])
+        return self.prompt.format(item=statement, options=ordered_lst_to_str(self.option[key]))
 
 
 ######  UTILITY FUNCTIONS  ######

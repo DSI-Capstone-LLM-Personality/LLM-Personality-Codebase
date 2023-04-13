@@ -15,8 +15,8 @@ import sys
 from colorama import Fore, Back, Style
 import colored
 from tabulate import tabulate
-from Model.template import *
-from Model.language_model import *
+from template.template import *
+from model.language_model import *
 
 # Some Abbreviations:
 # ans -> "answer", inv -> "inverse", perp -> "perplexity"

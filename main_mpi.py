@@ -2,8 +2,8 @@ import os
 import argparse
 import yaml
 from MPI.mpi import *
-from Model.language_model import *
-from Model.template import *
+from model.language_model import *
+from template.template import *
 from util.utils import *
 import colored
 import colorama
@@ -57,7 +57,7 @@ path_to_dset = dset_dir + f"{dset}.csv"
 
 #####  Prompt & Answer Template  #####
 tmp = config['template']
-prompt = PROMPT_TEMPLATE[tmp['prompt']]
+prompt_template = get_template(tmp['prompt'])
 # Prepare Index
 index = tmp['index']
 if index is not None:
@@ -130,7 +130,7 @@ if ans_type is not None and regime == "Constraint":
 # ----------------------------------- #
 # ---------------- RUN -------------- #
 mpi = MPI(path_to_dset, start, end,
-          prompt, index, desc, ans_type,
+          prompt_template, index, desc, ans_type,
           regime, order, shuffle_both)
 mpi.reset()
 
