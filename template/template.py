@@ -72,3 +72,7 @@ ORDERS = {
     'order-II': ORDER_II,
     'order-III': ORDER_III
 }
+
+# Simple Testing
+# template = get_template("mpi-naive")
+# print(template.format(item="asd", options="asd"))
