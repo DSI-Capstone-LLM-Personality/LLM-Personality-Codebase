@@ -139,8 +139,14 @@ class MPI():
                 # Process generated responses
                 processed_response, pred = self.processor(response)
                 # print(response)
-                mpi_response = re.search(
-                    r'[abcdeABCDE][^a-zA-Z]', response + ')', flags=0).group()[0].upper()
+                # TODO: (Xiaoyang) add error handling: MPI scoring mechanism might be incorrect
+                try:
+                    mpi_response = re.search(
+                        r'[abcdeABCDE][^a-zA-Z]', response + ')', flags=0).group()[0].upper()
+                except Exception:
+                    print("MPI scoring mechanism fails...")
+                    mpi_response = "UNK"
+
                 # STORE STATISTICS
                 self.preds.append(pred)
                 self.raw_response.append(response)
