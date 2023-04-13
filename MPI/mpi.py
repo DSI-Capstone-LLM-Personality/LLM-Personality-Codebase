@@ -15,8 +15,8 @@ import sys
 from colorama import Fore, Back, Style
 import colored
 from tabulate import tabulate
-from Model.template import *
-from Model.language_model import *
+from template.template import *
+from model.language_model import *
 
 # Some Abbreviations:
 # ans -> "answer", inv -> "inverse", perp -> "perplexity"
@@ -33,16 +33,6 @@ def read_mpi(path, show=False, n=None, verbose=False):
     return df
 
 
-def prepare_mpi_questions(statement):
-    # TODO:(Xiaoyang) DEPRECATED FUNCTION: remove later...
-    questions = f"Given a statement of you: \"You {statement}.\" "
-    prompt = "Please choose from the following options to identify how accurately this statement describes you."
-    options = "\nOptions: \n(A). Very Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \n(B). Moderately Accurate \nAnswers: "
-    # options = "\nOptions: \n(A). Very Accurate \n(B). Moderately Accurate \n(C). Neither Accurate Nor Inaccurate \n(D). Moderately Inaccurate \n(E). Very Inaccurate \nAnswers: "
-    return questions + prompt + options
-    # return questions
-
-
 def check_column_cleanness(df, col_name):
     col = df[col_name]
     ic(Counter(col))
@@ -52,34 +42,6 @@ def check_column_cleanness(df, col_name):
     elif col_name == 'key':
         assert len(Counter(col)) == 2
     # TODO: (Xiaoyang) add more cleanness check later...
-
-
-# TODO:(Xiaoyang) two functions that calculate likelihood...
-
-
-def run_mpi(dset_config: dict,
-            model_config: dict,
-            algo_config: dict,
-            template_config: dict,
-            filename=None,
-            verbose=False):
-    # TODO: (Xiaoyang) deprecated function, remove later...
-    # PARSE MPI Dataset information
-    path_to_dset, start, end = dset_config.values()
-    # PARSE targeting model information
-    model, tokenizer, model_desc = model_config.values()
-    # PARSE algorithm-level config
-    ll_type = algo_config['ll_type']
-    # PARSE template
-    prompt, mpi_option, mpi_choice, shuffle = template_config.values()
-    # RUN
-    mpi = MPI(path_to_dset, start, end,
-              prompt, mpi_option, mpi_choice, shuffle)
-    mpi.reset()
-    mpi.answer(tokenizer, model, model_desc, ll_type=ll_type, verbose=verbose)
-    if filename is not None:
-        mpi.write_statistic(filename)
-    return mpi
 
 
 class MPI():
@@ -161,6 +123,8 @@ class MPI():
         print(colored.fg("blue")+line(120, False))
         print(colored.fg("blue")+"Open Vocabulary Search Experiment Running......")
         print(colored.fg("blue")+line(120, False))
+        if verbose:
+            self.display_sample_questions(self.questions[0], self.regime)
         assert not self.answered
         assert "version" in model_desc
         assert "family" in model_desc
@@ -174,8 +138,15 @@ class MPI():
                 response = self.prompter(prompt)
                 # Process generated responses
                 processed_response, pred = self.processor(response)
-                mpi_response = re.search(
-                    r'[abcdeABCDE][^a-zA-Z]', response + ')', flags=0).group()[0].upper()
+                # print(response)
+                # TODO: (Xiaoyang) add error handling: MPI scoring mechanism might be incorrect
+                try:
+                    mpi_response = re.search(
+                        r'[abcdeABCDE][^a-zA-Z]', response + ')', flags=0).group()[0].upper()
+                except Exception:
+                    print("MPI scoring mechanism fails...")
+                    mpi_response = "UNK"
+
                 # STORE STATISTICS
                 self.preds.append(pred)
                 self.raw_response.append(response)
@@ -186,7 +157,8 @@ class MPI():
                         print(colored.fg('#d33682') + line(120, False))
                         print(
                             f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key}")
-                        print(f">> Generated Response: {response}")
+                        print(f">> Generated Response:\n{response}")
+                        print(f"-- MPI ANSWER: {mpi_response}")
                         print(
                             f"THIS QUESTION IS DISCARDED! GENERATED RESPONSE IS NOT VALID.")
                     self.preds_key.append("Not Valid")
@@ -229,11 +201,7 @@ class MPI():
         family = model_desc['family']  # TODO: add cases
         prober = LMPROB(family, model, tokenizer, ll_type)
         if verbose:
-            line()
-            print(f"Sample questions look like this:\n{self.questions[0]}")
-            line()
-            print("Constraint MCQA task starts...")
-            line()
+            self.display_sample_questions(self.questions[0], self.regime)
             # print(colored.fg('#b58900') + line(120, False))
         with torch.no_grad():
             for idx, prompt in enumerate(tqdm(self.questions, colour='#b58900')):
@@ -291,6 +259,14 @@ class MPI():
         # Calculating scores
         for idx, score in enumerate(scores):
             self.OCEAN[labels[idx]].append(score)
+
+    @staticmethod
+    def display_sample_questions(question, regime):
+        line()
+        print(f"Sample questions look like this:\n{question}")
+        line()
+        print(f"{regime} MCQA task starts...")
+        line()
 
     def display_ocean_stats(self):
         # ic(self.OCEAN)

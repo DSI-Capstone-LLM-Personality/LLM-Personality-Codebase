@@ -2,8 +2,8 @@ import os
 import argparse
 import yaml
 from MPI.mpi import *
-from Model.language_model import *
-from Model.template import *
+from model.language_model import *
+from template.template import *
 from util.utils import *
 import colored
 import colorama
@@ -13,6 +13,9 @@ from colorama import Fore, Back, Style
 print(colored.fg("#ffbf00") + Style.BRIGHT + line(n=120, is_print=False))
 if torch.backends.mps.is_available():
     print("-- MPS is built: ", torch.backends.mps.is_built())
+    # See whether the following line is bug-free
+    print(
+        f"-- Device Total Memory: {torch.mps.driver_allocated_memory() / (1024**2)}")
     print("-- Let's use GPUs!")
 elif torch.cuda.is_available():
     print(f"-- Current Device: {torch.cuda.get_device_name(0)}")
@@ -54,7 +57,7 @@ path_to_dset = dset_dir + f"{dset}.csv"
 
 #####  Prompt & Answer Template  #####
 tmp = config['template']
-prompt = PROMPT_TEMPLATE[tmp['prompt']]
+prompt_template = get_template(tmp['prompt'])
 # Prepare Index
 index = tmp['index']
 if index is not None:
@@ -85,10 +88,10 @@ elif access_method == "hf":
     # if family == "GPT2" and regime == "Open-Vocab":
     #     model = MODEL[regime][family].from_pretrained(
     #         version, is_decoder=False).to(DEVICE)
-    model = MODEL[regime][family].from_pretrained(
-        version, is_decoder=False).to(DEVICE)
-    # model = torch.nn.DataParallel(model)  # Default argument is fine
     tokenizer = TOKENIZER[family].from_pretrained(version)
+    model = MODEL[regime][family].from_pretrained(
+        version, pad_token_id=tokenizer.eos_token_id).to(DEVICE)
+    # model = torch.nn.DataParallel(model)  # Default argument is fine
 else:
     assert 'Unrecognized Access Method.'
 
@@ -103,7 +106,7 @@ else:
     assert False, 'Unrecognized Regime.'
 
 #####  Additional directory parsing (For necessary model family only)  #####
-if family in ['GPTNEO', 'GPTNEOX', 'BART']:
+if family in ['GPTNEO', 'GPTNEOX', 'BART', 'FLAN-T5']:
     version = version.split('/')[1]
 
 log_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
@@ -127,7 +130,7 @@ if ans_type is not None and regime == "Constraint":
 # ----------------------------------- #
 # ---------------- RUN -------------- #
 mpi = MPI(path_to_dset, start, end,
-          prompt, index, desc, ans_type,
+          prompt_template, index, desc, ans_type,
           regime, order, shuffle_both)
 mpi.reset()
 

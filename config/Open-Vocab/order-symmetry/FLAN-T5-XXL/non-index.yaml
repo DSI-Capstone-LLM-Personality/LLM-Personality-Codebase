@@ -1,0 +1,36 @@
+---
+experiment:
+  regime: Open-Vocab
+  category: order-symmetry
+
+path:
+  dset_dir: Dataset/
+  mpi_log_dir: checkpoint/log/
+  mpi_ckpt_dir: checkpoint/mpis/
+
+dataset:
+  dset: ocean_988
+  start:
+  end:
+template:
+  prompt: mpi-naive
+  description: non-index
+  index:
+  desc:
+    "+": mpi
+    "-": mpi
+  ans_type: desc
+
+shuffle:
+  order: original
+  shuffle_both: false
+
+model:
+  family: FLAN-T5
+  version: google/flan-t5-xxl
+  access_method: hf
+
+params:
+  max_tokens: 100
+  top_p: 0.95
+  temperature: 0.10
