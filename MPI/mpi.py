@@ -161,6 +161,8 @@ class MPI():
         print(colored.fg("blue")+line(120, False))
         print(colored.fg("blue")+"Open Vocabulary Search Experiment Running......")
         print(colored.fg("blue")+line(120, False))
+        if verbose:
+            self.display_sample_questions(self.questions[0], self.regime)
         assert not self.answered
         assert "version" in model_desc
         assert "family" in model_desc
@@ -186,7 +188,7 @@ class MPI():
                         print(colored.fg('#d33682') + line(120, False))
                         print(
                             f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key}")
-                        print(f">> Generated Response: {response}")
+                        print(f">> Generated Response:\n{response}")
                         print(f"-- MPI ANSWER: {mpi_response}")
                         print(
                             f"THIS QUESTION IS DISCARDED! GENERATED RESPONSE IS NOT VALID.")
@@ -230,11 +232,7 @@ class MPI():
         family = model_desc['family']  # TODO: add cases
         prober = LMPROB(family, model, tokenizer, ll_type)
         if verbose:
-            line()
-            print(f"Sample questions look like this:\n{self.questions[0]}")
-            line()
-            print("Constraint MCQA task starts...")
-            line()
+            self.display_sample_questions(self.questions[0], self.regime)
             # print(colored.fg('#b58900') + line(120, False))
         with torch.no_grad():
             for idx, prompt in enumerate(tqdm(self.questions, colour='#b58900')):
@@ -292,6 +290,14 @@ class MPI():
         # Calculating scores
         for idx, score in enumerate(scores):
             self.OCEAN[labels[idx]].append(score)
+
+    @staticmethod
+    def display_sample_questions(question, regime):
+        line()
+        print(f"Sample questions look like this:\n{question}")
+        line()
+        print(f"{regime} MCQA task starts...")
+        line()
 
     def display_ocean_stats(self):
         # ic(self.OCEAN)
