@@ -81,7 +81,7 @@ def ordered_lst_to_str(ordered_lst, style='mpi'):
         option = "\nOptions: "
         for choice in ordered_lst:
             option += f"\n{choice} "  # Prepend \n as designed choice
-        return option + "\n\nAnswers: "
+        return option + "\n\nAnswers: I think the best description of myself is option "
     else:
         assert False, 'Unrecognized option style.'
 
@@ -143,7 +143,7 @@ class MPIQuestionFormatter():
 
     def __call__(self, statement, key):
         # question = f"Given a statement of you: \"You {statement}.\" "
-        return MPI_TEMPLATE(item=statement, template=self.prompt) + ordered_lst_to_str(self.option[key])
+        return MPI_TEMPLATE.format(item=statement, template=self.prompt) + ordered_lst_to_str(self.option[key])
         return question + self.prompt + ordered_lst_to_str(self.option[key])
 
 
