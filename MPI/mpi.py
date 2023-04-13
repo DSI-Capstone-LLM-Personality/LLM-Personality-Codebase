@@ -138,6 +138,7 @@ class MPI():
                 response = self.prompter(prompt)
                 # Process generated responses
                 processed_response, pred = self.processor(response)
+                ic(response)
                 mpi_response = re.search(
                     r'[abcdeABCDE][^a-zA-Z]', response + ')', flags=0).group()[0].upper()
                 # STORE STATISTICS
