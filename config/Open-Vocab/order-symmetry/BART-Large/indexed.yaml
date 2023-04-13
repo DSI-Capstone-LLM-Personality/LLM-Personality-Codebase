@@ -12,22 +12,25 @@ dataset:
   dset: ocean_988
   start:
   end:
+
 template:
-  prompt: mpi-naive
-  description: non-index
+  prompt: mpi-bart
+  description: syntactic-index
   index:
+    "+": letter
+    "-": letter
   desc:
     "+": mpi
     "-": mpi
-  ans_type: desc
+  ans_type: index-desc # For open-vocab regime, this should always agree with {index}
 
 shuffle:
   order: original
   shuffle_both: false
 
 model:
-  family: FLAN-T5
-  version: google/flan-t5-xxl
+  family: BART
+  version: facebook/bart-large
   access_method: hf
 
 params:

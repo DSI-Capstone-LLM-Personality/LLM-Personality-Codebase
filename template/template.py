@@ -58,6 +58,10 @@ MPI_SCORE = {
     "-": MPI_IDX_TO_SCORE_NEG
 }
 
+######  SCORING  ######
+SCORING_KEYWORDS = ['very', 'neither', 'nor',
+                    'moderately', 'accurate', 'inaccurate']
+
 
 ######  SYMMETRY EXPERIMENT ORDER  ######
 ORIGINAL_ORDER = [0, 1, 2, 3, 4]

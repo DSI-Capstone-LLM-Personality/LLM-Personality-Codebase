@@ -213,12 +213,13 @@ def read_api_key(path="", identifier="xysong"):
 
 ######  RESPONSE PROCESSER  ######
 
+# TODO: (Xiaoyang & Kiyan): redo this class to make sure it works well.
+
 
 class PROCESSER():
     def __init__(self, choice, method='closest-match', verbose=False):
         # TODO: (Xiaoyang): make this more generic later...
-        self.keywords = ['very', 'neither', 'nor',
-                         'moderately', 'accurate', 'inaccurate']
+        self.keywords = SCORING_KEYWORDS
         self.choices = [x.lower() for x in choice]
         self.method = method
         self.verbose = verbose
