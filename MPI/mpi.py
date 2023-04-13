@@ -187,6 +187,7 @@ class MPI():
                         print(
                             f"QUESTION #{idx:<4} | TRAIT: {self.label[idx]} | KEY: {key}")
                         print(f">> Generated Response: {response}")
+                        print(f"-- MPI ANSWER: {mpi_response}")
                         print(
                             f"THIS QUESTION IS DISCARDED! GENERATED RESPONSE IS NOT VALID.")
                     self.preds_key.append("Not Valid")
