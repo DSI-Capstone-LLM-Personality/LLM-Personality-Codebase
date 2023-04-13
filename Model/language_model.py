@@ -38,6 +38,7 @@ MODEL = {
     },
     'Open-Vocab': {
         'GPT2': GPT2LMHeadModel,
+        'GPTNEO': GPTNeoForCausalLM,
         'BART': BartForConditionalGeneration,
         'T5': T5ForConditionalGeneration,
         'FLAN-T5': T5ForConditionalGeneration,
@@ -157,7 +158,7 @@ class PROMPTER():
             )
             return response['choices'][0]['text'].strip()
 
-        elif self.family in ["GPT2", "BART"]:
+        elif self.family in ["GPT2", "GPTNEO", "BART"]:
             # TODO: (Xiaoyang) Add paddings
             inputs = self.tokenizer(prompt, return_tensors='pt')
             input_ids = inputs.input_ids.to(DEVICE)
@@ -174,10 +175,11 @@ class PROMPTER():
                                            top_p=self.g_config['top_p'],
                                            temperature=self.g_config['temperature'],
                                            max_new_tokens=self.g_config['max_tokens'])
-            output = self.tokenizer.decode(response[0][1:-1]) # remove <pad> and <\s>
+            output = self.tokenizer.decode(
+                response[0][1:-1])  # remove <pad> and <\s>
             return output
         elif self.family in ["T5"]:
-            ## TODO: (Morris) Find reasonable reponse
+            # TODO: (Morris) Find reasonable reponse
             inputs = self.tokenizer(prompt, return_tensors='pt')
             input_ids = inputs.input_ids.to(DEVICE)
             response = self.model.generate(input_ids,
