@@ -2,8 +2,8 @@ import os
 import argparse
 import yaml
 from MPI.mpi import *
-from Model.language_model import *
-from Model.template import *
+from model.language_model import *
+from model.template import *
 from util.utils import *
 
 print(colored.fg("#ffbf00") + Style.BRIGHT + line(n=120, is_print=False))

@@ -14,8 +14,8 @@ print(colored.fg("#ffbf00") + Style.BRIGHT + line(n=120, is_print=False))
 if torch.backends.mps.is_available():
     print("-- MPS is built: ", torch.backends.mps.is_built())
     # See whether the following line is bug-free
-    print(
-        f"-- Device Total Memory: {torch.mps.driver_allocated_memory() / (1024**2)}")
+    # print(
+    #     f"-- Device Total Memory: {torch.mps.driver_allocated_memory() / (1024**2)}")
     print("-- Let's use GPUs!")
 elif torch.cuda.is_available():
     print(f"-- Current Device: {torch.cuda.get_device_name(0)}")
@@ -78,7 +78,7 @@ else:
     order, shuffle_both = None, None
 # ic(order_name)
 
-#####  Model & Tokenizer Initialization  #####
+#####  model & Tokenizer Initialization  #####
 model_config = config['model']
 family, version, access_method = model_config.values()
 if access_method == "api":

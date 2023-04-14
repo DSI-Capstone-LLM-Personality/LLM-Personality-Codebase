@@ -54,7 +54,7 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'BART': AutoTokenizer,
              'T5': AutoTokenizer,
              'FLAN-T5': AutoTokenizer}
-#---------- Language Model Perplexity  ----------#
+#---------- Language model Perplexity  ----------#
 
 
 def logit_to_prob(logit, ids):
@@ -191,4 +191,4 @@ class PROMPTER():
             output = self.tokenizer.decode(response[0])
             return output
         else:
-            assert False, 'Unrecognized Model Type.'
+            assert False, 'Unrecognized model Type.'
