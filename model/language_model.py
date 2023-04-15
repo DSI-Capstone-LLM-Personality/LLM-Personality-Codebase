@@ -162,7 +162,7 @@ class PROMPTER():
             # TODO: (Xiaoyang) Add paddings
             inputs = self.tokenizer(prompt, return_tensors='pt')
             input_ids = inputs.input_ids.to(DEVICE)
-            response = self.model.generate(input_ids, do_sample=True,
+            response = self.model.generate(input_ids, do_sample=True, repetition_penalty=1.2,
                                            top_p=self.g_config['top_p'], top_k=0,
                                            temperature=self.g_config['temperature'],
                                            max_new_tokens=self.g_config['max_tokens'])
