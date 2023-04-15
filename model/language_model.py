@@ -162,13 +162,14 @@ class PROMPTER():
             # TODO: (Xiaoyang) Add paddings
             inputs = self.tokenizer(prompt, return_tensors='pt')
             input_ids = inputs.input_ids.to(DEVICE)
-            response = self.model.generate(input_ids,
-                                           top_p=self.g_config['top_p'],
+            response = self.model.generate(input_ids, do_sample=True,
+                                           top_p=self.g_config['top_p'], top_k=0,
                                            temperature=self.g_config['temperature'],
                                            max_new_tokens=self.g_config['max_tokens'])
-            output = self.tokenizer.decode(
-                response[0][len(input_ids[0]):])  # only get new tokens
-            # output = self.tokenizer.decode(response[0])
+            # output = self.tokenizer.decode(
+            # response[0][len(input_ids[0]):])  # only get new tokens
+            print(len(response[0][len(input_ids[0]):]))
+            output = self.tokenizer.decode(response[0])
             return output
         elif self.family in ["FLAN-T5"]:
             inputs = self.tokenizer(prompt, return_tensors='pt')
