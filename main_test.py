@@ -3,7 +3,7 @@ import argparse
 import yaml
 from MPI.mpi import *
 from model.language_model import *
-from model.template import *
+from template.template import *
 from util.utils import *
 
 print(colored.fg("#ffbf00") + Style.BRIGHT + line(n=120, is_print=False))
@@ -19,4 +19,6 @@ else:
     print("-- Unfortunately, we are only using CPUs now.")
 line(n=120)
 
+
+# Test: BART LARGE ZERO-SHOT CLASSIFIER
 
