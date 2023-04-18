@@ -82,7 +82,7 @@ def process_dset(df, ik_map):
     for item in tqdm(coi):
         item_response = np.array(df[item])
         key, trait = ik_map[item]
-        print(key, trait, len(item_response))
+        # print(key, trait, len(item_response))
         for response in item_response:
             if response not in range(1, 6, 1):
                 invalid_count += 1
