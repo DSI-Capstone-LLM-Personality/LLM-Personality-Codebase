@@ -54,7 +54,7 @@ def get_item_key_map(df, dset):
         tmp = df[['Full#', 'Sign']].loc[0:dset-1]
     # process
     for idx, trait in np.array(tmp):
-        item_key_map["I" + str(idx)] = (trait[0], trait[1])
+        item_key_map["I" + str(int(idx))] = (trait[0], trait[1])
     # print(item_key_map)
     return item_key_map
 
@@ -98,6 +98,7 @@ def process_dset(df, ik_map, verbose=False):
     if verbose:
         print(f"There are {invalid_count} responses that are problematic.")
         print(f"After discarding them, there are {count} responses in total.")
+        print(f"{100 * count/(len(df) * len(ik_map)):.4f}% of responses are VALID.")
     return ans_dist
 
 
@@ -154,6 +155,9 @@ def process_human_answers(dset, logfile, display_percentage=False, verbose=False
             line()
         f.close()
         sys.stdout = original_stdout
+
+# TO RUN:
+#
 
 
 parser = argparse.ArgumentParser()
