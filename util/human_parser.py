@@ -3,9 +3,11 @@ import numpy as np
 import pyreadstat
 from collections import defaultdict, Counter
 from template.template import MPI_DESC
+from util.utils import line
 from tqdm import tqdm
-import os
+import sys
 import time
+import argparse
 
 # Human data parser
 
@@ -57,8 +59,8 @@ def get_item_key_map(df, dset):
     return item_key_map
 
 
-def process_dset(df, ik_map):
-    answer_distribution = {
+def process_dset(df, ik_map, verbose=False):
+    ans_dist = {
         "+": {
             'O': defaultdict(int),
             'C': defaultdict(int),
@@ -75,9 +77,11 @@ def process_dset(df, ik_map):
         }}
     coi = [f"I{i+1}" for i in range(len(ik_map))]
     df = df[coi]
-    print(f"There are {len(df)} test takers.")
-    print(f"There are {len(ik_map)} items.")
-    print(f"Ideally, there are {len(df) * len(ik_map)} responses in total.")
+    if verbose:
+        print(f"There are {len(df)} test takers.")
+        print(f"There are {len(ik_map)} items.")
+        print(
+            f"Ideally, there are {len(df) * len(ik_map)} responses in total.")
     count, invalid_count = 0, 0
     for item in tqdm(coi):
         item_response = np.array(df[item])
@@ -87,18 +91,17 @@ def process_dset(df, ik_map):
             if response not in range(1, 6, 1):
                 invalid_count += 1
                 continue
-            answer_distribution[key][trait][SCORES_TO_ANSWERS[key]
-                                            [int(response)]] += 1
+            ans_dist[key][trait][SCORES_TO_ANSWERS[key]
+                                 [int(response)]] += 1
             count += 1
         # break
-    print(f"There are {invalid_count} responses that are problematic.")
-    print(f"After discarding them, there are {count} responses in total.")
-    print(answer_distribution['+']["C"])
-    print(answer_distribution['-']["C"])
-    return answer_distribution
+    if verbose:
+        print(f"There are {invalid_count} responses that are problematic.")
+        print(f"After discarding them, there are {count} responses in total.")
+    return ans_dist
 
 
-def process_answer_distribution(answers, trait=None):
+def process_ans_dist(answers, trait=None):
     assert trait is None or trait in ['O', 'C', 'E', 'A', 'N']
     if trait is None:
         ans_dist = {"+": defaultdict(int), "-": defaultdict(int)}
@@ -111,26 +114,58 @@ def process_answer_distribution(answers, trait=None):
         return {"+": answers['+'][trait], "-": answers['-'][trait]}
 
 
-def display_answer_distribution(answers):
+def display_ans_dist(answers, percent=False):
     l = max(7, max([len(x) for x in MPI_DESC]))
     for sign in ['+', '-']:
         stat = Counter(answers[sign])
+        n = sum([val for item, val in stat.items()])
         print(f"{sign} Questions: ")
-        print(f"{'ANSWERS':<{l}} | Count")
-        for item in MPI_DESC:
-            print(f"{item:<{l}} |   {stat[item]}")
+        if percent:
+            print(f"{'ANSWERS':<{l}} | Percentage")
+            for item in MPI_DESC:
+                print(f"{item:<{l}} |   {100 * stat[item]/n:.2f}%")
+        else:
+            print(f"{'ANSWERS':<{l}} |  Count")
+            for item in MPI_DESC:
+                print(f"{item:<{l}} |  {stat[item]}")
 
 
-qt_df = pd.read_excel('Dataset/Human Data/IPIP-NEO-ItemKey.xls')
-df = pd.read_csv('Dataset/Human Data/IPIP300.csv')
-item_key_map = get_item_key_map(qt_df, 300)
-answer_distribution = process_dset(df, item_key_map)
-# print(answer_distribution)
-print("\nOVERALL STATISTICS")
-overall = process_answer_distribution(answer_distribution)
-display_answer_distribution(overall)
-for trait in ['O', 'C', 'E', 'A', 'N']:
-    print(f"\n\nTRAIT: {trait} | ANSWER DISTRIBUTION")
-    trait_level_answer_distribution = process_answer_distribution(
-        answer_distribution, trait)
-    display_answer_distribution(trait_level_answer_distribution)
+def process_human_answers(dset, logfile, display_percentage=False, verbose=False):
+    original_stdout = sys.stdout
+    with open(logfile, 'w') as f:
+        sys.stdout = f
+        assert dset in ['IPIP120', 'IPIP300']
+        print(f"DATASET: {dset}")
+        line()
+        # Read in files
+        qt_df = pd.read_excel('Dataset/Human Data/IPIP-NEO-ItemKey.xls')
+        df = pd.read_csv(f'Dataset/Human Data/{dset}.csv')
+        item_key_map = get_item_key_map(qt_df, int(dset[-3:]))
+        ans_dist = process_dset(df, item_key_map, verbose)
+        print("\nOVERALL STATISTICS")
+        line()
+        overall = process_ans_dist(ans_dist)
+        display_ans_dist(overall, display_percentage)
+        for trait in ['O', 'C', 'E', 'A', 'N']:
+            print(f"\n\nTRAIT: {trait} | ANSWER DISTRIBUTION")
+            line()
+            trait_ans_dist = process_ans_dist(ans_dist, trait)
+            display_ans_dist(trait_ans_dist, display_percentage)
+            line()
+        f.close()
+        sys.stdout = original_stdout
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--dataset', help='dataset of interests')
+parser.add_argument('--display_percentage', action='store_true',
+                    help='display mode of answer distribution')
+parser.add_argument('--verbose', action='store_true',
+                    help='verbose mode flag')
+args = parser.parse_args()
+assert args.dataset is not None
+
+tag = "percentage" if args.display_percentage else "count"
+LOG_FILE_NAME = f"Dataset/Human Data/results/[{args.dataset}]_[ans-dist]_[{tag}].txt"
+process_human_answers(args.dataset, LOG_FILE_NAME,
+                      args.display_percentage, args.verbose)
