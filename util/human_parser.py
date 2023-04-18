@@ -27,14 +27,14 @@ SCORES_TO_ANSWERS = {
     "+": {
         5: "Very Accurate",
         4: "Moderately Accurate",
-        3: "Neither Inaccurate Nor Inaccurate",
+        3: "Neither Accurate Nor Inaccurate",
         2: "Moderately Inaccurate",
         1: "Very Inaccurate"
     },
     "-": {
         1: "Very Accurate",
         2: "Moderately Accurate",
-        3: "Neither Inaccurate Nor Inaccurate",
+        3: "Neither Accurate Nor Inaccurate",
         4: "Moderately Inaccurate",
         5: "Very Inaccurate"
     }
@@ -58,14 +58,21 @@ def get_item_key_map(df, dset):
 
 
 def process_dset(df, ik_map):
-    ocean = {
-        'O': defaultdict(int),
-        'C': defaultdict(int),
-        'E': defaultdict(int),
-        'A': defaultdict(int),
-        'N': defaultdict(int)
-    }
-    answer_distribution = {"+": ocean, "-": ocean}
+    answer_distribution = {
+        "+": {
+            'O': defaultdict(int),
+            'C': defaultdict(int),
+            'E': defaultdict(int),
+            'A': defaultdict(int),
+            'N': defaultdict(int)
+        },
+        "-": {
+            'O': defaultdict(int),
+            'C': defaultdict(int),
+            'E': defaultdict(int),
+            'A': defaultdict(int),
+            'N': defaultdict(int)
+        }}
     coi = [f"I{i+1}" for i in range(len(ik_map))]
     df = df[coi]
     print(f"There are {len(df)} test takers.")
@@ -73,8 +80,9 @@ def process_dset(df, ik_map):
     print(f"Ideally, there are {len(df) * len(ik_map)} responses in total.")
     count, invalid_count = 0, 0
     for item in tqdm(coi):
-        item_response = df[item]
+        item_response = np.array(df[item])
         key, trait = ik_map[item]
+        print(key, trait, len(item_response))
         for response in item_response:
             if response not in range(1, 6, 1):
                 invalid_count += 1
@@ -82,8 +90,11 @@ def process_dset(df, ik_map):
             answer_distribution[key][trait][SCORES_TO_ANSWERS[key]
                                             [int(response)]] += 1
             count += 1
+        # break
     print(f"There are {invalid_count} responses that are problematic.")
     print(f"After discarding them, there are {count} responses in total.")
+    print(answer_distribution['+']["C"])
+    print(answer_distribution['-']["C"])
     return answer_distribution
 
 
@@ -114,9 +125,12 @@ qt_df = pd.read_excel('Dataset/Human Data/IPIP-NEO-ItemKey.xls')
 df = pd.read_csv('Dataset/Human Data/IPIP300.csv')
 item_key_map = get_item_key_map(qt_df, 300)
 answer_distribution = process_dset(df, item_key_map)
+# print(answer_distribution)
+print("\nOVERALL STATISTICS")
 overall = process_answer_distribution(answer_distribution)
 display_answer_distribution(overall)
 for trait in ['O', 'C', 'E', 'A', 'N']:
+    print(f"\n\nTRAIT: {trait} | ANSWER DISTRIBUTION")
     trait_level_answer_distribution = process_answer_distribution(
         answer_distribution, trait)
     display_answer_distribution(trait_level_answer_distribution)
