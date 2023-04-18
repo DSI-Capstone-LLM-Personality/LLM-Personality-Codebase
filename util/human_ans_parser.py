@@ -157,8 +157,7 @@ def process_human_answers(dset, logfile, display_percentage=False, verbose=False
         sys.stdout = original_stdout
 
 # TO RUN:
-#
-
+# USE python3 human_ans_parser.py" --dataset=<dataset_name> --verbose --display_percentage
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', help='dataset of interests')
