@@ -27,6 +27,7 @@ def get_template(template_name):
 
 
 ######  INDEXES  ######
+LETTER = np.array(['A', 'B', 'C', 'D', 'E'])
 LETTER_INDEX = np.array(['(A).', '(B).', '(C).', '(D).', '(E).'])
 NUMBER_INDEX_SEM = np.array(['(5).', '(4).', '(3).', '(2).', '(1).'])
 NUMBER_INDEX_SYN = np.array(['(1).', '(2).', '(3).', '(4).', '(5).'])

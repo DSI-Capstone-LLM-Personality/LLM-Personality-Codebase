@@ -147,6 +147,13 @@ class MPI():
                     print("MPI scoring mechanism fails...")
                     mpi_response = "UNK"
 
+                # THIS PART IS ONLY USEFUL WHEN REPRODUCING MPI PAPER RESULTS
+                MPI = True
+                if MPI:
+                    if mpi_response != 'UNK':
+                        pred = list(LETTER).index(mpi_response)
+                    else:
+                        pred = -1
                 # STORE STATISTICS
                 self.preds.append(pred)
                 self.raw_response.append(response)

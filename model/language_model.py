@@ -13,7 +13,7 @@ from icecream import ic
 from transformers import AlbertForPreTraining, AutoTokenizer, GPT2LMHeadModel, \
     GPT2Tokenizer, GPTNeoForCausalLM, GPTNeoXForCausalLM, GPTNeoXTokenizerFast,\
     OpenAIGPTLMHeadModel, OpenAIGPTTokenizer, pipeline, BertLMHeadModel, RobertaForCausalLM, \
-    BartForConditionalGeneration, T5ForConditionalGeneration
+    BartForConditionalGeneration, T5ForConditionalGeneration, AutoModelForSeq2SeqLM
 
 # openai.api_key = read_api_key("", 'xysong')
 
@@ -42,6 +42,7 @@ MODEL = {
         'BART': BartForConditionalGeneration,
         'T5': T5ForConditionalGeneration,
         'FLAN-T5': T5ForConditionalGeneration,
+        'T0': AutoModelForSeq2SeqLM
     }
 }
 TOKENIZER = {'BERT': AutoTokenizer,
@@ -53,7 +54,8 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'GPTNEOX': GPTNeoXTokenizerFast,
              'BART': AutoTokenizer,
              'T5': AutoTokenizer,
-             'FLAN-T5': AutoTokenizer}
+             'FLAN-T5': AutoTokenizer,
+             'T0': AutoTokenizer}
 #---------- Language model Perplexity  ----------#
 
 
@@ -158,7 +160,7 @@ class PROMPTER():
             )
             return response['choices'][0]['text'].strip()
 
-        elif self.family in ["GPT2", "GPTNEO", "BART"]:
+        elif self.family in ["GPT2", "GPTNEO", "BART", "T0"]:
             # TODO: (Xiaoyang) Add paddings
             inputs = self.tokenizer(prompt, return_tensors='pt')
             input_ids = inputs.input_ids.to(DEVICE)
