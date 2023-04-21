@@ -248,12 +248,14 @@ class PROCESSER():
         self.n += 1
         # TODO: (Team): probably one word is also probelmatic? discuss later...
         if len(woi) <= 1 or response not in self.choices:
-
+            if len(woi) <= 1:
+                self.valid_idx.append(False)
+                return None, -1
             # Use this line when reproducing MPI results
             self.valid_idx.append(True)
             # self.valid_idx.append(False) # Comment this line when doing other tasks
-
             return None, -1  # -1 indicates that this response is not valid
+
         # Update valid mask: this is used for statistic display later...
         self.valid_idx.append(True)
         # Compute matched output
