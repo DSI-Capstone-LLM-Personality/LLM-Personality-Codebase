@@ -150,7 +150,7 @@ class MPI():
                 # THIS PART IS ONLY USEFUL WHEN REPRODUCING MPI PAPER RESULTS
                 MPI = True
                 if MPI:
-                    if mpi_response != 'UNK':
+                    if mpi_response != 'UNK' and mpi_response in LETTER:
                         pred = list(LETTER).index(mpi_response)
                     else:
                         pred = -1
