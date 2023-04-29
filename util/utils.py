@@ -104,9 +104,15 @@ def ordered_lst_to_str(ordered_lst):
 
 
 class MPIOptionFormatter():
-    def __init__(self, index, desc):
+    def __init__(self, index, desc, is_lower_case=False):
         self.index = index
         self.desc = desc
+
+        self.is_lower_case = is_lower_case
+        if is_lower_case:
+            # print(self.desc)
+            self.desc = {k: np.array([x.lower() for x in v])
+                         for k, v in self.desc.items()}
 
     def __call__(self, order, shuffle_both=None):
         if order is not None:

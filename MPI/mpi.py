@@ -48,24 +48,32 @@ class MPI():
     # TODO: (Xiaoyang) [TOP PRIORITY] Re-structure this class
     # (this should also work for non-mpi templates)
     def __init__(self, path_to_file, start, end,
-                 prompt, index, desc, ans_type,
+                 prompt, index, desc, ans_type, is_lower_case,
                  regime="constraint", order=None, shuffle_both=None):
         self.mpi_df = read_mpi(path_to_file)
+
         # (Optional): only testing the first few examples
         if start is not None and end is not None:
             self.mpi_df = self.mpi_df[start: end]
+
         # LABEL, KEY & + -
         self.label = np.array(self.mpi_df['label_ocean'])
         self.key = torch.tensor(self.mpi_df['key'], dtype=torch.long)
         self.plus_minus = np.array(["+" if k == 1 else "-" for k in self.key])
+
         # STATEMENT
         self.text = np.array(self.mpi_df['text'])
+
         # PROMPT
         self.prompt, self.order, self.shuffle_both = prompt, order, shuffle_both
         self.index, self.desc = index, desc
+
         # OPTIONS
-        self.option_formatter = MPIOptionFormatter(self.index, self.desc)
+        self.is_lower_case = is_lower_case
+        self.option_formatter = MPIOptionFormatter(
+            self.index, self.desc, self.is_lower_case)
         self.option = self.option_formatter(order, shuffle_both)
+
         # Print out options for checking purpose
         line(120)
         print(colored.fg("#00b384") + Style.BRIGHT + line(n=120, is_print=False))
@@ -80,14 +88,17 @@ class MPI():
             print(colored.fg('#ffbf00') + f"ANSWERS for {key} QUESTIONS: ")
             print(colored.fg("#00b384") + f">> {vals}")
         line(120)
+
         # QUESTIONS
         self.formatter = MPIQuestionFormatter(prompt, self.option)
         self.questions = np.array([self.formatter(x, k)
                                    for x, k in zip(self.text, self.plus_minus)])
         # OCEAN SCORE
         self.OCEAN, self.scores = defaultdict(list), []
+
         # EXPERIMENT TYPE
         self.regime = regime
+
         # META-DATA: probability, likelihood, etc...
         if self.regime == "Constraint":
             self.likelihood, self.probs, self.token_of_interest = [], [], []
@@ -96,6 +107,7 @@ class MPI():
                 self.mpi_choice_lst['+'])
             self.raw_response, self.processed_response, self.mpi_response = [], [], []
             self.valid_mask = None
+
         # Results
         self.preds_key, self.preds = [], []
         self.answered, self.model_desc = False, None
@@ -123,14 +135,17 @@ class MPI():
         print(colored.fg("blue")+line(120, False))
         print(colored.fg("blue")+"Open Vocabulary Search Experiment Running......")
         print(colored.fg("blue")+line(120, False))
+
         if verbose:
             self.display_sample_questions(self.questions[0], self.regime)
         assert not self.answered
         assert "version" in model_desc
         assert "family" in model_desc
+
         # TODO: add cases
         family, version = model_desc['family'], model_desc['version']
         self.prompter = PROMPTER(family, model, tokenizer, param_dict, version)
+
         # TODO: use the parser class here
         with torch.no_grad():
             for idx, prompt in enumerate(tqdm(self.questions, colour="#b58900")):
@@ -148,7 +163,7 @@ class MPI():
                     mpi_response = "UNK"
 
                 # THIS PART IS ONLY USEFUL WHEN REPRODUCING MPI PAPER RESULTS
-                MPI = True
+                MPI = False
                 if MPI:
                     if mpi_response != 'UNK' and mpi_response in LETTER:
                         pred = list(LETTER).index(mpi_response)
@@ -198,15 +213,18 @@ class MPI():
                 self.display_trait_stats()
 
     def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
+
         print(colored.fg("blue")+line(120, False))
         print(colored.fg("blue")+"Constraint Search Experiment Running......")
         print(colored.fg("blue")+line(120, False))
+
         # Argument check
         assert not self.answered
         assert "version" in model_desc
         assert "family" in model_desc
         family = model_desc['family']  # TODO: add cases
         prober = LMPROB(family, model, tokenizer, ll_type)
+
         if verbose:
             self.display_sample_questions(self.questions[0], self.regime)
             # print(colored.fg('#b58900') + line(120, False))
@@ -236,6 +254,7 @@ class MPI():
                 # TODO: (Xiaoyang) THERE IS A BUG when shuffling orderes. Fix this bug later...
                 score = MPI_SCORE[key][pred]
                 self.scores.append(score)
+
                 if verbose:
                     print(colored.fg('#d33682') + line(120, False))
                     print(
@@ -243,12 +262,14 @@ class MPI():
                     print(
                         f"-- Inverse Log-Perplexity: {list(np.round(np.array(ll_lst), 4))}")
                     print(f"-- Tokens of Interests: {toi_lst}")
+
             # SCORE CALCULATION
             self.preds_key = np.array(self.preds_key)
             self.calculate_score()
             # SET MPI status
             self.answered = True
             self.model_desc = model_desc
+
             if verbose:
                 self.display_ocean_stats()
                 self.display_aux_stats()
@@ -353,6 +374,7 @@ class MPI():
 
     def write_statistic(self, filename):
         assert self.answered, 'Can not write statistics to files. Questions are not answered yet.'
+
         original_stdout = sys.stdout
         with open(filename, 'w') as f:
             sys.stdout = f

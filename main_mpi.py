@@ -69,6 +69,8 @@ desc = {k: DESC[v] for k, v in tmp['desc'].items()}
 # Note that for "Constraint Regime" this is used for QA
 # But for "Open-Vocab Regime", this only dictates how answers are presented
 ans_type = tmp['ans_type']
+# All .yaml are deprecated rather than the one for GPT constraint search
+is_lower = tmp['is_lower_case']
 # Shuffle
 order_name = config['shuffle']['order']
 if order_name is not None:
@@ -130,7 +132,7 @@ if ans_type is not None and regime == "Constraint":
 # ----------------------------------- #
 # ---------------- RUN -------------- #
 mpi = MPI(path_to_dset, start, end,
-          prompt_template, index, desc, ans_type,
+          prompt_template, index, desc, ans_type, is_lower,
           regime, order, shuffle_both)
 mpi.reset()
 
