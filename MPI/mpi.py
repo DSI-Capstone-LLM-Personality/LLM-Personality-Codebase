@@ -83,6 +83,7 @@ class MPI():
         # ANSWERS
         self.mpi_choice_lst = MPI_options_to_answers(
             self.index, self.desc, self.option, ans_type, order)
+        
         line(120)
         for key, vals in self.mpi_choice_lst.items():
             print(colored.fg('#ffbf00') + f"ANSWERS for {key} QUESTIONS: ")
@@ -130,6 +131,9 @@ class MPI():
         self.answered = False
         self.model_desc = None
         # TODO: (Xiaoyang) more functionality here...
+
+    def constraint_type_II(self):
+        pass
 
     def open_vocab_answer(self, tokenizer, model, model_desc: dict, param_dict: dict, verbose=False):
         print(colored.fg("blue")+line(120, False))

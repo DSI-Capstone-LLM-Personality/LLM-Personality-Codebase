@@ -26,6 +26,8 @@ else:
     print("-- Unfortunately, we are only using CPUs now.")
 line(n=120)
 print(colored.fg("#d33682") + Style.NORMAL + line(n=120, is_print=False))
+
+
 # Parse Input Arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', help='configuration file')

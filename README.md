@@ -53,3 +53,20 @@ time bash run.sh -r 'Constraint' -t 'order-symmetry' -m 'BERT-Base' -d 'non-inde
 ```
 
 For more details of file structures, please check the `config` folder for details. Note that You can also directly run `time bash run.sh` without providing those command line arguments. Then you will follow the instructions to enter everything needed. In addition, the default verbosity is `False`. To change this, please modify `run.sh` according to instructions at line `75`.
+
+### Available Prompt Templates
+
+In this section, we introduce the candidates of templates which we will perform template selection on. To summarize, we basically borrow three different templates from the [original paper about MPI](https://arxiv.org/abs/2206.07550). For notation consistency, we named those three templates as `type-i`, `type-ii`, and `type-iii`, respectively.
+
+The first change in template that we want to explore is what happens if we change all "You" to "I" or "me". This provides us with three additional templates, which we refered to as `type-i+`, `type-ii+`, and `type-iii+`, respectively.
+
+With these six templates as basis, we can make the following modifications to each of them:
+
+- (0) Do nothing, just use the original templates
+- (1) Convert options to lower cases (as it is shown to be more robust)
+- (2) Remove spaces and `\n` between each line
+- (3) Perform both (1) & (2)
+
+In this repository, (1) can be controlled by setting the flag `is_lower_case` to be either `True` or `False` inside those `.yaml` configuration files. As for (2), we will have one `.txt` file for each version. Specifically, we add `-[space]` to the filename to distinguish it from the original version without spaces.
+
+**Note.** For implementation, there are 6 x 2 = 12 different `.txt` templates files in total. And you can easily choose which one to use by editing the `prompt` argument in the configruation files. Adding together with whether we perform (1) or not, we will have 6 x 2 x 2 = 24 different possible combinations, and thus 24 different templates to explore.
