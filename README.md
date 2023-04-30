@@ -2,9 +2,9 @@
 
 Natural Language Processing (NLP) research about language model personality, supported by [Columbia Unversity Data Science Institute](https://datascience.columbia.edu/) and [JP Morgan](https://www.jpmorgan.com/global).
 
-Contributor: [Xiaoyang Song](https://github.com/Xiaoyang-Song), [Kiyan Mohebbizadeh](https://github.com/kmohebbizadeh), [Shujie Hu](https://github.com/tracyhsj), and [Morris Hsieh](https://github.com/MorrisHsieh3059) from Columbia University.
+**Contributors**: [Xiaoyang Song](https://github.com/Xiaoyang-Song), [Kiyan Mohebbizadeh](https://github.com/kmohebbizadeh), [Shujie Hu](https://github.com/tracyhsj), [Morris Hsieh](https://github.com/MorrisHsieh3059), and [Anant Singh](https://github.com/95anantsingh).
 
-Mentor: [Akshat Gupta](https://scholar.google.com/citations?user=v80j6o0AAAAJ&hl=en) from JP Morgan AI Research.
+**Mentor**: [Akshat Gupta](https://scholar.google.com/citations?user=v80j6o0AAAAJ&hl=en) from JP Morgan AI Research.
 
 ## Reproducibility
 
