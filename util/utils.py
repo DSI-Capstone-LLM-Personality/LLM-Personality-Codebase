@@ -145,7 +145,7 @@ class MPIQuestionFormatter():
         self.option = options
 
     def __call__(self, statement, key):
-        return self.prompt.format(item=statement, options=ordered_lst_to_str(self.option[key]))
+        return self.prompt.format(item=statement.lower(), options=ordered_lst_to_str(self.option[key]))
 
 
 ######  UTILITY FUNCTIONS  ######
