@@ -15,7 +15,7 @@ import sys
 from colorama import Fore, Back, Style
 import colored
 from tabulate import tabulate
-from template.template import *
+from template.templates import *
 from model.language_model import *
 
 # Some Abbreviations:

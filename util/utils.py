@@ -8,7 +8,7 @@ from icecream import ic
 from itertools import permutations
 from collections import defaultdict, Counter
 import difflib as dl
-from template.template import *
+from template.templates import *
 import os
 
 #####  DEVICE CONFIGURATION  #####

@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import pyreadstat
 from collections import defaultdict, Counter
-from template.template import MPI_DESC
+from template.templates import MPI_DESC
 from util.utils import line
 from tqdm import tqdm
 import sys

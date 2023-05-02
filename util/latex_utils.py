@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from collections import Counter, defaultdict
 from util.utils import *
-from template.template import *
+from template.templates import *
 import string
 import yaml
 import argparse

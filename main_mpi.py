@@ -3,7 +3,7 @@ import argparse
 import yaml
 from MPI.mpi import *
 from model.language_model import *
-from template.template import *
+from template.templates import *
 from util.utils import *
 import colored
 import colorama
@@ -150,3 +150,6 @@ else:
 
 mpi.write_statistic(log_dir + filename + '.txt')
 mpi.save_checkpoint(ckpt_dir + filename + '.pt')
+
+# Can easily incorporate template selection code
+# TODO: (Xiaoyang) template selection code

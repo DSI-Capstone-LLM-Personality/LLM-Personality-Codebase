@@ -3,7 +3,7 @@ import argparse
 import yaml
 from MPI.mpi import *
 from model.language_model import *
-from template.template import *
+from template.templates import *
 from util.utils import *
 
 print(colored.fg("#ffbf00") + Style.BRIGHT + line(n=120, is_print=False))
