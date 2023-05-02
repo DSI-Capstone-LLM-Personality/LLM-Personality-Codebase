@@ -106,10 +106,10 @@ class LMPROB():
             sent_input_ids = tokens.input_ids[0].to(DEVICE)
             logit = self.model(**tokens).logits
             prob = logit_to_prob(
-                logit.squeeze(), sent_input_ids)[-length_ans+1:]
+                logit.squeeze(), sent_input_ids)[-length_ans:]
             # ic(prob)
             ll = prob_to_ll(prob, self.ll_type)
-            toi = sent_input_ids[-length_ans+1:]
+            toi = sent_input_ids[-length_ans:]
             return prob, ll, toi
         elif self.family in ['BART']:
             answer_input_ids = ans_token.input_ids[0].to(DEVICE)
