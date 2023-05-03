@@ -15,7 +15,19 @@ def entropy(arr): return -np.sum(arr * np.log(arr), axis=1)
 def normalize(arr): return arr / np.sum(arr, axis=1, keepdims=True)
 
 
+def mutual_information(x):
+    x = torch.stack(x, dim=0).numpy()
+    ic(x.shape)
+    # this is only for MPI 5 options templates
+    assert len(x.shape) == 2 and x.shape[1] == 5
+    x = normalize(x)
+    h_y = entropy(np.mean(x, axis=0, keepdims=True)).item()
+    h_y_given_x = np.mean(entropy(x))
+    return h_y - h_y_given_x
+
+
 class MIScorer():
+    # This class is not necessary, remove later
     def __init__(self, ckpt_dir, ckpt_name):
         filename = ckpt_dir + ckpt_name
         self.ckpt = torch.load(filename)
