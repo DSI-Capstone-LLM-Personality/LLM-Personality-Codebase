@@ -156,19 +156,20 @@ def process_human_answers(dset, logfile, display_percentage=False, verbose=False
         f.close()
         sys.stdout = original_stdout
 
+
 # TO RUN:
 # USE python3 human_ans_parser.py" --dataset=<dataset_name> --verbose --display_percentage
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dataset', help='dataset of interests')
+    parser.add_argument('--display_percentage', action='store_true',
+                        help='display mode of answer distribution')
+    parser.add_argument('--verbose', action='store_true',
+                        help='verbose mode flag')
+    args = parser.parse_args()
+    assert args.dataset is not None
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', help='dataset of interests')
-parser.add_argument('--display_percentage', action='store_true',
-                    help='display mode of answer distribution')
-parser.add_argument('--verbose', action='store_true',
-                    help='verbose mode flag')
-args = parser.parse_args()
-assert args.dataset is not None
-
-tag = "percentage" if args.display_percentage else "count"
-LOG_FILE_NAME = f"Dataset/Human Data/results/[{args.dataset}]_[ans-dist]_[{tag}].txt"
-process_human_answers(args.dataset, LOG_FILE_NAME,
-                      args.display_percentage, args.verbose)
+    tag = "percentage" if args.display_percentage else "count"
+    LOG_FILE_NAME = f"Dataset/Human Data/results/[{args.dataset}]_[ans-dist]_[{tag}].txt"
+    process_human_answers(args.dataset, LOG_FILE_NAME,
+                          args.display_percentage, args.verbose)

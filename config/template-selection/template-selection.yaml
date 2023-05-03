@@ -1,0 +1,36 @@
+---
+experiment:
+  regime: Constraint # this will be changed to type I or type II in the future if constraint
+  category: template-selection
+
+path:
+  dset_dir: Dataset/
+  mpi_log_dir: checkpoint/log/
+  mpi_ckpt_dir: checkpoint/mpis/
+
+dataset:
+  dset: ocean_120
+  start: null
+  end: null
+# This is the .yaml file for template selection
+# So there are a bit different from the one used for MPI
+template:
+  description: non-index
+  index: null
+  desc:
+    "+": mpi
+    "-": mpi
+  ans_type: desc
+
+shuffle:
+  order: original
+  shuffle_both: False
+
+# use opeai-gpt for testing purpose
+model:
+  family: GPT
+  version: openai-gpt
+  access_method: hf
+
+algorithm:
+  ll_type: ans_inv_perp

@@ -17,9 +17,9 @@ MPI_NUM_CHOICES = 5
 ######  PROMPT TEMPLATE  ######
 
 
-def get_template(template_name):
+def get_template(template_name, folder="candidates"):
     try:
-        with open(f"template/{template_name}.txt", 'r') as f:
+        with open(f"template/{folder}/{template_name}.txt", 'r') as f:
             template = f.read()
             return template
     except Exception:
