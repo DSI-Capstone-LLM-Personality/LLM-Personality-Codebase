@@ -76,3 +76,5 @@ To run template selection on our candidate templates, first put all candidates i
 ```
 python3 template/template_selection.py --config=config/template-selection/template-selection.yaml
 ```
+
+After running the experiment, go to `checkpoint/log/template-selection/` and find the folder name with your model family and version. Inside the folder, the results are recorded in `scores.txt` files. Note that the score calculated is mutual information for Close Vocabulary methods and percentage of valid answers for Open Vocabulary method.
