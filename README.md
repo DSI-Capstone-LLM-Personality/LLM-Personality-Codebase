@@ -70,3 +70,9 @@ With these six templates as basis, we can make the following modifications to ea
 In this repository, (1) can be controlled by setting the flag `is_lower_case` to be either `True` or `False` inside those `.yaml` configuration files. As for (2), we will have one `.txt` file for each version. Specifically, we will append `_space` to the filename to distinguish it from the original version without spaces.
 
 **Note.** For implementation, there are 6 x 2 = 12 different `.txt` templates files in total. All of the template files can be found in the `template/` folder And you can easily choose which one to use by editing the `prompt` argument in the configruation files. Adding together with whether we perform (1) or not, we will have 6 x 2 x 2 = 24 different possible combinations, and thus 24 different templates to explore. Example configuration file can be found in `config/Example/example.yaml`.
+
+To run template selection on our candidate templates, first put all candidates into the folder `template/candidates/` and then change the configuration in `config/template-selection/template-selection.yaml` as you want. Then type in the following command to run:
+
+```
+python3 template/template_selection.py --config=config/template-selection/template-selection.yaml
+```
