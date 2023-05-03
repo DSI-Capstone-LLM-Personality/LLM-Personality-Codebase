@@ -137,10 +137,13 @@ print(f"Here is a list of {len(templates)} candidate templates.")
 
 for tmp in templates:
     for is_lower in [True, False]:
+        fname = filename
+        lower_flag = "lower-cased" if is_lower else "original"
         tmp = tmp.rstrip(".txt")
         # ic(tmp)
-        filename += f"_[{tmp}]"
+        fname += f"_[{tmp}-{lower_flag}]"
         prompt_template = get_template(tmp)
+        print(f">> TEMPLATE TESTING: {tmp} | LOWER CASE VERSION? {is_lower}")
         # ic(prompt_template)
         mpi = MPI(path_to_dset, start, end,
                   prompt_template, index, desc, ans_type, is_lower,
@@ -158,8 +161,8 @@ for tmp in templates:
             assert False, 'Unrecognized Regime.'
 
         # Save metadata
-        mpi.write_statistic(log_dir + filename + '.txt')
-        mpi.save_checkpoint(ckpt_dir + filename + '.pt')
+        mpi.write_statistic(log_dir + fname + '.txt')
+        mpi.save_checkpoint(ckpt_dir + fname + '.pt')
 
     # Can easily incorporate template selection code
     # TODO: (Xiaoyang) template selection code
