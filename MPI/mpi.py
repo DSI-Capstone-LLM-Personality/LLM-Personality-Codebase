@@ -83,7 +83,7 @@ class MPI():
         # ANSWERS
         self.mpi_choice_lst = MPI_options_to_answers(
             self.index, self.desc, self.option, ans_type, order)
-        
+
         line(120)
         for key, vals in self.mpi_choice_lst.items():
             print(colored.fg('#ffbf00') + f"ANSWERS for {key} QUESTIONS: ")

@@ -1,6 +1,6 @@
 ---
 experiment:
-  regime: Open-Vocab # this will be changed to type I or type II in the future if constraint
+  regime: Constraint # this will be changed to type I or type II in the future if constraint
   category: template-selection
 
 path:
@@ -11,7 +11,7 @@ path:
 dataset:
   dset: ocean_120
   start: 0
-  end: 10
+  end: 3
 # This is the .yaml file for template selection
 # So there are a bit different from the one used for MPI
 template:
@@ -28,9 +28,15 @@ shuffle:
 
 # use opeai-gpt for testing purpose
 model:
-  family: GPT
-  version: openai-gpt
+  family: BERT
+  version: bert-base-uncased
   access_method: hf
+
+# parameters are needed for open vocab
+params:
+  max_tokens: 100
+  top_p: 0.95
+  temperature: 0.10
 
 algorithm:
   ll_type: ans_inv_perp

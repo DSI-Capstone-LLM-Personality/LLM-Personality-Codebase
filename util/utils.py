@@ -258,8 +258,9 @@ class PROCESSER():
                 self.valid_idx.append(False)
                 return None, -1
             # Use this line when reproducing MPI results
-            self.valid_idx.append(True)
-            # self.valid_idx.append(False) # Comment this line when doing other tasks
+            # self.valid_idx.append(True)
+            # Comment this line when doing other tasks
+            self.valid_idx.append(False)
             return None, -1  # -1 indicates that this response is not valid
 
         # Update valid mask: this is used for statistic display later...
@@ -293,7 +294,7 @@ class PROCESSER():
 
 
 # Test processor code
-# openai.api_key = read_api_key("", 'kiyan')
+openai.api_key = read_api_key("", 'kiyan')
 # openai.api_key = read_api_key("", 'xysong')
 # processor = PROCESSER(verbose=True)
 # # item = "worry about things"
