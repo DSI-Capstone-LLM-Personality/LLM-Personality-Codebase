@@ -4,7 +4,7 @@ import yaml
 from MPI.mpi import *
 from model.language_model import *
 from template.templates import *
-from template.template_scoring import mutual_information
+from template.scoring import mutual_information
 from util.utils import *
 import colored
 import colorama
