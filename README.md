@@ -56,25 +56,12 @@ For more details of file structures, please check the `config` folder for detail
 
 ### Available Prompt Templates
 
-In this section, we introduce the candidates of templates which we will perform template selection on. To summarize, we basically borrow three different templates from the [MPI paper](https://arxiv.org/abs/2206.07550). For notation consistency, we named those three templates as `type-i`, `type-ii`, and `type-iii`, respectively.
-
-The first change in template that we want to explore is what happens if we change all "You" to "I" or "myself". This provides us with three additional templates, which we refered to as `type-i+`, `type-ii+`, and `type-iii+`, respectively.
-
-With these six templates as basis, we can make the following modifications to each of them:
-
-- (0) Do nothing, just use the original templates
-- (1) Convert options to lower cases (as it is shown to be more robust)
-- (2) Remove spaces and `\n` between each line
-- (3) Perform both (1) & (2)
-
-In this repository, (1) can be controlled by setting the flag `is_lower_case` to be either `True` or `False` inside those `.yaml` configuration files. As for (2), we will have one `.txt` file for each version. Specifically, we will append `_space` to the filename to distinguish it from the original version without spaces.
-
-**Note.** For implementation, there are 6 x 2 = 12 different `.txt` templates files in total. All of the template files can be found in the `template/` folder And you can easily choose which one to use by editing the `prompt` argument in the configruation files. Adding together with whether we perform (1) or not, we will have 6 x 2 x 2 = 24 different possible combinations, and thus 24 different templates to explore. Example configuration file can be found in `config/Example/example.yaml`.
+In this section, we introduce the candidates of templates which we will perform template selection on. To summarize, we basically borrow three different templates from the [MPI paper](https://arxiv.org/abs/2206.07550). Please check [this file](./template/candidates.md) for details of candidate templates generation.
 
 To run template selection on our candidate templates, first put all candidates into the folder `template/candidates/` and then change the configuration in `config/template-selection/template-selection.yaml` as you want. Then type in the following command to run:
 
 ```
-python3 template/template_selection.py --config=config/template-selection/template-selection.yaml
+python3 template/selection.py --config=config/template-selection/template-selection.yaml
 ```
 
 After running the experiment, go to `checkpoint/log/template-selection/` and find the folder name with your model family and version. Inside the folder, the results are recorded in `scores.txt` files. Note that the score calculated is mutual information for Close Vocabulary methods and percentage of valid answers for Open Vocabulary method.
