@@ -6,7 +6,6 @@ from functools import reduce
 
 from regex import E
 import re
-from Prompt.bert_prompt import *
 import pandas as pd
 from collections import Counter, defaultdict
 from util.utils import *
