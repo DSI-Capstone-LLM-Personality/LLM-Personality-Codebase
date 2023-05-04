@@ -2,19 +2,19 @@
 
 We generated these candidate templates based on the those mentioned in the MPI paper. However, we are interested in investigating the following aspects:
 
-1. Will **lower-cased** templates be better? [2 possibilities]
+1. Will **lower-cased** templates be better? **[2 possibilities]**
 
-- `[lc]`: stands for "**l**ower-**c**ased".
-- `[og]`: original version with upper case letter.
+- `lc`: stands for "**l**ower-**c**ased".
+- `og`: original version with upper case letter.
 
-2. Will **structured** templates help the model to understand the prompt? Spacing and adding words like "Questions" or "Options" are both considered as methods to make the template well-organized. [2 possibilities]
+2. Will **structured** templates help the model to understand the prompt? Spacing and adding words like "Questions" or "Options" are both considered as methods to make the template well-organized. **[2 possibilities]**
 
 - `s`: stands for "**s**tructured", space is added between each sentence and structural words like "Question", "Options", and "Answer" are added.
 - `ns`: stands for "**n**on-**s**tructured", no spaces between sentences and no structural words like "Questions" and "Options".
 
 Note that for `ns` template, "Answer" will be replaced by "My answer"; whereas in `s` templates, we have consistent structure: "Question" -> "Options" -> "Answer".
 
-3. Will different **prompt styles** result in different results? [3 possibilities]
+3. Will different **prompt styles** result in different results? **[3 possibilities]**
 
 - `type-i`:
 
@@ -27,7 +27,7 @@ Note that for `ns` template, "Answer" will be replaced by "My answer"; whereas i
   > _Given a statement of you: "You {}."\
   > Please choose from the following options to identify how accurately this statement describes you._
 
-4. Will adding more guidances result in different results? [3 possibilities]
+4. Will adding more guidances result in different results? **[3 possibilities]**
 
 - `ans-i`: no guidance of how to answer question at all
   > _Answer:_ \
@@ -41,6 +41,8 @@ Note that for `ns` template, "Answer" will be replaced by "My answer"; whereas i
   > _Answer: I think the best description of myself is option_\
   > **OR** _My answer: I think the best description of myself is option_
 
+
+With this be said, we will have $36$ different templates to examine for each model.
 ## Examples
 
 ---
