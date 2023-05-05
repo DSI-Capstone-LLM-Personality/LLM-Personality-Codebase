@@ -16,7 +16,7 @@ from transformers import AlbertForPreTraining, AutoTokenizer, GPT2LMHeadModel, \
     BartForConditionalGeneration, T5ForConditionalGeneration, AutoModelForSeq2SeqLM, OPTForCausalLM
 
 # openai.api_key = read_api_key("", 'xysong')
-
+# Link to OPT: https://huggingface.co/models?search=opt
 # Link to available models: https://huggingface.co/transformers/v2.4.0/pretrained_models.html
 # Link to generate(): https://huggingface.co/docs/transformers/v4.27.2/en/main_classes/text_generation#transformers.GenerationMixin.generate
 # Link to GPT generation: https://www.kaggle.com/code/tuckerarrants/text-generation-with-huggingface-gpt2
