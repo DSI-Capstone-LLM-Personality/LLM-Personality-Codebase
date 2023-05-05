@@ -162,8 +162,7 @@ def main():
             if regime == "Constraint":
                 mpi.constraint_answer(
                     tokenizer, model, model_config, ll_type, verbose)
-                scores[tmp_name] = mutual_information(
-                    mpi.likelihood)
+                scores[tmp_name] = mutual_information(mpi.likelihood)
             elif regime == "Open-Vocab":
                 assert generation_config is not None
                 mpi.open_vocab_answer(tokenizer, model, model_config,

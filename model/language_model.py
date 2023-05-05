@@ -141,9 +141,13 @@ class LMPROB():
                 logits.squeeze(), tokens.input_ids[0])[-len(toi):]
             # ic(self.tokenizer.decode(toi[-1]))
             # ic(len(toi))
+            # ic(choice)
             # ic(probs)
             # ic(probs.shape)
             ll = prob_to_ll(probs)
+            # ic(ll)
+            # ic(np.exp(-ll))
+            # ic(torch.prod(probs)**(-1 / len(probs)))
             return probs, ll, toi
         if self.family in ['BERT', 'RoBERTa', 'ALBERT', 'BART', 'T5', 'GPT']:
             raise NotImplementedError

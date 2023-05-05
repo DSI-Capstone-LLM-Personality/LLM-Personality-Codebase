@@ -17,7 +17,8 @@ def normalize(arr): return arr / np.sum(arr, axis=1, keepdims=True)
 
 def mutual_information(x):
     x = torch.stack(x, dim=0).numpy()
-    # ic(x.shape)
+    x = 1 / np.exp(-x)
+    ic(x.shape)
     # this is only for MPI 5 options templates
     assert len(x.shape) == 2 and x.shape[1] == 5
     x = normalize(x)
