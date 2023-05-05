@@ -13,7 +13,7 @@ from icecream import ic
 from transformers import AlbertForPreTraining, AutoTokenizer, GPT2LMHeadModel, \
     GPT2Tokenizer, GPTNeoForCausalLM, GPTNeoXForCausalLM, GPTNeoXTokenizerFast,\
     OpenAIGPTLMHeadModel, OpenAIGPTTokenizer, pipeline, BertLMHeadModel, RobertaForCausalLM, \
-    BartForConditionalGeneration, T5ForConditionalGeneration, AutoModelForSeq2SeqLM
+    BartForConditionalGeneration, T5ForConditionalGeneration, AutoModelForSeq2SeqLM, OPTForCausalLM
 
 # openai.api_key = read_api_key("", 'xysong')
 
@@ -35,6 +35,7 @@ MODEL = {
         'BART': BartForConditionalGeneration,
         'T5': T5ForConditionalGeneration,
         'FLAN-T5': T5ForConditionalGeneration,
+        'OPT': OPTForCausalLM
     },
     'Open-Vocab': {
         'GPT2': GPT2LMHeadModel,
@@ -55,7 +56,8 @@ TOKENIZER = {'BERT': AutoTokenizer,
              'BART': AutoTokenizer,
              'T5': AutoTokenizer,
              'FLAN-T5': AutoTokenizer,
-             'T0': AutoTokenizer}
+             'T0': AutoTokenizer,
+             'OPT': AutoTokenizer}
 #---------- Language model Perplexity  ----------#
 
 
@@ -65,16 +67,50 @@ def logit_to_prob(logit, ids):
     # ic(ids.shape)
     assert logit.shape[0] == ids.shape[0]
     prob = torch.softmax(logit, dim=-1)
+    # ic(prob.shape)
+    # ic(ids.shape)
     return prob[np.arange(ids.shape[0]), ids]
 
 
-def prob_to_ll(prob, ll_type):
-    if ll_type == 'ans_inv_perp':
-        return torch.mean(torch.log(prob))
-    elif ll_type == 'sent_inv_perp':
-        return torch.mean(torch.log(prob))
-    else:
-        assert False, 'Unrecognized input argument.'
+def find_critical_word(tokenizer, encoded_seq):
+    '''gives the tokenization of the last word in the sequence'''
+
+    critical_word = ''
+    tokens_indices = []  # tokenized indices of the sequence
+
+    for token in torch.flip(encoded_seq[0], dims=(0,)):
+        token_string = tokenizer.convert_ids_to_tokens([token])[0]
+        tokens_indices.insert(0, token)
+        if 'Ġ' in token_string:
+            critical_word = token_string[1:] + critical_word
+            break
+        else:
+            critical_word = token_string + critical_word
+
+    return critical_word, tokens_indices
+
+
+def find_critical_phrase(tokenizer, encoded_seq, target):
+    target = set(target.split())
+    phrase, toi = set(), []
+    seq = encoded_seq
+    while phrase != target:
+        # ic(seq)
+        word, tokens = find_critical_word(tokenizer, seq)
+
+        # Update
+        seq = seq[:, :-len(tokens)]
+        if seq.shape[1] == 0:
+            break
+        phrase.add(word)
+        toi = tokens + toi
+        # Check
+        if phrase == target:
+            return toi
+    assert False, 'There is something wrong in tokenization.'
+
+
+def prob_to_ll(prob): return torch.mean(torch.log(prob))
 
 
 class LMPROB():
@@ -84,54 +120,33 @@ class LMPROB():
         self.ll_type = ll_type
 
     def __call__(self, prompt, choice):
-        tokens = self.tokenizer(prompt + choice, return_tensors="pt")
+        tokens = self.tokenizer(
+            prompt + " " + choice, return_tensors="pt", add_special_tokens=False)
         for item, _ in tokens.items():
             tokens[item] = tokens[item].to(DEVICE)
-        ans_token = self.tokenizer(choice, return_tensors="pt")
-        if self.family in ['BERT', 'RoBERTa', 'ALBERT']:
-            # FOR BERT family model: trim [CLS] & [SEP] tokens
-            answer_input_ids = ans_token.input_ids[0][1:-1].to(DEVICE)
-            length_ans = len(answer_input_ids)
-            sent_input_ids = tokens.input_ids[0].to(DEVICE)
-            out = self.model(**tokens)
-            logit = out.prediction_logits if self.family == 'ALBERT' else out.logits
-            prob = logit_to_prob(
-                logit.squeeze(), sent_input_ids)[-length_ans-1:-1]
-            ll = prob_to_ll(prob, self.ll_type)
-            toi = sent_input_ids[-length_ans-1:-1]
-            return prob, ll, toi
-        elif self.family in ['GPT', 'GPT2', 'GPTNEO', 'GPTNEOX']:
-            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
-            length_ans = len(answer_input_ids)
-            sent_input_ids = tokens.input_ids[0].to(DEVICE)
-            logit = self.model(**tokens).logits
-            prob = logit_to_prob(
-                logit.squeeze(), sent_input_ids)[-length_ans:]
-            # ic(prob)
-            ll = prob_to_ll(prob, self.ll_type)
-            toi = sent_input_ids[-length_ans:]
-            return prob, ll, toi
-        elif self.family in ['BART']:
-            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
-            length_ans = len(answer_input_ids)
-            sent_input_ids = tokens.input_ids[0].to(DEVICE)
-            logit = self.model(**tokens).logits
-            prob = logit_to_prob(
-                logit.squeeze(), sent_input_ids)[-length_ans+2:-1]
-            ll = prob_to_ll(prob, self.ll_type)
-            toi = sent_input_ids[-length_ans+2:-1]
-            return prob, ll, toi
-        elif self.family in ['T5']:
-            answer_input_ids = ans_token.input_ids[0].to(DEVICE)
-            length_ans = len(answer_input_ids)
-            sent_input_ids = tokens.input_ids[0]
-            logit = self.model(
-                **tokens, decoder_input_ids=tokens.input_ids).logits
-            prob = logit_to_prob(
-                logit.squeeze(), sent_input_ids)[-length_ans:-1]
-            ll = prob_to_ll(prob, self.ll_type)
-            toi = sent_input_ids[-length_ans:-1]
-            return prob, ll, toi
+
+        if self.family in ['GPT2', 'GPTNEO', 'GPTNEOX', 'OPT']:
+            # token sequence processing
+            logits = self.model(**tokens).logits
+            # ic(logits.shape)
+            if self.ll_type == 'ans_inv_perp':
+                toi = find_critical_phrase(
+                    self.tokenizer, tokens.input_ids, choice)
+            elif self.ll_type == 'sent_inv_perp':
+                toi = tokens.input_ids[0]
+            else:
+                assert False, 'Unrecognized input argument.'
+            # extract probability and inverse perplexity
+            probs = logit_to_prob(
+                logits.squeeze(), tokens.input_ids[0])[-len(toi):]
+            # ic(self.tokenizer.decode(toi[-1]))
+            # ic(len(toi))
+            # ic(probs)
+            # ic(probs.shape)
+            ll = prob_to_ll(probs)
+            return probs, ll, toi
+        if self.family in ['BERT', 'RoBERTa', 'ALBERT', 'BART', 'T5', 'GPT']:
+            raise NotImplementedError
         else:
             assert False, 'Unrecognized model family'
 

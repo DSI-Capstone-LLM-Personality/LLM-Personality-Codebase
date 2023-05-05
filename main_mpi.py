@@ -95,7 +95,6 @@ elif access_method == "hf":
     tokenizer = TOKENIZER[family].from_pretrained(version)
     model = MODEL[regime][family].from_pretrained(
         version, pad_token_id=tokenizer.eos_token_id).to(DEVICE)
-    # model = torch.nn.DataParallel(model)  # Default argument is fine
 else:
     assert 'Unrecognized Access Method.'
 
@@ -110,7 +109,7 @@ else:
     assert False, 'Unrecognized Regime.'
 
 #####  Additional directory parsing (For necessary model family only)  #####
-if family in ['GPTNEO', 'GPTNEOX', 'BART', 'FLAN-T5', 'T0']:
+if family in ['GPTNEO', 'GPTNEOX', 'BART', 'FLAN-T5', 'T0', 'OPT']:
     version = version.split('/')[1]
 
 log_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
@@ -135,7 +134,7 @@ if ans_type is not None and regime == "Constraint":
 # ---------------- RUN -------------- #
 mpi = MPI(path_to_dset, start, end,
           prompt_template, index, desc, ans_type, is_lower,
-          regime, order, shuffle_both)
+          regime, order, shuffle_both, verbose)
 mpi.reset()
 
 if regime == "Constraint":

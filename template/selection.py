@@ -1,6 +1,7 @@
 import os
 import argparse
 import yaml
+from itertools import filterfalse
 from MPI.mpi import *
 from model.language_model import *
 from template.templates import *
@@ -110,7 +111,7 @@ def main():
         assert False, 'Unrecognized Regime.'
 
     #####  Additional directory parsing (For necessary model family only)  #####
-    if family in ['GPTNEO', 'GPTNEOX', 'BART', 'FLAN-T5', 'T0']:
+    if family in ['OPT', 'GPTNEO', 'GPTNEOX', 'BART', 'FLAN-T5', 'T0']:
         version = version.split('/')[1]
 
     log_dir += f"{regime}/{category}/{version}/{tmp['description']}/{ans_type}/"
@@ -133,38 +134,42 @@ def main():
     # ---------------- RUN -------------- #
 
     path = r"template/candidates/"
-    templates = os.listdir(path)
+    templates = np.array(os.listdir(path))
+    templates = list(filterfalse(lambda x: '.txt' not in x, templates))
     print(f"Here is a list of {len(templates)} candidate templates.")
     scores = {}
 
     for tmp in templates:
         for is_lower in [True, False]:
             fname = filename
-            lower_flag = "lower-cased" if is_lower else "original"
             tmp = tmp.rstrip(".txt")
             # ic(tmp)
-            fname += f"_[{tmp}-{lower_flag}]"
             prompt_template = get_template(tmp)
+            tmp_name = tmp
+            if is_lower:
+                tmp_name = tmp_name.replace('og', 'lc')
+            fname += f"_{tmp_name}"
+            # print(
+            #     f">> TEMPLATE TESTING: {tmp_name} | LOWER CASE VERSION? {is_lower}")
             print(
-                f">> TEMPLATE TESTING: {tmp} | LOWER CASE VERSION? {is_lower}")
+                f">> TEMPLATE TESTING: {tmp_name}")
             # ic(prompt_template)
             mpi = MPI(path_to_dset, start, end,
                       prompt_template, index, desc, ans_type, is_lower,
-                      regime, order, shuffle_both)
+                      regime, order, shuffle_both, verbose)
             mpi.reset()
 
             # Answer questions and calculate scores
             if regime == "Constraint":
                 mpi.constraint_answer(
                     tokenizer, model, model_config, ll_type, verbose)
-                scores[f"{tmp}-{lower_flag}"] = mutual_information(
+                scores[tmp_name] = mutual_information(
                     mpi.likelihood)
             elif regime == "Open-Vocab":
                 assert generation_config is not None
                 mpi.open_vocab_answer(tokenizer, model, model_config,
                                       generation_config, verbose)
-                scores[f"{tmp}-{lower_flag}"] = (sum(mpi.valid_mask)
-                                                 * 100) / len(mpi.valid_mask)
+                scores[tmp_name] = f"{(sum(mpi.valid_mask)* 100) / len(mpi.valid_mask)}%"
             else:
                 assert False, 'Unrecognized Regime.'
 
@@ -177,11 +182,12 @@ def main():
         scores, orient='index', columns=['Scores'])
     scores_df.reset_index(inplace=True)
     scores_df = scores_df.rename(columns={'index': 'Template'})
+    scores_df = scores_df.sort_values(by=['Scores'], ascending=False)
     # Write files
     with open(log_dir + "scores.txt", 'w') as f:
         f.write("Template Selection Results\n")
         f.write(tabulate(scores_df, headers='keys',
-                tablefmt='psql', showindex=False))
+                tablefmt='psql', showindex=True))
         f.write("\n")
         best_template = scores_df['Template'].loc[scores_df['Scores'].idxmax()]
         f.write(

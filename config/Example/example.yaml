@@ -13,12 +13,16 @@ dataset:
   end: null
 
 template:
-  prompt: mpi_type-i_space
+  prompt: "[og]-[ns]-[type-ii]-[ans-i]"
   description: non-index
+  # index:
+  #   "+": letter
+  #   "-": letter
   index: null
   desc:
     "+": mpi
     "-": mpi
+  # ans_type: index-desc
   ans_type: desc
   is_lower_case: True
 
@@ -26,10 +30,10 @@ shuffle:
   order: original
   shuffle_both: False
 
-# use opeai-gpt for testing purpose
+# use opt for testing purpose
 model:
-  family: GPT
-  version: openai-gpt
+  family: OPT
+  version: facebook/opt-125m
   access_method: hf
 
 algorithm:

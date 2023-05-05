@@ -48,7 +48,7 @@ class MPI():
     # (this should also work for non-mpi templates)
     def __init__(self, path_to_file, start, end,
                  prompt, index, desc, ans_type, is_lower_case,
-                 regime="constraint", order=None, shuffle_both=None):
+                 regime="constraint", order=None, shuffle_both=None, verbose=False):
         self.mpi_df = read_mpi(path_to_file)
 
         # (Optional): only testing the first few examples
@@ -74,20 +74,23 @@ class MPI():
         self.option = self.option_formatter(order, shuffle_both)
 
         # Print out options for checking purpose
-        line(120)
-        print(colored.fg("#00b384") + Style.BRIGHT + line(n=120, is_print=False))
-        for key, vals in self.option.items():
-            print(colored.fg('#ffbf00') + f"OPTIONS for {key} QUESTIONS: ")
-            print(colored.fg("#00b384") + f">> {vals}")
+        if verbose:
+            line(120)
+            print(colored.fg("#00b384") + Style.BRIGHT +
+                  line(n=120, is_print=False))
+            for key, vals in self.option.items():
+                print(colored.fg('#ffbf00') + f"OPTIONS for {key} QUESTIONS: ")
+                print(colored.fg("#00b384") + f">> {vals}")
         # ANSWERS
         self.mpi_choice_lst = MPI_options_to_answers(
             self.index, self.desc, self.option, ans_type, order)
 
-        line(120)
-        for key, vals in self.mpi_choice_lst.items():
-            print(colored.fg('#ffbf00') + f"ANSWERS for {key} QUESTIONS: ")
-            print(colored.fg("#00b384") + f">> {vals}")
-        line(120)
+        if verbose:
+            line(120)
+            for key, vals in self.mpi_choice_lst.items():
+                print(colored.fg('#ffbf00') + f"ANSWERS for {key} QUESTIONS: ")
+                print(colored.fg("#00b384") + f">> {vals}")
+            line(120)
 
         # QUESTIONS
         self.formatter = MPIQuestionFormatter(prompt, self.option)
@@ -243,7 +246,7 @@ class MPI():
                     # PROBABILITY FOR EACH WORD IN THE SENTENCE
                     prob_lst.append(prob)
                     # TOKEN OF INTERESTS
-                    toi_lst.append(tokenizer.decode(toi))
+                    toi_lst.append(tokenizer.decode(toi).strip())
                 # MCQA BASED ON LIKELIHOOD
                 ll_lst = torch.tensor(ll_lst)
                 pred = torch.argmax(ll_lst).item()

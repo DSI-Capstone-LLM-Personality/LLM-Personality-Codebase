@@ -33,7 +33,7 @@ OCEAN = ['O', 'C', 'E', 'A', 'N']
 
 def log_fname(dset, model_desc, answer_type, ll_type=None):
     family, version = model_desc['family'], model_desc['version']
-    if family in ['GPTNEO', 'GPTNEOX', 'BART', 'T0']:
+    if family in ['GPTNEO', 'GPTNEOX', 'BART', 'T0', 'OPT']:
         version = version.split('/')[1]
     if ll_type is None:
         return f"[{dset}]_[{family}|{version}]_[{answer_type}]"
@@ -294,7 +294,7 @@ class PROCESSER():
 
 
 # Test processor code
-openai.api_key = read_api_key("", 'kiyan')
+# openai.api_key = read_api_key("", 'kiyan')
 # openai.api_key = read_api_key("", 'xysong')
 # processor = PROCESSER(verbose=True)
 # # item = "worry about things"
