@@ -142,10 +142,9 @@ def main():
     for tmp in tqdm(templates):
         for is_lower in [True, False]:
             fname = filename
-            tmp = tmp.rstrip(".txt")
+            tmp_name = tmp.rstrip(".txt")
             # ic(tmp)
-            prompt_template = get_template(tmp)
-            tmp_name = tmp
+            prompt_template = get_template(tmp_name)
             if is_lower:
                 tmp_name = tmp_name.replace('og', 'lc')
             fname += f"_{tmp_name}"
