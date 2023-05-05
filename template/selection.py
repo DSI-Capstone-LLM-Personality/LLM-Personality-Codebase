@@ -139,7 +139,7 @@ def main():
     print(f"Here is a list of {len(templates)} candidate templates.")
     scores = {}
 
-    for tmp in templates:
+    for tmp in tqdm(templates):
         for is_lower in [True, False]:
             fname = filename
             tmp = tmp.rstrip(".txt")
@@ -183,10 +183,11 @@ def main():
     scores_df.reset_index(inplace=True)
     scores_df = scores_df.rename(columns={'index': 'Template'})
     scores_df = scores_df.sort_values(by=['Scores'], ascending=False)
+    scores_df.reset_index(inplace=True)
     # Write files
     with open(log_dir + "scores.txt", 'w') as f:
         f.write("Template Selection Results\n")
-        f.write(tabulate(scores_df, headers='keys',
+        f.write(tabulate(scores_df[['Template', 'Scores']], headers='keys',
                 tablefmt='psql', showindex=True))
         f.write("\n")
         best_template = scores_df['Template'].loc[scores_df['Scores'].idxmax()]
