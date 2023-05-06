@@ -120,7 +120,11 @@ os.makedirs(ckpt_dir, exist_ok=True)
 
 #####  logging filename  #####
 filename = log_fname(dset, model_config, tmp['description'])
-filename += f"_[{tmp['prompt']}]"
+tmp_name = tmp['prompt']
+if is_lower:
+    tmp_name = tmp_name.replace('og', 'lc')
+filename += f"_{tmp_name}"
+
 if args.tag:
     tag = args.tag
     filename += f'_[{tag}]'
@@ -149,6 +153,3 @@ else:
 
 mpi.write_statistic(log_dir + filename + '.txt')
 mpi.save_checkpoint(ckpt_dir + filename + '.pt')
-
-# Can easily incorporate template selection code
-# TODO: (Xiaoyang) template selection code
