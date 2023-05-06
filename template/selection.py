@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/home/as14229/NYU_HPC/LLM-Personality-Codebase/')
+
 import os
 import argparse
 import yaml
@@ -39,6 +42,11 @@ def main():
     parser.add_argument('--verbose', help='verbose mode', action='store_true')
     parser.add_argument('--tag', help='tags', type=str, default='')
     args = parser.parse_args()
+
+    # TO DELETE
+    # args.verbose = True
+    args.config = 'config/template-selection/template-selection.yaml'
+
 
     assert args.config is not None, 'Please specify the config .yaml file to proceed.'
     config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
@@ -208,3 +216,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+    
