@@ -2,6 +2,7 @@ import os
 import argparse
 import yaml
 from itertools import filterfalse
+from matplotlib import pyplot as plt
 from MPI.mpi import *
 from model.language_model import *
 from template.templates import *
@@ -182,6 +183,18 @@ def main():
     scores_df = scores_df.rename(columns={'index': 'Template'})
     scores_df = scores_df.sort_values(by=['Scores'], ascending=False)
     scores_df.reset_index(inplace=True)
+    scores_df.to_csv(ckpt_dir + 'scores.csv')
+    # Make plots
+    plt.plot(np.arange(1, 37, 1),
+             scores_df['Scores'], marker='s', color='navy', markersize=4)
+    # plt.legend()
+    plt.ylim(bottom=0.0)
+    # plt.show()
+    plt.xlabel("Rank")
+    plt.ylabel("Scores")
+    plt.title("Template Score vs. Rank")
+    plt.savefig(log_dir + "score_vs_rank.png", dpi=400)
+    plt.close()
     # Write files
     with open(log_dir + "scores.txt", 'w') as f:
         f.write("Template Selection Results\n")
