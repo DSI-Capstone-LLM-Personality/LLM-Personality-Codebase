@@ -1,0 +1,335 @@
+MODEL: OPT | Version: facebook/opt-13b
+--------------------------------------------------------------------------------
+There are 50 MC questions in total.
+--------------------------------------------------------------------------------
+SHUFFLED? | [0, 1, 2, 3, 4]
+> Shuffle both indexes and descriptions?: False
+The question template look like this:
+
+Question:
+
+Given a description of you: "You trust others." What do you think?
+You can choose from the following options:
+
+Options:
+Very Accurate
+Moderately Accurate
+Neither Accurate Nor Inaccurate
+Moderately Inaccurate
+Very Inaccurate
+
+Answer: I choose option 
+--------------------------------------------------------------------------------
+The choice available for "+" questions looks like this:
+> ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+--------------------------------------------------------------------------------
+The choice available for "-" questions looks like this:
+> ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+--------------------------------------------------------------------------------
+ANSWER STATISTICS
+--------------------------------------------------------------------------------
+OCEAN SCORES STATS
+O | MEAN: 2.6      | STD: 2.06559
+C | MEAN: 2.6      | STD: 2.06559
+E | MEAN: 3.0      | STD: 2.10819
+A | MEAN: 3.0      | STD: 2.10819
+N | MEAN: 3.4      | STD: 2.06559
+--------------------------------------------------------------------------------
+OTHER INTERESTING STATS
++ Questions: 
+ANSWERS                         | Count
+Very Accurate                   |   3
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   22
+- Questions: 
+ANSWERS                         | Count
+Very Accurate                   |   4
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   21
+--------------------------------------------------------------------------------
+TRAITS-LEVEL STATS: 
+Trait: O | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   0
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   5
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   1
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   4
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   6 |   0 |   0 |   0 |   4 |
++-----+-----+-----+-----+-----+
+
+
+Trait: C | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   1
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   4
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   2
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   3
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   6 |   0 |   0 |   0 |   4 |
++-----+-----+-----+-----+-----+
+
+
+Trait: E | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   1
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   4
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   1
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   4
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: A | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   0
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   5
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   0
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   5
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: N | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   1
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   4
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   0
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   5
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   4 |   0 |   0 |   0 |   6 |
++-----+-----+-----+-----+-----+
+
+
+--------------------------------------------------------------------------------
+APPENDIX: ANSWERS
+--------------------------------------------------------------------------------
+QUESTION #1    | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Trust others
+> Inverse Log-Perplexity: [-15.1794, -18.8276, -17.8554, -18.4173, -14.9242]
+QUESTION #2    | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Love to help others
+> Inverse Log-Perplexity: [-14.9942, -18.8472, -17.8625, -18.2566, -14.7114]
+QUESTION #3    | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Sympathize with the homeless
+> Inverse Log-Perplexity: [-14.8415, -18.5617, -17.7367, -17.9646, -14.5663]
+QUESTION #4    | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Believe that others have good intentions
+> Inverse Log-Perplexity: [-15.0774, -18.7745, -17.9445, -18.4259, -14.9073]
+QUESTION #5    | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Are concerned about others
+> Inverse Log-Perplexity: [-14.9943, -18.7322, -17.8024, -18.1688, -14.6482]
+QUESTION #6    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+> Statement: Complete tasks successfully
+> Inverse Log-Perplexity: [-15.303, -18.8154, -18.0359, -18.3944, -15.3682]
+QUESTION #7    | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Like to tidy up
+> Inverse Log-Perplexity: [-14.9925, -18.7162, -17.8259, -18.2542, -14.8531]
+QUESTION #8    | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Keep your promises
+> Inverse Log-Perplexity: [-15.1596, -18.7853, -18.0375, -18.2731, -15.0757]
+QUESTION #9    | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Work hard
+> Inverse Log-Perplexity: [-14.9111, -18.6746, -17.7491, -18.1464, -14.647]
+QUESTION #10   | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Are always prepared
+> Inverse Log-Perplexity: [-15.1515, -18.6043, -17.9374, -18.1293, -14.9805]
+QUESTION #11   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Make friends easily
+> Inverse Log-Perplexity: [-15.2107, -18.7062, -17.9846, -18.2492, -14.9468]
+QUESTION #12   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Love large parties
+> Inverse Log-Perplexity: [-14.9741, -18.781, -17.9136, -18.3116, -14.8321]
+QUESTION #13   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+> Statement: Take charge
+> Inverse Log-Perplexity: [-14.9663, -18.6392, -17.8847, -18.2962, -15.0075]
+QUESTION #14   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Are always busy
+> Inverse Log-Perplexity: [-14.8964, -18.608, -17.9372, -18.1532, -14.7884]
+QUESTION #15   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Love excitement
+> Inverse Log-Perplexity: [-14.8186, -18.5019, -17.6785, -18.0713, -14.5941]
+QUESTION #16   | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Worry about things
+> Inverse Log-Perplexity: [-15.0814, -18.7987, -18.0887, -18.3897, -15.0376]
+QUESTION #17   | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Get angry easily
+> Inverse Log-Perplexity: [-15.1512, -18.6457, -17.9916, -18.206, -14.9327]
+QUESTION #18   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+> Statement: Often feel blue
+> Inverse Log-Perplexity: [-14.8533, -18.657, -18.0201, -18.2041, -14.8994]
+QUESTION #19   | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Find it difficult to approach others
+> Inverse Log-Perplexity: [-14.904, -18.6826, -17.8875, -18.2577, -14.7261]
+QUESTION #20   | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Go on binges
+> Inverse Log-Perplexity: [-14.6004, -18.5114, -17.8379, -18.1201, -14.5952]
+QUESTION #21   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Have a vivid imagination
+> Inverse Log-Perplexity: [-14.941, -18.6518, -17.7529, -18.1314, -14.7084]
+QUESTION #22   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Believe in the importance of art
+> Inverse Log-Perplexity: [-15.0073, -18.6976, -17.9759, -18.3133, -14.769]
+QUESTION #23   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Experience your emotions intensely
+> Inverse Log-Perplexity: [-15.0787, -18.4709, -17.6711, -17.9467, -14.7139]
+QUESTION #24   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Prefer variety to routine
+> Inverse Log-Perplexity: [-14.8279, -18.5332, -17.7629, -18.1496, -14.6949]
+QUESTION #25   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: Very Inaccurate
+> Statement: Love to read challenging material
+> Inverse Log-Perplexity: [-14.8026, -18.5636, -17.7259, -18.1712, -14.6214]
+QUESTION #26   | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Use others for your own ends
+> Inverse Log-Perplexity: [-14.7007, -18.6757, -17.7935, -18.2381, -14.6139]
+QUESTION #27   | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Love a good fight
+> Inverse Log-Perplexity: [-15.0073, -18.723, -17.8829, -18.3112, -14.708]
+QUESTION #28   | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Believe that you are better than others
+> Inverse Log-Perplexity: [-15.0597, -18.663, -17.9285, -18.208, -14.8421]
+QUESTION #29   | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Cheat to get ahead
+> Inverse Log-Perplexity: [-14.8285, -18.5232, -17.9609, -18.1674, -14.709]
+QUESTION #30   | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Yell at people
+> Inverse Log-Perplexity: [-15.1678, -18.7472, -18.0686, -18.2567, -14.9219]
+QUESTION #31   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+> Statement: Make rash decisions
+> Inverse Log-Perplexity: [-15.1601, -18.7642, -18.0051, -18.326, -15.1829]
+QUESTION #32   | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Leave a mess in your room
+> Inverse Log-Perplexity: [-14.9946, -18.6753, -17.8454, -18.2701, -14.9289]
+QUESTION #33   | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Break rules
+> Inverse Log-Perplexity: [-14.8507, -18.5312, -17.8268, -18.1299, -14.7126]
+QUESTION #34   | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Do just enough work to get by
+> Inverse Log-Perplexity: [-14.9926, -18.741, -17.9758, -18.2724, -14.801]
+QUESTION #35   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+> Statement: Waste your time
+> Inverse Log-Perplexity: [-14.558, -18.5895, -17.9775, -18.1727, -14.6123]
+QUESTION #36   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Avoid contacts with others
+> Inverse Log-Perplexity: [-14.8332, -18.7114, -17.7433, -18.2308, -14.6659]
+QUESTION #37   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Prefer to be alone
+> Inverse Log-Perplexity: [-14.741, -18.7374, -17.7664, -18.1628, -14.5267]
+QUESTION #38   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Keep others at a distance
+> Inverse Log-Perplexity: [-14.8367, -18.5944, -17.7461, -18.1784, -14.7912]
+QUESTION #39   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Avoid crowds
+> Inverse Log-Perplexity: [-14.8374, -18.5693, -17.8362, -18.2017, -14.7955]
+QUESTION #40   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+> Statement: Wait for others to lead the way
+> Inverse Log-Perplexity: [-14.843, -18.6849, -17.9386, -18.2967, -14.9378]
+QUESTION #41   | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Rarely overindulge
+> Inverse Log-Perplexity: [-14.6895, -18.5368, -17.7911, -18.1541, -14.6102]
+QUESTION #42   | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Easily resist temptations
+> Inverse Log-Perplexity: [-14.9525, -18.6001, -17.943, -18.1297, -14.7502]
+QUESTION #43   | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Are not easily annoyed
+> Inverse Log-Perplexity: [-14.9107, -18.5443, -17.8975, -18.0558, -14.7558]
+QUESTION #44   | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Feel comfortable with yourself
+> Inverse Log-Perplexity: [-15.0722, -18.7018, -17.8855, -18.0982, -14.7615]
+QUESTION #45   | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Are not bothered by difficult social situations
+> Inverse Log-Perplexity: [-15.0177, -18.5368, -17.8357, -17.9783, -14.7381]
+QUESTION #46   | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Avoid philosophical discussions
+> Inverse Log-Perplexity: [-15.1578, -18.7289, -18.1133, -18.2322, -15.0104]
+QUESTION #47   | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Do not like poetry
+> Inverse Log-Perplexity: [-14.9848, -18.7315, -18.0875, -18.2956, -14.849]
+QUESTION #48   | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Rarely notice your emotional reactions
+> Inverse Log-Perplexity: [-14.8519, -18.5991, -17.7508, -18.04, -14.614]
+QUESTION #49   | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: Very Inaccurate
+> Statement: Dislike changes
+> Inverse Log-Perplexity: [-15.0586, -18.7676, -17.9194, -18.4131, -15.0346]
+QUESTION #50   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+> Statement: Have difficulty understanding abstract ideas
+> Inverse Log-Perplexity: [-14.9354, -18.7326, -17.9209, -18.2407, -14.9377]
+--------------------------------------------------------------------------------
+& $2.60$ & $2.07$ & $2.60$ & $2.07$ & $3.00$ & $2.11$ & $3.00$ & $2.11$ & $3.40$ & $2.07$ \\
+& $3$ & $4$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $22$ & $21$ \\

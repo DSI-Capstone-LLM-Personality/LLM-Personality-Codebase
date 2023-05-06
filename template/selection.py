@@ -1,18 +1,21 @@
-from colorama import Fore, Back, Style
-import colorama
-import colored
-from util.utils import *
-from template.scoring import mutual_information
-from template.templates import *
-from model.language_model import *
-from MPI.mpi import *
-from matplotlib import pyplot as plt
-from itertools import filterfalse
-import yaml
-import argparse
+
 import os
 import sys
-sys.path.append('/home/as14229/NYU_HPC/LLM-Personality-Codebase/')
+import yaml
+import colored
+import argparse
+from itertools import filterfalse
+from matplotlib import pyplot as plt
+from colorama import Fore, Back, Style
+
+# Required for project imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from MPI.mpi import *
+from util.utils import *
+from template.templates import *
+from model.language_model import *
+from template.scoring import mutual_information
 
 
 def main():
@@ -44,7 +47,7 @@ def main():
 
     # TO DELETE
     # args.verbose = True
-    args.config = 'config/template-selection/template-selection.yaml'
+    args.config = 'config/template-selection/OPT.yaml'
 
     assert args.config is not None, 'Please specify the config .yaml file to proceed.'
     config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
