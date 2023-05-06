@@ -120,6 +120,8 @@ class LMPROB():
         self.ll_type = ll_type
 
     def __call__(self, prompt, choice):
+        # ic(prompt)
+        # ic(choice)
         tokens = self.tokenizer(
             prompt + " " + choice, return_tensors="pt", add_special_tokens=False)
         for item, _ in tokens.items():

@@ -85,6 +85,11 @@ class MPI():
         self.mpi_choice_lst = MPI_options_to_answers(
             self.index, self.desc, self.option, ans_type, order)
 
+        if self.is_lower_case:
+            for key, val in self.mpi_choice_lst.items():
+                # ic(val)
+                self.mpi_choice_lst[key] = np.array([x.lower() for x in val])
+
         if verbose:
             line(120)
             for key, vals in self.mpi_choice_lst.items():
