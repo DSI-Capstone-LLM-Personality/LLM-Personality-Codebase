@@ -107,9 +107,9 @@ class MPIOptionFormatter():
     def __init__(self, index, desc, is_lower_case=False):
         self.index = index
         self.desc = desc
-
+        # ic(self.desc)
         self.is_lower_case = is_lower_case
-        if is_lower_case:
+        if self.is_lower_case:
             # print(self.desc)
             self.desc = {k: np.array([x.lower() for x in v])
                          for k, v in self.desc.items()}

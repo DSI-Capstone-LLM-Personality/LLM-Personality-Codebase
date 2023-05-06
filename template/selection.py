@@ -1,19 +1,18 @@
+from colorama import Fore, Back, Style
+import colorama
+import colored
+from util.utils import *
+from template.scoring import mutual_information
+from template.templates import *
+from model.language_model import *
+from MPI.mpi import *
+from matplotlib import pyplot as plt
+from itertools import filterfalse
+import yaml
+import argparse
+import os
 import sys
 sys.path.append('/home/as14229/NYU_HPC/LLM-Personality-Codebase/')
-
-import os
-import argparse
-import yaml
-from itertools import filterfalse
-from matplotlib import pyplot as plt
-from MPI.mpi import *
-from model.language_model import *
-from template.templates import *
-from template.scoring import mutual_information
-from util.utils import *
-import colored
-import colorama
-from colorama import Fore, Back, Style
 
 
 def main():
@@ -46,7 +45,6 @@ def main():
     # TO DELETE
     # args.verbose = True
     args.config = 'config/template-selection/template-selection.yaml'
-
 
     assert args.config is not None, 'Please specify the config .yaml file to proceed.'
     config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
@@ -150,6 +148,7 @@ def main():
 
     for tmp in tqdm(templates):
         for is_lower in [True, False]:
+            ic(is_lower)
             fname = filename
             tmp_name = tmp.rstrip(".txt")
             # ic(tmp)
@@ -161,6 +160,7 @@ def main():
             #     f">> TEMPLATE TESTING: {tmp_name} | LOWER CASE VERSION? {is_lower}")
             print(
                 f">> TEMPLATE TESTING: {tmp_name}")
+            ic(desc)
             # ic(prompt_template)
             mpi = MPI(path_to_dset, start, end,
                       prompt_template, index, desc, ans_type, is_lower,
@@ -216,5 +216,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-    
