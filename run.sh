@@ -57,7 +57,7 @@ echo -e $(printf "${COLOR}${LINE// /=}${ENDCOLOR}")
 if [ -f "$FILE" ]; then
     echo -e $(printf "${COLOR}Congratulations! You PASSED Argument checking...${ENDCOLOR}")
 else 
-    echo -e $(printf "${COLOR}Unfortunately, your input file \'$FILE\' does not exit.${ENDCOLOR}")
+    echo -e $(printf "${COLOR}Unfortunately, your input file \'$FILE\' does not exists.${ENDCOLOR}")
     echo -e $(printf "${COLOR}Process Killed: please check your input arguments.${ENDCOLOR}")
     echo -e $(printf "${COLOR}${LINE// /=}${ENDCOLOR}")
     exit 0
