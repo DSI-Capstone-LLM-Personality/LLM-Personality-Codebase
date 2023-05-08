@@ -11,11 +11,11 @@ import argparse
 # # python3 util/table_generator.py --config=config/Open-Vocab/order-symmetry/GPT3/indexed.yaml
 
 TABLE_ORDER_NAME = {
-    'original': 'Original Order',
-    'reverse': 'Reverse Order',
-    'order-I': 'Random Order I',
-    'order-II': 'Random Order II',
-    'order-III': 'Random Order III'
+    'original': 'Original',
+    'reverse': 'Reverse',
+    'order-I': 'Order I',
+    'order-II': 'Order II',
+    'order-III': 'Order III'
 }
 
 parser = argparse.ArgumentParser()
@@ -31,26 +31,41 @@ regime, category = config['experiment'].values()
 model_config = config['model']
 family, version, _ = model_config.values()
 
+if family in ['GPTNEO', 'GPTNEOX', 'BART', 'FLAN-T5', 'T0', 'OPT']:
+    version = version.split('/')[1]
+
 prompt_template = config['template']['prompt']
 ans_type = config['template']['ans_type']
 description = config['template']['description']
+is_lower = config['template']['is_lower_case']
 
 mpis_dir = f"checkpoint/mpis/{regime}/{category}/{version}/{description}/{ans_type}/"
-filename = log_fname(dset, model_config, description) + \
-    f"_[{prompt_template}]"
+filename = log_fname(dset, model_config, description)
+
+tmp_name = prompt_template
+if is_lower:
+    tmp_name = tmp_name.replace('og', 'lc')
+filename += f"_{tmp_name}"
 
 
+#TODO: Clean later
 def generate_table(table: str):
     if table == "symmetry":
-        out = f"\multirow{{5:}}{{*}}[-0.3em]{{\\makecell[c]{{{family} \\\\ (\\textsc{{{prompt_template}}})}}}} "
+        out = f"\multirow{{5}}{{*}}[-0.3em]{{\\makecell[c]{{{family} \\\\ \\textsc{{{tmp_name}}}}}}} "
         for order in ORDERS.keys():
-            ckpt = torch.load(f"{mpis_dir}{filename}_[{order}].pt")
+            fname = f"{mpis_dir}{filename}_[{order}]"
+            if ans_type is not None and regime == "Constraint":
+                fname += f"_[{ans_type}]"
+            ckpt = torch.load(f"{fname}.pt",map_location=DEVICE)
             out += f"& \\textsc{{{TABLE_ORDER_NAME[order]}}}" + \
                 format_ocean_latex_table(ckpt) + "\n"
     elif table == "ans_dist":
-        out = f"\multirow{{5:}}{{*}}[-0.3em]{{\\makecell[c]{{{family} \\\\ (\\textsc{{{prompt_template}}})}}}} "
+        out = f"\multirow{{5}}{{*}}[-0.3em]{{\\makecell[c]{{{family} \\\\ \\textsc{{{tmp_name}}}}}}} "
         for order in ORDERS.keys():
-            ckpt = torch.load(f"{mpis_dir}{filename}_[{order}].pt")
+            fname = f"{mpis_dir}{filename}_[{order}]"
+            if ans_type is not None and regime == "Constraint":
+                fname += f"_[{ans_type}]"
+            ckpt = torch.load(f"{fname}.pt",map_location=DEVICE)
             out += f"& \\textsc{{{TABLE_ORDER_NAME[order]}}}" + \
                 format_ans_distribution_latex_table(ckpt) + "\n"
     else:
@@ -61,4 +76,4 @@ def generate_table(table: str):
 
 # CURRENT CODE ONLY WORKS FOR SYMMETRY EXPERIMENT TABLE GENERATION
 generate_table("symmetry")
-# generate_table("ans_dist")
+generate_table("ans_dist")
