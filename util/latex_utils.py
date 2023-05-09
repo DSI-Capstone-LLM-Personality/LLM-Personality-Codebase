@@ -29,15 +29,20 @@ config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
 dset = config['dataset']['dset']
 regime, category = config['experiment'].values()
 model_config = config['model']
-family, version, _ = model_config.values()
+family, version = model_config['family'], model_config['version']
 
 if family in ['GPTNEO', 'GPTNEOX', 'BART', 'FLAN-T5', 'T0', 'OPT']:
     version = version.split('/')[1]
 
 prompt_template = config['template']['prompt']
-ans_type = config['template']['ans_type']
+# ans_type = config['template']['ans_type']
 description = config['template']['description']
 is_lower = config['template']['is_lower_case']
+
+# MANUALLY CHANGE THIS
+# ans_type = 'index-desc'
+# ans_type='index'
+ans_type='desc'
 
 mpis_dir = f"checkpoint/mpis/{regime}/{category}/{version}/{description}/{ans_type}/"
 filename = log_fname(dset, model_config, description)
@@ -69,8 +74,8 @@ def generate_table(table: str):
             out += f"& \\textsc{{{TABLE_ORDER_NAME[order]}}}" + \
                 format_ans_distribution_latex_table(ckpt) + "\n"
             # PLOT DISTRIBUTION
-            ckpt.display_trait_stats()
-            break
+            # ckpt.display_trait_stats()
+            # break
     else:
         assert False, 'Unrecognized Table Type.'
         # print(out)

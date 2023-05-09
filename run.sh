@@ -74,7 +74,7 @@ for ((i=0; i<${#ORDERS[@]}; i++)); do
     echo -e $(printf "${COLOR}${LINE// /=}${ENDCOLOR}")
     yaml-set $FILE --change='/shuffle/order' --value=${ORDERS[i]}
     # python3 $script --config=$FILE --verbose # Use this line if you need verbose mode
-   python $script --config=$FILE # Comment this if you need verbose mode
+    python $script --config=$FILE # Comment this if you need verbose mode
 done
 
 echo -e $(printf "${COLOR}${LINE// /=}${ENDCOLOR}")
