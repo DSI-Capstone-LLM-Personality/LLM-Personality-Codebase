@@ -16,7 +16,7 @@ dataset:
 template:
   # best: [lc]-[s]-[type-i]-[ans-i]
   # worst: [og]-[ns]-[type-iii]-[ans-ii]
-  prompt: "[og]-[lc]-[s]-[type-i]-[ans-i]"
+  prompt: "[og]-[s]-[type-i]-[ans-i]"
   description: index
   index:
     "+": letter
@@ -25,8 +25,8 @@ template:
   desc:
     "+": mpi
     "-": mpi
-  # ans_type: index-desc
-  ans_type: desc
+  ans_type: index-desc
+  # ans_type: desc
   is_lower_case: True
 
 shuffle:
