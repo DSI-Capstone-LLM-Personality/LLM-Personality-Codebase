@@ -4,7 +4,7 @@ We generated these candidate templates based on the those mentioned in the MPI p
 
 1. Will **lower-cased** templates be better? **[2 possibilities]**
 
-- `lc`: stands for "**l**ower-**c**ased".
+- `lc`: stands for "**l**ower-**c**ased" options.
 - `og`: original version with upper case letter.
 
 2. Will **structured** templates help the model to understand the prompt? Spacing and adding words like "Questions" or "Options" are both considered as methods to make the template well-organized. **[2 possibilities]**
@@ -41,8 +41,8 @@ Note that for `ns` template, "Answer" will be replaced by "My answer"; whereas i
   > _Answer: I think the best description of myself is option_\
   > **OR** _My answer: I think the best description of myself is option_
 
-
 With this be said, we will have $36$ different templates to examine for each model.
+
 ## Examples
 
 ---
