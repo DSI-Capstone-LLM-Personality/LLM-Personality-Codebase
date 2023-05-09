@@ -83,12 +83,7 @@ class MPI():
                 print(colored.fg("#00b384") + f">> {vals}")
         # ANSWERS
         self.mpi_choice_lst = MPI_options_to_answers(
-            self.index, self.desc, self.option, ans_type, order)
-
-        if self.is_lower_case:
-            for key, val in self.mpi_choice_lst.items():
-                self.mpi_choice_lst = {k: np.array([x.lower() for x in v])
-                                       for k, v in self.mpi_choice_lst.items()}
+            self.index, self.desc, self.option, ans_type, is_lower_case, order)
 
         if verbose:
             line(120)
@@ -223,7 +218,7 @@ class MPI():
                 self.display_aux_stats()
                 self.display_trait_stats()
 
-    def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", verbose=False):
+    def constraint_answer(self, tokenizer, model, model_desc: dict, ll_type="ans_inv_perp", half_precision=False, verbose=False):
 
         print(colored.fg("blue")+line(120, False))
         print(colored.fg("blue")+"Constraint Search Experiment Running......")
@@ -234,7 +229,7 @@ class MPI():
         assert "version" in model_desc
         assert "family" in model_desc
         family = model_desc['family']  # TODO: add cases
-        prober = LMPROB(family, model, tokenizer, ll_type)
+        prober = LMPROB(family, model, tokenizer, ll_type, half_precision)
 
         if verbose:
             self.display_sample_questions(self.questions[0], self.regime)

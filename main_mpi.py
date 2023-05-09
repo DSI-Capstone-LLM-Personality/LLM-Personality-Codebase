@@ -36,6 +36,10 @@ parser.add_argument('--verbose', help='verbose mode', action='store_true')
 parser.add_argument('--tag', help='tags', type=str, default='')
 args = parser.parse_args()
 
+# To Delete
+# args.config = '/home/as14229/NYU_HPC/LLM-Personality-Codebase/config/Example/test.yaml'
+
+
 assert args.config is not None, 'Please specify the config .yml file to proceed.'
 config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
 # PARSE YAML FILE
@@ -84,7 +88,7 @@ else:
 
 #####  model & Tokenizer Initialization  #####
 model_config = config['model']
-family, version, access_method = model_config.values()
+family, version, access_method, half_precision = model_config.values()
 if access_method == "api":
     model, tokenizer = None, None
 elif access_method == "hf":
@@ -93,8 +97,12 @@ elif access_method == "hf":
     #     model = MODEL[regime][family].from_pretrained(
     #         version, is_decoder=False).to(DEVICE)
     tokenizer = TOKENIZER[family].from_pretrained(version)
-    model = MODEL[regime][family].from_pretrained(
-        version, pad_token_id=tokenizer.eos_token_id).to(DEVICE)
+    if half_precision and DEVICE.lower() != 'cpu':
+        model = MODEL[regime][family].from_pretrained(
+            version, pad_token_id=tokenizer.eos_token_id).half().to(DEVICE)
+    else:
+        model = MODEL[regime][family].from_pretrained(
+            version, pad_token_id=tokenizer.eos_token_id).to(DEVICE)
 else:
     assert 'Unrecognized Access Method.'
 
@@ -142,7 +150,7 @@ mpi = MPI(path_to_dset, start, end,
 mpi.reset()
 
 if regime == "Constraint":
-    mpi.constraint_answer(tokenizer, model, model_config, ll_type, verbose)
+    mpi.constraint_answer(tokenizer, model, model_config, ll_type, half_precision, verbose)
 elif regime == "Open-Vocab":
     assert generation_config is not None
     mpi.open_vocab_answer(tokenizer, model, model_config,

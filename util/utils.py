@@ -127,8 +127,14 @@ class MPIOptionFormatter():
             return self.desc
 
 
-def MPI_options_to_answers(index, desc, option, ans_type, order=None):
+def lc_dict(target):
+    return {k: np.array([x.lower() for x in v])
+                        for k, v in target.items()}
+
+def MPI_options_to_answers(index, desc, option, ans_type, is_lower=False, order=None):
     if ans_type == 'desc':
+        if is_lower:
+            desc = lc_dict(desc)
         return desc
     elif ans_type == 'index':
         return index

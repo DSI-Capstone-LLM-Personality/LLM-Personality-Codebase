@@ -47,7 +47,7 @@ def main():
 
     # TO DELETE
     # args.verbose = True
-    args.config = 'config/template-selection/OPT.yaml'
+    # args.config = '/home/as14229/NYU_HPC/LLM-Personality-Codebase/config/Example/test.yaml'
 
     assert args.config is not None, 'Please specify the config .yaml file to proceed.'
     config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
@@ -96,7 +96,7 @@ def main():
 
     #####  model & Tokenizer Initialization  #####
     model_config = config['model']
-    family, version, access_method = model_config.values()
+    family, version, access_method, half_precision = model_config.values()
     if access_method == "api":
         model, tokenizer = None, None
     elif access_method == "hf":
@@ -105,8 +105,12 @@ def main():
         #     model = MODEL[regime][family].from_pretrained(
         #         version, is_decoder=False).to(DEVICE)
         tokenizer = TOKENIZER[family].from_pretrained(version)
-        model = MODEL[regime][family].from_pretrained(
-            version, pad_token_id=tokenizer.eos_token_id).to(DEVICE)
+        if half_precision and DEVICE.lower() != 'cpu':
+            model = MODEL[regime][family].from_pretrained(
+                version, pad_token_id=tokenizer.eos_token_id).half().to(DEVICE)
+        else:
+            model = MODEL[regime][family].from_pretrained(
+                version, pad_token_id=tokenizer.eos_token_id).to(DEVICE)
         # model = torch.nn.DataParallel(model)  # Default argument is fine
     else:
         assert 'Unrecognized Access Method.'
@@ -173,7 +177,7 @@ def main():
             # Answer questions and calculate scores
             if regime == "Constraint":
                 mpi.constraint_answer(
-                    tokenizer, model, model_config, ll_type, verbose)
+                    tokenizer, model, model_config, ll_type, half_precision, verbose)
                 scores[tmp_name] = mutual_information(mpi.likelihood)
             elif regime == "Open-Vocab":
                 assert generation_config is not None

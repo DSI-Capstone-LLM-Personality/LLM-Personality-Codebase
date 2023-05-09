@@ -114,10 +114,13 @@ def prob_to_ll(prob): return torch.mean(torch.log(prob))
 
 
 class LMPROB():
-    def __init__(self, family, model, tokenizer, ll_type):
+    def __init__(self, family, model, tokenizer, ll_type, half_precision):
         self.family = family
-        self.model, self.tokenizer = model, tokenizer
+        self.model = model
+        self.tokenizer = tokenizer
         self.ll_type = ll_type
+        self.half_precision = half_precision
+
 
     def __call__(self, prompt, choice):
         # ic(prompt)

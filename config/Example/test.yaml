@@ -1,30 +1,31 @@
 experiment:
   regime: Constraint
-  category: order-symmetry
+  category: order-symmetry #template-selection , order-symmetry
 
 path:
   dset_dir: Dataset/
-  mpi_log_dir: checkpoint/log/
-  mpi_ckpt_dir: checkpoint/mpis/
+  mpi_log_dir: checkpoint/test/log/
+  mpi_ckpt_dir: checkpoint/test/mpis/
 
 dataset:
   dset: ocean_988
-  start: null
-  end: null
+  start: 
+  end: 
 
 template:
   prompt: "[og]-[ns]-[type-ii]-[ans-i]"
   description: non-index
-  # index:
-  #   "+": letter
-  #   "-": letter
-  index: null
+  index:
+    "+": letter
+    "-": letter
+  # index: 
   desc:
     "+": mpi
     "-": mpi
+  # ans_type: index
   # ans_type: index-desc
   ans_type: desc
-  is_lower_case: True
+  is_lower_case: False
 
 shuffle:
   order: original
@@ -33,9 +34,9 @@ shuffle:
 # use opt for testing purpose
 model:
   family: OPT
-  version: facebook/opt-125m
+  version: facebook/opt-66b
   access_method: hf
-  half_precision: false
+  half_precision: False
 
 algorithm:
   ll_type: ans_inv_perp

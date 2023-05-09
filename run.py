@@ -67,7 +67,7 @@ def main_mpi(args, config):
 
     #####  model & Tokenizer Initialization  #####
     model_config = config['model']
-    family, version, access_method = model_config.values()
+    family, version, access_method, half_precision = model_config.values()
     if access_method == "api":
         model, tokenizer = None, None
     elif access_method == "hf":
@@ -76,8 +76,12 @@ def main_mpi(args, config):
         #     model = MODEL[regime][family].from_pretrained(
         #         version, is_decoder=False).to(DEVICE)
         tokenizer = TOKENIZER[family].from_pretrained(version)
-        model = MODEL[regime][family].from_pretrained(
-            version, pad_token_id=tokenizer.eos_token_id).to(DEVICE)
+        if half_precision and DEVICE.lower() != 'cpu':
+            model = MODEL[regime][family].from_pretrained(
+                version, pad_token_id=tokenizer.eos_token_id).half().to(DEVICE)
+        else:
+            model = MODEL[regime][family].from_pretrained(
+                version, pad_token_id=tokenizer.eos_token_id).to(DEVICE)
     else:
         assert 'Unrecognized Access Method.'
 
@@ -125,7 +129,7 @@ def main_mpi(args, config):
     mpi.reset()
 
     if regime == "Constraint":
-        mpi.constraint_answer(tokenizer, model, model_config, ll_type, verbose)
+        mpi.constraint_answer(tokenizer, model, model_config, ll_type, half_precision, verbose)
     elif regime == "Open-Vocab":
         assert generation_config is not None
         mpi.open_vocab_answer(tokenizer, model, model_config,
@@ -144,6 +148,7 @@ if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', help='configuration file')
     parser.add_argument('--order', help='order')
+    parser.add_argument('--ans', help='ans_type')
     parser.add_argument('--seed', help='python seed', type=int, default=2023)
     parser.add_argument('--verbose', help='verbose mode', action='store_true')
     parser.add_argument('--tag', help='tags', type=str, default='')
@@ -154,11 +159,25 @@ if __name__=='__main__':
 
     config = yaml.load(open(os.path.join('config/Constraint/order-symmetry',args.config,'non-index.yaml'), 'r'), Loader=yaml.FullLoader)
 
-    if args.order:
-        config['shuffle']['order']= args.order
-        main_mpi(args,config)
-    else:
-        orders = ["original", "reverse", "order-I", "order-II", "order-III"]
-        for order in orders:
-            config['shuffle']['order']= order
+    if args.ans:
+        config['template']['ans_type'] = args.ans
+        if args.order:
+            config['shuffle']['order']= args.order
             main_mpi(args,config)
+        else:
+            orders = ["original", "reverse", "order-I", "order-II", "order-III"]
+            for order in orders:
+                config['shuffle']['order']= order
+                main_mpi(args,config)
+    else:
+        ans_types = ['index', 'index-desc', 'desc']
+        for ans in ans_types:
+            config['template']['ans_type'] = ans
+            if args.order:
+                config['shuffle']['order'] = args.order
+                main_mpi(args,config)
+            else:
+                orders = ["original", "reverse", "order-I", "order-II", "order-III"]
+                for order in orders:
+                    config['shuffle']['order'] = order
+                    main_mpi(args,config)
