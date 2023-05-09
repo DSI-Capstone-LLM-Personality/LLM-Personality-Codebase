@@ -68,6 +68,9 @@ def generate_table(table: str):
             ckpt = torch.load(f"{fname}.pt",map_location=DEVICE)
             out += f"& \\textsc{{{TABLE_ORDER_NAME[order]}}}" + \
                 format_ans_distribution_latex_table(ckpt) + "\n"
+            # PLOT DISTRIBUTION
+            ckpt.display_trait_stats()
+            break
     else:
         assert False, 'Unrecognized Table Type.'
         # print(out)
@@ -75,5 +78,5 @@ def generate_table(table: str):
 
 
 # CURRENT CODE ONLY WORKS FOR SYMMETRY EXPERIMENT TABLE GENERATION
-generate_table("symmetry")
+# generate_table("symmetry")
 generate_table("ans_dist")

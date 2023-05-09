@@ -55,14 +55,16 @@ class MIScorer():
         h_y = entropy(np.mean(x, axis=0, keepdims=True)).item()
         h_y_given_x = np.mean(entropy(x))
         return h_y - h_y_given_x
+    
 
 
 if __name__ == "__main__":
+    pass
     # Simple test
-    ckpt_dir = "checkpoint/mpis/Constraint/order-symmetry/bert-base-uncased/non-index/desc/"
-    # ckpt_name = "[ocean_988]_[BERT|bert-base-uncased]_[non-index]_[order-III].pt"
-    ckpt_name = "[ocean_988]_[BERT|bert-base-uncased]_[non-index]_[original].pt"
+    # ckpt_dir = "checkpoint/mpis/Constraint/order-symmetry/bert-base-uncased/non-index/desc/"
+    # # ckpt_name = "[ocean_988]_[BERT|bert-base-uncased]_[non-index]_[order-III].pt"
+    # ckpt_name = "[ocean_988]_[BERT|bert-base-uncased]_[non-index]_[original].pt"
 
-    mi_scorer = MIScorer(ckpt_dir, ckpt_name)
-    mi = mi_scorer()
-    print(mi)
+    # mi_scorer = MIScorer(ckpt_dir, ckpt_name)
+    # mi = mi_scorer()
+    # print(mi)

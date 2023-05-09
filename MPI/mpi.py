@@ -3,7 +3,7 @@
 # AUTHOR: XIAOYANG SONG     #
 # ------------------------- #
 from functools import reduce
-
+from matplotlib import pyplot as plt
 from regex import E
 import re
 import pandas as pd
@@ -372,6 +372,15 @@ class MPI():
                 for choice in self.mpi_choice_lst[sign]:
                     print(f"{choice:<{l}} |   {stat[choice]}")
                 print("")
+                # Save distribution plot
+                plt.bar(['VA', 'MA', "NANI", "MI", "VI"], [stat[x] for x in self.mpi_choice_lst[sign]])
+                plt.xlabel("Options")
+                plt.ylabel("Count")
+                version = self.model_desc['version'].split('/')[1] 
+                plt.title(f"Choice Distribution - [{sign}] - Trait {item} ({version})")
+                plt.savefig(f"plot/distribution/{version}/{version}-[{sign}]-{item}.jpg", dpi=500)
+                plt.close()
+
             # SCORE DISTRIBUTION
             print("> SCORE DISTRIBUTION")
             print(tabulate(df, headers='keys', tablefmt='psql', showindex=False))
