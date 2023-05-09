@@ -157,10 +157,11 @@ if __name__=='__main__':
     # To Delete
     # args.config = 'config/Constraint/order-symmetry/GPT2-Medium/non-index.yaml'
 
-    config = yaml.load(open(os.path.join('config/Constraint/order-symmetry',args.config,'non-index.yaml'), 'r'), Loader=yaml.FullLoader)
+    config = yaml.load(open(os.path.join('config/Constraint/order-symmetry',args.config,'index.yaml'), 'r'), Loader=yaml.FullLoader)
 
     if args.ans:
         config['template']['ans_type'] = args.ans
+        # config['template']['description'] = args.ans
         if args.order:
             config['shuffle']['order']= args.order
             main_mpi(args,config)
@@ -173,6 +174,7 @@ if __name__=='__main__':
         ans_types = ['index', 'index-desc', 'desc']
         for ans in ans_types:
             config['template']['ans_type'] = ans
+            # config['template']['description'] = ans
             if args.order:
                 config['shuffle']['order'] = args.order
                 main_mpi(args,config)
