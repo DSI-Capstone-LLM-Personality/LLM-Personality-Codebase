@@ -148,38 +148,52 @@ if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', help='configuration file')
     parser.add_argument('--order', help='order')
+    parser.add_argument('--indexed', help='indexed mode', action='store_true')
     parser.add_argument('--ans', help='ans_type')
     parser.add_argument('--seed', help='python seed', type=int, default=2023)
     parser.add_argument('--verbose', help='verbose mode', action='store_true')
     parser.add_argument('--tag', help='tags', type=str, default='')
     args = parser.parse_args()
 
-    # To Delete
-    # args.config = 'config/Constraint/order-symmetry/GPT2-Medium/non-index.yaml'
+    # Test
+    if args.config == None:
+        args.config = 'config/Example/test.yaml'
+        args.verbose = True
 
-    config = yaml.load(open(os.path.join('config/Constraint/order-symmetry',args.config,'index.yaml'), 'r'), Loader=yaml.FullLoader)
-
-    if args.ans:
-        config['template']['ans_type'] = args.ans
-        # config['template']['description'] = args.ans
-        if args.order:
-            config['shuffle']['order']= args.order
-            main_mpi(args,config)
-        else:
-            orders = ["original", "reverse", "order-I", "order-II", "order-III"]
-            for order in orders:
-                config['shuffle']['order']= order
-                main_mpi(args,config)
+    if '.yaml' in args.config:
+        config = yaml.load(open(os.path.join(args.config), 'r'), Loader=yaml.FullLoader)
     else:
-        ans_types = ['index', 'index-desc', 'desc']
-        for ans in ans_types:
-            config['template']['ans_type'] = ans
-            # config['template']['description'] = ans
+        config = yaml.load(open(os.path.join('config/Constraint/order-symmetry',args.config,('index' if args.indexed else 'non_index')+'.yaml'), 'r'), Loader=yaml.FullLoader)
+    
+    if args.indexed:
+        if args.ans:
+            config['template']['ans_type'] = args.ans
             if args.order:
-                config['shuffle']['order'] = args.order
+                config['shuffle']['order']= args.order
                 main_mpi(args,config)
             else:
                 orders = ["original", "reverse", "order-I", "order-II", "order-III"]
                 for order in orders:
-                    config['shuffle']['order'] = order
+                    config['shuffle']['order']= order
                     main_mpi(args,config)
+        else:
+            ans_types = ['index', 'index-desc', 'desc']
+            for ans in ans_types:
+                config['template']['ans_type'] = ans
+                if args.order:
+                    config['shuffle']['order'] = args.order
+                    main_mpi(args,config)
+                else:
+                    orders = ["original", "reverse", "order-I", "order-II", "order-III"]
+                    for order in orders:
+                        config['shuffle']['order'] = order
+                        main_mpi(args,config)
+    else:
+        if args.order:
+            config['shuffle']['order'] = args.order
+            main_mpi(args,config)
+        else:
+            orders = ["original", "reverse", "order-I", "order-II", "order-III"]
+            for order in orders:
+                config['shuffle']['order'] = order
+                main_mpi(args,config)

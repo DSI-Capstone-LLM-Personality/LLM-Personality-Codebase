@@ -9,16 +9,16 @@ path:
 
 dataset:
   dset: ocean_988
-  start: 
-  end: 
+  start: 0 
+  end: 50
 
 template:
   prompt: "[og]-[ns]-[type-ii]-[ans-i]"
   description: non-index
-  index:
-    "+": letter
-    "-": letter
-  # index: 
+  # index:
+  #   "+": letter
+  #   "-": letter
+  index: 
   desc:
     "+": mpi
     "-": mpi
@@ -34,7 +34,7 @@ shuffle:
 # use opt for testing purpose
 model:
   family: OPT
-  version: facebook/opt-66b
+  version: facebook/opt-125m
   access_method: hf
   half_precision: False
 

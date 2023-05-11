@@ -40,6 +40,8 @@ def main():
     # Parse Input Arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', help='configuration file')
+    parser.add_argument('--temp_idx', help='template index',type=int)
+    parser.add_argument('--template', help='template string',type=str)
     parser.add_argument('--seed', help='python seed', type=int, default=2023)
     parser.add_argument('--verbose', help='verbose mode', action='store_true')
     parser.add_argument('--tag', help='tags', type=str, default='')
@@ -47,7 +49,7 @@ def main():
 
     # TO DELETE
     # args.verbose = True
-    # args.config = '/home/as14229/NYU_HPC/LLM-Personality-Codebase/config/Example/test.yaml'
+    # args.config = 'config/template-selection/OPT.yaml'
 
     assert args.config is not None, 'Please specify the config .yaml file to proceed.'
     config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
@@ -153,6 +155,13 @@ def main():
     print(f"Here is a list of {len(templates)} candidate templates.")
     scores = {}
 
+    if args.temp_idx:
+        templates=[templates[args.temp_idx]]
+        print('\nSingle Template Mode\n')
+    elif args.template:
+        templates=[args.template]
+        print('\nSingle Template Mode\n')
+
     for tmp in tqdm(templates):
         for is_lower in [True, False]:
             ic(is_lower)
@@ -191,34 +200,35 @@ def main():
             mpi.write_statistic(log_dir + fname + '.txt')
             mpi.save_checkpoint(ckpt_dir + fname + '.pt')
 
-    # For pretty print
-    scores_df = pd.DataFrame.from_dict(
-        scores, orient='index', columns=['Scores'])
-    scores_df.reset_index(inplace=True)
-    scores_df = scores_df.rename(columns={'index': 'Template'})
-    scores_df = scores_df.sort_values(by=['Scores'], ascending=False)
-    scores_df.reset_index(inplace=True)
-    scores_df.to_csv(ckpt_dir + 'scores.csv')
-    # Make plots
-    plt.plot(np.arange(1, 37, 1),
-             scores_df['Scores'], marker='s', color='navy', markersize=4)
-    # plt.legend()
-    plt.ylim(bottom=0.0)
-    # plt.show()
-    plt.xlabel("Rank")
-    plt.ylabel("Scores")
-    plt.title("Template Score vs. Rank")
-    plt.savefig(log_dir + "score_vs_rank.png", dpi=400)
-    plt.close()
-    # Write files
-    with open(log_dir + "scores.txt", 'w') as f:
-        f.write("Template Selection Results\n")
-        f.write(tabulate(scores_df[['Template', 'Scores']], headers='keys',
-                tablefmt='psql', showindex=True))
-        f.write("\n")
-        best_template = scores_df['Template'].loc[scores_df['Scores'].idxmax()]
-        f.write(
-            f"\nFor {family}, among these templates, {best_template} achieved the highest score.")
+    if not (args.template or args.temp_idx):
+        # For pretty print
+        scores_df = pd.DataFrame.from_dict(
+            scores, orient='index', columns=['Scores'])
+        scores_df.reset_index(inplace=True)
+        scores_df = scores_df.rename(columns={'index': 'Template'})
+        scores_df = scores_df.sort_values(by=['Scores'], ascending=False)
+        scores_df.reset_index(inplace=True)
+        scores_df.to_csv(ckpt_dir + 'scores.csv')
+        # Make plots
+        plt.plot(np.arange(1, 37, 1),
+                scores_df['Scores'], marker='s', color='navy', markersize=4)
+        # plt.legend()
+        plt.ylim(bottom=0.0)
+        # plt.show()
+        plt.xlabel("Rank")
+        plt.ylabel("Scores")
+        plt.title("Template Score vs. Rank")
+        plt.savefig(log_dir + "score_vs_rank.png", dpi=400)
+        plt.close()
+        # Write files
+        with open(log_dir + "scores.txt", 'w') as f:
+            f.write("Template Selection Results\n")
+            f.write(tabulate(scores_df[['Template', 'Scores']], headers='keys',
+                    tablefmt='psql', showindex=True))
+            f.write("\n")
+            best_template = scores_df['Template'].loc[scores_df['Scores'].idxmax()]
+            f.write(
+                f"\nFor {family}, among these templates, {best_template} achieved the highest score.")
 
 
 if __name__ == '__main__':
