@@ -1,0 +1,335 @@
+MODEL: OPT | Version: facebook/opt-6.7b
+--------------------------------------------------------------------------------
+There are 50 MC questions in total.
+--------------------------------------------------------------------------------
+SHUFFLED? | [0, 1, 2, 3, 4]
+> Shuffle both indexes and descriptions?: False
+The question template look like this:
+
+Question:
+
+Given a statement of you: "You trust others."
+Please choose from the following options to identify how accurately this statement describes you.
+
+Options:
+(A). very accurate
+(B). moderately accurate
+(C). neither accurate nor inaccurate
+(D). moderately inaccurate
+(E). very inaccurate
+
+Answer: I choose option 
+--------------------------------------------------------------------------------
+The choice available for "+" questions looks like this:
+> ['(A).', '(B).', '(C).', '(D).', '(E).']
+--------------------------------------------------------------------------------
+The choice available for "-" questions looks like this:
+> ['(A).', '(B).', '(C).', '(D).', '(E).']
+--------------------------------------------------------------------------------
+ANSWER STATISTICS
+--------------------------------------------------------------------------------
+OCEAN SCORES STATS
+O | MEAN: 3.0      | STD: 2.10819
+C | MEAN: 2.2      | STD: 1.93218
+E | MEAN: 4.2      | STD: 1.68655
+A | MEAN: 3.0      | STD: 2.10819
+N | MEAN: 3.0      | STD: 2.10819
+--------------------------------------------------------------------------------
+OTHER INTERESTING STATS
++ Questions: 
+ANSWERS | Count
+(A).    |   23
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   2
+- Questions: 
+ANSWERS | Count
+(A).    |   22
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   3
+--------------------------------------------------------------------------------
+TRAITS-LEVEL STATS: 
+Trait: O | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS | Count
+(A).    |   5
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS | Count
+(A).    |   5
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: C | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS | Count
+(A).    |   3
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   2
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS | Count
+(A).    |   5
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   7 |   0 |   0 |   0 |   3 |
++-----+-----+-----+-----+-----+
+
+
+Trait: E | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS | Count
+(A).    |   5
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS | Count
+(A).    |   2
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   3
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   2 |   0 |   0 |   0 |   8 |
++-----+-----+-----+-----+-----+
+
+
+Trait: A | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS | Count
+(A).    |   5
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS | Count
+(A).    |   5
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: N | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS | Count
+(A).    |   5
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS | Count
+(A).    |   5
+(B).    |   0
+(C).    |   0
+(D).    |   0
+(E).    |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+--------------------------------------------------------------------------------
+APPENDIX: ANSWERS
+--------------------------------------------------------------------------------
+QUESTION #1    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Trust others
+> Inverse Log-Perplexity: [-12.9537, -13.1498, -13.7368, -13.1216, -12.9876]
+QUESTION #2    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Love to help others
+> Inverse Log-Perplexity: [-12.8876, -13.0987, -13.708, -13.0723, -12.9014]
+QUESTION #3    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Sympathize with the homeless
+> Inverse Log-Perplexity: [-12.8897, -13.114, -13.7479, -13.1381, -12.9666]
+QUESTION #4    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Believe that others have good intentions
+> Inverse Log-Perplexity: [-12.7485, -13.1125, -13.6568, -13.1135, -12.8993]
+QUESTION #5    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Are concerned about others
+> Inverse Log-Perplexity: [-12.9096, -13.149, -13.7527, -13.1296, -12.9823]
+QUESTION #6    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Complete tasks successfully
+> Inverse Log-Perplexity: [-12.7681, -13.0564, -13.5848, -13.0074, -12.7692]
+QUESTION #7    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Like to tidy up
+> Inverse Log-Perplexity: [-12.848, -13.1127, -13.6871, -13.026, -13.0247]
+QUESTION #8    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Keep your promises
+> Inverse Log-Perplexity: [-12.636, -12.9785, -13.4658, -12.9062, -12.6995]
+QUESTION #9    | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: (E).
+> Statement: Work hard
+> Inverse Log-Perplexity: [-12.8073, -13.0156, -13.5192, -12.986, -12.7561]
+QUESTION #10   | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: (E).
+> Statement: Are always prepared
+> Inverse Log-Perplexity: [-12.8258, -13.1398, -13.5781, -13.049, -12.8116]
+QUESTION #11   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Make friends easily
+> Inverse Log-Perplexity: [-12.7506, -13.0725, -13.5826, -12.9828, -12.9809]
+QUESTION #12   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Love large parties
+> Inverse Log-Perplexity: [-12.9196, -13.0769, -13.6333, -13.0517, -12.9333]
+QUESTION #13   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Take charge
+> Inverse Log-Perplexity: [-12.8354, -13.0498, -13.5961, -12.9933, -12.8858]
+QUESTION #14   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Are always busy
+> Inverse Log-Perplexity: [-12.7837, -13.0284, -13.4772, -12.9379, -12.8343]
+QUESTION #15   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Love excitement
+> Inverse Log-Perplexity: [-12.8763, -13.053, -13.611, -13.0127, -12.9084]
+QUESTION #16   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Worry about things
+> Inverse Log-Perplexity: [-12.8233, -13.1286, -13.632, -13.0517, -12.9472]
+QUESTION #17   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Get angry easily
+> Inverse Log-Perplexity: [-12.8497, -13.1237, -13.6634, -13.0977, -13.0916]
+QUESTION #18   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Often feel blue
+> Inverse Log-Perplexity: [-12.7447, -13.0291, -13.5008, -12.999, -12.8137]
+QUESTION #19   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Find it difficult to approach others
+> Inverse Log-Perplexity: [-12.9487, -13.2199, -13.7787, -13.2576, -13.1765]
+QUESTION #20   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Go on binges
+> Inverse Log-Perplexity: [-12.9978, -13.2848, -13.9077, -13.2698, -13.0993]
+QUESTION #21   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Have a vivid imagination
+> Inverse Log-Perplexity: [-12.9758, -13.1831, -13.7541, -13.1436, -13.0737]
+QUESTION #22   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Believe in the importance of art
+> Inverse Log-Perplexity: [-13.0291, -13.2844, -13.8215, -13.2729, -13.1812]
+QUESTION #23   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Experience your emotions intensely
+> Inverse Log-Perplexity: [-12.9175, -13.1517, -13.8156, -13.1565, -12.9477]
+QUESTION #24   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Prefer variety to routine
+> Inverse Log-Perplexity: [-12.9067, -13.152, -13.6846, -13.0815, -12.9984]
+QUESTION #25   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: (A).
+> Statement: Love to read challenging material
+> Inverse Log-Perplexity: [-13.069, -13.2915, -13.8125, -13.1879, -13.0749]
+QUESTION #26   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Use others for your own ends
+> Inverse Log-Perplexity: [-12.8932, -13.2208, -13.7515, -13.2057, -12.9321]
+QUESTION #27   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Love a good fight
+> Inverse Log-Perplexity: [-12.9131, -13.1247, -13.7315, -13.1302, -12.968]
+QUESTION #28   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Believe that you are better than others
+> Inverse Log-Perplexity: [-12.785, -13.0372, -13.5939, -13.1194, -12.8287]
+QUESTION #29   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Cheat to get ahead
+> Inverse Log-Perplexity: [-12.8516, -13.0976, -13.758, -13.1066, -12.9348]
+QUESTION #30   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Yell at people
+> Inverse Log-Perplexity: [-12.9455, -13.2172, -13.8038, -13.2197, -13.0759]
+QUESTION #31   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Make rash decisions
+> Inverse Log-Perplexity: [-12.9758, -13.2607, -13.7702, -13.1899, -12.9924]
+QUESTION #32   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Leave a mess in your room
+> Inverse Log-Perplexity: [-12.8138, -13.0486, -13.5555, -13.0036, -12.9085]
+QUESTION #33   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Break rules
+> Inverse Log-Perplexity: [-12.8445, -13.155, -13.6679, -13.0649, -12.8599]
+QUESTION #34   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Do just enough work to get by
+> Inverse Log-Perplexity: [-12.7817, -13.0644, -13.563, -13.0565, -12.8288]
+QUESTION #35   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Waste your time
+> Inverse Log-Perplexity: [-12.9099, -13.1739, -13.6507, -13.1225, -12.915]
+QUESTION #36   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: (E).
+> Statement: Avoid contacts with others
+> Inverse Log-Perplexity: [-12.9428, -13.1606, -13.715, -13.0981, -12.9323]
+QUESTION #37   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Prefer to be alone
+> Inverse Log-Perplexity: [-12.8431, -13.0063, -13.6034, -12.991, -12.8597]
+QUESTION #38   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Keep others at a distance
+> Inverse Log-Perplexity: [-12.8586, -13.1336, -13.6903, -13.106, -12.8993]
+QUESTION #39   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: (E).
+> Statement: Avoid crowds
+> Inverse Log-Perplexity: [-12.9649, -13.2169, -13.742, -13.1562, -12.9647]
+QUESTION #40   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: (E).
+> Statement: Wait for others to lead the way
+> Inverse Log-Perplexity: [-12.7972, -13.0591, -13.5887, -13.068, -12.7751]
+QUESTION #41   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Rarely overindulge
+> Inverse Log-Perplexity: [-12.7181, -13.054, -13.5681, -12.9918, -12.8978]
+QUESTION #42   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Easily resist temptations
+> Inverse Log-Perplexity: [-12.8463, -13.2101, -13.7145, -13.1213, -12.9716]
+QUESTION #43   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Are not easily annoyed
+> Inverse Log-Perplexity: [-12.807, -13.1284, -13.6053, -13.0078, -12.937]
+QUESTION #44   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Feel comfortable with yourself
+> Inverse Log-Perplexity: [-12.861, -13.087, -13.597, -13.0477, -12.8668]
+QUESTION #45   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Are not bothered by difficult social situations
+> Inverse Log-Perplexity: [-12.8015, -13.0668, -13.5838, -13.0907, -12.8038]
+QUESTION #46   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Avoid philosophical discussions
+> Inverse Log-Perplexity: [-12.9917, -13.3311, -13.8687, -13.2984, -13.1992]
+QUESTION #47   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Do not like poetry
+> Inverse Log-Perplexity: [-12.953, -13.2328, -13.8443, -13.238, -13.0604]
+QUESTION #48   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Rarely notice your emotional reactions
+> Inverse Log-Perplexity: [-12.8352, -13.1174, -13.6416, -13.0752, -12.9058]
+QUESTION #49   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Dislike changes
+> Inverse Log-Perplexity: [-12.8534, -13.1049, -13.6546, -13.1291, -12.9142]
+QUESTION #50   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: (A).
+> Statement: Have difficulty understanding abstract ideas
+> Inverse Log-Perplexity: [-12.9306, -13.252, -13.8336, -13.152, -13.0208]
+--------------------------------------------------------------------------------
+& $3.00$ & $2.11$ & $2.20$ & $1.93$ & $4.20$ & $1.69$ & $3.00$ & $2.11$ & $3.00$ & $2.11$ \\
+& $23$ & $22$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $2$ & $3$ \\

@@ -13,11 +13,19 @@ def main_mpi(args, config):
    
     # DEVICE Configuration
     print(colored.fg("#ffbf00") + Style.BRIGHT + line(n=120, is_print=False))
-
-    if torch.cuda.is_available():
+    if torch.backends.mps.is_available():
+        print("-- MPS is built: ", torch.backends.mps.is_built())
+        # See whether the following line is bug-free
+        # print(
+        #     f"-- Device Total Memory: {torch.mps.driver_allocated_memory() / (1024**2)}")
+        print("-- Let's use GPUs!")
+    elif torch.cuda.is_available():
         print(f"-- Current Device: {torch.cuda.get_device_name(0)}")
-        print(f"-- Device Total Memory: {torch.cuda.get_device_properties(0).total_memory / (1024**3):.2f} GB")
+        print(
+            f"-- Device Total Memory: {torch.cuda.get_device_properties(0).total_memory / (1024**3):.2f} GB")
         print("-- Let's use", torch.cuda.device_count(), "GPUs!")
+    else:
+        print("-- Unfortunately, we are only using CPUs now.")
     line(n=120)
     print(colored.fg("#d33682") + Style.NORMAL + line(n=120, is_print=False))   
 
@@ -137,8 +145,8 @@ def main_mpi(args, config):
     else:
         assert False, 'Unrecognized Regime.'
 
-
-    mpi.write_statistic(log_dir + filename + '.txt')
+    if not (args.t or args.f):
+        mpi.write_statistic(log_dir + filename + '.txt')
     mpi.save_checkpoint(ckpt_dir + filename + '.pt')
 
 
@@ -147,10 +155,12 @@ if __name__=='__main__':
     # Parse Input Arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', help='configuration file')
-    parser.add_argument('--order', help='order')
+    parser.add_argument('--order', help='order of answer choices')
     parser.add_argument('--indexed', help='indexed mode', action='store_true')
     parser.add_argument('--ans', help='ans_type')
-    parser.add_argument('--seed', help='python seed', type=int, default=2023)
+    parser.add_argument('-t', help='index of question to stop at', type=int)
+    parser.add_argument('-f', help='index of question to start from', type=int)
+    parser.add_argument('--seed', help='random seed', type=int, default=2023)
     parser.add_argument('--verbose', help='verbose mode', action='store_true')
     parser.add_argument('--tag', help='tags', type=str, default='')
     args = parser.parse_args()
@@ -159,12 +169,25 @@ if __name__=='__main__':
     if args.config == None:
         args.config = 'config/Example/test.yaml'
         args.verbose = True
+        args.ans='index'
+        args.order = 'original'
+        args.f = 100
+        args.t = 200
+
 
     if '.yaml' in args.config:
         config = yaml.load(open(os.path.join(args.config), 'r'), Loader=yaml.FullLoader)
     else:
-        config = yaml.load(open(os.path.join('config/Constraint/order-symmetry',args.config,('index' if args.indexed else 'non_index')+'.yaml'), 'r'), Loader=yaml.FullLoader)
+        config = yaml.load(open(os.path.join('config/Constraint/order-symmetry',args.config,('index' if args.indexed else 'non-index')+'.yaml'), 'r'), Loader=yaml.FullLoader)
     
+
+    if args.t is not None and args.f is not None:
+        config['dataset']['start'] = args.f
+        config['dataset']['end'] = args.t
+        if not args.tag:
+            args.tag = f'#{args.f}#{args.t}#'
+
+
     if args.indexed:
         if args.ans:
             config['template']['ans_type'] = args.ans

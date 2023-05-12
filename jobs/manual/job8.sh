@@ -1,11 +1,8 @@
 
-
+source ~/.bashrc
+conda activate LLM
+cd /home/as14229/NYU_HPC/LLM-Personality-Codebase
 
 # jobs
-
-python template/selection.py --verbose --config 'config/template-selection/OPT-66B.yaml' --temp_idx 10
-python template/selection.py --verbose --config 'config/template-selection/OPT-66B.yaml' --temp_idx 11
-python template/selection.py --verbose --config 'config/template-selection/OPT-66B.yaml' --temp_idx 12
-
-python template/selection.py --verbose --config 'config/template-selection/OPT-66B.yaml' --temp_idx 13
-
+python template/selection.py  --version facebook/opt-6.7b  --config 'config/template-selection/index/OPT.yaml' --verbose
+python template/selection.py  --version facebook/opt-2.7b  --config 'config/template-selection/index/OPT.yaml' --verbose

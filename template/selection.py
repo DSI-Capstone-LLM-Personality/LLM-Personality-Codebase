@@ -40,19 +40,26 @@ def main():
     # Parse Input Arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', help='configuration file')
-    parser.add_argument('--temp_idx', help='template index',type=int)
-    parser.add_argument('--template', help='template string',type=str)
+    parser.add_argument('--temp_idx', help='template index', type=int)
+    parser.add_argument('--template', help='template string', type=str)
     parser.add_argument('--seed', help='python seed', type=int, default=2023)
     parser.add_argument('--verbose', help='verbose mode', action='store_true')
     parser.add_argument('--tag', help='tags', type=str, default='')
+    parser.add_argument('--version', help='model version', type=str)
     args = parser.parse_args()
 
     # TO DELETE
-    # args.verbose = True
-    # args.config = 'config/template-selection/OPT.yaml'
+    if not args.config:
+        args.verbose = True
+        args.config = 'config/template-selection/index/GPT2.yaml'
+        args.version = 'gpt2-xl'
 
     assert args.config is not None, 'Please specify the config .yaml file to proceed.'
     config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
+
+    if args.version:
+        config['model']['version'] = args.version
+
     # PARSE YAML FILE
     # Set Seed if necessary
     set_seed(args.seed)

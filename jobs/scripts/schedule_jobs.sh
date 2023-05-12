@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job1.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job1.sbatch
 sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job2.sbatch
 sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job3.sbatch
 sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job4.sbatch
@@ -18,23 +18,35 @@ sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job15.sbatch
 sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job16.sbatch
 sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job17.sbatch
 sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job18.sbatch
-
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job19.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job20.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job21.sbatch
-
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job22.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job23.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job24.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job25.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job26.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job27.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job28.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job29.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job30.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job31.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job32.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job33.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job34.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job35.sbatch
-# sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job36.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job19.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job20.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job21.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job22.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job23.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job24.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job25.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job26.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job27.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job28.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job29.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job30.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job31.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job32.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job33.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job34.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job35.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job36.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job37.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job38.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job39.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job40.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job41.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job42.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job43.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job44.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job45.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job46.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job47.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job48.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job49.sbatch
+sbatch /home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/sbatch/job50.sbatch

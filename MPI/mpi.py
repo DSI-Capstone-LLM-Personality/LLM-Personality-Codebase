@@ -57,7 +57,7 @@ class MPI():
 
         # LABEL, KEY & + -
         self.label = np.array(self.mpi_df['label_ocean'])
-        self.key = torch.tensor(self.mpi_df['key'], dtype=torch.long)
+        self.key = torch.tensor(list(self.mpi_df['key']), dtype=torch.long)
         self.plus_minus = np.array(["+" if k == 1 else "-" for k in self.key])
 
         # STATEMENT

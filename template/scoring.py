@@ -1,11 +1,12 @@
+import os
+import sys
 import torch
+import argparse
 import numpy as np
-from functools import reduce
-import random
 from icecream import ic
-from itertools import permutations
-from collections import defaultdict
-# External
+
+# Required for project imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from MPI.mpi import *
 
 
@@ -55,11 +56,10 @@ class MIScorer():
         h_y = entropy(np.mean(x, axis=0, keepdims=True)).item()
         h_y_given_x = np.mean(entropy(x))
         return h_y - h_y_given_x
-    
 
 
 if __name__ == "__main__":
-    pass
+
     # Simple test
     # ckpt_dir = "checkpoint/mpis/Constraint/order-symmetry/bert-base-uncased/non-index/desc/"
     # # ckpt_name = "[ocean_988]_[BERT|bert-base-uncased]_[non-index]_[order-III].pt"
@@ -68,3 +68,51 @@ if __name__ == "__main__":
     # mi_scorer = MIScorer(ckpt_dir, ckpt_name)
     # mi = mi_scorer()
     # print(mi)
+
+    # Parse Input Arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--chpk-dir', help='path to checkpoints')
+    args = parser.parse_args()
+
+    # Test
+    if not args.chpk_dir:
+        args.chpk_dir = 'checkpoint/mpis/Constraint/template-selection/opt-66b/non-index/desc'
+
+    checkpoints = os.listdir(args.chpk_dir)
+
+    scores = dict()
+    for chkp in checkpoints:
+        mpi = torch.load(os.path.join(args.chpk_dir, chkp))
+        template_name = chkp.split('_')[-1][:-3]
+        scores[template_name] = mutual_information(mpi.likelihood)
+
+    logs_dir = args.chpk_dir.replace('mpis','log')
+
+    # For pretty print
+    scores_df = pd.DataFrame.from_dict(
+        scores, orient='index', columns=['Scores'])
+    scores_df.reset_index(inplace=True)
+    scores_df = scores_df.rename(columns={'index': 'Template'})
+    scores_df = scores_df.sort_values(by=['Scores'], ascending=False)
+    scores_df.reset_index(inplace=True)
+    scores_df.to_csv(os.path.join(args.chpk_dir,'scores.csv'))
+    # Make plots
+    plt.plot(np.arange(1, 37, 1),
+            scores_df['Scores'], marker='s', color='navy', markersize=4)
+    # plt.legend()
+    plt.ylim(bottom=0.0)
+    # plt.show()
+    plt.xlabel("Rank")
+    plt.ylabel("Scores")
+    plt.title("Template Score vs. Rank")
+    plt.savefig(os.path.join(logs_dir,"score_vs_rank.png"), dpi=400)
+    plt.close()
+    # Write files
+    with open(os.path.join(logs_dir, "scores.txt"), 'w') as f:
+        f.write("Template Selection Results\n")
+        f.write(tabulate(scores_df[['Template', 'Scores']], headers='keys',
+                tablefmt='psql', showindex=True))
+        f.write("\n")
+        best_template = scores_df['Template'].loc[scores_df['Scores'].idxmax()]
+        f.write(
+            f"\nFor {mpi.model_desc['family']}, among these templates, {best_template} achieved the highest score.")

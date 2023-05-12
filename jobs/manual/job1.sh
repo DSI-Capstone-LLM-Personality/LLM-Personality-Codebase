@@ -7,9 +7,11 @@ cd /home/as14229/NYU_HPC/LLM-Personality-Codebase
 
 
 # jobs
-python3 run.py --config 'OPT-13B' --order 'original' --indexed
-python3 run.py --config 'OPT-13B' --order 'order-III' --indexed
-
+python3 run.py --config 'OPT-13B' --order 'original' --indexed --ans index 
+python3 run.py --config 'OPT-13B' --order 'reverse' --indexed --ans index 
+python3 run.py --config 'GPT2-Medium' --indexed --ans index
+python3 run.py --config 'GPT2-Large' --indexed --ans index
+python3 run.py --config 'GPTNEO-125M' --indexed --ans index
 
 
 scancel $SLURM_JOB_ID

@@ -1,0 +1,47 @@
+---
+experiment:
+  regime: Constraint # this will be changed to type I or type II in the future if constraint
+  category: template-selection
+
+path:
+  dset_dir: Dataset/
+  mpi_log_dir: checkpoint/log/
+  mpi_ckpt_dir: checkpoint/mpis/
+
+dataset:
+  dset: ocean_50
+  start:
+  end:
+# This is the .yaml file for template selection
+# So there are a bit different from the one used for MPI
+template:
+  description: index
+  index:
+    "+": letter
+    "-": letter
+  desc:
+    "+": mpi
+    "-": mpi
+  ans_type: index
+
+shuffle:
+  order: original
+  shuffle_both: False
+
+# use opeai-gpt for testing purpose
+model:
+  family: OPT
+  version: facebook/opt-30b
+  access_method: hf
+  half_precision: false
+
+  # opt-125m , opt-350m , opt-1.3b , opt-2.7b , opt-6.7b , opt-13b, opt-30b, opt-66b
+
+# parameters are needed for open vocab
+params:
+  max_tokens: 100
+  top_p: 0.95
+  temperature: 0.10
+
+algorithm:
+  ll_type: ans_inv_perp
