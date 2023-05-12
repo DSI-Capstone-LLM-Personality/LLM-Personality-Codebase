@@ -126,7 +126,7 @@ class LMPROB():
         # ic(prompt)
         # ic(choice)
         tokens = self.tokenizer(
-            prompt + " " + choice, return_tensors="pt", add_special_tokens=False)
+            prompt + choice, return_tensors="pt", add_special_tokens=False)
         for item, _ in tokens.items():
             tokens[item] = tokens[item].to(DEVICE)
 
