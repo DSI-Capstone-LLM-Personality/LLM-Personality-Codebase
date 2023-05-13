@@ -134,9 +134,6 @@ class MPI():
         self.model_desc = None
         # TODO: (Xiaoyang) more functionality here...
 
-    def constraint_type_II(self):
-        pass
-
     def open_vocab_answer(self, tokenizer, model, model_desc: dict, param_dict: dict, verbose=False):
         print(colored.fg("blue")+line(120, False))
         print(colored.fg("blue")+"Open Vocabulary Search Experiment Running......")
@@ -336,7 +333,7 @@ class MPI():
             print(f"{sign} Questions: ")
             print(f"{'ANSWERS':<{l}} | Count")
             for item in self.mpi_choice_lst[sign]:
-                print(f"{item:<{l}} |   {stat[item]}")
+                print(f"{item:<{l}} |  {stat[item]}")
         if self.regime != 'Constraint':
             self.processor.display_stats()
 
