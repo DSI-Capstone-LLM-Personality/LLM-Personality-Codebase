@@ -58,5 +58,6 @@ if __name__ == "__main__":
                     reduced_mpi.OCEAN[key].extend(mpi.OCEAN[key])
 
             log_dir = args.chpk_dir.replace('mpis','log')
-            filename = '_'.join(mpi_lst[0]['filename'].split('_')[:-3]+mpi_lst[0]['filename'].split('_')[-2:])
+            filename = '_'.join(mpi_lst[0]['filename'].split('_')[:-3]+[f'[{order}]']+mpi_lst[0]['filename'].split('_')[-1:])
+
             reduced_mpi.write_statistic(os.path.join(log_dir,filename + '.txt'))
