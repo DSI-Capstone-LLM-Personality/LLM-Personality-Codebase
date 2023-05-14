@@ -41,8 +41,8 @@ is_lower = config['template']['is_lower_case']
 
 # MANUALLY CHANGE THIS
 # ans_type = 'index-desc'
-# ans_type='index'
-ans_type='desc'
+ans_type='index'
+# ans_type='desc'
 
 mpis_dir = f"checkpoint/mpis/{regime}/{category}/{version}/{description}/{ans_type}/"
 filename = log_fname(dset, model_config, description)
