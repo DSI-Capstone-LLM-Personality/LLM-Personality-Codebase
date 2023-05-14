@@ -12,22 +12,23 @@ from MPI.mpi import *
 
 def entropy(arr): return -np.sum(arr * np.log(arr), axis=1)
 
-
 def normalize(arr): return arr / np.sum(arr, axis=1, keepdims=True)
 
 
-# def normalize(arr):
-#     return np.exp(arr) / np.sum(np.exp(arr), axis=1, keepdims=True)
+def normalize1(arr):
+    return np.exp(arr) / np.sum(np.exp(arr), axis=1, keepdims=True)
 
 
 def mutual_information(x):
-    # input: negative log of perplexity
+    # 50 x 5
+    # input: 2D list of negative log of perplexity
     x = torch.stack(x, dim=0).numpy()
     x = 1 / np.exp(-x)
     # ic(x.shape)
     # this is only for MPI 5 options templates
     assert len(x.shape) == 2 and x.shape[1] == 5
     # ic(x)
+    # ic(normalize1(x))
     x = normalize(x)
     # ic(x)
     h_y = entropy(np.mean(x, axis=0, keepdims=True)).item()
