@@ -238,7 +238,8 @@ class MPI():
                 # TODO: (Xiaoyang) Find a way to do batch-level processing later...
                 key = self.plus_minus[idx]
                 for choice in self.mpi_choice_lst[key]:
-                    prob, ll, toi = prober(prompt, choice)
+                    # prob, ll, toi = prober(prompt, choice)
+                    prob, ll, toi = prober(prompt, choice, self.prompt.format(item="", options=ordered_lst_to_str(self.option[key])))
                     ll_lst.append(ll.item())
                     # PROBABILITY FOR EACH WORD IN THE SENTENCE
                     prob_lst.append(prob)
