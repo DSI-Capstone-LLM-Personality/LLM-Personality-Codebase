@@ -64,6 +64,7 @@ def generate_table(table: str):
             ckpt = torch.load(f"{fname}.pt",map_location=DEVICE)
             out += f"& \\textsc{{{TABLE_ORDER_NAME[order]}}}" + \
                 format_ocean_latex_table(ckpt) + "\n"
+        out += "\\midrule\n"
     elif table == "ans_dist":
         out = f"\multirow{{5}}{{*}}[-0.3em]{{\\makecell[c]{{{family} \\\\ \\textsc{{{tmp_name}}}}}}} "
         for order in ORDERS.keys():
@@ -76,6 +77,7 @@ def generate_table(table: str):
             # PLOT DISTRIBUTION
             # ckpt.display_trait_stats()
             # break
+        out += "\\midrule\n"
     else:
         assert False, 'Unrecognized Table Type.'
         # print(out)

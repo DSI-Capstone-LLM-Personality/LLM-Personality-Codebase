@@ -9,23 +9,24 @@ path:
 
 dataset:
   dset: ocean_988
-  start:  
+  start:
   end:
 
 template:
-  prompt: "[og]-[ns]-[type-i]-[ans-iii]"
-  description: non-index
+  # [lc]-[ns]-[type-iii]-[ans-ii]
+  prompt: "[og]-[ns]-[type-iii]-[ans-ii]"
+  description: non-index-cali
   # index:
   #   "+": letter
   #   "-": letter
-  index: 
+  index:
   desc:
     "+": mpi
     "-": mpi
   # ans_type: index
   # ans_type: index-desc
   ans_type: desc
-  is_lower_case: False
+  is_lower_case: True
 
 shuffle:
   order: original
@@ -33,8 +34,10 @@ shuffle:
 
 # use opt for testing purpose
 model:
-  family: GPT2
-  version: gpt2
+  # family: GPT2
+  # version: gpt2
+  family: OPT
+  version: opt-6.7b
   access_method: hf
   half_precision: False
 

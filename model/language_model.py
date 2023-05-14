@@ -186,6 +186,7 @@ class LMPROB():
             tmp_probs = logit_to_prob(tmp_logits.squeeze(), tmp_tokens.input_ids[0])[-len(tmp_toi):]
             # PREVIOUS
             ll = prob_to_ll(probs) 
+            # ic("HELLO WORLD")
             # This is the code for normalization (not used)
             # ll = torch.sum(torch.log(probs)) - torch.sum(torch.log(tmp_probs))
             # ic(ll)
