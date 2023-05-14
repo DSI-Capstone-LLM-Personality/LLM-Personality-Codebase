@@ -40,8 +40,8 @@ is_lower = config['template']['is_lower_case']
 
 # MANUALLY CHANGE THIS
 # ans_type = 'index-desc'
-# ans_type='index'
-ans_type='desc'
+ans_type='index'
+# ans_type='desc'
 
 mpis_dir = f"checkpoint/mpis/{regime}/{category}/{version}/{description}/{ans_type}/"
 filename = log_fname(dset, model_config, description)
@@ -209,7 +209,7 @@ with open(log, 'w') as f:
             # ic(num)
             # ic(f"{p*100:.4f}%")
             p_lst.append(f"{p*100:.4f}%")
-            p_below += f" & {p*100:.4f}\%"
+            p_below += f" & ${p*100:.4f}\%$"
         # print(trait)
         p_below += "\\\\"
         print(p_below)
@@ -276,18 +276,18 @@ with open(log, 'w') as f:
         dist = np.array(dist)
         quantile = 100 * sum(dist <= llm_entropy) / len(dist)
         # print(f"{quantile:.4f}\%")
-        probs += f" & {quantile:.4f}\%"
+        probs += f" & ${quantile:.4f}\%$"
         # Compute probability
         p = 100 * sum(dist == llm_entropy) / len(dist)
         # print(f"{p:.4f}%")
-        probs += f" & {p:.4f}\% "
+        probs += f" & ${p:.4f}\%$ "
         
         for eps in [0.0001, 0.001, 0.01]:
             mask1 = (dist > (llm_entropy-eps))
             mask2 = (dist < (llm_entropy+eps))
             mask = mask1 & mask2
             prob = 100 * sum(mask)/ len(dist)
-            probs += f" & {prob:.3f}\%"
+            probs += f" & ${prob:.3f}\%$"
         probs += "\\\\"
         print(probs)
     f.close()
