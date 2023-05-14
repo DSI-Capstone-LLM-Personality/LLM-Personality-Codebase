@@ -1,0 +1,904 @@
+[1m------------------------------------------------------------------------------------------------------------------------
+-- Unfortunately, we are only using CPUs now.
+------------------------------------------------------------------------------------------------------------------------
+[22m------------------------------------------------------------------------------------------------------------------------
+Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:09<00:56,  9.47s/it]Loading checkpoint shards:  29%|██▊       | 2/7 [00:20<00:52, 10.56s/it]Loading checkpoint shards:  43%|████▎     | 3/7 [00:30<00:40, 10.19s/it]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:41<00:32, 10.68s/it]Loading checkpoint shards:  71%|███████▏  | 5/7 [00:53<00:21, 10.83s/it]Loading checkpoint shards:  86%|████████▌ | 6/7 [01:03<00:10, 10.83s/it]Loading checkpoint shards: 100%|██████████| 7/7 [01:04<00:00,  7.57s/it]Loading checkpoint shards: 100%|██████████| 7/7 [01:04<00:00,  9.25s/it]
+Here is a list of 18 candidate templates.
+
+Single Template Mode
+
+  0%|          | 0/1 [00:00<?, ?it/s]ic| is_lower: True
+ic| desc: {'+': array(['Very Accurate', 'Moderately Accurate',
+                 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate',
+                 'Very Inaccurate'], dtype='<U31'),
+           '-': array(['Very Accurate', 'Moderately Accurate',
+                 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate',
+                 'Very Inaccurate'], dtype='<U31')}
+>> TEMPLATE TESTING: [lc]-[s]-[type-i]-[ans-ii]
+------------------------------------------------------------------------------------------------------------------------
+[1m------------------------------------------------------------------------------------------------------------------------
+OPTIONS for + QUESTIONS: 
+>> ['very accurate' 'moderately accurate' 'neither accurate nor inaccurate'
+ 'moderately inaccurate' 'very inaccurate']
+OPTIONS for - QUESTIONS: 
+>> ['very accurate' 'moderately accurate' 'neither accurate nor inaccurate'
+ 'moderately inaccurate' 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+ANSWERS for + QUESTIONS: 
+>> ['very accurate' 'moderately accurate' 'neither accurate nor inaccurate'
+ 'moderately inaccurate' 'very inaccurate']
+ANSWERS for - QUESTIONS: 
+>> ['very accurate' 'moderately accurate' 'neither accurate nor inaccurate'
+ 'moderately inaccurate' 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Constraint Search Experiment Running......
+------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Sample questions look like this:
+Question:
+
+Given a description of you: "You trust others." What do you think?
+You can choose from the following options:
+
+Options:
+very accurate
+moderately accurate
+neither accurate nor inaccurate
+moderately inaccurate
+very inaccurate
+
+Answer: I choose option 
+--------------------------------------------------------------------------------
+Constraint MCQA task starts...
+--------------------------------------------------------------------------------
+
+  0%|[38;2;181;137;0m          [0m| 0/50 [00:00<?, ?it/s][A
+  2%|[38;2;181;137;0m▏         [0m| 1/50 [00:44<36:32, 44.74s/it][A
+  4%|[38;2;181;137;0m▍         [0m| 2/50 [01:18<30:34, 38.22s/it][A
+  6%|[38;2;181;137;0m▌         [0m| 3/50 [01:49<27:25, 35.02s/it][A
+  8%|[38;2;181;137;0m▊         [0m| 4/50 [02:17<24:39, 32.17s/it][A
+ 10%|[38;2;181;137;0m█         [0m| 5/50 [02:45<23:05, 30.79s/it][A
+ 12%|[38;2;181;137;0m█▏        [0m| 6/50 [03:13<21:52, 29.83s/it][A
+ 14%|[38;2;181;137;0m█▍        [0m| 7/50 [03:41<20:59, 29.29s/it][A
+ 16%|[38;2;181;137;0m█▌        [0m| 8/50 [04:10<20:16, 28.96s/it][A
+ 18%|[38;2;181;137;0m█▊        [0m| 9/50 [04:37<19:24, 28.40s/it][A
+ 20%|[38;2;181;137;0m██        [0m| 10/50 [05:05<18:49, 28.24s/it][A
+ 22%|[38;2;181;137;0m██▏       [0m| 11/50 [05:32<18:11, 28.00s/it][A
+ 24%|[38;2;181;137;0m██▍       [0m| 12/50 [05:59<17:32, 27.70s/it][A
+ 26%|[38;2;181;137;0m██▌       [0m| 13/50 [06:25<16:43, 27.12s/it][A
+ 28%|[38;2;181;137;0m██▊       [0m| 14/50 [06:52<16:15, 27.09s/it][A
+ 30%|[38;2;181;137;0m███       [0m| 15/50 [07:20<15:53, 27.23s/it][A
+ 32%|[38;2;181;137;0m███▏      [0m| 16/50 [07:48<15:34, 27.50s/it][A
+ 34%|[38;2;181;137;0m███▍      [0m| 17/50 [08:16<15:12, 27.64s/it][A
+ 36%|[38;2;181;137;0m███▌      [0m| 18/50 [08:42<14:36, 27.39s/it][A
+ 38%|[38;2;181;137;0m███▊      [0m| 19/50 [09:11<14:15, 27.61s/it][A
+ 40%|[38;2;181;137;0m████      [0m| 20/50 [09:37<13:41, 27.38s/it][A
+ 42%|[38;2;181;137;0m████▏     [0m| 21/50 [10:05<13:12, 27.32s/it][A
+ 44%|[38;2;181;137;0m████▍     [0m| 22/50 [10:33<12:52, 27.59s/it][A
+ 46%|[38;2;181;137;0m████▌     [0m| 23/50 [11:01<12:29, 27.75s/it][A
+ 48%|[38;2;181;137;0m████▊     [0m| 24/50 [11:29<12:02, 27.78s/it][A
+ 50%|[38;2;181;137;0m█████     [0m| 25/50 [11:56<11:33, 27.76s/it][A
+ 52%|[38;2;181;137;0m█████▏    [0m| 26/50 [12:24<11:03, 27.65s/it][A
+ 54%|[38;2;181;137;0m█████▍    [0m| 27/50 [12:51<10:31, 27.46s/it][A
+ 56%|[38;2;181;137;0m█████▌    [0m| 28/50 [13:19<10:05, 27.54s/it][A
+ 58%|[38;2;181;137;0m█████▊    [0m| 29/50 [13:46<09:34, 27.36s/it][A
+ 60%|[38;2;181;137;0m██████    [0m| 30/50 [14:12<09:04, 27.24s/it][A
+ 62%|[38;2;181;137;0m██████▏   [0m| 31/50 [14:39<08:34, 27.07s/it][A
+ 64%|[38;2;181;137;0m██████▍   [0m| 32/50 [15:06<08:06, 27.00s/it][A
+ 66%|[38;2;181;137;0m██████▌   [0m| 33/50 [15:32<07:33, 26.70s/it][A
+ 68%|[38;2;181;137;0m██████▊   [0m| 34/50 [16:01<07:16, 27.27s/it][A
+ 70%|[38;2;181;137;0m███████   [0m| 35/50 [16:28<06:50, 27.39s/it][A
+ 72%|[38;2;181;137;0m███████▏  [0m| 36/50 [16:55<06:22, 27.31s/it][A
+ 74%|[38;2;181;137;0m███████▍  [0m| 37/50 [17:22<05:53, 27.17s/it][A
+ 76%|[38;2;181;137;0m███████▌  [0m| 38/50 [17:50<05:28, 27.38s/it][A
+ 78%|[38;2;181;137;0m███████▊  [0m| 39/50 [18:16<04:56, 26.97s/it][A
+ 80%|[38;2;181;137;0m████████  [0m| 40/50 [18:45<04:35, 27.59s/it][A
+ 82%|[38;2;181;137;0m████████▏ [0m| 41/50 [19:15<04:13, 28.14s/it][A
+ 84%|[38;2;181;137;0m████████▍ [0m| 42/50 [19:43<03:44, 28.08s/it][A
+ 86%|[38;2;181;137;0m████████▌ [0m| 43/50 [20:11<03:16, 28.10s/it][A
+ 88%|[38;2;181;137;0m████████▊ [0m| 44/50 [20:37<02:44, 27.49s/it][A
+ 90%|[38;2;181;137;0m█████████ [0m| 45/50 [21:06<02:20, 28.12s/it][A
+ 92%|[38;2;181;137;0m█████████▏[0m| 46/50 [21:34<01:51, 27.89s/it][A
+ 94%|[38;2;181;137;0m█████████▍[0m| 47/50 [22:03<01:25, 28.38s/it][A
+ 96%|[38;2;181;137;0m█████████▌[0m| 48/50 [22:30<00:56, 28.03s/it][A
+ 98%|[38;2;181;137;0m█████████▊[0m| 49/50 [22:58<00:27, 27.98s/it][A
+100%|[38;2;181;137;0m██████████[0m| 50/50 [23:27<00:00, 28.20s/it][A100%|[38;2;181;137;0m██████████[0m| 50/50 [23:27<00:00, 28.15s/it]
+ic| is_lower: False
+ic| desc: {'+': array(['Very Accurate', 'Moderately Accurate',
+                 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate',
+                 'Very Inaccurate'], dtype='<U31'),
+           '-': array(['Very Accurate', 'Moderately Accurate',
+                 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate',
+                 'Very Inaccurate'], dtype='<U31')}
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #0    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8934, -12.3479, -12.0104, -13.1822, -11.3823]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #1    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8372, -12.4036, -12.1944, -13.1764, -11.5066]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #2    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8913, -12.2295, -11.9789, -12.8885, -11.3691]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #3    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-11.2389, -12.6719, -12.5477, -13.433, -11.8803]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #4    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.885, -12.3429, -12.1054, -13.2664, -11.5315]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #5    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.3646, -11.9264, -11.6943, -12.8788, -11.3802]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #6    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.4898, -12.472, -11.8192, -13.1684, -11.1003]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #7    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.7819, -12.2602, -12.16, -13.198, -11.6466]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #8    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.7245, -12.4377, -12.0814, -13.1908, -11.2329]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #9    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.9482, -12.291, -12.2334, -13.2468, -11.8506]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #10   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.5726, -12.5184, -11.9463, -13.3573, -11.2903]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #11   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.6564, -12.5916, -12.1072, -13.4121, -11.431]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #12   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.6596, -12.1648, -12.0487, -13.1518, -11.4652]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #13   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8043, -12.4728, -12.0784, -13.3076, -11.5367]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #14   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8483, -12.5671, -12.142, -13.4742, -11.6718]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #15   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.6785, -12.408, -12.0899, -13.0773, -11.093]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #16   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.6632, -12.7398, -12.1436, -13.3737, -11.2386]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #17   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.9333, -12.7215, -12.2384, -13.4319, -11.5183]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #18   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.7048, -12.7613, -12.3935, -13.4162, -11.3269]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #19   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.9137, -12.6373, -12.2999, -13.3114, -11.4268]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #20   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8423, -12.5812, -12.2942, -13.4839, -11.7066]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #21   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-11.063, -12.7161, -11.9714, -13.403, -11.4888]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #22   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-11.2935, -12.9248, -12.4954, -13.5973, -11.9148]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #23   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.4887, -12.5986, -12.2716, -13.6174, -11.4046]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #24   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.7661, -12.4933, -12.1001, -13.3001, -11.5046]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #25   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.877, -12.773, -12.36, -13.4986, -11.4858]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #26   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.7789, -12.7793, -12.6191, -13.7868, -11.7393]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #27   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.9789, -12.6092, -12.2719, -13.4085, -11.6154]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #28   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.7707, -12.3772, -12.2542, -13.1155, -11.3955]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #29   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.632, -12.6412, -12.1158, -13.2282, -11.1092]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #30   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.6767, -12.4133, -12.3014, -13.1927, -11.2855]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #31   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8258, -12.8014, -11.9032, -13.4222, -11.504]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #32   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.5996, -12.5127, -12.2775, -13.2517, -11.1828]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #33   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.675, -12.6193, -12.3124, -13.4832, -11.4789]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #34   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.7047, -12.4938, -12.1598, -13.2028, -11.3157]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #35   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.6876, -12.6164, -11.9056, -13.1367, -11.1027]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #36   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.5981, -12.8391, -12.3439, -13.5191, -11.1794]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #37   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8116, -12.5598, -12.3133, -13.4162, -11.4457]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #38   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.4667, -12.3888, -12.083, -13.137, -10.9823]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #39   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-11.0052, -12.6311, -12.3017, -13.4653, -11.7141]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #40   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8043, -12.5438, -12.2696, -13.1912, -11.2772]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #41   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-11.2886, -12.7709, -12.7598, -13.7187, -12.1166]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #42   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8062, -12.7023, -12.3046, -13.5417, -11.5863]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #43   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8541, -12.3338, -12.1707, -13.1986, -11.488]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #44   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.657, -12.4481, -12.1112, -13.2064, -11.3051]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #45   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.8141, -12.8583, -12.5838, -13.6476, -11.3171]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #46   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.7536, -12.6512, -12.1752, -13.1885, -11.1724]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #47   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.9679, -12.771, -12.583, -13.3866, -11.5382]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #48   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.6738, -12.5646, -11.8864, -13.1352, -11.1215]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #49   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+-- Inverse Log-Perplexity: [-10.7268, -12.7364, -12.0748, -13.2201, -11.1338]
+-- Tokens of Interests: ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+--------------------------------------------------------------------------------
+OCEAN SCORES STATS
+O | MEAN: 3.0      | STD: 2.10819
+C | MEAN: 3.0      | STD: 2.10819
+E | MEAN: 3.0      | STD: 2.10819
+A | MEAN: 3.0      | STD: 2.10819
+N | MEAN: 3.0      | STD: 2.10819
+--------------------------------------------------------------------------------
+OTHER INTERESTING STATS
++ Questions: 
+ANSWERS                         | Count
+very accurate                   |   25
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+- Questions: 
+ANSWERS                         | Count
+very accurate                   |   25
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+--------------------------------------------------------------------------------
+TRAITS-LEVEL STATS: 
+Trait: O | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: C | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: E | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: A | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: N | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   5
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   0
+very inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+>> TEMPLATE TESTING: [og]-[s]-[type-i]-[ans-ii]
+------------------------------------------------------------------------------------------------------------------------
+[1m------------------------------------------------------------------------------------------------------------------------
+OPTIONS for + QUESTIONS: 
+>> ['Very Accurate' 'Moderately Accurate' 'Neither Accurate Nor Inaccurate'
+ 'Moderately Inaccurate' 'Very Inaccurate']
+OPTIONS for - QUESTIONS: 
+>> ['Very Accurate' 'Moderately Accurate' 'Neither Accurate Nor Inaccurate'
+ 'Moderately Inaccurate' 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+ANSWERS for + QUESTIONS: 
+>> ['Very Accurate' 'Moderately Accurate' 'Neither Accurate Nor Inaccurate'
+ 'Moderately Inaccurate' 'Very Inaccurate']
+ANSWERS for - QUESTIONS: 
+>> ['Very Accurate' 'Moderately Accurate' 'Neither Accurate Nor Inaccurate'
+ 'Moderately Inaccurate' 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Constraint Search Experiment Running......
+------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Sample questions look like this:
+Question:
+
+Given a description of you: "You trust others." What do you think?
+You can choose from the following options:
+
+Options:
+Very Accurate
+Moderately Accurate
+Neither Accurate Nor Inaccurate
+Moderately Inaccurate
+Very Inaccurate
+
+Answer: I choose option 
+--------------------------------------------------------------------------------
+Constraint MCQA task starts...
+--------------------------------------------------------------------------------
+
+  0%|[38;2;181;137;0m          [0m| 0/50 [00:00<?, ?it/s][A
+  2%|[38;2;181;137;0m▏         [0m| 1/50 [00:31<26:00, 31.85s/it][A
+  4%|[38;2;181;137;0m▍         [0m| 2/50 [01:00<23:48, 29.76s/it][A
+  6%|[38;2;181;137;0m▌         [0m| 3/50 [01:28<22:39, 28.92s/it][A
+  8%|[38;2;181;137;0m▊         [0m| 4/50 [01:56<21:59, 28.68s/it][A
+ 10%|[38;2;181;137;0m█         [0m| 5/50 [02:24<21:14, 28.32s/it][A
+ 12%|[38;2;181;137;0m█▏        [0m| 6/50 [02:52<20:51, 28.43s/it][A
+ 14%|[38;2;181;137;0m█▍        [0m| 7/50 [03:20<20:19, 28.35s/it][A
+ 16%|[38;2;181;137;0m█▌        [0m| 8/50 [03:50<20:08, 28.77s/it][A
+ 18%|[38;2;181;137;0m█▊        [0m| 9/50 [04:20<19:55, 29.15s/it][A
+ 20%|[38;2;181;137;0m██        [0m| 10/50 [04:51<19:49, 29.73s/it][A
+ 22%|[38;2;181;137;0m██▏       [0m| 11/50 [05:21<19:25, 29.88s/it][A
+ 24%|[38;2;181;137;0m██▍       [0m| 12/50 [05:50<18:41, 29.50s/it][A
+ 26%|[38;2;181;137;0m██▌       [0m| 13/50 [06:17<17:46, 28.84s/it][A
+ 28%|[38;2;181;137;0m██▊       [0m| 14/50 [06:46<17:16, 28.80s/it][A
+ 30%|[38;2;181;137;0m███       [0m| 15/50 [07:14<16:41, 28.62s/it][A
+ 32%|[38;2;181;137;0m███▏      [0m| 16/50 [07:43<16:11, 28.56s/it][A
+ 34%|[38;2;181;137;0m███▍      [0m| 17/50 [08:11<15:38, 28.43s/it][A
+ 36%|[38;2;181;137;0m███▌      [0m| 18/50 [08:39<15:08, 28.38s/it][A
+ 38%|[38;2;181;137;0m███▊      [0m| 19/50 [09:09<14:53, 28.82s/it][A
+ 40%|[38;2;181;137;0m████      [0m| 20/50 [09:37<14:21, 28.72s/it][A
+ 42%|[38;2;181;137;0m████▏     [0m| 21/50 [10:06<13:53, 28.75s/it][A
+ 44%|[38;2;181;137;0m████▍     [0m| 22/50 [10:37<13:43, 29.40s/it][A
+ 46%|[38;2;181;137;0m████▌     [0m| 23/50 [11:06<13:11, 29.31s/it][A
+ 48%|[38;2;181;137;0m████▊     [0m| 24/50 [11:36<12:49, 29.58s/it][A
+ 50%|[38;2;181;137;0m█████     [0m| 25/50 [12:06<12:22, 29.71s/it][A
+ 52%|[38;2;181;137;0m█████▏    [0m| 26/50 [12:39<12:12, 30.52s/it][A
+ 54%|[38;2;181;137;0m█████▍    [0m| 27/50 [13:09<11:40, 30.45s/it][A
+ 56%|[38;2;181;137;0m█████▌    [0m| 28/50 [13:42<11:24, 31.12s/it][A
+ 58%|[38;2;181;137;0m█████▊    [0m| 29/50 [14:14<10:57, 31.32s/it][A
+ 60%|[38;2;181;137;0m██████    [0m| 30/50 [14:50<10:59, 32.96s/it][A
+ 62%|[38;2;181;137;0m██████▏   [0m| 31/50 [15:24<10:31, 33.22s/it][A
+ 64%|[38;2;181;137;0m██████▍   [0m| 32/50 [15:55<09:47, 32.66s/it][A
+ 66%|[38;2;181;137;0m██████▌   [0m| 33/50 [16:24<08:53, 31.36s/it][A
+ 68%|[38;2;181;137;0m██████▊   [0m| 34/50 [16:55<08:22, 31.38s/it][A
+ 70%|[38;2;181;137;0m███████   [0m| 35/50 [17:27<07:52, 31.53s/it][A
+ 72%|[38;2;181;137;0m███████▏  [0m| 36/50 [17:59<07:22, 31.62s/it][A
+ 74%|[38;2;181;137;0m███████▍  [0m| 37/50 [18:29<06:43, 31.02s/it][A
+ 76%|[38;2;181;137;0m███████▌  [0m| 38/50 [18:57<06:04, 30.34s/it][A
+ 78%|[38;2;181;137;0m███████▊  [0m| 39/50 [19:27<05:32, 30.25s/it][A
+ 80%|[38;2;181;137;0m████████  [0m| 40/50 [19:57<05:00, 30.04s/it][A
+ 82%|[38;2;181;137;0m████████▏ [0m| 41/50 [20:28<04:34, 30.46s/it][A
+ 84%|[38;2;181;137;0m████████▍ [0m| 42/50 [20:59<04:03, 30.45s/it][A
+ 86%|[38;2;181;137;0m████████▌ [0m| 43/50 [21:30<03:35, 30.81s/it][A
+ 88%|[38;2;181;137;0m████████▊ [0m| 44/50 [22:00<03:02, 30.39s/it][A
+ 90%|[38;2;181;137;0m█████████ [0m| 45/50 [22:30<02:31, 30.27s/it][A
+ 92%|[38;2;181;137;0m█████████▏[0m| 46/50 [23:00<02:01, 30.36s/it][A
+ 94%|[38;2;181;137;0m█████████▍[0m| 47/50 [23:31<01:31, 30.39s/it][A
+ 96%|[38;2;181;137;0m█████████▌[0m| 48/50 [24:00<01:00, 30.15s/it][A
+ 98%|[38;2;181;137;0m█████████▊[0m| 49/50 [24:31<00:30, 30.21s/it][A
+100%|[38;2;181;137;0m██████████[0m| 50/50 [25:02<00:00, 30.62s/it][A100%|[38;2;181;137;0m██████████[0m| 50/50 [25:02<00:00, 30.06s/it]
+100%|██████████| 1/1 [48:32<00:00, 2912.51s/it]100%|██████████| 1/1 [48:32<00:00, 2912.51s/it]
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #0    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.6237, -18.2686, -17.0051, -18.4513, -15.3957]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #1    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4863, -18.3118, -17.0523, -18.5648, -15.473]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #2    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.6117, -18.4122, -17.0964, -18.7332, -15.8132]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #3    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.5319, -18.4562, -17.3415, -18.7216, -15.6415]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #4    | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.5735, -18.2419, -17.0457, -18.4253, -15.3138]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #5    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.7983, -18.3579, -16.9848, -18.3921, -15.5887]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #6    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.2395, -18.1593, -16.7298, -18.4018, -15.2182]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #7    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4994, -18.242, -17.1782, -18.5951, -15.6841]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #8    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.3771, -18.1204, -16.882, -18.3325, -15.2882]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #9    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.6947, -18.1662, -17.1519, -18.4927, -15.6188]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #10   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4992, -18.2566, -16.9186, -18.5142, -15.5251]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #11   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.5541, -18.3332, -17.0746, -18.5093, -15.5259]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #12   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4062, -18.0382, -16.8939, -18.3718, -15.3244]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #13   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.6472, -18.2893, -16.9756, -18.5181, -15.5585]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #14   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.5714, -18.2824, -17.129, -18.5622, -15.5884]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #15   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.3279, -18.2001, -16.9674, -18.3745, -15.3248]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #16   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.3153, -18.1601, -16.9391, -18.4782, -15.4284]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #17   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4042, -18.2795, -17.0502, -18.5147, -15.513]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #18   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4604, -18.5743, -17.2169, -18.7524, -15.5065]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #19   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.2246, -18.2709, -16.8795, -18.4846, -15.2593]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #20   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4066, -18.4119, -16.9095, -18.6303, -15.4994]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #21   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.5131, -18.2485, -16.9169, -18.4263, -15.4709]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #22   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.7075, -18.681, -17.1986, -18.8465, -15.5667]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #23   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.2569, -18.334, -16.9242, -18.4629, -15.2512]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #24   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4391, -18.3481, -17.2149, -18.6247, -15.5844]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #25   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.3887, -18.2568, -17.13, -18.5525, -15.5334]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #26   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.5984, -18.2539, -17.1656, -18.6525, -15.7234]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #27   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.5042, -18.3232, -17.036, -18.486, -15.4994]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #28   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.2343, -18.2455, -16.9167, -18.5458, -15.4153]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #29   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.3489, -18.2117, -16.9846, -18.4911, -15.4364]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #30   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.3565, -18.3831, -17.1564, -18.7367, -15.6777]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #31   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.537, -18.364, -16.9742, -18.6032, -15.5642]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #32   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.1543, -18.1057, -17.03, -18.4759, -15.3696]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #33   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.2128, -18.2731, -16.9953, -18.5867, -15.4418]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #34   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4866, -18.2488, -17.0522, -18.5056, -15.5982]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #35   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4986, -18.3275, -16.8991, -18.5045, -15.2881]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #36   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4227, -18.4146, -16.8939, -18.6042, -15.36]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #37   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.2945, -18.2315, -17.0856, -18.472, -15.4701]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #38   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.2789, -18.1945, -17.0027, -18.5365, -15.3937]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #39   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4469, -18.4335, -17.1906, -18.6454, -15.515]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #40   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.1711, -18.1993, -17.0415, -18.6026, -15.5764]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #41   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.7066, -18.4747, -17.3468, -18.8841, -15.8827]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #42   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4415, -18.2813, -16.9939, -18.5918, -15.5384]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #43   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.5685, -18.3365, -17.0492, -18.5224, -15.4916]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #44   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.7151, -18.4764, -17.2445, -18.6863, -15.5276]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #45   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.5135, -18.5168, -17.2982, -18.826, -15.8565]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #46   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.3295, -18.3877, -16.8537, -18.4957, -15.3035]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #47   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.4612, -18.679, -17.3913, -18.9302, -15.6678]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #48   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.3492, -18.1216, -16.8558, -18.3298, -15.243]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+------------------------------------------------------------------------------------------------------------------------
+QUESTION #49   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: Very Accurate
+-- Inverse Log-Perplexity: [-14.2076, -18.4368, -17.1213, -18.6181, -15.3986]
+-- Tokens of Interests: ['Very Accurate', 'Moderately Accurate', 'Neither Accurate Nor Inaccurate', 'Moderately Inaccurate', 'Very Inaccurate']
+--------------------------------------------------------------------------------
+OCEAN SCORES STATS
+O | MEAN: 3.0      | STD: 2.10819
+C | MEAN: 3.0      | STD: 2.10819
+E | MEAN: 3.0      | STD: 2.10819
+A | MEAN: 3.0      | STD: 2.10819
+N | MEAN: 3.0      | STD: 2.10819
+--------------------------------------------------------------------------------
+OTHER INTERESTING STATS
++ Questions: 
+ANSWERS                         | Count
+Very Accurate                   |   25
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+- Questions: 
+ANSWERS                         | Count
+Very Accurate                   |   25
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+--------------------------------------------------------------------------------
+TRAITS-LEVEL STATS: 
+Trait: O | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: C | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: E | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: A | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+
+Trait: N | # Questions: 10
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+Very Accurate                   |   5
+Moderately Accurate             |   0
+Neither Accurate Nor Inaccurate |   0
+Moderately Inaccurate           |   0
+Very Inaccurate                 |   0
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|   5 |   0 |   0 |   0 |   5 |
++-----+-----+-----+-----+-----+
+
+

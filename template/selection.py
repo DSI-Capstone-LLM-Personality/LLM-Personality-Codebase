@@ -162,10 +162,10 @@ def main():
     print(f"Here is a list of {len(templates)} candidate templates.")
     scores = {}
 
-    if args.temp_idx:
+    if args.temp_idx is not None:
         templates=[templates[args.temp_idx]]
         print('\nSingle Template Mode\n')
-    elif args.template:
+    elif args.template is not None:
         templates=[args.template]
         print('\nSingle Template Mode\n')
 

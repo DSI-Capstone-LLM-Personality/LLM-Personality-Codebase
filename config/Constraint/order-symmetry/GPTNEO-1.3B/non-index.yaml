@@ -14,9 +14,9 @@ dataset:
   end:
 
 template:
-  # best: [lc]-[ns]-[type-ii]-[ans-ii]
-  # worst: [og]-[s]-[type-iii]-[ans-iii]
-  prompt: "[og]-[s]-[type-iii]-[ans-iii]"
+  # best: [lc]-[ns]-[type-ii]-[ans-ii] 
+  # worst: [og]-[s]-[type-iii]-[ans-ii]
+  prompt: "[og]-[ns]-[type-ii]-[ans-ii]"
   description: non-index
   # index:
   #   "+": letter
@@ -27,7 +27,7 @@ template:
     "-": mpi
   # ans_type: index-desc
   ans_type: desc
-  is_lower_case: false
+  is_lower_case: True
 
 shuffle:
   order: order-III
@@ -38,6 +38,7 @@ model:
   family: GPTNEO
   version: EleutherAI/gpt-neo-1.3B
   access_method: hf
+  half_precision: false
 
 algorithm:
   ll_type: ans_inv_perp

@@ -333,7 +333,7 @@ class MPI():
             print(f"{sign} Questions: ")
             print(f"{'ANSWERS':<{l}} | Count")
             for item in self.mpi_choice_lst[sign]:
-                print(f"{item:<{l}} |  {stat[item]}")
+                print(f"{item:<{l}} |   {stat[item]}")
         if self.regime != 'Constraint':
             self.processor.display_stats()
 

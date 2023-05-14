@@ -14,10 +14,9 @@ dataset:
   end:
 
 template:
-  # best: [lc]-[ns]-[type-i]-[ans-i]
-  prompt: "[og]-[ns]-[type-i]-[ans-i]"
-  # worst: [og]-[s]-[type-iii]-[ans-iii]
-  # prompt: "[og]-[s]-[type-iii]-[ans-iii]"
+  # best: [lc]-[s]-[type-iii]-[ans-iii] 
+  # worst: [og]-[s]-[type-iii]-[ans-i]
+  prompt: "[og]-[s]-[type-iii]-[ans-iii]"
   description: non-index
   # index:
   #   "+": letter
@@ -39,6 +38,7 @@ model:
   family: OPT
   version: facebook/opt-13b
   access_method: hf
+  half_precision: false
 
 algorithm:
   ll_type: ans_inv_perp

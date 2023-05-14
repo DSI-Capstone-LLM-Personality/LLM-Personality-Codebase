@@ -14,9 +14,9 @@ dataset:
   end:
 
 template:
-  # best: [lc]-[ns]-[type-i]-[ans-iii]
-  # worst: [og]-[s]-[type-iii]-[ans-ii]
-  prompt: "[lc]-[ns]-[type-i]-[ans-iii]"
+  # best: [lc]-[ns]-[type-i]-[ans-iii] 
+  # worst: [og]-[ns]-[type-iii]-[ans-iii] 
+  prompt: "[og]-[ns]-[type-i]-[ans-iii]"
   description: non-index
   # index:
   #   "+": letter
@@ -28,9 +28,8 @@ template:
   # ans_type: index-desc
   ans_type: desc
   # Best 
-  # is_lower_case: true
-  # Test
-  is_lower_case: false
+  is_lower_case: true
+
 
 shuffle:
   order: order-III
@@ -41,6 +40,7 @@ model:
   family: GPT2
   version: gpt2
   access_method: hf
+  half_precision: false
 
 algorithm:
   ll_type: ans_inv_perp

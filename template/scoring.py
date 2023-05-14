@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     # Test
     if not args.chpk_dir:
-        args.chpk_dir = 'checkpoint/mpis/Constraint/template-selection/opt-66b/non-index/desc'
+        args.chpk_dir = 'checkpoint/mpis/Constraint/template-selection/opt-30b/non-index/desc'
 
     checkpoints = os.listdir(args.chpk_dir)
 

@@ -1,0 +1,44 @@
+---
+experiment:
+  regime: Constraint
+  category: order-symmetry
+
+path:
+  dset_dir: Dataset/
+  mpi_log_dir: checkpoint/log/
+  mpi_ckpt_dir: checkpoint/mpis/
+
+dataset:
+  dset: ocean_988
+  start:
+  end:
+
+template:
+  # best: [lc]-[s]-[type-ii]-[ans-i] 
+  # worst: [og]-[s]-[type-iii]-[ans-iii]
+  prompt: "[og]-[s]-[type-ii]-[ans-i]"
+  description: index
+  index:
+    "+": letter
+    "-": letter
+  # index:
+  desc:
+    "+": mpi
+    "-": mpi
+  # ans_type: index-desc
+  ans_type: index
+  is_lower_case: True
+
+shuffle:
+  order: order-III
+  shuffle_both: false
+
+# use opt for testing purpose
+model:
+  family: GPTNEOX
+  version: EleutherAI/gpt-neox-20b
+  access_method: hf
+  half_precision: false
+
+algorithm:
+  ll_type: ans_inv_perp

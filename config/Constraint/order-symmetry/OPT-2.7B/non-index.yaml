@@ -14,8 +14,8 @@ dataset:
   end:
 
 template:
-  # best: [lc]-[s]-[type-ii]-[ans-i]
-  # worst: [og]-[ns]-[type-i]-[ans-iii]
+  # best: [lc]-[s]-[type-ii]-[ans-i] 
+  # worst: [og]-[ns]-[type-ii]-[ans-ii]
   prompt: "[og]-[s]-[type-ii]-[ans-i]"
   description: non-index
   # index:
@@ -38,6 +38,7 @@ model:
   family: OPT
   version: facebook/opt-2.7b
   access_method: hf
+  half_precision: false
 
 algorithm:
   ll_type: ans_inv_perp

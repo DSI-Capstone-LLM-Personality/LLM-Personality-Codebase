@@ -14,9 +14,9 @@ dataset:
   end:
 
 template:
-  # best: [lc]-[s]-[type-ii]-[ans-iii]
+  # best: [lc]-[s]-[type-i]-[ans-iii] 
   # worst: [lc]-[ns]-[type-i]-[ans-i]
-  prompt: "[og]-[ns]-[type-i]-[ans-i]"
+  prompt: "[og]-[s]-[type-i]-[ans-iii]"
   description: non-index
   # index:
   #   "+": letter
@@ -38,6 +38,7 @@ model:
   family: GPT2
   version: gpt2-large
   access_method: hf
+  half_precision: false
 
 algorithm:
   ll_type: ans_inv_perp
