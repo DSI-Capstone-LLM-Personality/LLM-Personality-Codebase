@@ -127,16 +127,28 @@ class LMPROB():
         # ic(choice)
         tokens = self.tokenizer(
             prompt + choice, return_tensors="pt", add_special_tokens=False)
+        # print(prompt + choice)
+        # Not used: normalization
+        answer = "Answer: " + choice
+        ans_tokens = self.tokenizer(answer, return_tensors="pt", add_special_tokens=False)
+
         for item, _ in tokens.items():
             tokens[item] = tokens[item].to(DEVICE)
 
         if self.family in ['GPT2', 'GPTNEO', 'GPTNEOX', 'OPT']:
             # token sequence processing
             logits = self.model(**tokens).logits
+            # Not used: normalization method
+            ans_logits = self.model(**ans_tokens).logits
             # ic(logits.shape)
             if self.ll_type == 'ans_inv_perp':
+                # ic(choice)
                 toi = find_critical_phrase(
                     self.tokenizer, tokens.input_ids, choice)
+                
+                ans_toi = find_critical_phrase(
+                    self.tokenizer, ans_tokens.input_ids, choice)
+
             elif self.ll_type == 'sent_inv_perp':
                 toi = tokens.input_ids[0]
             else:
@@ -144,12 +156,20 @@ class LMPROB():
             # extract probability and inverse perplexity
             probs = logit_to_prob(
                 logits.squeeze(), tokens.input_ids[0])[-len(toi):]
+            # Not used: normalization
+            ans_probs = logit_to_prob(ans_logits.squeeze(), ans_tokens.input_ids[0])[-len(ans_toi):]
+            
             # ic(self.tokenizer.decode(toi[-1]))
             # ic(len(toi))
             # ic(choice)
             # ic(probs)
             # ic(probs.shape)
-            ll = prob_to_ll(probs)
+            # ic(probs)
+            # ic(ans_probs)
+            # ic(torch.log(torch.prod(probs) / torch.prod(ans_probs)))
+            ll = prob_to_ll(probs) 
+            # This is the code for normalization (not used)
+            # ll = torch.sum(torch.log(probs)) - torch.sum(torch.log(ans_probs))
             # ic(ll)
             # ic(np.exp(-ll))
             # ic(torch.prod(probs)**(-1 / len(probs)))

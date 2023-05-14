@@ -8,12 +8,12 @@ path:
   mpi_ckpt_dir: checkpoint/mpis/
 
 dataset:
-  dset: ocean_120
+  dset: ocean_988
   start: null
   end: null
 
 template:
-  prompt: "[og]-[s]-[type-i]-[ans-i]"
+  prompt: "[og]-[ns]-[type-i]-[ans-iii]"
   description: non-index
   # index:
   #   "+": letter
@@ -32,10 +32,10 @@ shuffle:
 
 # use opt for testing purpose
 model:
-  # family: OPT
-  # version: facebook/opt-125m
-  family: GPT2
-  version: gpt2
+  family: OPT
+  version: facebook/opt-350m
+  # family: GPT2
+  # version: gpt2
   access_method: hf
   half_precision: false
 
