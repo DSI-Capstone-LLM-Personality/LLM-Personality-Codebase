@@ -74,9 +74,10 @@ item_key_map = get_item_key_map(qt_df, int(120))
 # IPIP120_df.head()
 
 
- # ----------------------------- Language Model Output ----------------------------- #
+# ----------------------------- Language Model Output ----------------------------- #
 
 MODEL = version.upper()
+print(MODEL)
 ckpt = torch.load(f"{fname}.pt",map_location=DEVICE)
 
 dset_120_path = "Dataset/ocean_120.csv"  
@@ -99,7 +100,8 @@ for idx in mask:
     trait = ckpt.label[idx]
     score = ckpt.scores[idx]
     LLM_OBS[trait].append(score)
-
+for key in LLM_OBS:
+    LLM_OBS[key] = np.array(LLM_OBS[key])
 print(LLM_OBS)
 # # For test
 # LLM_OBS = {
@@ -158,7 +160,7 @@ for trait in 'OCEAN':
     llm_human_config['trait'] = trait
     plot_distribution(dist1, dist2, llm_human_config)
 
-# ----------------------------- Wasserstein Distance Plot (LLM ONLY) ----------------------------- #
+# # ----------------------------- Wasserstein Distance Plot (LLM ONLY) ----------------------------- #
 def plot_llm_distribution(dist, c):
     plt.hist(dist, bins=c['num_bins'], density=True, alpha=c['alpha'], color=c['c2'], label=c['l2'])
     sns.kdeplot(dist, linewidth=1, color=c['c2'], bw_adjust=2)
@@ -187,15 +189,17 @@ for trait in 'OCEAN':
     llm_config['trait'] = trait
     plot_llm_distribution(dist, llm_config)
 
-# ----------------------------- Wasserstein Distance Threshold ----------------------------- #
+# # ----------------------------- Wasserstein Distance Threshold ----------------------------- #
 def find_percentage_below(scores, threshold):
     mask = scores <= threshold
     num = sum(mask)
     p = num/ len(scores)
     return mask, num, p
+thres_lst = [1, 1e-1, 1e-2, 1e-3, 1e-4]
+print(thres_lst)
 for trait in 'OCEAN':
     p_lst = []
-    for threshold in [1, 1e-1, 1e-2, 1e-3, 1e-4]:
+    for threshold in thres_lst:
         mask, num,  p = find_percentage_below(OBS_SCORES[trait], threshold)
         # ic(num)
         # ic(f"{p*100:.4f}%")
@@ -258,5 +262,14 @@ for trait in 'OCEAN':
     llm_entropy = LLM_ENTROPY[trait]
     entropy_config['trait'] = trait
     plot_entropy(dist, llm_entropy, entropy_config)
-
-z
+    # Compute quantile
+    dist = np.array(dist)
+    print(f"{100 * sum(dist <= llm_entropy) / len(dist):.4f}%")
+    # Compute probability
+    print(f"{100 * sum(dist == llm_entropy) / len(dist):.4f}%")
+    print("O")
+    for eps in [0.0001, 0.001, 0.01]:
+        mask1 = (dist > (llm_entropy-eps))
+        mask2 = (dist < (llm_entropy+eps))
+        mask = mask1 & mask2
+        print(f"{eps} | {100 * sum(mask)/ len(dist):.4f}%")
