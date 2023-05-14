@@ -53,6 +53,7 @@ def main():
         args.verbose = True
         args.config = 'config/template-selection/index/GPT2.yaml'
         args.version = 'gpt2-xl'
+        args.template = '[og]-[s]-[type-iii]-[ans-iii]'
 
     assert args.config is not None, 'Please specify the config .yaml file to proceed.'
     config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
@@ -162,15 +163,18 @@ def main():
     print(f"Here is a list of {len(templates)} candidate templates.")
     scores = {}
 
+    is_lower_choices = [True, False]
+
     if args.temp_idx is not None:
         templates=[templates[args.temp_idx]]
         print('\nSingle Template Mode\n')
     elif args.template is not None:
         templates=[args.template]
+        is_lower_choices = [True] if args.template[1:3]=='lc' else [False]
         print('\nSingle Template Mode\n')
 
     for tmp in tqdm(templates):
-        for is_lower in [True, False]:
+        for is_lower in is_lower_choices:
             ic(is_lower)
             fname = filename
             tmp_name = tmp.rstrip(".txt")

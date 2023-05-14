@@ -1,14 +1,21 @@
 #!/bin/bash   
 #SBATCH --nodes=1               
 #SBATCH --ntasks-per-node=1     
-#SBATCH --cpus-per-task=16      
-#SBATCH --mem=128GB             
-#SBATCH --time=01:00:00         
+#SBATCH --cpus-per-task=32      
+#SBATCH --mem=256GB             
+#SBATCH --time=4:00:00         
 #SBATCH --job-name=Job29
-#SBATCH --output=/home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/logs/batch_1/job29.log
+#SBATCH --output=/home/as14229/NYU_HPC/LLM-Personality-Codebase/jobs/logs/batch_4/job29.log
+
+export SSH_TTY=$(tty)
+export H_NAME=$(hostname)
+
+ssh log1 ssh $H_NAME <<EOF
 
 source ~/.bashrc
 conda activate LLM
 cd /home/as14229/NYU_HPC/LLM-Personality-Codebase/
 
-python3 run.py --config 'GPTNEOX' -f 800 -t 900 --order order-I
+python template/selection.py --verbose --config 'config/template-selection/index/OPT-66B.yaml' --template [lc]-[s]-[type-iii]-[ans-iii]
+
+EOF
