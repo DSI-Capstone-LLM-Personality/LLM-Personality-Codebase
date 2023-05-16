@@ -185,6 +185,59 @@ def calculate_scaling_vectors(args):
     print('\n\nProcess finished.\n')
 
 
+def rescore(args, mpi,chkp, ques_pbar, chkp_pbar, sharded=False):
+    ques_pbar.total = len(mpi.scores)
+    ques_pbar.refresh()
+
+    dir_splits = args.chpk_dir.split('/')
+    family = mpi.model_desc['family']
+    version = mpi.model_desc['version']
+    if family in ['OPT', 'GPTNEO', 'GPTNEOX']:
+        mpi.model_desc['version']=mpi.model_desc['version'].split('/')[0]+'/'+mpi.model_desc['version'].split('/')[1].lower()
+        version = mpi.model_desc['version'].split('/')[1]
+    description = dir_splits[-2]
+    ans_type = dir_splits[-1]
+    regime = dir_splits[2]
+    ckpt_dir = dir_splits[0]+'/'+dir_splits[1]
+    template_name = chkp.split('_')[-3]
+    order = chkp.split('_')[-2][1:-1]
+    
+    hs_dir = os.path.join(ckpt_dir, regime, 'calibration', version)
+    hs_filename = f'[{family}]_[{version}]_[{description}]_[{ans_type}].json'
+    with open(os.path.join(hs_dir, f'{hs_filename}'),'r') as file:
+        scaling_vector = torch.tensor(json.load(file)['orders'][order][template_name]['scaling_vector'])
+
+    mpi.preds_key, mpi.preds = [], []
+    mpi.OCEAN = defaultdict(list)
+    mpi.scores = []
+    ques_pbar.reset()
+    for idx, ilp in enumerate (mpi.likelihood):         
+        exps = torch.exp(torch.tensor(ilp.tolist()))
+        min_value, max_value = torch.min(exps), torch.max(exps)
+        normalized = (exps - min_value) / (max_value - min_value)
+        probabilities = torch.nn.functional.softmax(normalized,0)
+
+        scaled_probabilities = torch.mul(scaling_vector, probabilities)
+
+        key = mpi.plus_minus[idx]
+        pred = torch.argmax(scaled_probabilities,0).item()
+        mpi.preds.append(pred)
+        mpi.preds_key.append(mpi.mpi_choice_lst[key][pred])
+        
+        score = MPI_SCORE[key][pred]
+        mpi.scores.append(score)
+        ques_pbar.update(1)
+    ques_pbar.refresh()
+
+    mpi.preds_key = np.array(mpi.preds_key)
+    mpi.calculate_score()
+
+    log_dir = args.chpk_dir.replace('mpis','log')
+    mpi.write_statistic(os.path.join(log_dir, chkp[:-3] + '_[calibrated].txt'))
+    torch.save(mpi, os.path.join(args.chpk_dir, chkp[:-3] + '_[calibrated].pt'))
+
+    chkp_pbar.update(1)
+
 def calibrate_scores(args):
 
     print('\nScore Calibration in progress...\n\n')
@@ -206,9 +259,16 @@ def calibrate_scores(args):
             chkp = chkp.split('.')[0]
             mpis[template_name][order].append(dict(start=start,end=end,mpi=mpi,filename=chkp))
 
+
+
         for template, order_dct in mpis.items():
+            chkp_pbar.total = len(mpis[template])
+            chkp_pbar.refresh()
+            
             for order, mpi_lst in order_dct.items():
                 mpi_lst = sorted(mpi_lst,key= lambda k: k['start'])
+                chkp = mpis[template][order][0]['filename']
+                chkp = '_'.join(chkp.split('_')[:-3]+chkp.split('_')[-2:])+'.pt'
 
                 reduced_mpi = mpi_lst[0]['mpi']
 
@@ -232,67 +292,18 @@ def calibrate_scores(args):
                     for key in reduced_mpi.OCEAN.keys():
                         reduced_mpi.OCEAN[key].extend(mpi.OCEAN[key])
 
-                
-                
-        
+                mpi = reduced_mpi
+
+                rescore(args, mpi, chkp, ques_pbar, chkp_pbar, True)
+
+            chkp_pbar.close()
+            ques_pbar.close()  
 
     else:
         for chkp in checkpoints:
             mpi = torch.load(os.path.join(args.chpk_dir, chkp), map_location=DEVICE)
 
-            ques_pbar.total = len(mpi.scores)
-            ques_pbar.refresh()
-
-            dir_splits = args.chpk_dir.split('/')
-            family = mpi.model_desc['family']
-            version = mpi.model_desc['version']
-            if family in ['OPT', 'GPTNEO', 'GPTNEOX']:
-                mpi.model_desc['version']=mpi.model_desc['version'].split('/')[0]+'/'+mpi.model_desc['version'].split('/')[1].lower()
-                version = mpi.model_desc['version'].split('/')[1]
-            description = dir_splits[-2]
-            ans_type = dir_splits[-1]
-            regime = dir_splits[2]
-            ckpt_dir = dir_splits[0]+'/'+dir_splits[1]
-            template_name = chkp.split('_')[-3]
-            order = chkp.split('_')[-2][1:-1]
-            
-            hs_dir = os.path.join(ckpt_dir, regime, 'calibration', version)
-            hs_filename = f'[{family}]_[{version}]_[{description}]_[{ans_type}].json'
-            with open(os.path.join(hs_dir, f'{hs_filename}'),'r') as file:
-                scaling_vector = torch.tensor(json.load(file)['orders'][order][template_name]['scaling_vector'])
-
-            mpi.preds_key, mpi.preds = [], []
-            mpi.OCEAN = defaultdict(list)
-            mpi.scores = []
-            ques_pbar.reset()
-            for idx, ilp in enumerate (mpi.likelihood):         
-                exps = torch.exp(torch.tensor(ilp.tolist()))
-                min_value, max_value = torch.min(exps), torch.max(exps)
-                normalized = (exps - min_value) / (max_value - min_value)
-                probabilities = torch.nn.functional.softmax(normalized,0)
-
-                scaled_probabilities = torch.mul(scaling_vector, probabilities)
-
-                key = mpi.plus_minus[idx]
-                pred = torch.argmax(scaled_probabilities,0).item()
-                mpi.preds.append(pred)
-                mpi.preds_key.append(mpi.mpi_choice_lst[key][pred])
-                
-                score = MPI_SCORE[key][pred]
-                mpi.scores.append(score)
-                ques_pbar.update(1)
-            ques_pbar.refresh()
-
-            # SCORE CALCULATION
-            mpi.preds_key = np.array(mpi.preds_key)
-            mpi.calculate_score()
-
-            log_dir = args.chpk_dir.replace('mpis','log')
-            mpi.write_statistic(os.path.join(log_dir, chkp[:-3] + '_[calibrated].txt'))
-
-            torch.save(mpi, os.path.join(args.chpk_dir, chkp[:-3] + '_[calibrated].pt'))
-
-            chkp_pbar.update(1)
+            rescore(args, mpi, chkp, ques_pbar, chkp_pbar)
 
         chkp_pbar.close()
         ques_pbar.close()  
@@ -321,11 +332,11 @@ if __name__=='__main__':
     if not args.config:
         # args.mode = 'SV'
         # args.config = 'config/Constraint/calibration/non-index.yaml'
-        # args.family = 'OPT'
-        # args.version = 'facebook/opt-125m'
+        # args.family = 'GPTNEOX'
+        # args.version = 'EleutherAI/gpt-neox-20b'
 
         args.mode = 'CL'
-        args.chpk_dir = 'checkpoint/mpis/Constraint/order-symmetry/opt-6.7b/index/index'
+        args.chpk_dir = 'checkpoint/mpis/Constraint/order-symmetry/opt-30b/index/index'
 
     if args.mode == 'SV':
         calculate_scaling_vectors(args)
