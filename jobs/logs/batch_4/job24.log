@@ -1,0 +1,27 @@
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+[1m------------------------------------------------------------------------------------------------------------------------
+-- Unfortunately, we are only using CPUs now.
+------------------------------------------------------------------------------------------------------------------------
+[22m------------------------------------------------------------------------------------------------------------------------
+Loading checkpoint shards:   0%|          | 0/14 [00:00<?, ?it/s]Loading checkpoint shards:   7%|▋         | 1/14 [00:08<01:55,  8.89s/it]Loading checkpoint shards:  14%|█▍        | 2/14 [00:17<01:45,  8.77s/it]Loading checkpoint shards:  21%|██▏       | 3/14 [00:26<01:37,  8.89s/it]Loading checkpoint shards:  29%|██▊       | 4/14 [00:34<01:26,  8.67s/it]Loading checkpoint shards:  36%|███▌      | 5/14 [00:43<01:16,  8.47s/it]Loading checkpoint shards:  43%|████▎     | 6/14 [00:51<01:07,  8.43s/it]Loading checkpoint shards:  50%|█████     | 7/14 [00:59<00:58,  8.33s/it]Loading checkpoint shards:  57%|█████▋    | 8/14 [01:07<00:48,  8.11s/it]Loading checkpoint shards:  64%|██████▍   | 9/14 [01:16<00:41,  8.39s/it]Loading checkpoint shards:  71%|███████▏  | 10/14 [01:25<00:34,  8.65s/it]Loading checkpoint shards:  79%|███████▊  | 11/14 [01:33<00:25,  8.59s/it]Loading checkpoint shards:  86%|████████▌ | 12/14 [01:42<00:16,  8.49s/it]Loading checkpoint shards:  93%|█████████▎| 13/14 [01:50<00:08,  8.46s/it]Loading checkpoint shards: 100%|██████████| 14/14 [01:56<00:00,  7.65s/it]Loading checkpoint shards: 100%|██████████| 14/14 [01:56<00:00,  8.31s/it]Here is a list of 18 candidate templates.
+
+Single Template Mode
+
+
+  0%|          | 0/1 [00:00<?, ?it/s]ic| is_lower: True
+  0%|          | 0/1 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/as14229/NYU_HPC/LLM-Personality-Codebase/template/templates.py", line 22, in get_template
+    with open(f"template/{folder}/{template_name}.txt", 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'template/candidates/[lc]-[ns]-[type-i]-[ans-ii].txt'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "template/selection.py", line 246, in <module>
+    main()
+  File "template/selection.py", line 182, in main
+    prompt_template = get_template(tmp_name)
+  File "/home/as14229/NYU_HPC/LLM-Personality-Codebase/template/templates.py", line 26, in get_template
+    assert False, "Unrecognized Template Type."
+AssertionError: Unrecognized Template Type.

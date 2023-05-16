@@ -51,8 +51,8 @@ def main():
     # TO DELETE
     if not args.config:
         args.verbose = True
-        args.config = 'config/template-selection/index/GPT2.yaml'
-        args.version = 'gpt2-xl'
+        args.config = 'config/template-selection/index/OPT.yaml'
+        args.version = 'facebook/opt-125m'
         args.template = '[og]-[s]-[type-iii]-[ans-iii]'
 
     assert args.config is not None, 'Please specify the config .yaml file to proceed.'
@@ -171,6 +171,8 @@ def main():
     elif args.template is not None:
         templates=[args.template]
         is_lower_choices = [True] if args.template[1:3]=='lc' else [False]
+        if is_lower_choices[0]:
+            templates[0] = templates[0].replace('lc', 'og')
         print('\nSingle Template Mode\n')
 
     for tmp in tqdm(templates):

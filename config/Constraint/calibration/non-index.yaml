@@ -1,0 +1,22 @@
+experiment:
+  regime: Constraint
+  category: calibration
+
+path:
+  tmp_dir: template/candidates
+  log_dir: checkpoint/log/
+  ckpt_dir: checkpoint/mpis/
+
+template:
+  description: non-index
+  index:
+  desc:
+    "+": mpi
+    "-": mpi
+  ans_type: desc
+
+shuffle:
+  shuffle_both: false
+
+algorithm:
+  ll_type: ans_inv_perp
