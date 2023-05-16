@@ -28,7 +28,7 @@
 # python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-125M/non-index.yaml
 # python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-1.3B/non-index.yaml
 # python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-2.7B/non-index.yaml
-# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEOX-20B/non-index.yaml
+# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEOX/non-index.yaml
 
 # GPT index
 python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2/index.yaml
@@ -38,4 +38,4 @@ python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2-XL/ind
 python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-125M/index.yaml
 python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-1.3B/index.yaml
 python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-2.7B/index.yaml
-python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEOX-20B/index.yaml
+python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEOX/index.yaml
