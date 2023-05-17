@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     # Test
     if not args.chpk_dir:
-        args.chpk_dir = 'checkpoint/mpis/Constraint/order-symmetry/opt-30b/non-index/desc'
+        args.chpk_dir = 'checkpoint/mpis/Constraint/order-symmetry/opt-66b/index/index'
 
     checkpoints = os.listdir(args.chpk_dir)
 
