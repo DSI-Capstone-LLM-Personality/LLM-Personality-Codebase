@@ -17,6 +17,24 @@ from template.templates import *
 from util.human_ans_parser import get_item_key_map
 
 
+SCORE_TO_CHOICE = {
+    '+': {
+        1: 'VA',
+        2: 'MA',
+        3: 'NANI',
+        4: 'MI',
+        5: 'VI'
+    },
+    '-': {
+        5: 'VA',
+        4: 'MA',
+        3: 'NANI',
+        2: 'MI',
+        1: 'VI'
+    }
+}
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', help='configuration file')
 args = parser.parse_args()
@@ -89,17 +107,23 @@ with open(log, 'w') as f:
     df_120 = read_mpi(dset_120_path)
     # print(ckpt.text)
     text, label, raw = np.array(ckpt.text), np.array(ckpt.label), np.array(ckpt.mpi_df['label_raw'])
-    label_120, text_120, raw_120 = df_120['label_ocean'], df_120['text'], df_120['label_raw']
+    label_120, text_120, raw_120, key_120 = df_120['label_ocean'], df_120['text'], df_120['label_raw'], df_120['key']
+    key = np.array(ckpt.plus_minus)
+    # ic(key)
     mask = []
+    selected_keys = []
     for idx, (x, y, z) in enumerate(zip(label, text, raw)):
         for lbl, q, r in zip(label_120, text_120, raw_120):
             if x.strip() == lbl.strip() and y.strip() == q.strip() and z.strip() == r.strip():
                 mask.append(idx)
+                selected_keys.append(key[idx])
                 break
 
+    selected_keys = np.array(selected_keys)
+    # ic(selected_keys.shape)
     mask = np.array(mask)
 
-    ic(mask.shape)
+    # ic(mask.shape)
     LLM_OBS = defaultdict(list)
     for idx in mask:
         trait = ckpt.label[idx]
@@ -118,15 +142,31 @@ with open(log, 'w') as f:
     # }
     # ----------------------------- Raw Observations ----------------------------- #
     # Observation
-    OBS = {}
-    for trait in "OCEAN":
+    # OBS = {}
+    # for trait in "OCEAN":
+    #     coi = list(filterfalse(lambda k: item_key_map[k][1] != trait, item_key_map))
+    #     OBS[trait] = np.array(IPIP120_df[coi])
+    # torch.save(OBS, "human/HUMAN_OBS.pt")
+    OBS = torch.load("human/HUMAN_OBS.pt")
+    # DISTRIBUTION
+    HUMAN_CHOICE_OBS = {}
+    for trait in tqdm(['O', 'C', 'E', 'A', 'N']):
         coi = list(filterfalse(lambda k: item_key_map[k][1] != trait, item_key_map))
-        OBS[trait] = np.array(IPIP120_df[coi])
+        data = np.array(IPIP120_df[coi])
+        # Map scores to choice
+        for i in range(data.shape[0]):
+            if 0 in data:
+                continue
+            for j in range(data.shape[1]):
+                data[i][j] = SCORE_TO_CHOICE[item_key_map[coi[i]][0]]  
+
+        HUMAN_CHOICE_OBS[trait] = data
+    ic(HUMAN_CHOICE_OBS['O'].shape)
     # ----------------------------- Wasserstein Distance Calculation ----------------------------- #
     # LLM scores
-    LLM_SCORES = {}
-    for trait in 'OCEAN':
-        LLM_SCORES[trait] = calculate_scores(LLM_OBS[trait], OBS[trait])
+    # LLM_SCORES = {}
+    # for trait in 'OCEAN':
+    #     LLM_SCORES[trait] = calculate_scores(LLM_OBS[trait], OBS[trait])
     # HUMAN estimation
     OBS_SCORES = torch.load("human/HUMAN_OBS_SCORES.pt")
 
@@ -159,11 +199,11 @@ with open(log, 'w') as f:
         'title': f'{MODEL}-Human'
     }
 
-    for trait in 'OCEAN':
-        dist1 = OBS_SCORES[trait]
-        dist2 = LLM_SCORES[trait]
-        llm_human_config['trait'] = trait
-        plot_distribution(dist1, dist2, llm_human_config)
+    # for trait in 'OCEAN':
+    #     dist1 = OBS_SCORES[trait]
+    #     dist2 = LLM_SCORES[trait]
+    #     llm_human_config['trait'] = trait
+    #     plot_distribution(dist1, dist2, llm_human_config)
 
     # # ----------------------------- Wasserstein Distance Plot (LLM ONLY) ----------------------------- #
     def plot_llm_distribution(dist, c):
@@ -189,10 +229,10 @@ with open(log, 'w') as f:
         'l2': f'{MODEL}',
         'title': f'{MODEL}'
     }
-    for trait in 'OCEAN':
-        dist = LLM_SCORES[trait]
-        llm_config['trait'] = trait
-        plot_llm_distribution(dist, llm_config)
+    # for trait in 'OCEAN':
+    #     dist = LLM_SCORES[trait]
+    #     llm_config['trait'] = trait
+    #     plot_llm_distribution(dist, llm_config)
 
     # # ----------------------------- Wasserstein Distance Threshold ----------------------------- #
     def find_percentage_below(scores, threshold):
@@ -201,19 +241,19 @@ with open(log, 'w') as f:
         p = num/ len(scores)
         return mask, num, p
     thres_lst = [1, 1e-1, 1e-2, 1e-3, 1e-4]
-    print(thres_lst)
-    for trait in 'OCEAN':
-        p_lst = []
-        p_below = f"{trait}"
-        for threshold in thres_lst:
-            mask, num,  p = find_percentage_below(OBS_SCORES[trait], threshold)
-            # ic(num)
-            # ic(f"{p*100:.4f}%")
-            p_lst.append(f"{p*100:.4f}%")
-            p_below += f" & ${p*100:.4f}\%$"
-        # print(trait)
-        p_below += "\\\\"
-        print(p_below)
+    # print(thres_lst)
+    # for trait in 'OCEAN':
+    #     p_lst = []
+    #     p_below = f"{trait}"
+    #     for threshold in thres_lst:
+    #         mask, num,  p = find_percentage_below(OBS_SCORES[trait], threshold)
+    #         # ic(num)
+    #         # ic(f"{p*100:.4f}%")
+    #         p_lst.append(f"{p*100:.4f}%")
+    #         p_below += f" & ${p*100:.4f}\%$"
+    #     # print(trait)
+    #     p_below += "\\\\"
+    #     print(p_below)
         # print(p_lst)
 
     # ----------------------------- ENTROPY CALCULATION ----------------------------- #
@@ -227,50 +267,130 @@ with open(log, 'w') as f:
     # ----------------------------- Distribution & Entropy ----------------------------- #
     LLM_DIST = {}
     for trait in 'OCEAN':
+        ic(LLM_OBS[trait])
         LLM_DIST[trait] = normalize(obs_to_dist(LLM_OBS[trait].reshape((1, -1))))
-
     LLM_ENTROPY = {}
     for trait in 'OCEAN':
+        ic(LLM_DIST[trait])
         LLM_ENTROPY[trait] = entropy(LLM_DIST[trait])
+        ic(LLM_ENTROPY[trait])
 
-    HUMAN_DIST = {}
-    for trait in 'OCEAN':
-        HUMAN_DIST[trait] = normalize(obs_to_dist(OBS[trait]))
+    # HUMAN_DIST = {}
+    # for trait in 'OCEAN':
+    #     HUMAN_DIST[trait] = normalize(obs_to_dist(OBS[trait]))
 
-    HUMAN_ENTROPY = {}
-    for trait in 'OCEAN':
-        HUMAN_ENTROPY[trait] = entropy(HUMAN_DIST[trait])
+    # HUMAN_ENTROPY = {}
+    # for trait in 'OCEAN':
+    #     HUMAN_ENTROPY[trait] = entropy(HUMAN_DIST[trait])
 
+    # torch.save(HUMAN_ENTROPY, "human/HUMAN_ENTROPY.pt")
+    HUMAN_ENTROPY = torch.load("human/HUMAN_ENTROPY.pt")
     # ----------------------------- ENTROPY PLOT ----------------------------- #
     def plot_entropy(dist, llm_entropy, c):
         plt.hist(dist, bins=c['num_bins'], density=True, alpha=c['alpha'], color=c['c1'], label=c['l1'])
         plt.axvline(x=llm_entropy, color=c['c2'], linestyle='dashed', label=c['l2'])
+        # PLOT rejection region
+        rej = np.quantile(dist, 0.05)
+        # plt.axvspan(0, rej, alpha=0.4, color='red')
+        ax = sns.kdeplot(dist, bw_adjust=2)
+        # Below code to shade partial region is from 
+        # https://stackoverflow.com/a/49100655
+
+        # Get all the lines used to draw the density curve 
+        kde_lines = ax.get_lines()[-1]
+        kde_x, kde_y = kde_lines.get_data()
+
+        # Use Numpy mask to filter the lines for region 
+        # reresenting height greater than 60 inches 
+        mask = kde_x < rej
+        filled_x, filled_y = kde_x[mask], kde_y[mask]
+
+        # Shade the partial region 
+        ax.fill_between(filled_x, y1=filled_y, color='#c1272d', alpha=0.5)
+
         sns.kdeplot(dist, linewidth=1, color=c['c1'], bw_adjust=2)
         plt.legend()
         plt.xlabel("Entropy")
         plt.ylabel("Density")
+
+        plt.annotate(f'{round(llm_entropy.item(),2)}', xy=(0.25, 1), xytext=(llm_entropy.item()+0.05, 1.0))
+        plt.xticks([0, 0.2, 0.8, 1, rej.item()], [0, 0.2, 0.8, 1, round(rej.item(),2)])
         plt.title(f"Entropy Distribution - Trait {c['trait']}")
         os.makedirs(f"human/{MODEL}/{description}/", exist_ok=True)
-        plt.savefig(f"human/{MODEL}/{description}/Entropy-{c['l1'] + '-' + c['l2']}-{c['trait']}.jpg", dpi=500)
+        plt.savefig(f"human/{MODEL}/{description}/Entropy-{c['l1'] + '-' + c['l2']}-{c['trait']}.jpg", dpi=1000)
+        plt.close()
+
+    def plot_mean_std(dist, llm_stats, c, statistic):
+        plt.hist(dist, bins=c['num_bins'], density=True, alpha=c['alpha'], color=c['c1'], label=c['l1'])
+        plt.axvline(x=llm_stats, color=c['c2'], linestyle='dashed', label=c['l2'])
+        # PLOT rejection region
+        lb, ub = np.quantile(dist, 0.005), np.quantile(dist, 0.995)
+        # plt.axvspan(0, rej, alpha=0.4, color='red')
+        ax = sns.kdeplot(dist, bw_adjust=2)
+        # Below code to shade partial region is from 
+        # https://stackoverflow.com/a/49100655
+
+        # Get all the lines used to draw the density curve 
+        kde_lines = ax.get_lines()[-1]
+        kde_x, kde_y = kde_lines.get_data()
+        # left tail
+        mask = kde_x < lb
+        filled_x, filled_y = kde_x[mask], kde_y[mask]
+        ax.fill_between(filled_x, y1=filled_y, color='#c1272d', alpha=0.5)
+        # right tail
+        mask = kde_x > ub
+        filled_x, filled_y = kde_x[mask], kde_y[mask]
+        ax.fill_between(filled_x, y1=filled_y, color='#c1272d', alpha=0.5)
+
+        sns.kdeplot(dist, linewidth=1, color=c['c1'], bw_adjust=2)
+        plt.legend()
+        plt.xlabel(f"{statistic}")
+        plt.ylabel("Density")
+
+        if statistic == 'Mean':
+            plt.annotate(f'{round(llm_stats,2)}', xy=(0.25, 1), xytext=(llm_stats+0.05, 0.5))
+            plt.xticks([1, lb, ub, 5], [1, round(lb, 2), round(ub, 2), 5])
+        else:
+            plt.annotate(f'{round(llm_stats,2)}', xy=(0.25, 1), xytext=(llm_stats+0.05, 0.8))
+            plt.xticks([0, lb, ub, 2], [0, round(lb, 2), round(ub, 2), 2])
+        plt.title(f"{statistic} Distribution - Trait {c['trait']}")
+        os.makedirs(f"human/{MODEL}/{description}/", exist_ok=True)
+        plt.savefig(f"human/{MODEL}/{description}/{statistic}-{c['l1'] + '-' + c['l2']}-{c['trait']}.jpg", dpi=1000)
         plt.close()
 
     entropy_config = {
         'num_bins': 30,
         'alpha': 0.3,
         'c1': 'navy',
-        # 'c2': '#eecc16',
-        'c2': '#c1272d',
+        'c2': 'black',
+        # 'c2': '#c1272d',
         'trait': 'O',
         'l1': 'Human',
         'l2': f'{MODEL}',
         'title': f'{MODEL}-Human'
     }
 
+    # Load checkpoints
+    HUMAN_MEAN = torch.load('human/HUMAN_MEAN.pt')
+    HUMAN_STD = torch.load('human/HUMAN_STD.pt')
+
+    print('ENTROPY')
+    for trait in 'OCEAN':
+        print(f"{LLM_ENTROPY[trait]}")
+    print('MEAN')
+    for trait in 'OCEAN':
+        print(f"{np.mean(LLM_OBS[trait]).item()}")
+    print('STD')
+    for trait in 'OCEAN':
+        print(f"{np.std(LLM_OBS[trait]).item()}")
+
     for trait in 'OCEAN':
         dist = HUMAN_ENTROPY[trait]
         llm_entropy = LLM_ENTROPY[trait]
         entropy_config['trait'] = trait
         plot_entropy(dist, llm_entropy, entropy_config)
+        plot_mean_std(HUMAN_MEAN[trait], np.mean(LLM_OBS[trait]).item(), entropy_config, 'Mean')
+        plot_mean_std(HUMAN_STD[trait], np.std(LLM_OBS[trait]).item(), entropy_config, 'STD')
 
         probs = f"\\textbf{{{trait}}}"
         # Compute quantile

@@ -38,4 +38,4 @@
 # python human/stats.py --config=config/Constraint/order-symmetry/GPTNEO-1.3B/index.yaml
 # python human/stats.py --config=config/Constraint/order-symmetry/GPTNEO-2.7B/index.yaml
 # python human/stats.py --config=config/Constraint/order-symmetry/GPTNEO-125M/index.yaml
-python human/stats.py --config=config/Constraint/order-symmetry/GPTNEOX/index.yaml
+# python human/stats.py --config=config/Constraint/order-symmetry/GPTNEOX/index.yaml

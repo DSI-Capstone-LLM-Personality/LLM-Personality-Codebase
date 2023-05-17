@@ -187,6 +187,33 @@ def format_ans_distribution_latex_table(mpi):
     out += "\\\\"
     return out
 
+def format_score_distribution_latex_table(mpi):
+    n_scores = len(mpi.scores)
+    score_stats = Counter(mpi.scores)
+    # distribution
+    ans_dist_table = []
+    for sign in ['+', '-']:
+        stat = Counter(mpi.preds_key[mpi.plus_minus == sign])
+        for item in mpi.mpi_choice_lst[sign]:
+            ans_dist_table.append(stat[item])
+    # Change order if necessary
+    order = np.array([[a, b] for a, b, in zip(
+        np.arange(5), np.arange(5, 10, 1))])
+    # print(order)
+    ans_dist_table = np.array(ans_dist_table)
+    # print(ans_dist_table)
+    choice_dist = np.array([sum(ans_dist_table[pair]) for pair in order]) / np.sum(ans_dist_table)
+    # print(choice_dist)
+    # Formatting
+    out = ""
+
+    for ratio in choice_dist:
+        out += f"& ${(100 * ratio):.2f}$ "
+    for s in [5, 4, 3, 2, 1]:
+        out += f"& ${(100 * score_stats[s] / n_scores):.2f}$ "
+    out += "\\\\"
+    return out
+
 
 def format_ocean_latex_table(mpi):
     # Note that the output is a single row of table
