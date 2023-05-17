@@ -130,9 +130,6 @@ class LMPROB():
         for item, _ in tokens.items():
             tokens[item] = tokens[item].to(DEVICE)
 
-        for item, _ in tmp_tokens.items():
-            tmp_tokens[item] = tmp_tokens[item].to(DEVICE)
-
         if self.family in ['GPT2', 'GPTNEO', 'GPTNEOX', 'OPT']:
             # token sequence processing
             logits = self.model(**tokens).logits
