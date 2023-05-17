@@ -1,0 +1,3147 @@
+MODEL: OPT | Version: facebook/opt-350m
+--------------------------------------------------------------------------------
+There are 989 MC questions in total.
+--------------------------------------------------------------------------------
+SHUFFLED? | [4, 0, 2, 3, 1]
+> Shuffle both indexes and descriptions?: False
+The question template look like this:
+
+Given a description of you: "You act wild and crazy." What do you think?
+You can choose from the following options:
+very inaccurate
+very accurate
+neither accurate nor inaccurate
+moderately inaccurate
+moderately accurate
+My Answer: I choose option 
+--------------------------------------------------------------------------------
+The choice available for "+" questions looks like this:
+> ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+--------------------------------------------------------------------------------
+The choice available for "-" questions looks like this:
+> ['very accurate', 'moderately accurate', 'neither accurate nor inaccurate', 'moderately inaccurate', 'very inaccurate']
+--------------------------------------------------------------------------------
+ANSWER STATISTICS
+--------------------------------------------------------------------------------
+OCEAN SCORES STATS
+O | MEAN: 3.46667  | STD: 1.92184
+C | MEAN: 3.6347   | STD: 1.80058
+E | MEAN: 2.9703   | STD: 1.95703
+A | MEAN: 3.11224  | STD: 1.97358
+N | MEAN: 2.9096   | STD: 1.9693
+--------------------------------------------------------------------------------
+OTHER INTERESTING STATS
++ Questions: 
+ANSWERS                         | Count
+very accurate                   |   341
+moderately accurate             |   18
+neither accurate nor inaccurate |   5
+moderately inaccurate           |   14
+very inaccurate                 |   178
+- Questions: 
+ANSWERS                         | Count
+very accurate                   |   233
+moderately accurate             |   4
+neither accurate nor inaccurate |   4
+moderately inaccurate           |   14
+very inaccurate                 |   178
+--------------------------------------------------------------------------------
+TRAITS-LEVEL STATS: 
+Trait: O | # Questions: 195
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   81
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   6
+very inaccurate                 |   29
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   41
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   1
+very inaccurate                 |   37
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|  70 |   6 |   0 |   1 | 118 |
++-----+-----+-----+-----+-----+
+
+
+Trait: C | # Questions: 219
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   86
+moderately accurate             |   12
+neither accurate nor inaccurate |   3
+moderately inaccurate           |   1
+very inaccurate                 |   13
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   53
+moderately accurate             |   1
+neither accurate nor inaccurate |   3
+moderately inaccurate           |   5
+very inaccurate                 |   42
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|  66 |   2 |   6 |  17 | 128 |
++-----+-----+-----+-----+-----+
+
+
+Trait: E | # Questions: 202
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   62
+moderately accurate             |   4
+neither accurate nor inaccurate |   1
+moderately inaccurate           |   2
+very inaccurate                 |   46
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   52
+moderately accurate             |   0
+neither accurate nor inaccurate |   1
+moderately inaccurate           |   4
+very inaccurate                 |   30
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|  98 |   2 |   2 |   8 |  92 |
++-----+-----+-----+-----+-----+
+
+
+Trait: A | # Questions: 196
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   48
+moderately accurate             |   2
+neither accurate nor inaccurate |   1
+moderately inaccurate           |   1
+very inaccurate                 |   42
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   48
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   3
+very inaccurate                 |   51
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|  90 |   1 |   1 |   5 |  99 |
++-----+-----+-----+-----+-----+
+
+
+Trait: N | # Questions: 177
+> CHOICES DISTRIBUTION [+]
+ANSWERS                         | Count
+very accurate                   |   64
+moderately accurate             |   0
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   4
+very inaccurate                 |   48
+
+> CHOICES DISTRIBUTION [-]
+ANSWERS                         | Count
+very accurate                   |   39
+moderately accurate             |   3
+neither accurate nor inaccurate |   0
+moderately inaccurate           |   1
+very inaccurate                 |   18
+
+> SCORE DISTRIBUTION
++-----+-----+-----+-----+-----+
+|   1 |   2 |   3 |   4 |   5 |
+|-----+-----+-----+-----+-----|
+|  87 |   7 |   0 |   1 |  82 |
++-----+-----+-----+-----+-----+
+
+
+--------------------------------------------------------------------------------
+APPENDIX: ANSWERS
+--------------------------------------------------------------------------------
+QUESTION #1    | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Act wild and crazy
+> Inverse Log-Perplexity: [-7.8999, -12.1149, -11.727, -12.934, -8.889]
+QUESTION #2    | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are afraid that you will do the wrong thing
+> Inverse Log-Perplexity: [-7.8001, -12.2155, -11.5712, -13.1479, -8.9838]
+QUESTION #3    | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are annoyed by others' mistakes
+> Inverse Log-Perplexity: [-7.9945, -12.144, -11.6669, -13.0698, -8.9953]
+QUESTION #4    | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are easily hurt
+> Inverse Log-Perplexity: [-7.668, -11.9137, -11.4883, -12.7821, -8.6704]
+QUESTION #5    | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are easily put out
+> Inverse Log-Perplexity: [-7.6705, -11.8088, -11.521, -12.8527, -8.7894]
+QUESTION #6    | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are exacting in your work
+> Inverse Log-Perplexity: [-7.8919, -11.741, -11.4589, -12.8886, -9.1491]
+QUESTION #7    | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are not afraid of providing criticism
+> Inverse Log-Perplexity: [-7.8063, -12.4172, -11.6689, -13.3174, -8.7626]
+QUESTION #8    | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are not bothered by disorder
+> Inverse Log-Perplexity: [-7.9071, -12.006, -11.6404, -12.955, -8.8416]
+QUESTION #9    | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are not bothered by messy people
+> Inverse Log-Perplexity: [-7.9319, -12.2949, -11.6388, -13.2543, -8.8768]
+QUESTION #10   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not easily annoyed
+> Inverse Log-Perplexity: [-7.8617, -12.0028, -11.509, -13.0598, -8.9015]
+QUESTION #11   | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are not easily bothered by things
+> Inverse Log-Perplexity: [-7.9281, -12.1055, -11.5395, -13.1032, -8.9021]
+QUESTION #12   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are quick to judge others
+> Inverse Log-Perplexity: [-7.6844, -11.7986, -11.5007, -12.7542, -8.6596]
+QUESTION #13   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are quiet around strangers
+> Inverse Log-Perplexity: [-8.1935, -12.221, -11.6147, -13.0245, -8.8826]
+QUESTION #14   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are the last to laugh at a joke
+> Inverse Log-Perplexity: [-8.0744, -12.4156, -11.7112, -13.2397, -8.7993]
+QUESTION #15   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are the life of the party
+> Inverse Log-Perplexity: [-7.8937, -11.9946, -11.4979, -13.0914, -9.0023]
+QUESTION #16   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Areuse your friends
+> Inverse Log-Perplexity: [-7.8635, -11.8205, -11.2329, -12.7107, -8.867]
+QUESTION #17   | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Believe in one true religion
+> Inverse Log-Perplexity: [-7.4604, -12.3424, -11.6191, -13.0837, -8.2473]
+QUESTION #18   | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Believe laws should be strictly enforced
+> Inverse Log-Perplexity: [-7.6087, -12.3995, -11.5454, -13.3212, -8.558]
+QUESTION #19   | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Break rules
+> Inverse Log-Perplexity: [-7.7559, -11.9636, -11.2519, -12.9295, -8.7424]
+QUESTION #20   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Can take strong measures
+> Inverse Log-Perplexity: [-7.528, -11.779, -11.4495, -12.6871, -8.6845]
+QUESTION #21   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Can't stand being contradicted
+> Inverse Log-Perplexity: [-7.7987, -12.2762, -11.6657, -13.0964, -8.7313]
+QUESTION #22   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Consider yourself an average person
+> Inverse Log-Perplexity: [-7.6554, -11.8943, -11.438, -12.8655, -8.6669]
+QUESTION #23   | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Continue until everything is perfect
+> Inverse Log-Perplexity: [-7.9457, -12.0233, -11.5257, -13.1029, -9.1729]
+QUESTION #24   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Counter others' arguments
+> Inverse Log-Perplexity: [-7.7701, -12.2088, -11.6152, -13.1655, -8.9596]
+QUESTION #25   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Dislike loud music
+> Inverse Log-Perplexity: [-7.8895, -12.0768, -11.6005, -12.8227, -8.6213]
+QUESTION #26   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do things by the book
+> Inverse Log-Perplexity: [-7.9186, -12.1294, -11.5668, -13.2399, -8.9854]
+QUESTION #27   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do things that others find strange
+> Inverse Log-Perplexity: [-8.0043, -12.2613, -11.7337, -13.2461, -9.0001]
+QUESTION #28   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do unexpected things
+> Inverse Log-Perplexity: [-7.735, -11.9847, -11.4136, -12.8583, -8.7213]
+QUESTION #29   | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't let others discourage me
+> Inverse Log-Perplexity: [-7.7704, -12.1997, -11.3887, -13.1686, -8.6383]
+QUESTION #30   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't like crowded events
+> Inverse Log-Perplexity: [-7.7233, -12.0114, -11.4457, -12.9109, -8.4663]
+QUESTION #31   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Don't mind being the center of attention
+> Inverse Log-Perplexity: [-7.8075, -12.1265, -11.4594, -12.9842, -8.8106]
+QUESTION #32   | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Don't worry about things that have already happened
+> Inverse Log-Perplexity: [-7.5439, -12.2711, -11.7275, -13.1643, -8.7336]
+QUESTION #33   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Enjoy being part of a loud crowd
+> Inverse Log-Perplexity: [-7.7022, -12.0343, -11.4121, -13.0387, -8.6689]
+QUESTION #34   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Enjoy wild flights of fantasy
+> Inverse Log-Perplexity: [-7.9695, -11.9518, -11.565, -12.8505, -8.9071]
+QUESTION #35   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel comfortable around people
+> Inverse Log-Perplexity: [-7.7526, -12.0194, -11.4897, -13.041, -8.6541]
+QUESTION #36   | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel crushed by setbacks
+> Inverse Log-Perplexity: [-7.6843, -12.0888, -11.8596, -12.9174, -8.6403]
+QUESTION #37   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Feel guilty when you say "no."
+> Inverse Log-Perplexity: [-7.829, -12.3523, -11.4908, -13.0023, -8.8282]
+QUESTION #38   | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel threatened easily
+> Inverse Log-Perplexity: [-7.5975, -11.9127, -11.5021, -12.6501, -8.4866]
+QUESTION #39   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Find it difficult to approach others
+> Inverse Log-Perplexity: [-7.7622, -11.9021, -11.4727, -12.945, -8.9581]
+QUESTION #40   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Get angry easily
+> Inverse Log-Perplexity: [-7.5639, -11.9801, -11.486, -12.7828, -8.4618]
+QUESTION #41   | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get chores done right away
+> Inverse Log-Perplexity: [-7.7408, -11.6625, -11.369, -12.8253, -8.9324]
+QUESTION #42   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Get confused easily
+> Inverse Log-Perplexity: [-7.7644, -11.8604, -11.4879, -12.9213, -8.832]
+QUESTION #43   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get irritated easily
+> Inverse Log-Perplexity: [-7.877, -11.841, -11.544, -12.913, -8.9668]
+QUESTION #44   | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Have a good word for everyone
+> Inverse Log-Perplexity: [-7.6354, -11.9947, -11.4281, -12.9472, -8.5933]
+QUESTION #45   | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Have a poor vocabulary
+> Inverse Log-Perplexity: [-7.8139, -11.9723, -11.5068, -12.813, -8.6934]
+QUESTION #46   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Have little to say
+> Inverse Log-Perplexity: [-7.7028, -11.9469, -11.493, -12.7757, -8.6003]
+QUESTION #47   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Joke around a lot
+> Inverse Log-Perplexity: [-8.0739, -12.4077, -11.5986, -13.2623, -8.6898]
+QUESTION #48   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Judge people by their appearance
+> Inverse Log-Perplexity: [-7.9508, -12.3418, -11.6755, -13.2764, -8.8964]
+QUESTION #49   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep in the background
+> Inverse Log-Perplexity: [-7.8628, -11.9733, -11.4652, -13.2616, -9.0657]
+QUESTION #50   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Know how to get around the rules
+> Inverse Log-Perplexity: [-8.061, -12.1885, -11.4591, -13.3986, -9.1429]
+QUESTION #51   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Know that you are not a special person
+> Inverse Log-Perplexity: [-7.8032, -12.0034, -11.4542, -12.8328, -9.0011]
+QUESTION #52   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Know the answers to many questions
+> Inverse Log-Perplexity: [-7.972, -11.7952, -11.4523, -13.0843, -9.2191]
+QUESTION #53   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Learn quickly
+> Inverse Log-Perplexity: [-7.8611, -11.8313, -11.4136, -12.9367, -9.055]
+QUESTION #54   | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Leave a mess in your room
+> Inverse Log-Perplexity: [-8.1478, -12.1524, -11.5724, -13.2231, -9.126]
+QUESTION #55   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Leave your belongings around
+> Inverse Log-Perplexity: [-8.0877, -11.9295, -11.5354, -12.8542, -9.1734]
+QUESTION #56   | TRAIT: E | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Let yourself be pushed around
+> Inverse Log-Perplexity: [-7.7789, -11.927, -11.5205, -12.9135, -8.8966]
+QUESTION #57   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Let others make the decisions
+> Inverse Log-Perplexity: [-7.7261, -11.8014, -11.4294, -12.8801, -8.8515]
+QUESTION #58   | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like order
+> Inverse Log-Perplexity: [-7.7982, -11.8009, -11.348, -12.9815, -8.8849]
+QUESTION #59   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to get lost in thought
+> Inverse Log-Perplexity: [-8.0766, -12.1463, -11.5552, -13.2298, -9.1256]
+QUESTION #60   | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Like to stand during the national anthem
+> Inverse Log-Perplexity: [-7.4977, -12.153, -11.4184, -13.0826, -8.1127]
+QUESTION #61   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Love large parties
+> Inverse Log-Perplexity: [-7.8261, -12.1769, -11.4676, -13.1038, -8.6379]
+QUESTION #62   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Love to daydream
+> Inverse Log-Perplexity: [-7.92, -12.0092, -11.5683, -12.9046, -8.8919]
+QUESTION #63   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Make friends easily
+> Inverse Log-Perplexity: [-7.8263, -12.0106, -11.4918, -13.0328, -8.9095]
+QUESTION #64   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Make insightful remarks
+> Inverse Log-Perplexity: [-7.8165, -11.8523, -11.4639, -12.4274, -8.7555]
+QUESTION #65   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Never challenge things
+> Inverse Log-Perplexity: [-7.6539, -11.9925, -11.4317, -12.8416, -8.6206]
+QUESTION #66   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Often feel uncomfortable around others
+> Inverse Log-Perplexity: [-7.6526, -11.948, -11.5627, -12.982, -8.7466]
+QUESTION #67   | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Oppose authority
+> Inverse Log-Perplexity: [-7.4209, -12.0463, -11.5073, -12.815, -8.2911]
+QUESTION #68   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Put off unpleasant tasks
+> Inverse Log-Perplexity: [-7.994, -11.7628, -11.4797, -12.7957, -9.1471]
+QUESTION #69   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Reflect on things before acting
+> Inverse Log-Perplexity: [-7.9852, -12.1005, -11.7434, -12.9223, -8.8835]
+QUESTION #70   | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Resist authority
+> Inverse Log-Perplexity: [-7.802, -12.1088, -11.601, -13.1483, -8.9139]
+QUESTION #71   | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Respect authority
+> Inverse Log-Perplexity: [-7.6221, -11.9053, -11.3927, -12.8726, -8.7706]
+QUESTION #72   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Say what you think
+> Inverse Log-Perplexity: [-7.7489, -12.0739, -11.5227, -12.7735, -8.5571]
+QUESTION #73   | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom daydream
+> Inverse Log-Perplexity: [-8.01, -11.9627, -11.6101, -12.7551, -8.9161]
+QUESTION #74   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Seldom get lost in thought
+> Inverse Log-Perplexity: [-8.0395, -11.8911, -11.6029, -12.9149, -9.204]
+QUESTION #75   | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom joke around
+> Inverse Log-Perplexity: [-8.1329, -12.2919, -11.6593, -13.0384, -8.8521]
+QUESTION #76   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Skip difficult words while reading
+> Inverse Log-Perplexity: [-7.9063, -11.9664, -11.5812, -12.7791, -8.9652]
+QUESTION #77   | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Spend time thinking about past mistakes
+> Inverse Log-Perplexity: [-8.1026, -11.9394, -11.5321, -12.9051, -9.2268]
+QUESTION #78   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Start conversations
+> Inverse Log-Perplexity: [-8.1372, -12.1948, -11.4068, -13.0412, -9.0225]
+QUESTION #79   | TRAIT: O | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Swim against the current
+> Inverse Log-Perplexity: [-7.7857, -11.9124, -11.505, -13.0446, -8.8384]
+QUESTION #80   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Take charge
+> Inverse Log-Perplexity: [-7.758, -11.8267, -11.3211, -12.7558, -8.7298]
+QUESTION #81   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Take control of things
+> Inverse Log-Perplexity: [-7.6142, -11.9188, -11.4949, -12.7847, -8.6655]
+QUESTION #82   | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Take deviant positions
+> Inverse Log-Perplexity: [-7.9838, -12.0907, -11.2798, -13.0382, -8.922]
+QUESTION #83   | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Talk to a lot of different people at parties
+> Inverse Log-Perplexity: [-7.7731, -12.288, -11.4981, -13.318, -8.7324]
+QUESTION #84   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Tend to analyze things
+> Inverse Log-Perplexity: [-7.5406, -11.6614, -11.556, -12.5392, -8.7183]
+QUESTION #85   | TRAIT: C | KEY: + | SCORE: 3 | ANSWER: neither accurate nor inaccurate
+> Statement: Try to follow the rules
+> Inverse Log-Perplexity: [-8.1888, -12.1056, -11.5012, -13.3907, -9.2317]
+QUESTION #86   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Try to forgive and forget
+> Inverse Log-Perplexity: [-8.0706, -12.2646, -11.887, -13.2107, -9.1107]
+QUESTION #87   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Use your brain
+> Inverse Log-Perplexity: [-7.6582, -11.8771, -11.5615, -12.7608, -8.6586]
+QUESTION #88   | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Use swear words
+> Inverse Log-Perplexity: [-7.9837, -12.1681, -11.4244, -12.9094, -8.6656]
+QUESTION #89   | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Wait for others to lead the way
+> Inverse Log-Perplexity: [-7.9394, -12.1673, -11.5963, -13.3244, -9.0604]
+QUESTION #90   | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Want to be in charge
+> Inverse Log-Perplexity: [-7.8629, -11.9258, -11.4941, -12.9822, -8.9545]
+QUESTION #91   | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Weigh the pros against the cons
+> Inverse Log-Perplexity: [-7.968, -12.3559, -11.81, -13.7148, -9.1267]
+QUESTION #92   | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Worry about things
+> Inverse Log-Perplexity: [-7.6073, -11.9606, -11.4856, -12.7831, -8.4631]
+QUESTION #93   | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Accept people as they are
+> Inverse Log-Perplexity: [-7.6523, -12.0615, -11.4938, -12.9325, -8.5863]
+QUESTION #94   | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Accomplish a lot of work
+> Inverse Log-Perplexity: [-7.6024, -11.6005, -11.4977, -12.793, -8.9367]
+QUESTION #95   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are a creature of habit
+> Inverse Log-Perplexity: [-8.0756, -11.8335, -11.5666, -12.9154, -9.2549]
+QUESTION #96   | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are annoyed by others' mistakes
+> Inverse Log-Perplexity: [-7.9945, -12.144, -11.6669, -13.0698, -8.9953]
+QUESTION #97   | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are attached to conventional ways
+> Inverse Log-Perplexity: [-7.8249, -11.6068, -11.5617, -12.7186, -9.1893]
+QUESTION #98   | TRAIT: C | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Are continually losing things
+> Inverse Log-Perplexity: [-7.7968, -11.817, -11.5734, -12.6001, -8.8014]
+QUESTION #99   | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are easily offended
+> Inverse Log-Perplexity: [-7.8261, -12.2824, -11.5731, -13.1175, -8.4516]
+QUESTION #100  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are good at making impromptu speeches
+> Inverse Log-Perplexity: [-7.5137, -12.1239, -11.745, -12.8973, -8.3678]
+QUESTION #101  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are hard to get to know
+> Inverse Log-Perplexity: [-7.8725, -11.9459, -11.5408, -13.1344, -9.1612]
+QUESTION #102  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are inclined to forgive others
+> Inverse Log-Perplexity: [-8.0295, -11.99, -11.8611, -12.9097, -9.0314]
+QUESTION #103  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are interested in many things
+> Inverse Log-Perplexity: [-7.7724, -11.7984, -11.3695, -12.8178, -8.8111]
+QUESTION #104  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are not disturbed by events
+> Inverse Log-Perplexity: [-8.116, -12.0623, -11.6786, -12.8656, -9.0505]
+QUESTION #105  | TRAIT: E | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Are not good at getting people to like me
+> Inverse Log-Perplexity: [-7.388, -12.069, -11.4851, -13.0009, -8.4586]
+QUESTION #106  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not interested in abstract ideas
+> Inverse Log-Perplexity: [-7.7933, -11.9706, -11.4702, -13.0162, -9.0609]
+QUESTION #107  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not interested in theoretical discussions
+> Inverse Log-Perplexity: [-7.4716, -11.9797, -11.3671, -12.8449, -8.5579]
+QUESTION #108  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are open to change
+> Inverse Log-Perplexity: [-7.755, -11.8495, -11.4845, -12.9716, -8.9382]
+QUESTION #109  | TRAIT: E | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Are skilled in handling social situations
+> Inverse Log-Perplexity: [-7.8521, -11.5548, -11.2202, -12.7137, -9.2329]
+QUESTION #110  | TRAIT: E | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Avoid company
+> Inverse Log-Perplexity: [-7.9659, -11.8602, -11.3158, -12.8841, -8.9664]
+QUESTION #111  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Avoid contacts with others
+> Inverse Log-Perplexity: [-7.9676, -11.9328, -11.6227, -13.1186, -9.1242]
+QUESTION #112  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Can never find anything
+> Inverse Log-Perplexity: [-7.7855, -11.8644, -11.4295, -12.844, -8.8273]
+QUESTION #113  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Can talk others into doing things
+> Inverse Log-Perplexity: [-7.9248, -12.2072, -11.5021, -13.1104, -8.8421]
+QUESTION #114  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Carry the conversation to a higher level
+> Inverse Log-Perplexity: [-8.0631, -11.9443, -11.3628, -13.0432, -9.1831]
+QUESTION #115  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Dislike changes
+> Inverse Log-Perplexity: [-7.7677, -12.0924, -11.3636, -13.0085, -8.6952]
+QUESTION #116  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Dislike the unknown
+> Inverse Log-Perplexity: [-7.8925, -12.1769, -11.5103, -12.9663, -8.6231]
+QUESTION #117  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do a lot in your spare time
+> Inverse Log-Perplexity: [-7.643, -11.8896, -11.3976, -12.9817, -8.6482]
+QUESTION #118  | TRAIT: C | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Do just enough work to get by
+> Inverse Log-Perplexity: [-7.8738, -12.0312, -11.5216, -13.3903, -9.2839]
+QUESTION #119  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do more than what's expected of me
+> Inverse Log-Perplexity: [-7.7601, -11.9687, -11.4804, -12.8585, -8.855]
+QUESTION #120  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Do unpleasant tasks immediately
+> Inverse Log-Perplexity: [-8.1516, -11.7044, -11.5113, -12.8186, -9.4609]
+QUESTION #121  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't like to travel
+> Inverse Log-Perplexity: [-7.764, -11.9381, -11.3958, -12.9135, -8.5837]
+QUESTION #122  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Excel in what you do
+> Inverse Log-Perplexity: [-7.5774, -11.4229, -11.2873, -12.5948, -8.7802]
+QUESTION #123  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Express yourself easily
+> Inverse Log-Perplexity: [-7.9245, -11.8878, -11.5743, -12.7904, -8.886]
+QUESTION #124  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel comfortable around people
+> Inverse Log-Perplexity: [-7.7526, -12.0194, -11.4897, -13.041, -8.6541]
+QUESTION #125  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Find it difficult to approach others
+> Inverse Log-Perplexity: [-7.7622, -11.9021, -11.4727, -12.945, -8.9581]
+QUESTION #126  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Find it difficult to get down to work
+> Inverse Log-Perplexity: [-7.758, -11.8296, -11.4636, -12.9238, -9.038]
+QUESTION #127  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Get back at others
+> Inverse Log-Perplexity: [-7.7743, -11.9742, -11.5101, -12.923, -8.7857]
+QUESTION #128  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Hang around doing nothing
+> Inverse Log-Perplexity: [-7.6322, -11.9323, -11.4703, -12.936, -8.7074]
+QUESTION #129  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have a natural talent for influencing people
+> Inverse Log-Perplexity: [-7.5363, -12.0582, -11.591, -13.0571, -8.7821]
+QUESTION #130  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have an eye for detail
+> Inverse Log-Perplexity: [-7.8705, -11.8569, -11.5432, -13.1873, -9.3246]
+QUESTION #131  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Hold a grudge
+> Inverse Log-Perplexity: [-7.9778, -12.0662, -11.5681, -12.9455, -8.8753]
+QUESTION #132  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep in the background
+> Inverse Log-Perplexity: [-7.8628, -11.9733, -11.4652, -13.2616, -9.0657]
+QUESTION #133  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep others at a distance
+> Inverse Log-Perplexity: [-7.7182, -11.7997, -11.4694, -12.9419, -8.9409]
+QUESTION #134  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Lack the talent for influencing people
+> Inverse Log-Perplexity: [-7.6122, -12.2183, -11.5028, -13.2061, -8.7247]
+QUESTION #135  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to tidy up
+> Inverse Log-Perplexity: [-7.7809, -11.7796, -11.5121, -12.884, -8.9513]
+QUESTION #136  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to visit new places
+> Inverse Log-Perplexity: [-7.859, -11.8866, -11.4848, -13.0222, -8.9479]
+QUESTION #137  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Make friends easily
+> Inverse Log-Perplexity: [-7.8263, -12.0106, -11.4918, -13.0328, -8.9095]
+QUESTION #138  | TRAIT: C | KEY: - | SCORE: 3 | ANSWER: neither accurate nor inaccurate
+> Statement: Need a push to get started
+> Inverse Log-Perplexity: [-8.2777, -12.0992, -11.5701, -13.3707, -9.4259]
+QUESTION #139  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Often feel uncomfortable around others
+> Inverse Log-Perplexity: [-7.6526, -11.948, -11.5627, -12.982, -8.7466]
+QUESTION #140  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Often forget to put things back in their proper place
+> Inverse Log-Perplexity: [-7.7427, -11.8148, -11.5214, -12.8447, -8.9097]
+QUESTION #141  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Plunge into tasks with all your heart
+> Inverse Log-Perplexity: [-7.7937, -11.5918, -11.5276, -12.817, -9.1871]
+QUESTION #142  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Prefer to stick with things that you know
+> Inverse Log-Perplexity: [-8.0011, -12.1922, -11.659, -13.2044, -9.2032]
+QUESTION #143  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Prefer variety to routine
+> Inverse Log-Perplexity: [-8.1351, -11.9414, -11.5383, -13.1931, -9.1913]
+QUESTION #144  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely look for a deeper meaning in things
+> Inverse Log-Perplexity: [-7.6438, -11.8609, -11.6813, -12.7178, -8.9364]
+QUESTION #145  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Seek adventure
+> Inverse Log-Perplexity: [-8.0067, -11.9412, -11.4216, -12.8792, -8.9672]
+QUESTION #146  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Shirk your duties
+> Inverse Log-Perplexity: [-7.8364, -11.7168, -11.4406, -12.6569, -8.9785]
+QUESTION #147  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Start conversations
+> Inverse Log-Perplexity: [-8.1372, -12.1948, -11.4068, -13.0412, -9.0225]
+QUESTION #148  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Take things as they come
+> Inverse Log-Perplexity: [-7.8374, -12.0071, -11.5371, -12.9503, -8.8608]
+QUESTION #149  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Talk to a lot of different people at parties
+> Inverse Log-Perplexity: [-7.7731, -12.288, -11.4981, -13.318, -8.7324]
+QUESTION #150  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Tolerate a lot from others
+> Inverse Log-Perplexity: [-7.9752, -12.1385, -11.6669, -13.1034, -9.0203]
+QUESTION #151  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Try to avoid complex people
+> Inverse Log-Perplexity: [-7.8824, -12.0534, -11.6348, -13.081, -8.9061]
+QUESTION #152  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to do too difficult things
+> Inverse Log-Perplexity: [-7.915, -12.0562, -11.6044, -13.1272, -9.0709]
+QUESTION #153  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to forgive and forget
+> Inverse Log-Perplexity: [-8.0706, -12.2646, -11.887, -13.2107, -9.1107]
+QUESTION #154  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Want to increase your knowledge
+> Inverse Log-Perplexity: [-7.876, -11.7391, -11.3573, -12.7901, -9.0815]
+QUESTION #155  | TRAIT: E | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Warm up quickly to others
+> Inverse Log-Perplexity: [-7.7689, -11.525, -11.4907, -12.6971, -8.974]
+QUESTION #156  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Would describe your experiences as somewhat dull
+> Inverse Log-Perplexity: [-7.7006, -12.007, -11.7378, -12.9933, -8.8209]
+QUESTION #157  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Would like to live for awhile in a different country
+> Inverse Log-Perplexity: [-7.5642, -12.1725, -11.4688, -13.2237, -8.4466]
+QUESTION #158  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Would never go hang-gliding or bungee-jumping
+> Inverse Log-Perplexity: [-7.8, -11.9623, -11.5571, -12.9937, -8.8988]
+QUESTION #159  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Act wild and crazy
+> Inverse Log-Perplexity: [-7.8999, -12.1149, -11.727, -12.934, -8.889]
+QUESTION #160  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are concerned about others
+> Inverse Log-Perplexity: [-7.773, -11.9801, -11.5759, -12.8541, -8.6404]
+QUESTION #161  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not interested in abstract ideas
+> Inverse Log-Perplexity: [-7.7933, -11.9706, -11.4702, -13.0162, -9.0609]
+QUESTION #162  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are not interested in other people's problems
+> Inverse Log-Perplexity: [-7.6391, -11.9268, -11.4753, -12.735, -8.5977]
+QUESTION #163  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are open about your feelings
+> Inverse Log-Perplexity: [-8.0777, -12.3091, -11.6499, -13.1944, -9.1357]
+QUESTION #164  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Avoid difficult reading material
+> Inverse Log-Perplexity: [-7.9429, -11.9161, -11.6283, -12.9402, -9.049]
+QUESTION #165  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Believe laws should be strictly enforced
+> Inverse Log-Perplexity: [-7.6087, -12.3995, -11.5454, -13.3212, -8.558]
+QUESTION #166  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Break rules
+> Inverse Log-Perplexity: [-7.7559, -11.9636, -11.2519, -12.9295, -8.7424]
+QUESTION #167  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Carry the conversation to a higher level
+> Inverse Log-Perplexity: [-8.0631, -11.9443, -11.3628, -13.0432, -9.1831]
+QUESTION #168  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do crazy things
+> Inverse Log-Perplexity: [-7.6902, -12.1117, -11.5987, -12.9401, -8.5572]
+QUESTION #169  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do things by the book
+> Inverse Log-Perplexity: [-7.9186, -12.1294, -11.5668, -13.2399, -8.9854]
+QUESTION #170  | TRAIT: C | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Do things in a half-way manner
+> Inverse Log-Perplexity: [-7.831, -11.8765, -11.4034, -12.8192, -8.9662]
+QUESTION #171  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't talk a lot
+> Inverse Log-Perplexity: [-7.626, -12.0194, -11.441, -12.9075, -8.538]
+QUESTION #172  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel others' emotions
+> Inverse Log-Perplexity: [-7.9049, -12.1721, -11.68, -13.1221, -8.8684]
+QUESTION #173  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Find fault with everything
+> Inverse Log-Perplexity: [-7.7369, -11.8985, -11.5614, -12.6821, -8.5906]
+QUESTION #174  | TRAIT: O | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Have a rich vocabulary
+> Inverse Log-Perplexity: [-7.7454, -11.8851, -11.4164, -12.7747, -8.791]
+QUESTION #175  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have a soft heart
+> Inverse Log-Perplexity: [-7.7784, -11.9231, -11.4444, -12.8985, -8.7832]
+QUESTION #176  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have difficulty expressing your feelings
+> Inverse Log-Perplexity: [-8.1791, -12.2558, -11.643, -13.0992, -9.1966]
+QUESTION #177  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have difficulty understanding abstract ideas
+> Inverse Log-Perplexity: [-7.5651, -11.8028, -11.5077, -12.674, -8.9186]
+QUESTION #178  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have excellent ideas
+> Inverse Log-Perplexity: [-7.7823, -12.0817, -11.5982, -13.0193, -8.8886]
+QUESTION #179  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Hold back your opinions
+> Inverse Log-Perplexity: [-7.8116, -12.0333, -11.4163, -12.6284, -8.6338]
+QUESTION #180  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Insult people
+> Inverse Log-Perplexity: [-7.4676, -12.1311, -11.3888, -12.7609, -7.9065]
+QUESTION #181  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Jump into things without thinking
+> Inverse Log-Perplexity: [-7.8627, -11.9389, -11.5174, -12.7487, -8.7944]
+QUESTION #182  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like order
+> Inverse Log-Perplexity: [-7.7982, -11.8009, -11.348, -12.9815, -8.8849]
+QUESTION #183  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Make friends easily
+> Inverse Log-Perplexity: [-7.8263, -12.0106, -11.4918, -13.0328, -8.9095]
+QUESTION #184  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Make people feel at ease
+> Inverse Log-Perplexity: [-7.6452, -11.9356, -11.4792, -12.957, -8.7326]
+QUESTION #185  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Never at a loss for words
+> Inverse Log-Perplexity: [-7.9468, -12.095, -11.5348, -12.9592, -8.9714]
+QUESTION #186  | TRAIT: C | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Pay attention to details
+> Inverse Log-Perplexity: [-7.8417, -11.6886, -11.3426, -12.7458, -9.0486]
+QUESTION #187  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Put people under pressure
+> Inverse Log-Perplexity: [-7.5749, -12.0035, -11.5567, -12.8558, -8.5068]
+QUESTION #188  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Quick to understand things
+> Inverse Log-Perplexity: [-7.5181, -11.5889, -11.4031, -12.5727, -8.6757]
+QUESTION #189  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Speak softly
+> Inverse Log-Perplexity: [-7.6569, -11.8791, -11.4644, -12.6759, -8.4738]
+QUESTION #190  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Sympathize with others' feelings
+> Inverse Log-Perplexity: [-8.0565, -12.406, -11.7316, -13.2655, -8.9582]
+QUESTION #191  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Take advantage of others
+> Inverse Log-Perplexity: [-7.6582, -11.7854, -11.3579, -12.7255, -8.6584]
+QUESTION #192  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Take charge
+> Inverse Log-Perplexity: [-7.758, -11.8267, -11.3211, -12.7558, -8.7298]
+QUESTION #193  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Talk to a lot of different people at parties
+> Inverse Log-Perplexity: [-7.7731, -12.288, -11.4981, -13.318, -8.7324]
+QUESTION #194  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Try to avoid complex people
+> Inverse Log-Perplexity: [-7.8824, -12.0534, -11.6348, -13.081, -8.9061]
+QUESTION #195  | TRAIT: C | KEY: + | SCORE: 3 | ANSWER: neither accurate nor inaccurate
+> Statement: Try to follow the rules
+> Inverse Log-Perplexity: [-8.1888, -12.1056, -11.5012, -13.3907, -9.2317]
+QUESTION #196  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Will not probe deeply into a subject
+> Inverse Log-Perplexity: [-7.675, -11.7049, -11.5616, -12.5841, -8.9273]
+QUESTION #197  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Accomplish your work on time
+> Inverse Log-Perplexity: [-7.8976, -11.7721, -11.4523, -13.0057, -9.3173]
+QUESTION #198  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Act at the expense of others
+> Inverse Log-Perplexity: [-7.9049, -11.8917, -11.4716, -12.8817, -8.8804]
+QUESTION #199  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Act comfortably with others
+> Inverse Log-Perplexity: [-7.8643, -11.7499, -11.5813, -12.7175, -8.8213]
+QUESTION #200  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are a very private person
+> Inverse Log-Perplexity: [-7.9279, -11.9262, -11.4105, -12.9434, -9.1132]
+QUESTION #201  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are always busy
+> Inverse Log-Perplexity: [-7.8763, -11.8785, -11.5354, -12.8679, -8.8858]
+QUESTION #202  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are careful to avoid making mistakes
+> Inverse Log-Perplexity: [-7.8507, -11.8086, -11.5732, -12.9791, -9.19]
+QUESTION #203  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are concerned about others
+> Inverse Log-Perplexity: [-7.773, -11.9801, -11.5759, -12.8541, -8.6404]
+QUESTION #204  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are deeply moved by others' misfortunes
+> Inverse Log-Perplexity: [-7.9066, -11.9976, -11.7355, -12.7792, -8.8508]
+QUESTION #205  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are easily talked into doing silly things
+> Inverse Log-Perplexity: [-7.634, -12.0736, -11.5063, -13.0044, -8.5729]
+QUESTION #206  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are hard to get to know
+> Inverse Log-Perplexity: [-7.8725, -11.9459, -11.5408, -13.1344, -9.1612]
+QUESTION #207  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not highly motivated to succeed
+> Inverse Log-Perplexity: [-7.7909, -11.7076, -11.4516, -12.891, -9.164]
+QUESTION #208  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are often late to work
+> Inverse Log-Perplexity: [-7.7281, -11.739, -11.4884, -12.8143, -8.8705]
+QUESTION #209  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are open about your feelings
+> Inverse Log-Perplexity: [-8.0777, -12.3091, -11.6499, -13.1944, -9.1357]
+QUESTION #210  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are quiet around strangers
+> Inverse Log-Perplexity: [-8.1935, -12.221, -11.6147, -13.0245, -8.8826]
+QUESTION #211  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Appreciate good manners
+> Inverse Log-Perplexity: [-7.8866, -11.9998, -11.338, -12.8743, -8.836]
+QUESTION #212  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Automatically take charge
+> Inverse Log-Perplexity: [-7.8683, -11.7944, -11.3453, -12.9494, -9.0441]
+QUESTION #213  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Avoid contacts with others
+> Inverse Log-Perplexity: [-7.9676, -11.9328, -11.6227, -13.1186, -9.1242]
+QUESTION #214  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Behave properly
+> Inverse Log-Perplexity: [-7.9375, -11.9644, -11.4497, -12.9561, -9.1544]
+QUESTION #215  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Believe in the importance of art
+> Inverse Log-Perplexity: [-7.7237, -12.0969, -11.56, -13.1137, -8.8427]
+QUESTION #216  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Believe people should fend for themselves
+> Inverse Log-Perplexity: [-7.5392, -12.3049, -11.5552, -12.9799, -8.2983]
+QUESTION #217  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Bottle up your feelings
+> Inverse Log-Perplexity: [-8.0154, -12.2382, -11.7008, -13.1218, -8.9776]
+QUESTION #218  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Break rules
+> Inverse Log-Perplexity: [-7.7559, -11.9636, -11.2519, -12.9295, -8.7424]
+QUESTION #219  | TRAIT: E | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Can easily push yourself forward
+> Inverse Log-Perplexity: [-7.9809, -11.7592, -11.5294, -12.7579, -9.103]
+QUESTION #220  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Can't stand being alone
+> Inverse Log-Perplexity: [-7.7716, -11.9753, -11.4516, -12.8867, -8.7354]
+QUESTION #221  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Check over your work
+> Inverse Log-Perplexity: [-7.8827, -11.8224, -11.5327, -13.0093, -9.0556]
+QUESTION #222  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Come up with a solution right away
+> Inverse Log-Perplexity: [-7.5252, -11.7847, -11.3534, -12.9863, -8.8764]
+QUESTION #223  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Comment loudly about others
+> Inverse Log-Perplexity: [-8.117, -12.2749, -11.6608, -12.9898, -8.6576]
+QUESTION #224  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Demand a lot from others
+> Inverse Log-Perplexity: [-7.8445, -11.9609, -11.5577, -12.7334, -8.6431]
+QUESTION #225  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Dislike learning
+> Inverse Log-Perplexity: [-7.8122, -12.0842, -11.4046, -13.0245, -8.7016]
+QUESTION #226  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Dislike routine
+> Inverse Log-Perplexity: [-7.7132, -11.8848, -11.3974, -12.8136, -8.5772]
+QUESTION #227  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Disregard rules
+> Inverse Log-Perplexity: [-7.945, -11.9437, -11.3752, -12.8219, -8.845]
+QUESTION #228  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do a lot in your spare time
+> Inverse Log-Perplexity: [-7.643, -11.8896, -11.3976, -12.9817, -8.6482]
+QUESTION #229  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do crazy things
+> Inverse Log-Perplexity: [-7.6902, -12.1117, -11.5987, -12.9401, -8.5572]
+QUESTION #230  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do dangerous things
+> Inverse Log-Perplexity: [-7.3787, -11.8226, -11.4627, -12.5687, -8.4468]
+QUESTION #231  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do improper things
+> Inverse Log-Perplexity: [-7.7469, -11.799, -11.4212, -12.5403, -8.6892]
+QUESTION #232  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do not enjoy going to art museums
+> Inverse Log-Perplexity: [-7.6488, -12.0591, -11.4692, -12.9713, -8.6137]
+QUESTION #233  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do not like art
+> Inverse Log-Perplexity: [-7.5422, -12.0067, -11.4405, -12.8604, -8.4418]
+QUESTION #234  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do not like poetry
+> Inverse Log-Perplexity: [-7.6559, -12.149, -11.5758, -12.828, -8.4317]
+QUESTION #235  | TRAIT: C | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Do not plan ahead
+> Inverse Log-Perplexity: [-7.9874, -11.8991, -11.475, -12.9263, -9.1116]
+QUESTION #236  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do the opposite of what is asked
+> Inverse Log-Perplexity: [-7.977, -12.1191, -11.5002, -13.2161, -8.867]
+QUESTION #237  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do things according to a plan
+> Inverse Log-Perplexity: [-7.9991, -12.0315, -11.4638, -13.0968, -9.0205]
+QUESTION #238  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do things at your own pace
+> Inverse Log-Perplexity: [-7.8117, -12.0668, -11.4423, -13.0157, -8.8645]
+QUESTION #239  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do things by the book
+> Inverse Log-Perplexity: [-7.9186, -12.1294, -11.5668, -13.2399, -8.9854]
+QUESTION #240  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Don't care about rules
+> Inverse Log-Perplexity: [-7.6945, -11.9259, -11.3488, -12.9809, -8.7849]
+QUESTION #241  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't fall for sob stories
+> Inverse Log-Perplexity: [-7.8945, -12.2935, -11.6609, -13.234, -8.7703]
+QUESTION #242  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Don't like to draw attention to yourself
+> Inverse Log-Perplexity: [-7.8422, -11.9964, -11.5323, -13.084, -9.1104]
+QUESTION #243  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't like to ponder over things
+> Inverse Log-Perplexity: [-7.6724, -11.8953, -11.4906, -12.7451, -8.6268]
+QUESTION #244  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Don't mind eating alone
+> Inverse Log-Perplexity: [-7.6491, -11.7859, -11.3056, -12.4437, -8.3696]
+QUESTION #245  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't talk a lot
+> Inverse Log-Perplexity: [-7.626, -12.0194, -11.441, -12.9075, -8.538]
+QUESTION #246  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't think laws apply to me
+> Inverse Log-Perplexity: [-7.5905, -12.3101, -11.6054, -13.0855, -8.4203]
+QUESTION #247  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Enjoy being reckless
+> Inverse Log-Perplexity: [-7.7089, -12.1156, -11.524, -12.8122, -8.5568]
+QUESTION #248  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy contemplation
+> Inverse Log-Perplexity: [-7.9858, -12.0816, -11.5254, -13.0177, -9.1181]
+QUESTION #249  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Enjoy crude jokes
+> Inverse Log-Perplexity: [-7.9186, -12.2299, -11.6389, -12.6181, -8.4097]
+QUESTION #250  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy your privacy
+> Inverse Log-Perplexity: [-7.9377, -11.8751, -11.359, -12.8675, -9.101]
+QUESTION #251  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy spending time by yourself
+> Inverse Log-Perplexity: [-7.8236, -11.7853, -11.4425, -12.8078, -8.9966]
+QUESTION #252  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Enjoy thinking about things
+> Inverse Log-Perplexity: [-7.8569, -12.1371, -11.5521, -12.9755, -8.8369]
+QUESTION #253  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel sympathy for those who are worse off than yourself
+> Inverse Log-Perplexity: [-7.7152, -12.3321, -11.9013, -13.0855, -8.5575]
+QUESTION #254  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Follow a schedule
+> Inverse Log-Perplexity: [-8.1432, -11.918, -11.5771, -13.1727, -9.1802]
+QUESTION #255  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Follow directions
+> Inverse Log-Perplexity: [-8.2472, -11.93, -11.4803, -13.2815, -9.4583]
+QUESTION #256  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Have a point of view all your own
+> Inverse Log-Perplexity: [-7.5177, -11.876, -11.4228, -12.6183, -8.4828]
+QUESTION #257  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have a vivid imagination
+> Inverse Log-Perplexity: [-8.052, -11.9767, -11.6846, -12.8819, -9.1713]
+QUESTION #258  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Impose your will on others
+> Inverse Log-Perplexity: [-7.9975, -11.9924, -11.6022, -13.128, -9.1669]
+QUESTION #259  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Jump into things without thinking
+> Inverse Log-Perplexity: [-7.8627, -11.9389, -11.5174, -12.7487, -8.7944]
+QUESTION #260  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep in the background
+> Inverse Log-Perplexity: [-7.8628, -11.9733, -11.4652, -13.2616, -9.0657]
+QUESTION #261  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Keep your checkbook balanced
+> Inverse Log-Perplexity: [-7.8145, -11.8389, -11.4539, -12.9336, -9.1002]
+QUESTION #262  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep your thoughts to yourself
+> Inverse Log-Perplexity: [-7.9536, -11.9922, -11.5661, -12.7735, -9.1332]
+QUESTION #263  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Keep yourself well-groomed
+> Inverse Log-Perplexity: [-7.7443, -11.7622, -11.442, -12.8367, -8.9673]
+QUESTION #264  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep others at a distance
+> Inverse Log-Perplexity: [-7.7182, -11.7997, -11.4694, -12.9419, -8.9409]
+QUESTION #265  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Know what you want
+> Inverse Log-Perplexity: [-8.0053, -12.0943, -11.4914, -13.031, -9.0823]
+QUESTION #266  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Laugh at the slightest provocation
+> Inverse Log-Perplexity: [-8.0466, -12.3457, -11.8343, -13.0986, -8.7573]
+QUESTION #267  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Leave your work undone
+> Inverse Log-Perplexity: [-7.9118, -11.8885, -11.6451, -12.9684, -9.08]
+QUESTION #268  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like harmony in your life
+> Inverse Log-Perplexity: [-7.562, -11.8172, -11.5599, -12.7815, -8.8598]
+QUESTION #269  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Like to act on a whim
+> Inverse Log-Perplexity: [-8.0495, -12.2056, -11.5446, -13.2214, -8.9634]
+QUESTION #270  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to do things for others
+> Inverse Log-Perplexity: [-7.7906, -12.039, -11.3966, -13.128, -8.8118]
+QUESTION #271  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Like to laugh out loud
+> Inverse Log-Perplexity: [-7.8417, -11.9641, -11.4904, -12.8934, -8.862]
+QUESTION #272  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to plan ahead
+> Inverse Log-Perplexity: [-8.0946, -12.0303, -11.5562, -13.1047, -9.1806]
+QUESTION #273  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Listen to your brain rather than your heart
+> Inverse Log-Perplexity: [-8.0707, -12.0937, -11.7245, -13.036, -9.2928]
+QUESTION #274  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Listen to your conscience
+> Inverse Log-Perplexity: [-7.9944, -12.124, -11.5571, -12.9891, -9.084]
+QUESTION #275  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Live in a world of your own
+> Inverse Log-Perplexity: [-7.7406, -11.9962, -11.5147, -13.0069, -8.8176]
+QUESTION #276  | TRAIT: A | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Look down on any weakness
+> Inverse Log-Perplexity: [-7.6689, -11.549, -11.443, -12.4823, -8.6731]
+QUESTION #277  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Love a good fight
+> Inverse Log-Perplexity: [-7.6856, -12.1325, -11.5262, -12.8099, -8.4821]
+QUESTION #278  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Make rash decisions
+> Inverse Log-Perplexity: [-7.5667, -11.8533, -11.4873, -12.6632, -8.5453]
+QUESTION #279  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Need a creative outlet
+> Inverse Log-Perplexity: [-7.7255, -11.9128, -11.5275, -12.973, -8.9009]
+QUESTION #280  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Need a lot of time to do things
+> Inverse Log-Perplexity: [-7.7651, -11.9124, -11.4618, -13.0037, -9.0478]
+QUESTION #281  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Neglect your duties
+> Inverse Log-Perplexity: [-7.7229, -11.4993, -11.4411, -12.3731, -8.7754]
+QUESTION #282  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Never spend more than you can afford
+> Inverse Log-Perplexity: [-7.6629, -11.9254, -11.3827, -12.9077, -8.7678]
+QUESTION #283  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Never splurge
+> Inverse Log-Perplexity: [-7.9794, -12.0456, -11.6135, -13.0602, -9.0434]
+QUESTION #284  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Often forget to put things back in their proper place
+> Inverse Log-Perplexity: [-7.7427, -11.8148, -11.5214, -12.8447, -8.9097]
+QUESTION #285  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Often make last-minute plans
+> Inverse Log-Perplexity: [-8.1755, -12.022, -11.5216, -13.1292, -9.3198]
+QUESTION #286  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Only talk about your own interests
+> Inverse Log-Perplexity: [-7.868, -12.2496, -11.5121, -13.1143, -8.8951]
+QUESTION #287  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Overestimate your achievements
+> Inverse Log-Perplexity: [-8.0382, -12.1746, -11.5974, -13.1614, -9.093]
+QUESTION #288  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Pay no attention to your appearance
+> Inverse Log-Perplexity: [-8.0541, -11.8886, -11.3289, -12.9534, -9.1812]
+QUESTION #289  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Play tricks on others
+> Inverse Log-Perplexity: [-7.7185, -11.9503, -11.5379, -13.068, -8.8172]
+QUESTION #290  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Prefer to be alone
+> Inverse Log-Perplexity: [-7.8216, -12.017, -11.5194, -13.0284, -8.7796]
+QUESTION #291  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Prefer variety to routine
+> Inverse Log-Perplexity: [-8.1351, -11.9414, -11.5383, -13.1931, -9.1913]
+QUESTION #292  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Purchase only practical things
+> Inverse Log-Perplexity: [-7.9083, -11.5659, -11.1525, -12.5495, -8.9742]
+QUESTION #293  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Put off unpleasant tasks
+> Inverse Log-Perplexity: [-7.994, -11.7628, -11.4797, -12.7957, -9.1471]
+QUESTION #294  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Radiate joy
+> Inverse Log-Perplexity: [-7.747, -12.0648, -11.6652, -13.0158, -8.8341]
+QUESTION #295  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Reassure others
+> Inverse Log-Perplexity: [-7.7338, -11.8805, -11.415, -12.8531, -8.7056]
+QUESTION #296  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Respect authority
+> Inverse Log-Perplexity: [-7.6221, -11.9053, -11.3927, -12.8726, -8.7706]
+QUESTION #297  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Respect the privacy of others
+> Inverse Log-Perplexity: [-7.854, -11.7495, -11.2682, -12.7699, -9.0156]
+QUESTION #298  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Return borrowed items
+> Inverse Log-Perplexity: [-8.1317, -11.9053, -11.5356, -13.0955, -9.3175]
+QUESTION #299  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Reveal little about yourself
+> Inverse Log-Perplexity: [-7.832, -11.9907, -11.6919, -13.029, -9.0674]
+QUESTION #300  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Say inappropriate things
+> Inverse Log-Perplexity: [-7.7885, -12.222, -11.6347, -12.7531, -8.4471]
+QUESTION #301  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Scheme against others
+> Inverse Log-Perplexity: [-7.6599, -11.9063, -11.4607, -12.7702, -8.5722]
+QUESTION #302  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: See that rules are observed
+> Inverse Log-Perplexity: [-8.0978, -12.0893, -11.6339, -13.1535, -9.3727]
+QUESTION #303  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seek conflict
+> Inverse Log-Perplexity: [-8.0053, -12.1628, -11.4986, -12.9626, -8.9085]
+QUESTION #304  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Show a mastery of language
+> Inverse Log-Perplexity: [-7.6974, -11.7681, -11.5076, -12.8544, -8.948]
+QUESTION #305  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Spend time reflecting on things
+> Inverse Log-Perplexity: [-7.7589, -11.8079, -11.586, -12.7964, -8.9223]
+QUESTION #306  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Stick to the rules
+> Inverse Log-Perplexity: [-8.1324, -12.1576, -11.4658, -13.3537, -9.1197]
+QUESTION #307  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Stick up for yourself
+> Inverse Log-Perplexity: [-7.7441, -11.9854, -11.4675, -12.9356, -8.6776]
+QUESTION #308  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Take an interest in other people's lives
+> Inverse Log-Perplexity: [-7.6362, -11.9244, -11.4197, -12.7239, -8.5761]
+QUESTION #309  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Take good care of your belongings
+> Inverse Log-Perplexity: [-7.9021, -11.7204, -11.3918, -12.8122, -9.1545]
+QUESTION #310  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Take precautions
+> Inverse Log-Perplexity: [-7.7034, -11.8096, -11.3671, -12.897, -8.833]
+QUESTION #311  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Take tasks too lightly
+> Inverse Log-Perplexity: [-7.8878, -11.7995, -11.5041, -13.0006, -9.1058]
+QUESTION #312  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Tell tall stories about yourself
+> Inverse Log-Perplexity: [-8.0661, -12.1566, -11.6962, -13.0993, -9.0103]
+QUESTION #313  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Tend to dislike impulsive people
+> Inverse Log-Perplexity: [-7.8362, -12.1, -11.5943, -12.9122, -8.7546]
+QUESTION #314  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Tend to dislike soft-hearted people
+> Inverse Log-Perplexity: [-7.8853, -12.1183, -11.5833, -12.9009, -8.7128]
+QUESTION #315  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Think too highly of yourself
+> Inverse Log-Perplexity: [-7.7991, -11.9765, -11.7871, -12.9343, -8.7945]
+QUESTION #316  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Try not to think about the needy
+> Inverse Log-Perplexity: [-7.9912, -12.1666, -11.5914, -13.1365, -8.7266]
+QUESTION #317  | TRAIT: A | KEY: + | SCORE: 3 | ANSWER: neither accurate nor inaccurate
+> Statement: Try to follow the rules
+> Inverse Log-Perplexity: [-8.1888, -12.1056, -11.5012, -13.3907, -9.2317]
+QUESTION #318  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to lead others
+> Inverse Log-Perplexity: [-8.0092, -12.0989, -11.6333, -13.1164, -9.0173]
+QUESTION #319  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to understand yourself
+> Inverse Log-Perplexity: [-7.8647, -11.9508, -11.7087, -12.9271, -8.9453]
+QUESTION #320  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Turn your back on others
+> Inverse Log-Perplexity: [-7.6559, -11.7939, -11.4583, -12.7921, -8.7567]
+QUESTION #321  | TRAIT: E | KEY: + | SCORE: 3 | ANSWER: neither accurate nor inaccurate
+> Statement: Turn plans into actions
+> Inverse Log-Perplexity: [-8.2367, -12.0138, -11.4778, -13.1696, -9.3901]
+QUESTION #322  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Use difficult words
+> Inverse Log-Perplexity: [-7.7304, -12.0229, -11.5472, -12.7536, -8.5758]
+QUESTION #323  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Value cooperation over competition
+> Inverse Log-Perplexity: [-7.7606, -12.1584, -11.6594, -13.0987, -8.944]
+QUESTION #324  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Want to be left alone
+> Inverse Log-Perplexity: [-7.9074, -11.9951, -11.5288, -12.9684, -8.9052]
+QUESTION #325  | TRAIT: E | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Warm up quickly to others
+> Inverse Log-Perplexity: [-7.7689, -11.525, -11.4907, -12.6971, -8.974]
+QUESTION #326  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Work according to a routine
+> Inverse Log-Perplexity: [-7.779, -11.6112, -11.5527, -12.8972, -9.0352]
+QUESTION #327  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Would never cheat on your taxes
+> Inverse Log-Perplexity: [-7.371, -11.9579, -11.3952, -12.927, -8.4468]
+QUESTION #328  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are a person whose moods go up and down easily
+> Inverse Log-Perplexity: [-7.8931, -11.8189, -11.5863, -12.9035, -9.1073]
+QUESTION #329  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are a person whose moods go up and down easily
+> Inverse Log-Perplexity: [-7.8931, -11.8189, -11.5863, -12.9035, -9.1073]
+QUESTION #330  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are afraid of many things
+> Inverse Log-Perplexity: [-7.7619, -11.9255, -11.5543, -12.7532, -8.7409]
+QUESTION #331  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are afraid of many things
+> Inverse Log-Perplexity: [-7.7619, -11.9255, -11.5543, -12.7532, -8.7409]
+QUESTION #332  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are easily discouraged
+> Inverse Log-Perplexity: [-7.7044, -11.911, -11.617, -12.8667, -8.6931]
+QUESTION #333  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are easily discouraged
+> Inverse Log-Perplexity: [-7.7044, -11.911, -11.617, -12.8667, -8.6931]
+QUESTION #334  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are filled with doubts about things
+> Inverse Log-Perplexity: [-7.9165, -12.1461, -11.7065, -12.908, -8.8769]
+QUESTION #335  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are filled with doubts about things
+> Inverse Log-Perplexity: [-7.9165, -12.1461, -11.7065, -12.908, -8.8769]
+QUESTION #336  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not easily annoyed
+> Inverse Log-Perplexity: [-7.8617, -12.0028, -11.509, -13.0598, -8.9015]
+QUESTION #337  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not easily annoyed
+> Inverse Log-Perplexity: [-7.8617, -12.0028, -11.509, -13.0598, -8.9015]
+QUESTION #338  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not embarrassed easily
+> Inverse Log-Perplexity: [-7.6418, -11.8136, -11.4926, -12.8811, -8.781]
+QUESTION #339  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not embarrassed easily
+> Inverse Log-Perplexity: [-7.6418, -11.8136, -11.4926, -12.8811, -8.781]
+QUESTION #340  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are quick to understand things
+> Inverse Log-Perplexity: [-7.7015, -11.5914, -11.4663, -12.5884, -8.9104]
+QUESTION #341  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are quick to understand things
+> Inverse Log-Perplexity: [-7.7015, -11.5914, -11.4663, -12.5884, -8.9104]
+QUESTION #342  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are the first to act
+> Inverse Log-Perplexity: [-7.9649, -11.9164, -11.4567, -12.9669, -9.0097]
+QUESTION #343  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Avoid difficult reading material
+> Inverse Log-Perplexity: [-7.9429, -11.9161, -11.6283, -12.9402, -9.049]
+QUESTION #344  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Avoid philosophical discussions
+> Inverse Log-Perplexity: [-7.7265, -12.1624, -11.5954, -12.8909, -8.6934]
+QUESTION #345  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Avoid philosophical discussions
+> Inverse Log-Perplexity: [-7.7265, -12.1624, -11.5954, -12.8909, -8.6934]
+QUESTION #346  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Become overwhelmed by events
+> Inverse Log-Perplexity: [-8.1439, -12.1923, -11.7624, -13.1021, -9.2158]
+QUESTION #347  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Become overwhelmed by events
+> Inverse Log-Perplexity: [-8.1439, -12.1923, -11.7624, -13.1021, -9.2158]
+QUESTION #348  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Believe in the importance of art
+> Inverse Log-Perplexity: [-7.7237, -12.0969, -11.56, -13.1137, -8.8427]
+QUESTION #349  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Can be stirred up easily
+> Inverse Log-Perplexity: [-7.6544, -11.595, -11.47, -12.6082, -8.7911]
+QUESTION #350  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Can be stirred up easily
+> Inverse Log-Perplexity: [-7.6544, -11.595, -11.47, -12.6082, -8.7911]
+QUESTION #351  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Can handle a lot of information
+> Inverse Log-Perplexity: [-7.8797, -11.7528, -11.4905, -13.0035, -9.2141]
+QUESTION #352  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Can handle a lot of information
+> Inverse Log-Perplexity: [-7.8797, -11.7528, -11.4905, -13.0035, -9.2141]
+QUESTION #353  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Can talk others into doing things
+> Inverse Log-Perplexity: [-7.9248, -12.2072, -11.5021, -13.1104, -8.8421]
+QUESTION #354  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Change your mood a lot
+> Inverse Log-Perplexity: [-7.8948, -11.9345, -11.4647, -12.8718, -8.921]
+QUESTION #355  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Change your mood a lot
+> Inverse Log-Perplexity: [-7.8948, -11.9345, -11.4647, -12.8718, -8.921]
+QUESTION #356  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do not have an assertive personality
+> Inverse Log-Perplexity: [-7.6687, -11.8451, -11.5501, -12.7278, -8.7829]
+QUESTION #357  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do not like poetry
+> Inverse Log-Perplexity: [-7.6559, -12.149, -11.5758, -12.828, -8.4317]
+QUESTION #358  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy the beauty of nature
+> Inverse Log-Perplexity: [-7.6848, -11.9261, -11.4525, -13.0096, -8.8402]
+QUESTION #359  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Feel comfortable with yourself
+> Inverse Log-Perplexity: [-7.7699, -11.9587, -11.5964, -13.0599, -8.8451]
+QUESTION #360  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Feel comfortable with yourself
+> Inverse Log-Perplexity: [-7.7699, -11.9587, -11.5964, -13.0599, -8.8451]
+QUESTION #361  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel threatened easily
+> Inverse Log-Perplexity: [-7.5975, -11.9127, -11.5021, -12.6501, -8.4866]
+QUESTION #362  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Formulate ideas clearly
+> Inverse Log-Perplexity: [-7.8857, -12.1188, -11.729, -12.9525, -8.9587]
+QUESTION #363  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Formulate ideas clearly
+> Inverse Log-Perplexity: [-7.8857, -12.1188, -11.729, -12.9525, -8.9587]
+QUESTION #364  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Get angry easily
+> Inverse Log-Perplexity: [-7.5639, -11.9801, -11.486, -12.7828, -8.4618]
+QUESTION #365  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Get angry easily
+> Inverse Log-Perplexity: [-7.5639, -11.9801, -11.486, -12.7828, -8.4618]
+QUESTION #366  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get deeply immersed in music
+> Inverse Log-Perplexity: [-7.958, -11.9947, -11.6472, -12.9378, -9.1364]
+QUESTION #367  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get easily agitated
+> Inverse Log-Perplexity: [-7.6398, -11.6303, -11.4879, -12.5177, -8.657]
+QUESTION #368  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get easily agitated
+> Inverse Log-Perplexity: [-7.6398, -11.6303, -11.4879, -12.5177, -8.657]
+QUESTION #369  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Get upset easily
+> Inverse Log-Perplexity: [-7.6047, -11.8932, -11.4194, -12.721, -8.5057]
+QUESTION #370  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Get upset easily
+> Inverse Log-Perplexity: [-7.6047, -11.8932, -11.4194, -12.721, -8.5057]
+QUESTION #371  | TRAIT: O | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Have a rich vocabulary
+> Inverse Log-Perplexity: [-7.7454, -11.8851, -11.4164, -12.7747, -8.791]
+QUESTION #372  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have a strong personality
+> Inverse Log-Perplexity: [-7.7773, -12.0185, -11.5126, -12.9846, -8.8689]
+QUESTION #373  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have difficulty understanding abstract ideas
+> Inverse Log-Perplexity: [-7.5651, -11.8028, -11.5077, -12.674, -8.9186]
+QUESTION #374  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Hold back your opinions
+> Inverse Log-Perplexity: [-7.8116, -12.0333, -11.4163, -12.6284, -8.6338]
+QUESTION #375  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep your emotions under control
+> Inverse Log-Perplexity: [-7.9301, -12.0748, -11.6275, -13.0765, -9.2606]
+QUESTION #376  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep your emotions under control
+> Inverse Log-Perplexity: [-7.9301, -12.0748, -11.6275, -13.0765, -9.2606]
+QUESTION #377  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Keep things tidy
+> Inverse Log-Perplexity: [-7.855, -11.7802, -11.5523, -12.9406, -9.1129]
+QUESTION #378  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Know how to captivate people
+> Inverse Log-Perplexity: [-7.7292, -12.0353, -11.4176, -12.9557, -8.8257]
+QUESTION #379  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Lack the talent for influencing people
+> Inverse Log-Perplexity: [-7.6122, -12.2183, -11.5028, -13.2061, -8.7247]
+QUESTION #380  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Learn things slowly
+> Inverse Log-Perplexity: [-7.7979, -11.8783, -11.5714, -12.7978, -8.8365]
+QUESTION #381  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Learn things slowly
+> Inverse Log-Perplexity: [-7.7979, -11.8783, -11.5714, -12.7978, -8.8365]
+QUESTION #382  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to solve complex problems
+> Inverse Log-Perplexity: [-7.6033, -11.6812, -11.3589, -12.823, -8.9366]
+QUESTION #383  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to solve complex problems
+> Inverse Log-Perplexity: [-7.6033, -11.6812, -11.3589, -12.823, -8.9366]
+QUESTION #384  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love to reflect on things
+> Inverse Log-Perplexity: [-7.7193, -11.9132, -11.6149, -12.9294, -8.9148]
+QUESTION #385  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Need a creative outlet
+> Inverse Log-Perplexity: [-7.7255, -11.9128, -11.5275, -12.973, -8.9009]
+QUESTION #386  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Rarely feel depressed
+> Inverse Log-Perplexity: [-7.6681, -12.0417, -11.5867, -12.7779, -8.5017]
+QUESTION #387  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Rarely feel depressed
+> Inverse Log-Perplexity: [-7.6681, -12.0417, -11.5867, -12.7779, -8.5017]
+QUESTION #388  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely get irritated
+> Inverse Log-Perplexity: [-7.9752, -11.9837, -11.6498, -13.0869, -9.0381]
+QUESTION #389  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely get irritated
+> Inverse Log-Perplexity: [-7.9752, -11.9837, -11.6498, -13.0869, -9.0381]
+QUESTION #390  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely lose your composure
+> Inverse Log-Perplexity: [-7.6328, -11.9434, -11.5805, -12.8778, -8.7797]
+QUESTION #391  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely lose your composure
+> Inverse Log-Perplexity: [-7.6328, -11.9434, -11.5805, -12.8778, -8.7797]
+QUESTION #392  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: See beauty in things that others might not notice
+> Inverse Log-Perplexity: [-7.778, -12.1962, -11.7521, -13.2581, -8.9885]
+QUESTION #393  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: See yourself as a good leader
+> Inverse Log-Perplexity: [-7.6949, -12.0156, -11.5476, -13.0804, -8.8722]
+QUESTION #394  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom daydream
+> Inverse Log-Perplexity: [-8.01, -11.9627, -11.6101, -12.7551, -8.9161]
+QUESTION #395  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom feel blue
+> Inverse Log-Perplexity: [-7.7381, -11.9426, -11.5072, -12.8843, -8.6914]
+QUESTION #396  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom feel blue
+> Inverse Log-Perplexity: [-7.7381, -11.9426, -11.5072, -12.8843, -8.6914]
+QUESTION #397  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Seldom get lost in thought
+> Inverse Log-Perplexity: [-8.0395, -11.8911, -11.6029, -12.9149, -9.204]
+QUESTION #398  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Seldom notice the emotional aspects of paintings and pictures
+> Inverse Log-Perplexity: [-8.1336, -12.0714, -11.7155, -13.1649, -9.5269]
+QUESTION #399  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Think quickly
+> Inverse Log-Perplexity: [-7.6467, -11.8694, -11.4859, -12.8411, -8.6256]
+QUESTION #400  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Think quickly
+> Inverse Log-Perplexity: [-7.6467, -11.8694, -11.4859, -12.8411, -8.6256]
+QUESTION #401  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Want every detail taken care of
+> Inverse Log-Perplexity: [-8.195, -12.1905, -11.5688, -13.3032, -9.4694]
+QUESTION #402  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Worry about things
+> Inverse Log-Perplexity: [-7.6073, -11.9606, -11.4856, -12.7831, -8.4631]
+QUESTION #403  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are a very private person
+> Inverse Log-Perplexity: [-7.9279, -11.9262, -11.4105, -12.9434, -9.1132]
+QUESTION #404  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are always prepared
+> Inverse Log-Perplexity: [-7.8642, -11.8364, -11.4868, -12.8662, -9.0011]
+QUESTION #405  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are exacting in your work
+> Inverse Log-Perplexity: [-7.8919, -11.741, -11.4589, -12.8886, -9.1491]
+QUESTION #406  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are full of ideas
+> Inverse Log-Perplexity: [-7.7978, -11.9664, -11.594, -12.8963, -8.9478]
+QUESTION #407  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are good at many things
+> Inverse Log-Perplexity: [-7.4378, -11.7179, -11.4535, -12.7169, -8.5949]
+QUESTION #408  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are hard to get to know
+> Inverse Log-Perplexity: [-7.8725, -11.9459, -11.5408, -13.1344, -9.1612]
+QUESTION #409  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are indifferent to the feelings of others
+> Inverse Log-Perplexity: [-8.0471, -12.287, -11.7088, -13.1833, -9.0398]
+QUESTION #410  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are interested in people
+> Inverse Log-Perplexity: [-7.7362, -11.972, -11.4353, -12.9916, -8.6169]
+QUESTION #411  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are not really interested in others
+> Inverse Log-Perplexity: [-7.6317, -11.9619, -11.3653, -12.9751, -8.6024]
+QUESTION #412  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are on good terms with nearly everyone
+> Inverse Log-Perplexity: [-7.7869, -12.1534, -11.566, -13.1145, -8.7323]
+QUESTION #413  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are quiet around strangers
+> Inverse Log-Perplexity: [-8.1935, -12.221, -11.6147, -13.0245, -8.8826]
+QUESTION #414  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are the life of the party
+> Inverse Log-Perplexity: [-7.8937, -11.9946, -11.4979, -13.0914, -9.0023]
+QUESTION #415  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Bottle up your feelings
+> Inverse Log-Perplexity: [-8.0154, -12.2382, -11.7008, -13.1218, -8.9776]
+QUESTION #416  | TRAIT: O | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Catch on to things quickly
+> Inverse Log-Perplexity: [-7.7319, -11.7383, -11.5242, -12.8186, -8.9317]
+QUESTION #417  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Continue until everything is perfect
+> Inverse Log-Perplexity: [-7.9457, -12.0233, -11.5257, -13.1029, -9.1729]
+QUESTION #418  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do not have a good imagination
+> Inverse Log-Perplexity: [-7.8389, -11.9598, -11.4162, -12.9522, -8.9603]
+QUESTION #419  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Don't like to draw attention to yourself
+> Inverse Log-Perplexity: [-7.8422, -11.9964, -11.5323, -13.084, -9.1104]
+QUESTION #420  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Don't mind being the center of attention
+> Inverse Log-Perplexity: [-7.8075, -12.1265, -11.4594, -12.9842, -8.8106]
+QUESTION #421  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Feel at ease with people
+> Inverse Log-Perplexity: [-7.5561, -11.9675, -11.556, -12.9404, -8.5468]
+QUESTION #422  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel comfortable around people
+> Inverse Log-Perplexity: [-7.7526, -12.0194, -11.4897, -13.041, -8.6541]
+QUESTION #423  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Feel little concern for others
+> Inverse Log-Perplexity: [-7.6293, -11.8627, -11.6042, -12.7645, -8.6613]
+QUESTION #424  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Find it difficult to get down to work
+> Inverse Log-Perplexity: [-7.758, -11.8296, -11.4636, -12.9238, -9.038]
+QUESTION #425  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Follow a schedule
+> Inverse Log-Perplexity: [-8.1432, -11.918, -11.5771, -13.1727, -9.1802]
+QUESTION #426  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get chores done right away
+> Inverse Log-Perplexity: [-7.7408, -11.6625, -11.369, -12.8253, -8.9324]
+QUESTION #427  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Have a good word for everyone
+> Inverse Log-Perplexity: [-7.6354, -11.9947, -11.4281, -12.9472, -8.5933]
+QUESTION #428  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have a vivid imagination
+> Inverse Log-Perplexity: [-8.052, -11.9767, -11.6846, -12.8819, -9.1713]
+QUESTION #429  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Have difficulty imagining things
+> Inverse Log-Perplexity: [-8.0764, -12.1496, -11.7128, -13.0013, -9.0474]
+QUESTION #430  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Have little to say
+> Inverse Log-Perplexity: [-7.7028, -11.9469, -11.493, -12.7757, -8.6003]
+QUESTION #431  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Inquire about others' well-being
+> Inverse Log-Perplexity: [-7.7565, -11.8847, -11.5972, -12.7684, -8.7155]
+QUESTION #432  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Know how to captivate people
+> Inverse Log-Perplexity: [-7.7292, -12.0353, -11.4176, -12.9557, -8.8257]
+QUESTION #433  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Know how to comfort others
+> Inverse Log-Perplexity: [-7.6724, -11.7354, -11.4602, -12.8303, -8.8002]
+QUESTION #434  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Leave a mess in your room
+> Inverse Log-Perplexity: [-8.1478, -12.1524, -11.5724, -13.2231, -9.126]
+QUESTION #435  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Leave your belongings around
+> Inverse Log-Perplexity: [-8.0877, -11.9295, -11.5354, -12.8542, -9.1734]
+QUESTION #436  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to tidy up
+> Inverse Log-Perplexity: [-7.7809, -11.7796, -11.5121, -12.884, -8.9513]
+QUESTION #437  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Love children
+> Inverse Log-Perplexity: [-7.9452, -12.2308, -11.5921, -13.1306, -8.7731]
+QUESTION #438  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love order and regularity
+> Inverse Log-Perplexity: [-7.7964, -11.8812, -11.4681, -13.0238, -9.0032]
+QUESTION #439  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love to help others
+> Inverse Log-Perplexity: [-7.8004, -11.9823, -11.5409, -13.0263, -8.8908]
+QUESTION #440  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love to read challenging material
+> Inverse Log-Perplexity: [-7.7793, -11.7358, -11.4657, -12.8205, -9.0276]
+QUESTION #441  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love to think up new ways of doing things
+> Inverse Log-Perplexity: [-7.7166, -12.1518, -11.5674, -13.1565, -8.8893]
+QUESTION #442  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Make a mess of things
+> Inverse Log-Perplexity: [-7.7249, -11.8329, -11.4746, -12.8743, -8.7575]
+QUESTION #443  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Make plans and stick to them
+> Inverse Log-Perplexity: [-8.2371, -12.2206, -11.5668, -13.4391, -9.4129]
+QUESTION #444  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Often feel uncomfortable around others
+> Inverse Log-Perplexity: [-7.6526, -11.948, -11.5627, -12.982, -8.7466]
+QUESTION #445  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Shirk your duties
+> Inverse Log-Perplexity: [-7.8364, -11.7168, -11.4406, -12.6569, -8.9785]
+QUESTION #446  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Show your gratitude
+> Inverse Log-Perplexity: [-8.2457, -12.4248, -11.682, -13.3458, -9.3054]
+QUESTION #447  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Spend time reflecting on things
+> Inverse Log-Perplexity: [-7.7589, -11.8079, -11.586, -12.7964, -8.9223]
+QUESTION #448  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Start conversations
+> Inverse Log-Perplexity: [-8.1372, -12.1948, -11.4068, -13.0412, -9.0225]
+QUESTION #449  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Take time out for others
+> Inverse Log-Perplexity: [-7.7613, -11.9117, -11.4926, -12.8905, -8.8552]
+QUESTION #450  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Think of others first
+> Inverse Log-Perplexity: [-7.698, -12.0398, -11.5289, -12.9539, -8.4859]
+QUESTION #451  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Wait for others to lead the way
+> Inverse Log-Perplexity: [-7.9394, -12.1673, -11.5963, -13.3244, -9.0604]
+QUESTION #452  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Waste your time
+> Inverse Log-Perplexity: [-7.7197, -11.9776, -11.5211, -12.8198, -8.6541]
+QUESTION #453  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are always worried about something
+> Inverse Log-Perplexity: [-7.6761, -11.8424, -11.5453, -12.8195, -8.7908]
+QUESTION #454  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are eager to soothe hurt feelings
+> Inverse Log-Perplexity: [-7.8054, -12.1859, -11.5294, -13.0901, -8.6992]
+QUESTION #455  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Begin to panic when there is danger
+> Inverse Log-Perplexity: [-7.8676, -11.789, -11.4625, -12.7369, -9.0036]
+QUESTION #456  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't get excited about things
+> Inverse Log-Perplexity: [-7.7668, -12.0528, -11.4071, -13.007, -8.7513]
+QUESTION #457  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Feel excited or happy for no apparent reason
+> Inverse Log-Perplexity: [-7.9224, -12.1659, -11.5832, -13.1015, -9.1044]
+QUESTION #458  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get caught up in the excitement when others are celebrating
+> Inverse Log-Perplexity: [-7.7525, -12.1826, -11.6092, -13.2879, -8.8333]
+QUESTION #459  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get so happy or energetic that you are almost giddy
+> Inverse Log-Perplexity: [-8.0235, -12.0873, -11.7288, -13.0645, -9.0977]
+QUESTION #460  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get stressed out easily
+> Inverse Log-Perplexity: [-7.5349, -11.7905, -11.5838, -12.8115, -8.6767]
+QUESTION #461  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Often worry about things that turn out to be unimportant
+> Inverse Log-Perplexity: [-7.8899, -12.1131, -11.8275, -13.2171, -9.2028]
+QUESTION #462  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely get caught up in the excitement
+> Inverse Log-Perplexity: [-7.8098, -12.1328, -11.5872, -13.2608, -8.9738]
+QUESTION #463  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely worry
+> Inverse Log-Perplexity: [-7.8112, -11.8921, -11.4573, -12.9608, -8.834]
+QUESTION #464  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Worry about what people think of me
+> Inverse Log-Perplexity: [-7.5734, -12.0334, -11.558, -12.8124, -8.3594]
+QUESTION #465  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are constantly reflecting about yourself
+> Inverse Log-Perplexity: [-7.9948, -11.791, -11.7262, -12.8398, -9.2575]
+QUESTION #466  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Don't try to figure yourself out
+> Inverse Log-Perplexity: [-7.7926, -12.0343, -11.6277, -13.0728, -8.7966]
+QUESTION #467  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Examine your motives constantly
+> Inverse Log-Perplexity: [-8.1937, -11.9951, -11.8043, -12.6994, -9.2608]
+QUESTION #468  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to get lost in thought
+> Inverse Log-Perplexity: [-8.0766, -12.1463, -11.5552, -13.2298, -9.1256]
+QUESTION #469  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Look for hidden meaning in things
+> Inverse Log-Perplexity: [-8.0587, -12.164, -11.6046, -13.2919, -9.3]
+QUESTION #470  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely look for a deeper meaning in things
+> Inverse Log-Perplexity: [-7.6438, -11.8609, -11.6813, -12.7178, -8.9364]
+QUESTION #471  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom daydream
+> Inverse Log-Perplexity: [-8.01, -11.9627, -11.6101, -12.7551, -8.9161]
+QUESTION #472  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Seldom get lost in thought
+> Inverse Log-Perplexity: [-8.0395, -11.8911, -11.6029, -12.9149, -9.204]
+QUESTION #473  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to examine yourself objectively
+> Inverse Log-Perplexity: [-7.7361, -11.8382, -11.7192, -12.7111, -8.8829]
+QUESTION #474  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are easily startled
+> Inverse Log-Perplexity: [-7.7349, -11.7907, -11.5948, -12.7396, -8.724]
+QUESTION #475  | TRAIT: N | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Are generally a fearful person
+> Inverse Log-Perplexity: [-7.6766, -11.6918, -11.5183, -12.6039, -8.7489]
+QUESTION #476  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are nervous or tense most of the time
+> Inverse Log-Perplexity: [-7.6885, -11.6775, -11.3735, -12.7615, -8.9469]
+QUESTION #477  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are sad most of the time
+> Inverse Log-Perplexity: [-7.8683, -12.0756, -11.4348, -13.0608, -8.8949]
+QUESTION #478  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Dislike yourself
+> Inverse Log-Perplexity: [-7.8357, -12.1025, -11.454, -12.8609, -8.5886]
+QUESTION #479  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't let little things anger me
+> Inverse Log-Perplexity: [-7.7468, -12.202, -11.5887, -12.944, -8.5603]
+QUESTION #480  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Feel your anxiety overwhelms me
+> Inverse Log-Perplexity: [-8.0121, -11.9631, -11.6, -12.9927, -9.1551]
+QUESTION #481  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Feel that your worry and anxiety is out of control
+> Inverse Log-Perplexity: [-7.8267, -11.9345, -11.7693, -13.0349, -9.0435]
+QUESTION #482  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Generally focus on the negative side of things
+> Inverse Log-Perplexity: [-7.7324, -11.987, -11.7516, -12.8931, -8.9286]
+QUESTION #483  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get irritated easily
+> Inverse Log-Perplexity: [-7.877, -11.841, -11.544, -12.913, -8.9668]
+QUESTION #484  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Have a violent temper
+> Inverse Log-Perplexity: [-7.6486, -12.0339, -11.4727, -12.6922, -8.2829]
+QUESTION #485  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Look at the bright side of life
+> Inverse Log-Perplexity: [-7.7482, -12.0576, -11.5703, -13.192, -8.9531]
+QUESTION #486  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Often feel overwhelmed with rage
+> Inverse Log-Perplexity: [-7.8724, -12.2079, -11.7097, -13.0197, -8.828]
+QUESTION #487  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Panic easily
+> Inverse Log-Perplexity: [-7.6842, -11.6735, -11.4531, -12.5851, -8.733]
+QUESTION #488  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Rarely feel depressed
+> Inverse Log-Perplexity: [-7.6681, -12.0417, -11.5867, -12.7779, -8.5017]
+QUESTION #489  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Tend to feel very hopeless
+> Inverse Log-Perplexity: [-7.6887, -11.9398, -11.7876, -12.8804, -8.958]
+QUESTION #490  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Act without planning
+> Inverse Log-Perplexity: [-7.887, -12.0378, -11.5922, -12.9919, -8.9385]
+QUESTION #491  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are exacting in your work
+> Inverse Log-Perplexity: [-7.8919, -11.741, -11.4589, -12.8886, -9.1491]
+QUESTION #492  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not interested in theoretical discussions
+> Inverse Log-Perplexity: [-7.4716, -11.9797, -11.3671, -12.8449, -8.5579]
+QUESTION #493  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are open to change
+> Inverse Log-Perplexity: [-7.755, -11.8495, -11.4845, -12.9716, -8.9382]
+QUESTION #494  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are quick to correct others
+> Inverse Log-Perplexity: [-7.7394, -11.6505, -11.3159, -12.7156, -8.7722]
+QUESTION #495  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are quick to understand things
+> Inverse Log-Perplexity: [-7.7015, -11.5914, -11.4663, -12.5884, -8.9104]
+QUESTION #496  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are the last to laugh at a joke
+> Inverse Log-Perplexity: [-8.0744, -12.4156, -11.7112, -13.2397, -8.7993]
+QUESTION #497  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Areuse your friends
+> Inverse Log-Perplexity: [-7.8635, -11.8205, -11.2329, -12.7107, -8.867]
+QUESTION #498  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Avoid responsibilities
+> Inverse Log-Perplexity: [-7.9794, -11.776, -11.4039, -12.8003, -9.1123]
+QUESTION #499  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Believe in the importance of art
+> Inverse Log-Perplexity: [-7.7237, -12.0969, -11.56, -13.1137, -8.8427]
+QUESTION #500  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Believe laws should be strictly enforced
+> Inverse Log-Perplexity: [-7.6087, -12.3995, -11.5454, -13.3212, -8.558]
+QUESTION #501  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Believe that you are important
+> Inverse Log-Perplexity: [-7.561, -11.9274, -11.5218, -12.7778, -8.7108]
+QUESTION #502  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Believe that too much tax money goes to support artists
+> Inverse Log-Perplexity: [-7.2486, -12.1727, -11.7102, -13.0421, -8.0801]
+QUESTION #503  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Believe that we coddle criminals too much
+> Inverse Log-Perplexity: [-7.5535, -12.282, -11.7705, -12.6819, -8.4628]
+QUESTION #504  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Believe that we should be tough on crime
+> Inverse Log-Perplexity: [-7.475, -12.2703, -11.7632, -12.7798, -8.2538]
+QUESTION #505  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Can handle complex problems
+> Inverse Log-Perplexity: [-7.7918, -11.712, -11.4937, -12.9068, -9.1183]
+QUESTION #506  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Challenge others' points of view
+> Inverse Log-Perplexity: [-8.2111, -12.3329, -11.5483, -13.3207, -9.231]
+QUESTION #507  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Demand explanations from others
+> Inverse Log-Perplexity: [-7.9535, -12.0201, -11.6426, -12.684, -8.6868]
+QUESTION #508  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Disregard rules
+> Inverse Log-Perplexity: [-7.945, -11.9437, -11.3752, -12.8219, -8.845]
+QUESTION #509  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do improper things
+> Inverse Log-Perplexity: [-7.7469, -11.799, -11.4212, -12.5403, -8.6892]
+QUESTION #510  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do not have a good imagination
+> Inverse Log-Perplexity: [-7.8389, -11.9598, -11.4162, -12.9522, -8.9603]
+QUESTION #511  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do not like art
+> Inverse Log-Perplexity: [-7.5422, -12.0067, -11.4405, -12.8604, -8.4418]
+QUESTION #512  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do things according to a plan
+> Inverse Log-Perplexity: [-7.9991, -12.0315, -11.4638, -13.0968, -9.0205]
+QUESTION #513  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do things by the book
+> Inverse Log-Perplexity: [-7.9186, -12.1294, -11.5668, -13.2399, -8.9854]
+QUESTION #514  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy contemplation
+> Inverse Log-Perplexity: [-7.9858, -12.0816, -11.5254, -13.0177, -9.1181]
+QUESTION #515  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy thought-provoking movies
+> Inverse Log-Perplexity: [-8.2332, -12.3414, -11.6924, -13.3396, -9.3446]
+QUESTION #516  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Find it difficult to get down to work
+> Inverse Log-Perplexity: [-7.758, -11.8296, -11.4636, -12.9238, -9.038]
+QUESTION #517  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Find political discussions interesting
+> Inverse Log-Perplexity: [-7.4742, -12.3655, -11.6219, -12.9461, -8.3068]
+QUESTION #518  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Formulate ideas clearly
+> Inverse Log-Perplexity: [-7.8857, -12.1188, -11.729, -12.9525, -8.9587]
+QUESTION #519  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get chores done right away
+> Inverse Log-Perplexity: [-7.7408, -11.6625, -11.369, -12.8253, -8.9324]
+QUESTION #520  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get to work at once
+> Inverse Log-Perplexity: [-7.85, -11.799, -11.434, -12.9513, -9.0419]
+QUESTION #521  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Go straight for the goal
+> Inverse Log-Perplexity: [-7.7198, -11.7782, -11.352, -12.9722, -8.8533]
+QUESTION #522  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Hate surprises
+> Inverse Log-Perplexity: [-7.9222, -12.2722, -11.5551, -13.0989, -8.688]
+QUESTION #523  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Hate to seem pushy
+> Inverse Log-Perplexity: [-7.7215, -12.2784, -11.7008, -12.9775, -8.3469]
+QUESTION #524  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have a lot of fun
+> Inverse Log-Perplexity: [-7.7978, -11.9266, -11.4756, -13.0354, -8.9094]
+QUESTION #525  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have excellent ideas
+> Inverse Log-Perplexity: [-7.7823, -12.0817, -11.5982, -13.0193, -8.8886]
+QUESTION #526  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Impose your will on others
+> Inverse Log-Perplexity: [-7.9975, -11.9924, -11.6022, -13.128, -9.1669]
+QUESTION #527  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Lay down the law to others
+> Inverse Log-Perplexity: [-7.6913, -11.9455, -11.4017, -12.9553, -8.612]
+QUESTION #528  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Let yourself be directed by others
+> Inverse Log-Perplexity: [-7.8609, -12.0999, -11.5427, -13.1429, -8.9151]
+QUESTION #529  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Let yourself go
+> Inverse Log-Perplexity: [-7.7384, -11.9942, -11.5652, -12.9486, -8.8184]
+QUESTION #530  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Let others determine your choices
+> Inverse Log-Perplexity: [-7.9658, -11.8954, -11.3998, -13.0565, -9.0733]
+QUESTION #531  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to organize things
+> Inverse Log-Perplexity: [-7.7237, -11.9008, -11.5136, -12.9714, -8.7988]
+QUESTION #532  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Like to stand during the national anthem
+> Inverse Log-Perplexity: [-7.4977, -12.153, -11.4184, -13.0826, -8.1127]
+QUESTION #533  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Make plans and stick to them
+> Inverse Log-Perplexity: [-8.2371, -12.2206, -11.5668, -13.4391, -9.4129]
+QUESTION #534  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Never challenge things
+> Inverse Log-Perplexity: [-7.6539, -11.9925, -11.4317, -12.8416, -8.6206]
+QUESTION #535  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Overuse your credit
+> Inverse Log-Perplexity: [-7.8382, -11.779, -11.456, -12.9532, -8.826]
+QUESTION #536  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Prefer to stick with things that you know
+> Inverse Log-Perplexity: [-8.0011, -12.1922, -11.659, -13.2044, -9.2032]
+QUESTION #537  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Put people under pressure
+> Inverse Log-Perplexity: [-7.5749, -12.0035, -11.5567, -12.8558, -8.5068]
+QUESTION #538  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom joke around
+> Inverse Log-Perplexity: [-8.1329, -12.2919, -11.6593, -13.0384, -8.8521]
+QUESTION #539  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Spend more money than you have
+> Inverse Log-Perplexity: [-7.7792, -11.9376, -11.316, -12.8941, -8.8845]
+QUESTION #540  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Tend to vote for conservative political candidates
+> Inverse Log-Perplexity: [-7.323, -12.1312, -11.5228, -13.1815, -8.2167]
+QUESTION #541  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Tend to vote for liberal political candidates
+> Inverse Log-Perplexity: [-7.2765, -12.2132, -11.5532, -13.2399, -8.0664]
+QUESTION #542  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Think quickly
+> Inverse Log-Perplexity: [-7.6467, -11.8694, -11.4859, -12.8411, -8.6256]
+QUESTION #543  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try out new things
+> Inverse Log-Perplexity: [-7.7582, -11.913, -11.4572, -12.8925, -8.7837]
+QUESTION #544  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to outdo others
+> Inverse Log-Perplexity: [-7.8545, -11.884, -11.6531, -12.9933, -8.9215]
+QUESTION #545  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to surpass others' accomplishments
+> Inverse Log-Perplexity: [-7.9372, -12.0661, -11.6331, -13.2313, -9.1407]
+QUESTION #546  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Undertake few things on your own
+> Inverse Log-Perplexity: [-7.8496, -11.7074, -11.3632, -12.6913, -9.1413]
+QUESTION #547  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Want to control the conversation
+> Inverse Log-Perplexity: [-8.2574, -12.0882, -11.501, -13.0065, -9.2532]
+QUESTION #548  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Waste your time
+> Inverse Log-Perplexity: [-7.7197, -11.9776, -11.5211, -12.8198, -8.6541]
+QUESTION #549  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Would never cheat on your taxes
+> Inverse Log-Perplexity: [-7.371, -11.9579, -11.3952, -12.927, -8.4468]
+QUESTION #550  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are just an ordinary person
+> Inverse Log-Perplexity: [-7.687, -11.8611, -11.4633, -12.8076, -8.7885]
+QUESTION #551  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are likely to show off if you get the chance
+> Inverse Log-Perplexity: [-7.7518, -12.0044, -11.647, -13.3635, -8.9618]
+QUESTION #552  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are more capable than most others
+> Inverse Log-Perplexity: [-7.7164, -11.7817, -11.4138, -12.8552, -9.0107]
+QUESTION #553  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not easily disturbed by events
+> Inverse Log-Perplexity: [-8.075, -12.1468, -11.6682, -13.116, -9.1475]
+QUESTION #554  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Believe that you are better than others
+> Inverse Log-Perplexity: [-7.5276, -12.0364, -11.5798, -12.9115, -8.5676]
+QUESTION #555  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Boast about your virtues
+> Inverse Log-Perplexity: [-7.6894, -11.7297, -11.6097, -12.6561, -8.8229]
+QUESTION #556  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Consider yourself an average person
+> Inverse Log-Perplexity: [-7.6554, -11.8943, -11.438, -12.8655, -8.6669]
+QUESTION #557  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Don't think that you are better than other people
+> Inverse Log-Perplexity: [-7.3726, -12.104, -11.6519, -12.9771, -8.2768]
+QUESTION #558  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Get upset by unpleasant thoughts that come into your mind
+> Inverse Log-Perplexity: [-8.0793, -12.2187, -11.7873, -12.7796, -9.0558]
+QUESTION #559  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Like to attract attention
+> Inverse Log-Perplexity: [-7.9594, -12.0214, -11.5018, -13.0225, -9.0069]
+QUESTION #560  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Remain calm under pressure
+> Inverse Log-Perplexity: [-7.6996, -11.8116, -11.5942, -12.6445, -8.7375]
+QUESTION #561  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: See yourself as an average person
+> Inverse Log-Perplexity: [-7.907, -12.174, -11.5036, -13.2212, -8.9622]
+QUESTION #562  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Would like to have more power than other people
+> Inverse Log-Perplexity: [-7.5305, -12.0623, -11.4662, -12.9503, -8.4704]
+QUESTION #563  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Act wild and crazy
+> Inverse Log-Perplexity: [-7.8999, -12.1149, -11.727, -12.934, -8.889]
+QUESTION #564  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are interested in people
+> Inverse Log-Perplexity: [-7.7362, -11.972, -11.4353, -12.9916, -8.6169]
+QUESTION #565  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are not really interested in others
+> Inverse Log-Perplexity: [-7.6317, -11.9619, -11.3653, -12.9751, -8.6024]
+QUESTION #566  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Break rules
+> Inverse Log-Perplexity: [-7.7559, -11.9636, -11.2519, -12.9295, -8.7424]
+QUESTION #567  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Cheer people up
+> Inverse Log-Perplexity: [-7.7547, -12.1344, -11.5264, -12.9788, -8.5449]
+QUESTION #568  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Dislike being the center of attention
+> Inverse Log-Perplexity: [-7.9358, -12.3104, -11.4751, -13.2359, -8.7085]
+QUESTION #569  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do crazy things
+> Inverse Log-Perplexity: [-7.6902, -12.1117, -11.5987, -12.9401, -8.5572]
+QUESTION #570  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do things that others find strange
+> Inverse Log-Perplexity: [-8.0043, -12.2613, -11.7337, -13.2461, -9.0001]
+QUESTION #571  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do unexpected things
+> Inverse Log-Perplexity: [-7.735, -11.9847, -11.4136, -12.8583, -8.7213]
+QUESTION #572  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Don't mind being the center of attention
+> Inverse Log-Perplexity: [-7.8075, -12.1265, -11.4594, -12.9842, -8.8106]
+QUESTION #573  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Enjoy being reckless
+> Inverse Log-Perplexity: [-7.7089, -12.1156, -11.524, -12.8122, -8.5568]
+QUESTION #574  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Enjoy wild flights of fantasy
+> Inverse Log-Perplexity: [-7.9695, -11.9518, -11.565, -12.8505, -8.9071]
+QUESTION #575  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Feel at ease with people
+> Inverse Log-Perplexity: [-7.5561, -11.9675, -11.556, -12.9404, -8.5468]
+QUESTION #576  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Feel that people have a hard time understanding me
+> Inverse Log-Perplexity: [-7.5865, -12.1506, -11.5574, -12.9544, -8.6467]
+QUESTION #577  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Have little to say
+> Inverse Log-Perplexity: [-7.7028, -11.9469, -11.493, -12.7757, -8.6003]
+QUESTION #578  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Know how to captivate people
+> Inverse Log-Perplexity: [-7.7292, -12.0353, -11.4176, -12.9557, -8.8257]
+QUESTION #579  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Look for hidden meanings in things
+> Inverse Log-Perplexity: [-8.1362, -12.1908, -11.6653, -13.1925, -9.3042]
+QUESTION #580  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Oppose authority
+> Inverse Log-Perplexity: [-7.4209, -12.0463, -11.5073, -12.815, -8.2911]
+QUESTION #581  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Rarely overindulge
+> Inverse Log-Perplexity: [-7.9527, -11.9276, -11.5509, -12.8723, -8.9981]
+QUESTION #582  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Resist authority
+> Inverse Log-Perplexity: [-7.802, -12.1088, -11.601, -13.1483, -8.9139]
+QUESTION #583  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Suspect hidden motives in others
+> Inverse Log-Perplexity: [-7.7501, -12.1788, -11.8083, -12.8535, -8.6328]
+QUESTION #584  | TRAIT: A | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Swim against the current
+> Inverse Log-Perplexity: [-7.7857, -11.9124, -11.505, -13.0446, -8.8384]
+QUESTION #585  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Want to be left alone
+> Inverse Log-Perplexity: [-7.9074, -11.9951, -11.5288, -12.9684, -8.9052]
+QUESTION #586  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Would describe your experiences as somewhat dull
+> Inverse Log-Perplexity: [-7.7006, -12.007, -11.7378, -12.9933, -8.8209]
+QUESTION #587  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Accept challenging tasks
+> Inverse Log-Perplexity: [-7.702, -11.4634, -11.3363, -12.6297, -9.0476]
+QUESTION #588  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are always prepared
+> Inverse Log-Perplexity: [-7.8642, -11.8364, -11.4868, -12.8662, -9.0011]
+QUESTION #589  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are easily talked into doing silly things
+> Inverse Log-Perplexity: [-7.634, -12.0736, -11.5063, -13.0044, -8.5729]
+QUESTION #590  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are good at many things
+> Inverse Log-Perplexity: [-7.4378, -11.7179, -11.4535, -12.7169, -8.5949]
+QUESTION #591  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not highly motivated to succeed
+> Inverse Log-Perplexity: [-7.7909, -11.7076, -11.4516, -12.891, -9.164]
+QUESTION #592  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Avoid crowds
+> Inverse Log-Perplexity: [-7.9703, -12.011, -11.5528, -13.0073, -8.8628]
+QUESTION #593  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Believe in human goodness
+> Inverse Log-Perplexity: [-7.8035, -12.2388, -11.674, -12.9082, -8.7007]
+QUESTION #594  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Believe that people are essentially evil
+> Inverse Log-Perplexity: [-7.579, -12.4964, -11.7837, -13.1409, -8.3183]
+QUESTION #595  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Distrust people
+> Inverse Log-Perplexity: [-7.6987, -12.1802, -11.5676, -12.9434, -8.5368]
+QUESTION #596  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do unexpected things
+> Inverse Log-Perplexity: [-7.735, -11.9847, -11.4136, -12.8583, -8.7213]
+QUESTION #597  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Do unpleasant tasks immediately
+> Inverse Log-Perplexity: [-8.1516, -11.7044, -11.5113, -12.8186, -9.4609]
+QUESTION #598  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't like to get dressed up
+> Inverse Log-Perplexity: [-7.6912, -12.0436, -11.3507, -13.0221, -8.446]
+QUESTION #599  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy examining yourself and your life
+> Inverse Log-Perplexity: [-7.7668, -11.8699, -11.5499, -12.9867, -9.2485]
+QUESTION #600  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Enjoy wild flights of fantasy
+> Inverse Log-Perplexity: [-7.9695, -11.9518, -11.565, -12.8505, -8.9071]
+QUESTION #601  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Feel that people have a hard time understanding me
+> Inverse Log-Perplexity: [-7.5865, -12.1506, -11.5574, -12.9544, -8.6467]
+QUESTION #602  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Feel up to any task
+> Inverse Log-Perplexity: [-7.7019, -11.4341, -11.3854, -12.6566, -9.033]
+QUESTION #603  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have days when you are mad at the world
+> Inverse Log-Perplexity: [-7.9012, -12.2139, -11.6902, -13.1514, -9.0117]
+QUESTION #604  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Like variety
+> Inverse Log-Perplexity: [-7.6872, -11.8725, -11.3412, -13.0083, -8.7176]
+QUESTION #605  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Look for hidden meanings in things
+> Inverse Log-Perplexity: [-8.1362, -12.1908, -11.6653, -13.1925, -9.3042]
+QUESTION #606  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Love surprise parties
+> Inverse Log-Perplexity: [-7.8376, -12.2852, -11.4681, -13.1807, -8.727]
+QUESTION #607  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Love to come up with objections
+> Inverse Log-Perplexity: [-8.0974, -12.249, -11.7178, -13.1394, -9.0612]
+QUESTION #608  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Put off unpleasant tasks
+> Inverse Log-Perplexity: [-7.994, -11.7628, -11.4797, -12.7957, -9.1471]
+QUESTION #609  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Read quickly
+> Inverse Log-Perplexity: [-7.7823, -11.7652, -11.4493, -12.8623, -8.9029]
+QUESTION #610  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Read slowly
+> Inverse Log-Perplexity: [-7.7802, -11.7998, -11.5815, -12.8116, -8.7858]
+QUESTION #611  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Seek danger
+> Inverse Log-Perplexity: [-7.8137, -11.8618, -11.4041, -12.7186, -8.8503]
+QUESTION #612  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Suspect hidden motives in others
+> Inverse Log-Perplexity: [-7.7501, -12.1788, -11.8083, -12.8535, -8.6328]
+QUESTION #613  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Trust others
+> Inverse Log-Perplexity: [-7.8531, -12.034, -11.4807, -13.0895, -8.9683]
+QUESTION #614  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Trust what people say
+> Inverse Log-Perplexity: [-7.7529, -12.0835, -11.5338, -12.8807, -8.7378]
+QUESTION #615  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Try to do too difficult things
+> Inverse Log-Perplexity: [-7.915, -12.0562, -11.6044, -13.1272, -9.0709]
+QUESTION #616  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to understand yourself
+> Inverse Log-Perplexity: [-7.8647, -11.9508, -11.7087, -12.9271, -8.9453]
+QUESTION #617  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Undertake few things on your own
+> Inverse Log-Perplexity: [-7.8496, -11.7074, -11.3632, -12.6913, -9.1413]
+QUESTION #618  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel comfortable around people
+> Inverse Log-Perplexity: [-7.7526, -12.0194, -11.4897, -13.041, -8.6541]
+QUESTION #619  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Love large parties
+> Inverse Log-Perplexity: [-7.8261, -12.1769, -11.4676, -13.1038, -8.6379]
+QUESTION #620  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Start conversations
+> Inverse Log-Perplexity: [-8.1372, -12.1948, -11.4068, -13.0412, -9.0225]
+QUESTION #621  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Talk to a lot of different people at parties
+> Inverse Log-Perplexity: [-7.7731, -12.288, -11.4981, -13.318, -8.7324]
+QUESTION #622  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Accomplish a lot of work
+> Inverse Log-Perplexity: [-7.6024, -11.6005, -11.4977, -12.793, -8.9367]
+QUESTION #623  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are always busy
+> Inverse Log-Perplexity: [-7.8763, -11.8785, -11.5354, -12.8679, -8.8858]
+QUESTION #624  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are always on the go
+> Inverse Log-Perplexity: [-7.7941, -11.8324, -11.4498, -12.9445, -8.8625]
+QUESTION #625  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are easily discouraged
+> Inverse Log-Perplexity: [-7.7044, -11.911, -11.617, -12.8667, -8.6931]
+QUESTION #626  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not easily frustrated
+> Inverse Log-Perplexity: [-7.6555, -11.9152, -11.5767, -12.9965, -8.7977]
+QUESTION #627  | TRAIT: N | KEY: - | SCORE: 2 | ANSWER: moderately accurate
+> Statement: Are relaxed most of the time
+> Inverse Log-Perplexity: [-8.0513, -11.7795, -11.4594, -12.9969, -9.2746]
+QUESTION #628  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Can manage many things at the same time
+> Inverse Log-Perplexity: [-7.6907, -11.5989, -11.338, -12.653, -9.0856]
+QUESTION #629  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do a lot in your spare time
+> Inverse Log-Perplexity: [-7.643, -11.8896, -11.3976, -12.9817, -8.6482]
+QUESTION #630  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do too little work
+> Inverse Log-Perplexity: [-7.756, -11.9581, -11.5141, -13.0912, -8.9676]
+QUESTION #631  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Get upset easily
+> Inverse Log-Perplexity: [-7.6047, -11.8932, -11.4194, -12.721, -8.5057]
+QUESTION #632  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Hang around doing nothing
+> Inverse Log-Perplexity: [-7.6322, -11.9323, -11.4703, -12.936, -8.7074]
+QUESTION #633  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have a slow pace to your life
+> Inverse Log-Perplexity: [-7.5227, -11.7405, -11.4012, -12.7327, -8.8005]
+QUESTION #634  | TRAIT: N | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Have frequent mood swings
+> Inverse Log-Perplexity: [-7.8852, -11.7982, -11.5097, -12.7387, -8.9352]
+QUESTION #635  | TRAIT: E | KEY: - | SCORE: 3 | ANSWER: neither accurate nor inaccurate
+> Statement: Need a push to get started
+> Inverse Log-Perplexity: [-8.2777, -12.0992, -11.5701, -13.3707, -9.4259]
+QUESTION #636  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Often feel blue
+> Inverse Log-Perplexity: [-7.5568, -11.9213, -11.473, -12.9228, -8.5869]
+QUESTION #637  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely get irritated
+> Inverse Log-Perplexity: [-7.9752, -11.9837, -11.6498, -13.0869, -9.0381]
+QUESTION #638  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are good at making impromptu speeches
+> Inverse Log-Perplexity: [-7.5137, -12.1239, -11.745, -12.8973, -8.3678]
+QUESTION #639  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are not easily bothered by things
+> Inverse Log-Perplexity: [-7.9281, -12.1055, -11.5395, -13.1032, -8.9021]
+QUESTION #640  | TRAIT: N | KEY: - | SCORE: 2 | ANSWER: moderately accurate
+> Statement: Are relaxed most of the time
+> Inverse Log-Perplexity: [-8.0513, -11.7795, -11.4594, -12.9969, -9.2746]
+QUESTION #641  | TRAIT: E | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Avoid company
+> Inverse Log-Perplexity: [-7.9659, -11.8602, -11.3158, -12.8841, -8.9664]
+QUESTION #642  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Continue until everything is perfect
+> Inverse Log-Perplexity: [-7.9457, -12.0233, -11.5257, -13.1029, -9.1729]
+QUESTION #643  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do too little work
+> Inverse Log-Perplexity: [-7.756, -11.9581, -11.5141, -13.0912, -8.9676]
+QUESTION #644  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Don't like to draw attention to yourself
+> Inverse Log-Perplexity: [-7.8422, -11.9964, -11.5323, -13.084, -9.1104]
+QUESTION #645  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Don't worry about things that have already happened
+> Inverse Log-Perplexity: [-7.5439, -12.2711, -11.7275, -13.1643, -8.7336]
+QUESTION #646  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy being part of a group
+> Inverse Log-Perplexity: [-7.9191, -12.1596, -11.4417, -13.3134, -9.0437]
+QUESTION #647  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Find it difficult to manipulate others
+> Inverse Log-Perplexity: [-7.8049, -11.9173, -11.5813, -12.9363, -9.0101]
+QUESTION #648  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get stressed out easily
+> Inverse Log-Perplexity: [-7.5349, -11.7905, -11.5838, -12.8115, -8.6767]
+QUESTION #649  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have a natural talent for influencing people
+> Inverse Log-Perplexity: [-7.5363, -12.0582, -11.591, -13.0571, -8.7821]
+QUESTION #650  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have a slow pace to your life
+> Inverse Log-Perplexity: [-7.5227, -11.7405, -11.4012, -12.7327, -8.8005]
+QUESTION #651  | TRAIT: N | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Have frequent mood swings
+> Inverse Log-Perplexity: [-7.8852, -11.7982, -11.5097, -12.7387, -8.9352]
+QUESTION #652  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Have little to say
+> Inverse Log-Perplexity: [-7.7028, -11.9469, -11.493, -12.7757, -8.6003]
+QUESTION #653  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep in the background
+> Inverse Log-Perplexity: [-7.8628, -11.9733, -11.4652, -13.2616, -9.0657]
+QUESTION #654  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love to chat
+> Inverse Log-Perplexity: [-7.9504, -12.0685, -11.4019, -13.0851, -8.9829]
+QUESTION #655  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love to reflect on things
+> Inverse Log-Perplexity: [-7.7193, -11.9132, -11.6149, -12.9294, -8.9148]
+QUESTION #656  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Panic easily
+> Inverse Log-Perplexity: [-7.6842, -11.6735, -11.4531, -12.5851, -8.733]
+QUESTION #657  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely look for a deeper meaning in things
+> Inverse Log-Perplexity: [-7.6438, -11.8609, -11.6813, -12.7178, -8.9364]
+QUESTION #658  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: See beauty in things that others might not notice
+> Inverse Log-Perplexity: [-7.778, -12.1962, -11.7521, -13.2581, -8.9885]
+QUESTION #659  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Work hard
+> Inverse Log-Perplexity: [-7.6607, -11.835, -11.4051, -12.9503, -8.8003]
+QUESTION #660  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Work too much
+> Inverse Log-Perplexity: [-7.7413, -11.9443, -11.5218, -13.0697, -8.889]
+QUESTION #661  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Act wild and crazy
+> Inverse Log-Perplexity: [-7.8999, -12.1149, -11.727, -12.934, -8.889]
+QUESTION #662  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Act without thinking
+> Inverse Log-Perplexity: [-7.7849, -12.0365, -11.5477, -12.8723, -8.7056]
+QUESTION #663  | TRAIT: N | KEY: - | SCORE: 2 | ANSWER: moderately accurate
+> Statement: Adapt easily to new situations
+> Inverse Log-Perplexity: [-7.7369, -11.3998, -11.3739, -12.4218, -9.0007]
+QUESTION #664  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are able to control your cravings
+> Inverse Log-Perplexity: [-7.9091, -11.9871, -11.438, -13.1458, -9.0004]
+QUESTION #665  | TRAIT: N | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Are calm even in tense situations
+> Inverse Log-Perplexity: [-7.8755, -11.8736, -11.3943, -12.7984, -9.004]
+QUESTION #666  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are concerned about others
+> Inverse Log-Perplexity: [-7.773, -11.9801, -11.5759, -12.8541, -8.6404]
+QUESTION #667  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are easy to satisfy
+> Inverse Log-Perplexity: [-7.7743, -11.789, -11.4531, -12.9672, -9.0209]
+QUESTION #668  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are indifferent to the feelings of others
+> Inverse Log-Perplexity: [-8.0471, -12.287, -11.7088, -13.1833, -9.0398]
+QUESTION #669  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not easily affected by your emotions
+> Inverse Log-Perplexity: [-7.9957, -12.1486, -11.6729, -13.1375, -9.1998]
+QUESTION #670  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not easily amused
+> Inverse Log-Perplexity: [-7.8744, -12.0214, -11.5592, -12.9792, -8.9318]
+QUESTION #671  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are not interested in other people's problems
+> Inverse Log-Perplexity: [-7.6391, -11.9268, -11.4753, -12.735, -8.5977]
+QUESTION #672  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are often down in the dumps
+> Inverse Log-Perplexity: [-7.8881, -11.8945, -11.4723, -12.9848, -9.0452]
+QUESTION #673  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are often in a bad mood
+> Inverse Log-Perplexity: [-7.7829, -11.8992, -11.4387, -12.8895, -8.8503]
+QUESTION #674  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are passionate about causes
+> Inverse Log-Perplexity: [-7.8612, -12.1503, -11.6093, -13.0351, -8.8547]
+QUESTION #675  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are sure of your ground
+> Inverse Log-Perplexity: [-7.861, -11.7263, -11.5079, -12.7229, -8.9284]
+QUESTION #676  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are very pleased with yourself
+> Inverse Log-Perplexity: [-8.0402, -11.8138, -11.5635, -12.7908, -9.1287]
+QUESTION #677  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Are wary of others
+> Inverse Log-Perplexity: [-7.6736, -11.8216, -11.559, -12.7044, -8.6352]
+QUESTION #678  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Areuse your friends
+> Inverse Log-Perplexity: [-7.8635, -11.8205, -11.2329, -12.7107, -8.867]
+QUESTION #679  | TRAIT: A | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Anticipate the needs of others
+> Inverse Log-Perplexity: [-7.9725, -11.6679, -11.5708, -12.8546, -9.2793]
+QUESTION #680  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Avoid mistakes
+> Inverse Log-Perplexity: [-7.9668, -11.9438, -11.5519, -12.9421, -9.1264]
+QUESTION #681  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Become overwhelmed by events
+> Inverse Log-Perplexity: [-8.1439, -12.1923, -11.7624, -13.1021, -9.2158]
+QUESTION #682  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Believe in an eye for an eye
+> Inverse Log-Perplexity: [-7.4003, -11.7927, -11.3373, -12.8117, -8.434]
+QUESTION #683  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Believe in one true religion
+> Inverse Log-Perplexity: [-7.4604, -12.3424, -11.6191, -13.0837, -8.2473]
+QUESTION #684  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Believe that criminals should receive help rather than punishment
+> Inverse Log-Perplexity: [-7.6894, -12.3616, -11.8657, -13.1412, -8.7152]
+QUESTION #685  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Believe that others have good intentions
+> Inverse Log-Perplexity: [-7.8983, -12.3867, -11.5914, -13.2073, -8.8161]
+QUESTION #686  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Believe that people are basically moral
+> Inverse Log-Perplexity: [-7.4506, -12.5019, -11.7251, -13.2453, -8.2188]
+QUESTION #687  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Believe that people are essentially evil
+> Inverse Log-Perplexity: [-7.579, -12.4964, -11.7837, -13.1409, -8.3183]
+QUESTION #688  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Believe that there is no absolute right or wrong
+> Inverse Log-Perplexity: [-7.4459, -12.1107, -11.4608, -12.9731, -8.7335]
+QUESTION #689  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Break your promises
+> Inverse Log-Perplexity: [-7.8579, -12.1051, -11.4699, -12.8592, -8.8615]
+QUESTION #690  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Can handle complex problems
+> Inverse Log-Perplexity: [-7.7918, -11.712, -11.4937, -12.9068, -9.1183]
+QUESTION #691  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Can't make up your mind
+> Inverse Log-Perplexity: [-8.0814, -12.2562, -11.5345, -13.2841, -9.1722]
+QUESTION #692  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Can't stand confrontations
+> Inverse Log-Perplexity: [-7.7939, -12.0572, -11.5793, -12.7804, -8.7776]
+QUESTION #693  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Can't stand weak people
+> Inverse Log-Perplexity: [-7.4455, -11.9422, -11.4917, -12.68, -8.3712]
+QUESTION #694  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Carry out your plans
+> Inverse Log-Perplexity: [-7.8487, -11.8218, -11.4222, -12.8181, -8.9401]
+QUESTION #695  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Cheat to get ahead
+> Inverse Log-Perplexity: [-7.7436, -11.9765, -11.4834, -12.9943, -8.8796]
+QUESTION #696  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Choose your words with care
+> Inverse Log-Perplexity: [-7.856, -11.8222, -11.3734, -12.4129, -8.6321]
+QUESTION #697  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Come up with good solutions
+> Inverse Log-Perplexity: [-7.6331, -11.6343, -11.4886, -12.699, -8.9591]
+QUESTION #698  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Complete tasks successfully
+> Inverse Log-Perplexity: [-7.8468, -11.4733, -11.3932, -12.8063, -9.3473]
+QUESTION #699  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Contradict others
+> Inverse Log-Perplexity: [-7.869, -12.1894, -11.3791, -13.0516, -8.6037]
+QUESTION #700  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Demand quality
+> Inverse Log-Perplexity: [-7.8265, -11.9706, -11.3858, -12.9536, -8.7436]
+QUESTION #701  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Dislike being the center of attention
+> Inverse Log-Perplexity: [-7.9358, -12.3104, -11.4751, -13.2359, -8.7085]
+QUESTION #702  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Dislike loud music
+> Inverse Log-Perplexity: [-7.8895, -12.0768, -11.6005, -12.8227, -8.6213]
+QUESTION #703  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Dislike new foods
+> Inverse Log-Perplexity: [-7.5386, -11.8038, -11.2623, -12.5012, -8.0341]
+QUESTION #704  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Dislike talking about yourself
+> Inverse Log-Perplexity: [-7.9726, -12.2586, -11.7314, -12.9593, -8.7217]
+QUESTION #705  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Do not have a good imagination
+> Inverse Log-Perplexity: [-7.8389, -11.9598, -11.4162, -12.9522, -8.9603]
+QUESTION #706  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Do things according to a plan
+> Inverse Log-Perplexity: [-7.9991, -12.0315, -11.4638, -13.0968, -9.0205]
+QUESTION #707  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Do things you later regret
+> Inverse Log-Perplexity: [-8.0626, -12.241, -11.6933, -13.0766, -9.0117]
+QUESTION #708  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Don't know why you do some of the things you do
+> Inverse Log-Perplexity: [-7.9348, -12.1532, -11.5477, -13.1216, -8.9987]
+QUESTION #709  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't like the idea of change
+> Inverse Log-Perplexity: [-7.6395, -12.2467, -11.47, -13.3034, -8.5913]
+QUESTION #710  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Don't see the consequences of things
+> Inverse Log-Perplexity: [-7.897, -12.2819, -11.5978, -13.2012, -8.9297]
+QUESTION #711  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't understand people who get emotional
+> Inverse Log-Perplexity: [-7.5604, -12.179, -11.4189, -12.9678, -8.4876]
+QUESTION #712  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't understand things
+> Inverse Log-Perplexity: [-7.6371, -11.9484, -11.4418, -12.8247, -8.5589]
+QUESTION #713  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Easily resist temptations
+> Inverse Log-Perplexity: [-7.7508, -11.9218, -11.5892, -12.9953, -8.884]
+QUESTION #714  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy being part of a group
+> Inverse Log-Perplexity: [-7.9191, -12.1596, -11.4417, -13.3134, -9.0437]
+QUESTION #715  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Enjoy being part of a loud crowd
+> Inverse Log-Perplexity: [-7.7022, -12.0343, -11.4121, -13.0387, -8.6689]
+QUESTION #716  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Enjoy being reckless
+> Inverse Log-Perplexity: [-7.7089, -12.1156, -11.524, -12.8122, -8.5568]
+QUESTION #717  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy examining yourself and your life
+> Inverse Log-Perplexity: [-7.7668, -11.8699, -11.5499, -12.9867, -9.2485]
+QUESTION #718  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Excel in what you do
+> Inverse Log-Perplexity: [-7.5774, -11.4229, -11.2873, -12.5948, -8.7802]
+QUESTION #719  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Experience your emotions intensely
+> Inverse Log-Perplexity: [-8.0154, -12.0675, -11.7332, -13.1242, -9.0851]
+QUESTION #720  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Experience very few emotional highs and lows
+> Inverse Log-Perplexity: [-7.9598, -12.091, -11.608, -13.1045, -9.2217]
+QUESTION #721  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Express childlike joy
+> Inverse Log-Perplexity: [-8.0669, -12.0039, -11.5646, -12.8153, -9.0056]
+QUESTION #722  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Fear for the worst
+> Inverse Log-Perplexity: [-7.9817, -12.2005, -11.636, -13.0912, -8.8228]
+QUESTION #723  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Feel comfortable with yourself
+> Inverse Log-Perplexity: [-7.7699, -11.9587, -11.5964, -13.0599, -8.8451]
+QUESTION #724  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel desperate
+> Inverse Log-Perplexity: [-7.7373, -12.0525, -11.5263, -12.8878, -8.5836]
+QUESTION #725  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Feel others' emotions
+> Inverse Log-Perplexity: [-7.9049, -12.1721, -11.68, -13.1221, -8.8684]
+QUESTION #726  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Feel that you are unable to deal with things
+> Inverse Log-Perplexity: [-7.6509, -11.9569, -11.6121, -12.7868, -8.8313]
+QUESTION #727  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Feel that your life lacks direction
+> Inverse Log-Perplexity: [-7.713, -12.1409, -11.7057, -13.0344, -8.9167]
+QUESTION #728  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Get back at others
+> Inverse Log-Perplexity: [-7.7743, -11.9742, -11.5101, -12.923, -8.7857]
+QUESTION #729  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get caught up in your problems
+> Inverse Log-Perplexity: [-7.9679, -12.1658, -11.6413, -13.2014, -9.1388]
+QUESTION #730  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Get others to do your duties
+> Inverse Log-Perplexity: [-7.838, -11.6662, -11.3556, -12.8802, -9.0866]
+QUESTION #731  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get overwhelmed by emotions
+> Inverse Log-Perplexity: [-8.0916, -12.2316, -11.7367, -13.1865, -9.1479]
+QUESTION #732  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Go on binges
+> Inverse Log-Perplexity: [-7.8418, -12.137, -11.5865, -13.112, -8.721]
+QUESTION #733  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Go straight for the goal
+> Inverse Log-Perplexity: [-7.7198, -11.7782, -11.352, -12.9722, -8.8533]
+QUESTION #734  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Handle tasks smoothly
+> Inverse Log-Perplexity: [-7.9956, -11.4005, -11.5444, -12.7328, -9.5175]
+QUESTION #735  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Hate to seem pushy
+> Inverse Log-Perplexity: [-7.7215, -12.2784, -11.7008, -12.9775, -8.3469]
+QUESTION #736  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Have a good word for everyone
+> Inverse Log-Perplexity: [-7.6354, -11.9947, -11.4281, -12.9472, -8.5933]
+QUESTION #737  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have a high opinion of yourself
+> Inverse Log-Perplexity: [-7.8734, -12.0413, -11.5045, -13.0223, -8.8687]
+QUESTION #738  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have a lot of fun
+> Inverse Log-Perplexity: [-7.7978, -11.9266, -11.4756, -13.0354, -8.9094]
+QUESTION #739  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Have a low opinion of yourself
+> Inverse Log-Perplexity: [-7.8123, -11.9789, -11.4909, -12.8901, -8.7389]
+QUESTION #740  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have a sharp tongue
+> Inverse Log-Perplexity: [-7.6161, -11.8525, -11.4302, -12.7926, -8.7127]
+QUESTION #741  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Have difficulty imagining things
+> Inverse Log-Perplexity: [-8.0764, -12.1496, -11.7128, -13.0013, -9.0474]
+QUESTION #742  | TRAIT: C | KEY: - | SCORE: 2 | ANSWER: moderately accurate
+> Statement: Have difficulty starting tasks
+> Inverse Log-Perplexity: [-8.0121, -11.6799, -11.3581, -12.8246, -9.1452]
+QUESTION #743  | TRAIT: N | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Have frequent mood swings
+> Inverse Log-Perplexity: [-7.8852, -11.7982, -11.5097, -12.7387, -8.9352]
+QUESTION #744  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have little to contribute
+> Inverse Log-Perplexity: [-7.7757, -11.9837, -11.5174, -12.983, -8.9597]
+QUESTION #745  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Hold a grudge
+> Inverse Log-Perplexity: [-7.9778, -12.0662, -11.5681, -12.9455, -8.8753]
+QUESTION #746  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Indulge in your fantasies
+> Inverse Log-Perplexity: [-8.0353, -12.2256, -11.5865, -12.9848, -8.8609]
+QUESTION #747  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Insult people
+> Inverse Log-Perplexity: [-7.4676, -12.1311, -11.3888, -12.7609, -7.9065]
+QUESTION #748  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Interested in many things
+> Inverse Log-Perplexity: [-7.4942, -11.5828, -11.26, -12.6079, -8.5027]
+QUESTION #749  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Involve others in what you are doing
+> Inverse Log-Perplexity: [-7.7851, -11.953, -11.4776, -12.92, -8.7379]
+QUESTION #750  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep your cool
+> Inverse Log-Perplexity: [-7.738, -12.038, -11.5306, -13.1719, -8.8674]
+QUESTION #751  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Keep your promises
+> Inverse Log-Perplexity: [-8.0305, -12.1854, -11.5499, -13.179, -9.1532]
+QUESTION #752  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Know how to cope
+> Inverse Log-Perplexity: [-7.8595, -11.854, -11.6361, -12.7336, -8.99]
+QUESTION #753  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Know how to get around the rules
+> Inverse Log-Perplexity: [-8.061, -12.1885, -11.4591, -13.3986, -9.1429]
+QUESTION #754  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Know how to get things done
+> Inverse Log-Perplexity: [-7.9109, -12.0659, -11.5047, -13.1863, -9.1058]
+QUESTION #755  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Know the answers to many questions
+> Inverse Log-Perplexity: [-7.972, -11.7952, -11.4523, -13.0843, -9.2191]
+QUESTION #756  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Laugh aloud
+> Inverse Log-Perplexity: [-8.0065, -12.0419, -11.5429, -12.9954, -8.9587]
+QUESTION #757  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Laugh your way through life
+> Inverse Log-Perplexity: [-7.8753, -12.0764, -11.6624, -12.931, -8.9761]
+QUESTION #758  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Let things proceed at their own pace
+> Inverse Log-Perplexity: [-7.9237, -12.1159, -11.6733, -13.0411, -9.0827]
+QUESTION #759  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Like a leisurely lifestyle
+> Inverse Log-Perplexity: [-7.5619, -11.552, -11.2101, -12.4513, -8.4752]
+QUESTION #760  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to begin new things
+> Inverse Log-Perplexity: [-7.9201, -11.8807, -11.4393, -12.7833, -8.908]
+QUESTION #761  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Like to take it easy
+> Inverse Log-Perplexity: [-7.7987, -11.8977, -11.4436, -13.0894, -8.9985]
+QUESTION #762  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Like to take your time
+> Inverse Log-Perplexity: [-7.8351, -11.894, -11.4334, -12.9488, -9.0022]
+QUESTION #763  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Listen to your conscience
+> Inverse Log-Perplexity: [-7.9944, -12.124, -11.5571, -12.9891, -9.084]
+QUESTION #764  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Look at the bright side of life
+> Inverse Log-Perplexity: [-7.7482, -12.0576, -11.5703, -13.192, -8.9531]
+QUESTION #765  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Look down on others
+> Inverse Log-Perplexity: [-7.6401, -11.9692, -11.5311, -12.8506, -8.5527]
+QUESTION #766  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Lose your temper
+> Inverse Log-Perplexity: [-7.6996, -11.9722, -11.4522, -12.7997, -8.6599]
+QUESTION #767  | TRAIT: E | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Love action
+> Inverse Log-Perplexity: [-7.8335, -12.0538, -11.4898, -13.0691, -8.9087]
+QUESTION #768  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love excitement
+> Inverse Log-Perplexity: [-7.9547, -12.1305, -11.4657, -13.1335, -8.9542]
+QUESTION #769  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love life
+> Inverse Log-Perplexity: [-7.7563, -12.097, -11.5047, -13.0608, -8.7673]
+QUESTION #770  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love order and regularity
+> Inverse Log-Perplexity: [-7.7964, -11.8812, -11.4681, -13.0238, -9.0032]
+QUESTION #771  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Love to eat
+> Inverse Log-Perplexity: [-7.6508, -11.8129, -11.3046, -12.6484, -8.2855]
+QUESTION #772  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Love to help others
+> Inverse Log-Perplexity: [-7.8004, -11.9823, -11.5409, -13.0263, -8.8908]
+QUESTION #773  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Make yourself the center of attention
+> Inverse Log-Perplexity: [-7.9834, -12.0541, -11.4536, -13.1926, -9.0702]
+QUESTION #774  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Make people feel uncomfortable
+> Inverse Log-Perplexity: [-7.7505, -12.2181, -11.5935, -13.1289, -8.633]
+QUESTION #775  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Make people feel welcome
+> Inverse Log-Perplexity: [-7.7221, -12.1606, -11.4839, -13.1059, -8.6492]
+QUESTION #776  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Make rash decisions
+> Inverse Log-Perplexity: [-7.5667, -11.8533, -11.4873, -12.6632, -8.5453]
+QUESTION #777  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Misjudge situations
+> Inverse Log-Perplexity: [-7.6561, -11.803, -11.4317, -12.5438, -8.5138]
+QUESTION #778  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Misrepresent the facts
+> Inverse Log-Perplexity: [-7.6568, -12.0289, -11.6069, -12.6488, -8.3977]
+QUESTION #779  | TRAIT: C | KEY: - | SCORE: 3 | ANSWER: neither accurate nor inaccurate
+> Statement: Need a push to get started
+> Inverse Log-Perplexity: [-8.2777, -12.0992, -11.5701, -13.3707, -9.4259]
+QUESTION #780  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Never spend more than you can afford
+> Inverse Log-Perplexity: [-7.6629, -11.9254, -11.3827, -12.9077, -8.7678]
+QUESTION #781  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Never splurge
+> Inverse Log-Perplexity: [-7.9794, -12.0456, -11.6135, -13.0602, -9.0434]
+QUESTION #782  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Obstruct others' plans
+> Inverse Log-Perplexity: [-7.733, -11.7366, -11.5492, -12.6645, -8.8439]
+QUESTION #783  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Often eat too much
+> Inverse Log-Perplexity: [-7.6027, -11.84, -11.3311, -12.6791, -8.3752]
+QUESTION #784  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Often feel blue
+> Inverse Log-Perplexity: [-7.5568, -11.9213, -11.473, -12.9228, -8.5869]
+QUESTION #785  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Panic easily
+> Inverse Log-Perplexity: [-7.6842, -11.6735, -11.4531, -12.5851, -8.733]
+QUESTION #786  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Pay your bills on time
+> Inverse Log-Perplexity: [-7.7172, -11.6389, -11.1996, -12.533, -8.6255]
+QUESTION #787  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Postpone decisions
+> Inverse Log-Perplexity: [-7.9957, -11.9334, -11.4964, -12.8622, -8.9162]
+QUESTION #788  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Prefer to be alone
+> Inverse Log-Perplexity: [-7.8216, -12.017, -11.5194, -13.0284, -8.7796]
+QUESTION #789  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Prefer to stick with things that you know
+> Inverse Log-Perplexity: [-8.0011, -12.1922, -11.659, -13.2044, -9.2032]
+QUESTION #790  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Prefer variety to routine
+> Inverse Log-Perplexity: [-8.1351, -11.9414, -11.5383, -13.1931, -9.1913]
+QUESTION #791  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Pretend to be concerned for others
+> Inverse Log-Perplexity: [-7.9045, -12.0569, -11.5091, -12.9978, -8.6956]
+QUESTION #792  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Put little time and effort into your work
+> Inverse Log-Perplexity: [-7.8032, -11.7284, -11.4449, -13.0168, -9.2824]
+QUESTION #793  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Put people under pressure
+> Inverse Log-Perplexity: [-7.5749, -12.0035, -11.5567, -12.8558, -8.5068]
+QUESTION #794  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Radiate joy
+> Inverse Log-Perplexity: [-7.747, -12.0648, -11.6652, -13.0158, -8.8341]
+QUESTION #795  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Rarely complain
+> Inverse Log-Perplexity: [-7.978, -12.1213, -11.4763, -13.075, -8.8226]
+QUESTION #796  | TRAIT: O | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Rarely notice your emotional reactions
+> Inverse Log-Perplexity: [-7.9772, -12.0967, -11.7494, -13.0181, -9.0901]
+QUESTION #797  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely overindulge
+> Inverse Log-Perplexity: [-7.9527, -11.9276, -11.5509, -12.8723, -8.9981]
+QUESTION #798  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: React quickly
+> Inverse Log-Perplexity: [-7.9456, -11.865, -11.48, -12.9198, -9.1095]
+QUESTION #799  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: React slowly
+> Inverse Log-Perplexity: [-7.9361, -11.8089, -11.5664, -12.8252, -9.044]
+QUESTION #800  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Readily overcome setbacks
+> Inverse Log-Perplexity: [-7.6176, -11.6498, -11.7628, -12.4127, -8.7613]
+QUESTION #801  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Remain calm under pressure
+> Inverse Log-Perplexity: [-7.6996, -11.8116, -11.5942, -12.6445, -8.7375]
+QUESTION #802  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Rush into things
+> Inverse Log-Perplexity: [-7.7559, -11.9905, -11.5844, -12.7968, -8.5848]
+QUESTION #803  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Seek adventure
+> Inverse Log-Perplexity: [-8.0067, -11.9412, -11.4216, -12.8792, -8.9672]
+QUESTION #804  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Seek danger
+> Inverse Log-Perplexity: [-7.8137, -11.8618, -11.4041, -12.7186, -8.8503]
+QUESTION #805  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seek quiet
+> Inverse Log-Perplexity: [-7.7762, -11.8033, -11.319, -12.6092, -8.743]
+QUESTION #806  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Seek to influence others
+> Inverse Log-Perplexity: [-7.7985, -12.0584, -11.5086, -12.943, -8.7177]
+QUESTION #807  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom feel blue
+> Inverse Log-Perplexity: [-7.7381, -11.9426, -11.5072, -12.8843, -8.6914]
+QUESTION #808  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom get emotional
+> Inverse Log-Perplexity: [-7.879, -12.0416, -11.488, -12.8363, -8.862]
+QUESTION #809  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom get mad
+> Inverse Log-Perplexity: [-7.6703, -11.8987, -11.503, -12.7978, -8.6527]
+QUESTION #810  | TRAIT: E | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom joke around
+> Inverse Log-Perplexity: [-8.1329, -12.2919, -11.6593, -13.0384, -8.8521]
+QUESTION #811  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Seldom toot your own horn
+> Inverse Log-Perplexity: [-7.9271, -11.8261, -11.3924, -12.7981, -8.856]
+QUESTION #812  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Set high standards for yourself and others
+> Inverse Log-Perplexity: [-7.7303, -11.9859, -11.5643, -13.115, -8.8318]
+QUESTION #813  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Spend time reflecting on things
+> Inverse Log-Perplexity: [-7.7589, -11.8079, -11.586, -12.7964, -8.9223]
+QUESTION #814  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Start tasks right away
+> Inverse Log-Perplexity: [-8.0136, -11.8073, -11.3712, -13.0268, -9.3526]
+QUESTION #815  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Stick to your chosen path
+> Inverse Log-Perplexity: [-7.9007, -11.8435, -11.3572, -13.0894, -9.1274]
+QUESTION #816  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Stick to the rules
+> Inverse Log-Perplexity: [-8.1324, -12.1576, -11.4658, -13.3537, -9.1197]
+QUESTION #817  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Suffer from others' sorrows
+> Inverse Log-Perplexity: [-8.2198, -12.3238, -11.7849, -13.1603, -9.2641]
+QUESTION #818  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Sympathize with the homeless
+> Inverse Log-Perplexity: [-7.7841, -12.2567, -11.6501, -12.9399, -8.2581]
+QUESTION #819  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Take advantage of others
+> Inverse Log-Perplexity: [-7.6582, -11.7854, -11.3579, -12.7255, -8.6584]
+QUESTION #820  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Take no time for others
+> Inverse Log-Perplexity: [-7.7427, -11.7926, -11.4138, -12.7759, -8.8843]
+QUESTION #821  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Tell the truth
+> Inverse Log-Perplexity: [-7.8975, -12.1011, -11.4557, -13.0522, -8.8255]
+QUESTION #822  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Think highly of yourself
+> Inverse Log-Perplexity: [-7.5764, -11.9719, -11.6666, -12.9157, -8.5181]
+QUESTION #823  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Think that all will be well
+> Inverse Log-Perplexity: [-7.7601, -12.1657, -11.5238, -13.1514, -8.8535]
+QUESTION #824  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to understand yourself
+> Inverse Log-Perplexity: [-7.8647, -11.9508, -11.7087, -12.9271, -8.9453]
+QUESTION #825  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Turn your back on others
+> Inverse Log-Perplexity: [-7.6559, -11.7939, -11.4583, -12.7921, -8.7567]
+QUESTION #826  | TRAIT: C | KEY: + | SCORE: 3 | ANSWER: neither accurate nor inaccurate
+> Statement: Turn plans into actions
+> Inverse Log-Perplexity: [-8.2367, -12.0138, -11.4778, -13.1696, -9.3901]
+QUESTION #827  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Use flattery to get ahead
+> Inverse Log-Perplexity: [-8.1476, -12.1224, -11.588, -13.2416, -9.2673]
+QUESTION #828  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Use others for your own ends
+> Inverse Log-Perplexity: [-7.8965, -12.0403, -11.4294, -13.1685, -9.0347]
+QUESTION #829  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Value cooperation over competition
+> Inverse Log-Perplexity: [-7.7606, -12.1584, -11.6594, -13.0987, -8.944]
+QUESTION #830  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Want everything to be just right
+> Inverse Log-Perplexity: [-7.938, -12.128, -11.4367, -13.337, -9.2044]
+QUESTION #831  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Want to be left alone
+> Inverse Log-Perplexity: [-7.9074, -11.9951, -11.5288, -12.9684, -8.9052]
+QUESTION #832  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Willing to try anything once
+> Inverse Log-Perplexity: [-7.5836, -11.7783, -11.2775, -12.8359, -8.6695]
+QUESTION #833  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Would never go hang gliding or bungee jumping
+> Inverse Log-Perplexity: [-7.5624, -11.7988, -11.4666, -12.9656, -8.6513]
+QUESTION #834  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Yell at people
+> Inverse Log-Perplexity: [-7.8208, -12.1994, -11.6576, -12.9853, -8.4377]
+QUESTION #835  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are easy to satisfy
+> Inverse Log-Perplexity: [-7.7743, -11.789, -11.4531, -12.9672, -9.0209]
+QUESTION #836  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are hard to get to know
+> Inverse Log-Perplexity: [-7.8725, -11.9459, -11.5408, -13.1344, -9.1612]
+QUESTION #837  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not easily frustrated
+> Inverse Log-Perplexity: [-7.6555, -11.9152, -11.5767, -12.9965, -8.7977]
+QUESTION #838  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not interested in abstract ideas
+> Inverse Log-Perplexity: [-7.7933, -11.9706, -11.4702, -13.0162, -9.0609]
+QUESTION #839  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not interested in theoretical discussions
+> Inverse Log-Perplexity: [-7.4716, -11.9797, -11.3671, -12.8449, -8.5579]
+QUESTION #840  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are often down in the dumps
+> Inverse Log-Perplexity: [-7.8881, -11.8945, -11.4723, -12.9848, -9.0452]
+QUESTION #841  | TRAIT: A | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Are out for your own personal gain
+> Inverse Log-Perplexity: [-7.5165, -11.8619, -11.4224, -12.7288, -8.5724]
+QUESTION #842  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are very pleased with yourself
+> Inverse Log-Perplexity: [-8.0402, -11.8138, -11.5635, -12.7908, -9.1287]
+QUESTION #843  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Avoid contacts with others
+> Inverse Log-Perplexity: [-7.9676, -11.9328, -11.6227, -13.1186, -9.1242]
+QUESTION #844  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Avoid philosophical discussions
+> Inverse Log-Perplexity: [-7.7265, -12.1624, -11.5954, -12.8909, -8.6934]
+QUESTION #845  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Believe in the importance of art
+> Inverse Log-Perplexity: [-7.7237, -12.0969, -11.56, -13.1137, -8.8427]
+QUESTION #846  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Believe that you are better than others
+> Inverse Log-Perplexity: [-7.5276, -12.0364, -11.5798, -12.9115, -8.5676]
+QUESTION #847  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Believe that others have good intentions
+> Inverse Log-Perplexity: [-7.8983, -12.3867, -11.5914, -13.2073, -8.8161]
+QUESTION #848  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Believe that too much tax money goes to support artists
+> Inverse Log-Perplexity: [-7.2486, -12.1727, -11.7102, -13.0421, -8.0801]
+QUESTION #849  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Can say things beautifully
+> Inverse Log-Perplexity: [-7.6596, -11.9794, -11.5362, -12.7324, -8.5184]
+QUESTION #850  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Carry out your plans
+> Inverse Log-Perplexity: [-7.8487, -11.8218, -11.4222, -12.8181, -8.9401]
+QUESTION #851  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Carry the conversation to a higher level
+> Inverse Log-Perplexity: [-8.0631, -11.9443, -11.3628, -13.0432, -9.1831]
+QUESTION #852  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Cheer people up
+> Inverse Log-Perplexity: [-7.7547, -12.1344, -11.5264, -12.9788, -8.5449]
+QUESTION #853  | TRAIT: C | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Complete tasks successfully
+> Inverse Log-Perplexity: [-7.8468, -11.4733, -11.3932, -12.8063, -9.3473]
+QUESTION #854  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Contradict others
+> Inverse Log-Perplexity: [-7.869, -12.1894, -11.3791, -13.0516, -8.6037]
+QUESTION #855  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Cut others to pieces
+> Inverse Log-Perplexity: [-7.7766, -12.1148, -11.6496, -13.1612, -8.7818]
+QUESTION #856  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Dislike yourself
+> Inverse Log-Perplexity: [-7.8357, -12.1025, -11.454, -12.8609, -8.5886]
+QUESTION #857  | TRAIT: C | KEY: - | SCORE: 4 | ANSWER: moderately inaccurate
+> Statement: Do just enough work to get by
+> Inverse Log-Perplexity: [-7.8738, -12.0312, -11.5216, -13.3903, -9.2839]
+QUESTION #858  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do not enjoy going to art museums
+> Inverse Log-Perplexity: [-7.6488, -12.0591, -11.4692, -12.9713, -8.6137]
+QUESTION #859  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do not like art
+> Inverse Log-Perplexity: [-7.5422, -12.0067, -11.4405, -12.8604, -8.4418]
+QUESTION #860  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do not like poetry
+> Inverse Log-Perplexity: [-7.6559, -12.149, -11.5758, -12.828, -8.4317]
+QUESTION #861  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Don't put your mind on the task at hand
+> Inverse Log-Perplexity: [-8.1576, -12.0504, -11.6362, -13.3207, -9.3798]
+QUESTION #862  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Don't see things through
+> Inverse Log-Perplexity: [-7.8538, -12.0851, -11.6296, -13.0496, -8.7848]
+QUESTION #863  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy hearing new ideas
+> Inverse Log-Perplexity: [-7.8992, -12.0886, -11.6141, -13.0478, -9.1089]
+QUESTION #864  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Enjoy thinking about things
+> Inverse Log-Perplexity: [-7.8569, -12.1371, -11.5521, -12.9755, -8.8369]
+QUESTION #865  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Enjoy wild flights of fantasy
+> Inverse Log-Perplexity: [-7.9695, -11.9518, -11.565, -12.8505, -8.9071]
+QUESTION #866  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Fear for the worst
+> Inverse Log-Perplexity: [-7.9817, -12.2005, -11.636, -13.0912, -8.8228]
+QUESTION #867  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Finish what you start
+> Inverse Log-Perplexity: [-7.9059, -11.9699, -11.5903, -13.1989, -9.1063]
+QUESTION #868  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Follow through with your plans
+> Inverse Log-Perplexity: [-8.1823, -12.1385, -11.6118, -13.2635, -9.2844]
+QUESTION #869  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get excited by new ideas
+> Inverse Log-Perplexity: [-7.8752, -12.0243, -11.5508, -12.9795, -8.9594]
+QUESTION #870  | TRAIT: O | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Have a rich vocabulary
+> Inverse Log-Perplexity: [-7.7454, -11.8851, -11.4164, -12.7747, -8.791]
+QUESTION #871  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have a sharp tongue
+> Inverse Log-Perplexity: [-7.6161, -11.8525, -11.4302, -12.7926, -8.7127]
+QUESTION #872  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Have a vivid imagination
+> Inverse Log-Perplexity: [-8.052, -11.9767, -11.6846, -12.8819, -9.1713]
+QUESTION #873  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have difficulty understanding abstract ideas
+> Inverse Log-Perplexity: [-7.5651, -11.8028, -11.5077, -12.674, -8.9186]
+QUESTION #874  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Keep others at a distance
+> Inverse Log-Perplexity: [-7.7182, -11.7997, -11.4694, -12.9419, -8.9409]
+QUESTION #875  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Leave things unfinished
+> Inverse Log-Perplexity: [-8.0247, -12.3032, -11.7361, -13.2663, -8.9249]
+QUESTION #876  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Make demands on others
+> Inverse Log-Perplexity: [-7.838, -11.9724, -11.5008, -12.6742, -8.5697]
+QUESTION #877  | TRAIT: C | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Mess things up
+> Inverse Log-Perplexity: [-7.7021, -12.0743, -11.4885, -12.9367, -8.6507]
+QUESTION #878  | TRAIT: C | KEY: - | SCORE: 3 | ANSWER: neither accurate nor inaccurate
+> Statement: Need a push to get started
+> Inverse Log-Perplexity: [-8.2777, -12.0992, -11.5701, -13.3707, -9.4259]
+QUESTION #879  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Often feel blue
+> Inverse Log-Perplexity: [-7.5568, -11.9213, -11.473, -12.9228, -8.5869]
+QUESTION #880  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Rarely look for a deeper meaning in things
+> Inverse Log-Perplexity: [-7.6438, -11.8609, -11.6813, -12.7178, -8.9364]
+QUESTION #881  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Remain calm under pressure
+> Inverse Log-Perplexity: [-7.6996, -11.8116, -11.5942, -12.6445, -8.7375]
+QUESTION #882  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Respect others
+> Inverse Log-Perplexity: [-7.7258, -11.9597, -11.3711, -12.9026, -8.6916]
+QUESTION #883  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Retreat from others
+> Inverse Log-Perplexity: [-7.7366, -11.8796, -11.5887, -12.8142, -8.7482]
+QUESTION #884  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Seldom get mad
+> Inverse Log-Perplexity: [-7.6703, -11.8987, -11.503, -12.7978, -8.6527]
+QUESTION #885  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Suspect hidden motives in others
+> Inverse Log-Perplexity: [-7.7501, -12.1788, -11.8083, -12.8535, -8.6328]
+QUESTION #886  | TRAIT: O | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Tend to vote for conservative political candidates
+> Inverse Log-Perplexity: [-7.323, -12.1312, -11.5228, -13.1815, -8.2167]
+QUESTION #887  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Tend to vote for liberal political candidates
+> Inverse Log-Perplexity: [-7.2765, -12.2132, -11.5532, -13.2399, -8.0664]
+QUESTION #888  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Treat all people equally
+> Inverse Log-Perplexity: [-7.672, -12.1461, -11.4505, -12.974, -8.5795]
+QUESTION #889  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Trust what people say
+> Inverse Log-Perplexity: [-7.7529, -12.0835, -11.5338, -12.8807, -8.7378]
+QUESTION #890  | TRAIT: E | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Warm up quickly to others
+> Inverse Log-Perplexity: [-7.7689, -11.525, -11.4907, -12.6971, -8.974]
+QUESTION #891  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Had someone over for dinner
+> Inverse Log-Perplexity: [-7.8936, -12.0384, -11.487, -12.8974, -8.5817]
+QUESTION #892  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Planned a party
+> Inverse Log-Perplexity: [-8.1342, -12.1953, -11.5445, -13.1517, -8.9121]
+QUESTION #893  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Went to a large party
+> Inverse Log-Perplexity: [-7.9475, -11.9138, -11.4986, -12.9282, -8.782]
+QUESTION #894  | TRAIT: E | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Went to a small party
+> Inverse Log-Perplexity: [-7.9615, -11.9604, -11.491, -12.9597, -8.7998]
+QUESTION #895  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are a bounty hunter
+> Inverse Log-Perplexity: [-7.7442, -11.8731, -11.4208, -12.8749, -8.7224]
+QUESTION #896  | TRAIT: A | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Are a counselor or therapist
+> Inverse Log-Perplexity: [-7.3721, -11.6491, -11.502, -12.8043, -8.4683]
+QUESTION #897  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are a doctor or nurse
+> Inverse Log-Perplexity: [-7.4377, -11.581, -11.3548, -12.8408, -8.6192]
+QUESTION #898  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are a long-distance bicycle rider
+> Inverse Log-Perplexity: [-7.797, -11.7693, -11.4765, -13.0081, -8.8429]
+QUESTION #899  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are a military officer
+> Inverse Log-Perplexity: [-7.5304, -11.9366, -11.492, -12.873, -8.4553]
+QUESTION #900  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are a minister, priest, rabbi or other religious teacher
+> Inverse Log-Perplexity: [-7.4211, -11.8832, -11.6541, -12.8319, -8.4529]
+QUESTION #901  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are a physical therapist
+> Inverse Log-Perplexity: [-7.3613, -11.6041, -11.4652, -12.6641, -8.3883]
+QUESTION #902  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are a police officer
+> Inverse Log-Perplexity: [-7.6017, -12.0, -11.5019, -12.7608, -8.2877]
+QUESTION #903  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are a professional athlete
+> Inverse Log-Perplexity: [-7.2897, -11.7651, -11.3308, -12.8193, -8.2421]
+QUESTION #904  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are a racing car driver
+> Inverse Log-Perplexity: [-7.356, -11.4882, -11.1656, -12.4532, -8.2594]
+QUESTION #905  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are a social worker
+> Inverse Log-Perplexity: [-7.6049, -11.9336, -11.6344, -12.9264, -8.5754]
+QUESTION #906  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are an elementary-school teacher
+> Inverse Log-Perplexity: [-7.7902, -11.9738, -11.4901, -13.0136, -8.7012]
+QUESTION #907  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Care for sick people
+> Inverse Log-Perplexity: [-7.4742, -11.9217, -11.4723, -12.652, -8.3086]
+QUESTION #908  | TRAIT: O | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Compete in athletic events
+> Inverse Log-Perplexity: [-7.4885, -11.59, -11.1145, -12.6317, -8.3999]
+QUESTION #909  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Counsel persons who need help
+> Inverse Log-Perplexity: [-7.9781, -11.6137, -11.4487, -12.4757, -9.0581]
+QUESTION #910  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Engage in exciting adventures
+> Inverse Log-Perplexity: [-7.9627, -11.9823, -11.476, -13.0212, -9.1582]
+QUESTION #911  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Face physical danger
+> Inverse Log-Perplexity: [-7.784, -12.0149, -11.5397, -12.91, -8.8917]
+QUESTION #912  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Help others learn new ideas
+> Inverse Log-Perplexity: [-7.7242, -11.8914, -11.4799, -12.9264, -8.9026]
+QUESTION #913  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Help people make career decisions
+> Inverse Log-Perplexity: [-7.5055, -11.7511, -11.2411, -12.9232, -8.6009]
+QUESTION #914  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Instruct parents on child care
+> Inverse Log-Perplexity: [-7.8815, -11.9284, -11.5802, -12.9957, -8.8737]
+QUESTION #915  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Participate in charity events
+> Inverse Log-Perplexity: [-8.1479, -12.223, -11.3621, -13.2444, -8.9779]
+QUESTION #916  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Provide comfort and support to others
+> Inverse Log-Perplexity: [-7.7415, -11.7962, -11.3733, -13.1499, -9.0864]
+QUESTION #917  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Survive in the wilderness
+> Inverse Log-Perplexity: [-8.0223, -12.1223, -11.6066, -13.1769, -9.128]
+QUESTION #918  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Could not get going
+> Inverse Log-Perplexity: [-7.7659, -11.8506, -11.4678, -12.7185, -8.6784]
+QUESTION #919  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Did not feel like eating, even though you should have been hungry.
+> Inverse Log-Perplexity: [-7.4778, -11.8343, -11.2526, -12.4661, -8.0345]
+QUESTION #920  | TRAIT: N | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Enjoyed life
+> Inverse Log-Perplexity: [-7.8789, -12.1152, -11.564, -13.1755, -8.8922]
+QUESTION #921  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Felt depressed
+> Inverse Log-Perplexity: [-7.6075, -11.9603, -11.5361, -12.5965, -8.1752]
+QUESTION #922  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Felt fearful
+> Inverse Log-Perplexity: [-7.7159, -11.9706, -11.5551, -12.7703, -8.5822]
+QUESTION #923  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Felt happy
+> Inverse Log-Perplexity: [-7.7618, -12.0569, -11.4351, -12.9643, -8.5453]
+QUESTION #924  | TRAIT: N | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Felt hopeful about the future
+> Inverse Log-Perplexity: [-7.5352, -11.994, -11.527, -12.8089, -8.3238]
+QUESTION #925  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Felt lonely
+> Inverse Log-Perplexity: [-7.8252, -12.1086, -11.5644, -12.8179, -8.4632]
+QUESTION #926  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Felt sad
+> Inverse Log-Perplexity: [-7.7028, -12.127, -11.4977, -12.9025, -8.3367]
+QUESTION #927  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Felt that everything you did was an effort
+> Inverse Log-Perplexity: [-7.7497, -12.1636, -11.6597, -12.9761, -8.7756]
+QUESTION #928  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Felt that you could not shake off the blues, even with help from your family or friends.
+> Inverse Log-Perplexity: [-7.741, -12.1277, -11.66, -12.9983, -8.6203]
+QUESTION #929  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Felt that people disliked me
+> Inverse Log-Perplexity: [-7.9175, -12.4027, -11.7987, -13.1459, -8.5472]
+QUESTION #930  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Had a poor appetite
+> Inverse Log-Perplexity: [-7.6362, -11.8105, -11.5091, -12.4466, -8.2851]
+QUESTION #931  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Had crying spells
+> Inverse Log-Perplexity: [-7.7321, -11.9415, -11.5965, -12.7402, -8.5451]
+QUESTION #932  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Had restless sleep
+> Inverse Log-Perplexity: [-7.8712, -11.782, -11.5555, -12.6931, -8.7554]
+QUESTION #933  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Had thoughts about death
+> Inverse Log-Perplexity: [-7.8852, -12.3051, -11.7312, -12.8901, -8.6526]
+QUESTION #934  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Had trouble keeping your mind on what you was doing
+> Inverse Log-Perplexity: [-7.712, -11.9012, -11.5854, -12.8695, -8.7192]
+QUESTION #935  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Talked less than usual
+> Inverse Log-Perplexity: [-8.0168, -12.1595, -11.6599, -12.9898, -8.9919]
+QUESTION #936  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Thought about killing yourself
+> Inverse Log-Perplexity: [-7.7758, -12.1781, -11.6754, -12.9067, -8.6351]
+QUESTION #937  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Thought your life had been a failure
+> Inverse Log-Perplexity: [-7.4892, -12.0737, -11.6715, -12.9118, -8.5872]
+QUESTION #938  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Was bothered by things that usually don't bother me
+> Inverse Log-Perplexity: [-7.8425, -12.1851, -11.8468, -13.1089, -8.4888]
+QUESTION #939  | TRAIT: N | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Was down in the dumps
+> Inverse Log-Perplexity: [-7.8782, -11.9391, -11.5712, -12.894, -8.8588]
+QUESTION #940  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Acknowledge others' accomplishments
+> Inverse Log-Perplexity: [-7.871, -12.1302, -11.6709, -13.1647, -9.039]
+QUESTION #941  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Act according to your conscience
+> Inverse Log-Perplexity: [-7.8867, -11.928, -11.4429, -12.7853, -8.9338]
+QUESTION #942  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Are afraid of many things
+> Inverse Log-Perplexity: [-7.7619, -11.9255, -11.5543, -12.7532, -8.7409]
+QUESTION #943  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are nice to store clerks
+> Inverse Log-Perplexity: [-7.888, -11.8083, -11.4099, -12.99, -8.9857]
+QUESTION #944  | TRAIT: O | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Are not interested in abstract ideas
+> Inverse Log-Perplexity: [-7.7933, -11.9706, -11.4702, -13.0162, -9.0609]
+QUESTION #945  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are often down in the dumps
+> Inverse Log-Perplexity: [-7.8881, -11.8945, -11.4723, -12.9848, -9.0452]
+QUESTION #946  | TRAIT: N | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are often in a bad mood
+> Inverse Log-Perplexity: [-7.7829, -11.8992, -11.4387, -12.8895, -8.8503]
+QUESTION #947  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Become overwhelmed by events
+> Inverse Log-Perplexity: [-8.1439, -12.1923, -11.7624, -13.1021, -9.2158]
+QUESTION #948  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Believe that the end justifies the means
+> Inverse Log-Perplexity: [-7.9387, -12.4895, -11.8652, -13.3856, -8.9918]
+QUESTION #949  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Can manage many things at the same time
+> Inverse Log-Perplexity: [-7.6907, -11.5989, -11.338, -12.653, -9.0856]
+QUESTION #950  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Can tackle anything
+> Inverse Log-Perplexity: [-7.6443, -11.8289, -11.4118, -12.855, -8.7765]
+QUESTION #951  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Can't be bothered with other's needs
+> Inverse Log-Perplexity: [-7.8102, -11.9587, -11.4644, -12.9755, -8.8487]
+QUESTION #952  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Care about justice
+> Inverse Log-Perplexity: [-7.5837, -12.15, -11.5773, -12.8043, -8.5037]
+QUESTION #953  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Disregard the opinions of others
+> Inverse Log-Perplexity: [-7.8688, -12.0223, -11.5196, -12.6733, -8.6098]
+QUESTION #954  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Do the opposite of what is asked
+> Inverse Log-Perplexity: [-7.977, -12.1191, -11.5002, -13.2161, -8.867]
+QUESTION #955  | TRAIT: E | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Enjoy bringing people together
+> Inverse Log-Perplexity: [-7.9045, -12.2317, -11.566, -13.2275, -8.9957]
+QUESTION #956  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Experience your emotions intensely
+> Inverse Log-Perplexity: [-8.0154, -12.0675, -11.7332, -13.1242, -9.0851]
+QUESTION #957  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Feel little concern for others
+> Inverse Log-Perplexity: [-7.6293, -11.8627, -11.6042, -12.7645, -8.6613]
+QUESTION #958  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Feel that you are unable to deal with things
+> Inverse Log-Perplexity: [-7.6509, -11.9569, -11.6121, -12.7868, -8.8313]
+QUESTION #959  | TRAIT: O | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Get lost in your dreams
+> Inverse Log-Perplexity: [-7.9536, -11.9509, -11.6093, -12.7445, -9.0002]
+QUESTION #960  | TRAIT: O | KEY: + | SCORE: 2 | ANSWER: moderately inaccurate
+> Statement: Get so involved with things that you forget the time
+> Inverse Log-Perplexity: [-8.0124, -12.2778, -11.8505, -13.3048, -9.1202]
+QUESTION #961  | TRAIT: E | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Have difficulty expressing your feelings
+> Inverse Log-Perplexity: [-8.1791, -12.2558, -11.643, -13.0992, -9.1966]
+QUESTION #962  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Like to be of service to others
+> Inverse Log-Perplexity: [-7.8509, -11.8195, -11.2783, -13.0234, -8.9631]
+QUESTION #963  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Listen to your conscience
+> Inverse Log-Perplexity: [-7.9944, -12.124, -11.5571, -12.9891, -9.084]
+QUESTION #964  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Misuse power
+> Inverse Log-Perplexity: [-7.7153, -11.9942, -11.4568, -12.9366, -8.6436]
+QUESTION #965  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Need reassurance
+> Inverse Log-Perplexity: [-7.7946, -11.7972, -11.5856, -12.8835, -9.0048]
+QUESTION #966  | TRAIT: C | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Never give up
+> Inverse Log-Perplexity: [-7.7799, -12.0613, -11.5153, -12.9928, -8.7549]
+QUESTION #967  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Obstruct others' plans
+> Inverse Log-Perplexity: [-7.733, -11.7366, -11.5492, -12.6645, -8.8439]
+QUESTION #968  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Pretend to be concerned for others
+> Inverse Log-Perplexity: [-7.9045, -12.0569, -11.5091, -12.9978, -8.6956]
+QUESTION #969  | TRAIT: C | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Readily overcome setbacks
+> Inverse Log-Perplexity: [-7.6176, -11.6498, -11.7628, -12.4127, -8.7613]
+QUESTION #970  | TRAIT: A | KEY: + | SCORE: 4 | ANSWER: moderately accurate
+> Statement: Return extra change when a cashier makes a mistake
+> Inverse Log-Perplexity: [-8.0032, -11.5869, -11.4598, -12.9771, -9.4178]
+QUESTION #971  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Stand behind your actions
+> Inverse Log-Perplexity: [-7.9362, -12.0471, -11.5695, -13.0224, -9.0088]
+QUESTION #972  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Take control of things
+> Inverse Log-Perplexity: [-7.6142, -11.9188, -11.4949, -12.7847, -8.6655]
+QUESTION #973  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Try to fool others
+> Inverse Log-Perplexity: [-7.802, -11.8759, -11.4928, -12.8152, -8.7326]
+QUESTION #974  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to lead others
+> Inverse Log-Perplexity: [-8.0092, -12.0989, -11.6333, -13.1164, -9.0173]
+QUESTION #975  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to maintain a pleasant atmosphere
+> Inverse Log-Perplexity: [-8.2184, -11.9801, -11.5487, -13.024, -9.2843]
+QUESTION #976  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to outdo others
+> Inverse Log-Perplexity: [-7.8545, -11.884, -11.6531, -12.9933, -8.9215]
+QUESTION #977  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Try to surpass others' accomplishments
+> Inverse Log-Perplexity: [-7.9372, -12.0661, -11.6331, -13.2313, -9.1407]
+QUESTION #978  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Want to be in charge
+> Inverse Log-Perplexity: [-7.8629, -11.9258, -11.4941, -12.9822, -8.9545]
+QUESTION #979  | TRAIT: C | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Want to be the very best
+> Inverse Log-Perplexity: [-8.1192, -12.1865, -11.5614, -13.4537, -9.35]
+QUESTION #980  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are humble about the good things that have happened to me
+> Inverse Log-Perplexity: [-7.607, -12.0755, -11.6672, -12.8744, -8.6138]
+QUESTION #981  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Are proud that you are an ordinary person
+> Inverse Log-Perplexity: [-7.6149, -11.8308, -11.3662, -12.6967, -8.814]
+QUESTION #982  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Believe that others are drawn to you because you are humble
+> Inverse Log-Perplexity: [-7.6345, -12.2732, -11.7778, -13.1329, -8.5325]
+QUESTION #983  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Don't act is if you are a special person
+> Inverse Log-Perplexity: [-7.5995, -11.8319, -11.4218, -12.8061, -8.5741]
+QUESTION #984  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Don't brag about your accomplishments
+> Inverse Log-Perplexity: [-7.7171, -12.1356, -11.5327, -13.1102, -8.7848]
+QUESTION #985  | TRAIT: A | KEY: + | SCORE: 5 | ANSWER: very accurate
+> Statement: Don't call attention to yourself
+> Inverse Log-Perplexity: [-7.9164, -11.7756, -11.2841, -12.7601, -9.0477]
+QUESTION #986  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Feel that too much modesty gets a person in trouble
+> Inverse Log-Perplexity: [-7.7886, -12.1671, -11.6266, -13.2456, -8.9468]
+QUESTION #987  | TRAIT: A | KEY: - | SCORE: 5 | ANSWER: very inaccurate
+> Statement: Like to stand out in a crowd
+> Inverse Log-Perplexity: [-7.5881, -11.9734, -11.457, -13.0128, -8.5423]
+QUESTION #988  | TRAIT: A | KEY: - | SCORE: 1 | ANSWER: very accurate
+> Statement: Like to talk about yourself
+> Inverse Log-Perplexity: [-7.824, -11.9467, -11.6021, -12.9123, -8.8945]
+QUESTION #989  | TRAIT: A | KEY: + | SCORE: 1 | ANSWER: very inaccurate
+> Statement: Would never be described as arrogant
+> Inverse Log-Perplexity: [-7.5081, -12.0403, -11.566, -12.8959, -8.4873]
+--------------------------------------------------------------------------------
+& $3.47$ & $1.92$ & $3.63$ & $1.80$ & $2.97$ & $1.96$ & $3.11$ & $1.97$ & $2.91$ & $1.97$ \\
+& $341$ & $233$ & $18$ & $4$ & $5$ & $4$ & $14$ & $14$ & $178$ & $178$ \\

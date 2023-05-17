@@ -5,7 +5,6 @@ from MPI.mpi import *
 from collections import defaultdict
 
 
-
 if __name__ == "__main__":
     # Parse Input Arguments
     parser = argparse.ArgumentParser()
@@ -51,9 +50,6 @@ if __name__ == "__main__":
                 reduced_mpi.token_of_interest.extend(mpi.token_of_interest)
                 reduced_mpi.mpi_df = pd.concat([reduced_mpi.mpi_df,mpi.mpi_df])
                 
-                # for k in OCEAN:
-                #     mpi.OCEAN[k].extend([])
-
                 for key in reduced_mpi.OCEAN.keys():
                     reduced_mpi.OCEAN[key].extend(mpi.OCEAN[key])
 
