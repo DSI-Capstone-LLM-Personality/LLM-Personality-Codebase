@@ -47,6 +47,9 @@ template_type = " \\textsc{{Indexed}}"
 ans_type='index'
 # ans_type='desc'
 
+calibrated = True
+# calibrated=False
+
 mpis_dir = f"checkpoint/mpis/{regime}/{category}/{version}/{description}/{ans_type}/"
 filename = log_fname(dset, model_config, description)
 
@@ -64,6 +67,8 @@ def generate_table(table: str):
             fname = f"{mpis_dir}{filename}_[{order}]"
             if ans_type is not None and regime == "Constraint":
                 fname += f"_[{ans_type}]"
+            if calibrated:
+                fname += f"_[calibrated]"
             ckpt = torch.load(f"{fname}.pt",map_location=DEVICE)
             out += f"& \\textsc{{{TABLE_ORDER_NAME[order]}}}" + \
                 format_ocean_latex_table(ckpt) + "\n"
@@ -74,6 +79,8 @@ def generate_table(table: str):
             fname = f"{mpis_dir}{filename}_[{order}]"
             if ans_type is not None and regime == "Constraint":
                 fname += f"_[{ans_type}]"
+            if calibrated:
+                fname += f"_[calibrated]"
             ckpt = torch.load(f"{fname}.pt",map_location=DEVICE)
             out += f"& \\textsc{{{TABLE_ORDER_NAME[order]}}}" + \
                 format_ans_distribution_latex_table(ckpt) + "\n"
@@ -88,6 +95,8 @@ def generate_table(table: str):
             fname = f"{mpis_dir}{filename}_[{order}]"
             if ans_type is not None and regime == "Constraint":
                 fname += f"_[{ans_type}]"
+            if calibrated:
+                fname += f"_[calibrated]"
             # For score distribution only
             # out += template_type
             ckpt = torch.load(f"{fname}.pt",map_location=DEVICE)
