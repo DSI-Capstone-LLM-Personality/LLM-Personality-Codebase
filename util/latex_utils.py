@@ -47,8 +47,8 @@ template_type = " \\textsc{{Indexed}}"
 ans_type='index'
 # ans_type='desc'
 
-calibrated = True
-# calibrated=False
+# calibrated = True
+calibrated=False
 
 mpis_dir = f"checkpoint/mpis/{regime}/{category}/{version}/{description}/{ans_type}/"
 filename = log_fname(dset, model_config, description)

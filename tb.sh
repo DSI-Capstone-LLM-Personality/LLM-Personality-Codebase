@@ -6,8 +6,8 @@
 # python util/latex_utils.py --config=config/Constraint/order-symmetry/OPT-1.3B/index.yaml
 # python util/latex_utils.py --config=config/Constraint/order-symmetry/OPT-2.7B/index.yaml
 # python util/latex_utils.py --config=config/Constraint/order-symmetry/OPT-6.7B/index.yaml
-python util/latex_utils.py --config=config/Constraint/order-symmetry/OPT-13B/index.yaml
-python util/latex_utils.py --config=config/Constraint/order-symmetry/OPT-30B/index.yaml
+# python util/latex_utils.py --config=config/Constraint/order-symmetry/OPT-13B/index.yaml
+# python util/latex_utils.py --config=config/Constraint/order-symmetry/OPT-30B/index.yaml
 
 
 # # OPT
@@ -31,11 +31,11 @@ python util/latex_utils.py --config=config/Constraint/order-symmetry/OPT-30B/ind
 # python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEOX/non-index.yaml
 
 # GPT index
-# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2/index.yaml
-# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2-Medium/index.yaml
-# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2-Large/index.yaml
-# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2-XL/index.yaml
-# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-125M/index.yaml
-# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-1.3B/index.yaml
-# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-2.7B/index.yaml
-# python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEOX/index.yaml
+python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2/index.yaml
+python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2-Medium/index.yaml
+python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2-Large/index.yaml
+python util/latex_utils.py --config=config/Constraint/order-symmetry/GPT2-XL/index.yaml
+python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-125M/index.yaml
+python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-1.3B/index.yaml
+python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEO-2.7B/index.yaml
+python util/latex_utils.py --config=config/Constraint/order-symmetry/GPTNEOX/index.yaml

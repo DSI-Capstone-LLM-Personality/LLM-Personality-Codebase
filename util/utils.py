@@ -210,7 +210,7 @@ def format_score_distribution_latex_table(mpi):
     for ratio in choice_dist:
         out += f"& ${(100 * ratio):.2f}$ "
     for s in [5, 4, 3, 2, 1]:
-        out += f"& ${(100 * score_stats[s] / n_scores):.2f}$ "
+        out += f"& ${(score_stats[s] / n_scores):.2f}$ "
     out += "\\\\"
     return out
 
