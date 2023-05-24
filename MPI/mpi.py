@@ -82,6 +82,7 @@ class MPI():
                 print(colored.fg('#ffbf00') + f"OPTIONS for {key} QUESTIONS: ")
                 print(colored.fg("#00b384") + f">> {vals}")
         # ANSWERS
+        self.ans_type = ans_type
         self.mpi_choice_lst = MPI_options_to_answers(
             self.index, self.desc, self.option, ans_type, is_lower_case, order)
 
@@ -255,7 +256,10 @@ class MPI():
                 self.preds_key.append(self.mpi_choice_lst[key][pred])
                 self.preds.append(pred)
                 # TODO: (Xiaoyang) THERE IS A BUG when shuffling orderes. Fix this bug later...
-                score = MPI_SCORE[key][pred]
+                if self.index is not None and self.ans_type != 'desc':
+                    score = MPI_SCORE[key][self.order][pred]
+                else: 
+                    score = MPI_SCORE[key][pred]
                 self.scores.append(score)
 
                 if verbose:

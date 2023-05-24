@@ -187,15 +187,34 @@ def format_ans_distribution_latex_table(mpi):
     out += "\\\\"
     return out
 
-def format_score_distribution_latex_table(mpi):
+def format_score_distribution_latex_table(mpi, ans_type, orders):
     n_scores = len(mpi.scores)
-    score_stats = Counter(mpi.scores)
+    preds, keys, labels = mpi.preds, mpi.plus_minus, mpi.label
+    scores = []
+    if ans_type == 'index':
+        for idx, pred in enumerate(preds):
+            key = keys[idx]
+            scores.append(MPI_SCORE[key][ORDERS[orders]][pred])
+    # ocean_scores = defaultdict(list)
+    # for idx, score in enumerate(scores):
+    #         ocean_scores[labels[idx]].append(score)
+    scores_stats = Counter(scores)
+    # print(scores_stats)
+    # for item in ocean_scores:
+    #     ocean_scores[item] = np.array(ocean_scores[item])
     # distribution
     ans_dist_table = []
     for sign in ['+', '-']:
+        ans_table = []
         stat = Counter(mpi.preds_key[mpi.plus_minus == sign])
         for item in mpi.mpi_choice_lst[sign]:
-            ans_dist_table.append(stat[item])
+            ans_table.append(stat[item])
+        # print(ans_table)
+        if ans_type == 'index':
+            ans_dist_table += [ans_table[ORDERS[orders].index(idx)] for idx in range(5)]
+        else:
+            ans_dist_table += ans_table
+    # print(ans_dist_table)
     # Change order if necessary
     order = np.array([[a, b] for a, b, in zip(
         np.arange(5), np.arange(5, 10, 1))])
@@ -210,17 +229,30 @@ def format_score_distribution_latex_table(mpi):
     for ratio in choice_dist:
         out += f"& ${(100 * ratio):.2f}$ "
     for s in [5, 4, 3, 2, 1]:
-        out += f"& ${(score_stats[s] / n_scores):.2f}$ "
+        out += f"& ${(scores_stats[s] / n_scores):.2f}$ "
     out += "\\\\"
     return out
 
 
-def format_ocean_latex_table(mpi):
+def format_ocean_latex_table(mpi, ans_type, order=None):
+    # Revised version
+    preds, keys, labels = mpi.preds, mpi.plus_minus, mpi.label
+    scores = []
+    if ans_type == 'index':
+        for idx, pred in enumerate(preds):
+            key = keys[idx]
+            scores.append(MPI_SCORE[key][ORDERS[order]][pred])
+    ocean_scores = defaultdict(list)
+    for idx, score in enumerate(scores):
+            ocean_scores[labels[idx]].append(score)
     # Note that the output is a single row of table
-    ocean_scores = mpi.OCEAN
+    # ocean_scores = mpi.OCEAN
     ocean_table = []
     for item in OCEAN:
         vals = torch.tensor(ocean_scores[item], dtype=torch.float32)
+        # if ans_type == 'index':
+        #     score_map = 
+            # vals = vals[ORDERS[order]]
         mean, std = torch.mean(vals).item(), torch.std(vals).item()
         ocean_table.append(mean)
         ocean_table.append(std)

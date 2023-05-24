@@ -16,20 +16,20 @@ template:
   # [lc]-[ns]-[type-iii]-[ans-ii]
   prompt: "[og]-[ns]-[type-iii]-[ans-ii]"
   description: non-index-cali
-  # index:
-  #   "+": letter
-  #   "-": letter
   index:
+    "+": letter
+    "-": letter
+  # index:
   desc:
     "+": mpi
     "-": mpi
-  # ans_type: index
+  ans_type: index
   # ans_type: index-desc
-  ans_type: desc
+  # ans_type: desc
   is_lower_case: True
 
 shuffle:
-  order: original
+  order: order-I
   shuffle_both: False
 
 # use opt for testing purpose
@@ -37,7 +37,7 @@ model:
   # family: GPT2
   # version: gpt2
   family: OPT
-  version: facebook/opt-6.7b
+  version: facebook/opt-125m
   access_method: hf
   half_precision: False
 

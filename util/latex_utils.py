@@ -71,7 +71,7 @@ def generate_table(table: str):
                 fname += f"_[calibrated]"
             ckpt = torch.load(f"{fname}.pt",map_location=DEVICE)
             out += f"& \\textsc{{{TABLE_ORDER_NAME[order]}}}" + \
-                format_ocean_latex_table(ckpt) + "\n"
+                format_ocean_latex_table(ckpt,ans_type, order) + "\n"
         out += "\\midrule\n"
     elif table == "ans_dist":
         out = f"\multirow{{5}}{{*}}[-0.3em]{{\\makecell[c]{{{family} \\\\ \\textsc{{{tmp_name}}}}}}} "
@@ -103,7 +103,7 @@ def generate_table(table: str):
             # if order != 'original':
             #     out += " &"
             out += f" & \\textsc{{{TABLE_ORDER_NAME[order]}}}"
-            out += format_score_distribution_latex_table(ckpt) + "\n"
+            out += format_score_distribution_latex_table(ckpt, ans_type, order) + "\n"
             # PLOT DISTRIBUTION
             # ckpt.display_trait_stats()
             # break
@@ -115,7 +115,7 @@ def generate_table(table: str):
 
 
 # CURRENT CODE ONLY WORKS FOR SYMMETRY EXPERIMENT TABLE GENERATION
-# generate_table("symmetry")
+generate_table("symmetry")
 # generate_table("ans_dist")
-generate_table("score_dist")
+# generate_table("score_dist")
 
