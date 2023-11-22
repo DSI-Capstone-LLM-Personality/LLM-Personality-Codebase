@@ -1,5 +1,7 @@
 # LLM-Personality-Codebase
 
+**NOTE: This repository is DEPRECATED! We are working on updating this. Please reach out to [xs2485@columbia.edu](xs2485@columbia.edu) for details.**
+
 Natural Language Processing (NLP) research about language model personality, supported by [Columbia Unversity Data Science Institute](https://datascience.columbia.edu/) and [JP Morgan](https://www.jpmorgan.com/global).
 
 **Contributors**: [Xiaoyang Song](https://github.com/Xiaoyang-Song), [Kiyan Mohebbizadeh](https://github.com/kmohebbizadeh), [Shujie Hu](https://github.com/tracyhsj), [Morris Hsieh](https://github.com/MorrisHsieh3059), and [Anant Singh](https://github.com/95anantsingh).
